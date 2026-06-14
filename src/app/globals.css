@@ -1,26 +1,127 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ═══ BoscoFest 2026 — Logo Colors theme ═══ */
+  --logo-navy:       204 80%  27%;   /* #0d2f47  deep logo blue  */
+  --logo-sky:        200 80%  53%;   /* #29ABE2  sky blue        */
+  --logo-green:       95 62%  44%;   /* #6aad1a  globe green     */
+  --logo-mint:       162 48%  86%;   /* #c2f0e4  light teal/mint */
+  --logo-gold:        36 68%  88%;   /* #f7e7ce  parchment gold  */
+  
+  /* System mappings mapped to logo values */
+  --background:      205 62%   4%;   /* #020c12  deep night sky  */
+  --foreground:       53 45%  95%;   /* #fbf8e1  warm parchment  */
+  --jungle-void:     205 62%   3%;   /* canopy navy black    */
+  --jungle-deep:     204 69%   9%;   /* logo navy dark       */
+  --jungle-mid:      204 58%  15%;   /* logo navy mid        */
+  --jungle-bright:    95 62%  44%;   /* globe green          */
+  
+  --sky:             200 80%  53%;   /* sky blue             */
+  --sky-light:       198 85%  67%;   /* light sky            */
+  --sky-deep:        204 80%  27%;   /* deep logo navy       */
+  --sky-glow:        200 80%  53%;
+  --leaf:             95 62%  44%;   /* globe green          */
+  --mint:            162 48%  86%;   /* light teal/mint      */
+  --gold:             36 68%  88%;   /* parchment gold       */
+  --bark-mid:         28 60%  34%;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-sky:         hsl(var(--sky));
+  --color-sky-glow:    hsl(var(--sky));
+  --color-sky-light:   hsl(var(--sky-light));
+  --color-sky-deep:    hsl(var(--sky-deep));
+  --color-leaf:        hsl(var(--leaf));
+  --color-mint:        hsl(var(--mint));
+  --color-gold:        hsl(var(--gold));
+  --color-jungle:      hsl(var(--jungle-bright));
+  --color-forest:      hsl(var(--jungle-bright));
+  --color-emerald:     hsl(var(--leaf));
+  --color-dark-bg:     hsl(var(--background));
+  --color-parchment:   hsl(var(--foreground));
+
+  --font-sans:    var(--font-outfit), system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ══ Keyframes ══════════════════════════════════════════════════════════ */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
 }
+
+@keyframes compass-outer {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes compass-inner {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+@keyframes shimmer {
+  0%   { transform: translateX(-120%) skewX(-15deg); }
+  100% { transform: translateX(250%)  skewX(-15deg); }
+}
+
+@keyframes pulse-sky {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 1; }
+}
+
+@keyframes pulse-amber {
+  0%, 100% { opacity: 0.35; }
+  50%       { opacity: 1; }
+}
+
+@keyframes light-shaft {
+  0%, 100% { opacity: 0.05; }
+  50%       { opacity: 0.14; }
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ══ Scrollbar ══ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: hsl(var(--jungle-deep)); }
+::-webkit-scrollbar-thumb { background: rgba(41,171,226,0.3); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(41,171,226,0.55); }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(41,171,226,0.28);
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   TEXT GLOWS
+   ═══════════════════════════════════════════════════════════ */
+.text-glow-sky {
+  text-shadow: 0 0 14px rgba(41,171,226,0.7), 0 0 32px rgba(41,171,226,0.3);
+}
+.text-glow-leaf {
+  text-shadow: 0 0 14px rgba(106,172,26,0.65), 0 0 28px rgba(106,172,26,0.25);
+}
+.text-glow-gold {
+  text-shadow: 0 0 14px rgba(247,231,206,0.6), 0 0 28px rgba(247,231,206,0.2);
+}
+
+/* ══ Scrollbar hide ══ */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ══ Marquee ══ */
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
 }
