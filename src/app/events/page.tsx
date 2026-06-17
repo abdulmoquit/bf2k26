@@ -868,8 +868,9 @@ export default function EventsPage() {
   const [selectedStage, setSelectedStage] = useState<"All Stages" | "On-stage" | "Off-stage">("All Stages");
   const [activeEvent, setActiveEvent] = useState<Event | null>(null);
   const [registeredEvents, setRegisteredEvents] = useState<string[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Load registration state from localStorage
+  // Load registration state and URL search params on mount
   useEffect(() => {
     const saved = localStorage.getItem("boscofest_registered_events");
     if (saved) {
@@ -877,6 +878,18 @@ export default function EventsPage() {
         setRegisteredEvents(JSON.parse(saved));
       } catch (e) {
         console.error("Failed to load registrations", e);
+      }
+    }
+
+    if (typeof window !== "undefined") {
+      setIsMobile(window.innerWidth < 768);
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get("category");
+      if (cat) {
+        const matched = CATEGORIES.find(c => c.name.toLowerCase() === cat.toLowerCase() || (cat.toLowerCase() === "digital" && c.name.toLowerCase() === "cybernetics"));
+        if (matched) {
+          setSelectedCategory(matched.name);
+        }
       }
     }
   }, []);
@@ -915,18 +928,16 @@ export default function EventsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-parchment-texture relative flex flex-col pb-0">
+    <div className="min-h-screen bg-rest-texture relative flex flex-col pb-0">
       
-
-
       <Navbar />
 
-      <main className="flex-1 w-full max-w-4xl mx-auto px-5 pt-24 pb-16 relative z-20 flex flex-col">
+      <main className="flex-1 w-full max-w-4xl mx-auto px-6 pt-32 pb-20 relative z-20 flex flex-col">
         
         {/* Back Link */}
         <Link 
           href="/" 
-          className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#2B1A0E] hover:text-[#6EC6FF] transition-colors mb-6 max-w-max"
+          className="inline-flex items-center gap-2 text-xs font-bebas tracking-wider text-gold-accent hover:text-white transition-colors mb-6 max-w-max"
         >
           <ArrowLeft className="h-4 w-4" />
           <span>Back to Adventure Map</span>
@@ -934,58 +945,72 @@ export default function EventsPage() {
 
         {/* Page Title Header */}
         <div className="text-center mb-10">
-          <span className="font-display font-black text-[10px] tracking-[0.3em] text-[#65C466] uppercase block mb-1.5">
+          <span className="font-sans font-extrabold text-[12px] tracking-[0.2em] text-map-green uppercase block mb-1.5">
             Territories and Logbook
           </span>
-          <h1 className="font-display font-black text-3xl md:text-4xl text-[#2B1A0E] uppercase tracking-wide">
+          <h1 className="font-bebas font-black text-4xl md:text-5xl text-parchment-light uppercase tracking-wide">
             KNOWN TERRITORIES
           </h1>
-          <p className="text-xs text-[#5C4331] font-bold uppercase tracking-wider mt-2.5 max-w-sm mx-auto leading-relaxed">
+          <p className="font-sans font-bold text-[12px] tracking-[0.1em] text-[#ebdcb9] mt-2.5 max-w-lg mx-auto leading-relaxed uppercase">
             Select your expedition route, inspect the challenges, and sign the charters.
           </p>
         </div>
 
-        {/* Search & Coordinate Input with sky-blue and green accents */}
-        <div className="w-full max-w-md mx-auto mb-6 relative">
-          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none text-[#5C4331]/60">
-            <Search className="h-4.5 w-4.5 animate-pulse" />
+        {/* Search Bar */}
+        <div className="w-full mb-5 relative">
+          <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
+            <Search className="h-4 w-4" style={{ color: "#F4ECC8" }} />
           </div>
-          <input 
+          <input
             type="text"
             placeholder="SEARCH TERRITORY / KEYWORD..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 bg-[#F7F1D5]/80 border-2 border-[#2B1A0E] text-xs font-display font-black tracking-widest text-[#2B1A0E] placeholder-[#5C4331]/40 uppercase focus:outline-none focus:bg-[#E8D7A5]/30 focus:border-[#65C466] shadow-[3px_3px_0px_rgba(43,26,14,1)] focus:shadow-[3px_3px_0px_rgba(110,198,255,1)] focus:translate-x-[2px] focus:translate-y-[2px] transition-all"
-            style={{ borderRadius: "14px 6px 12px 6px / 6px 12px 6px 14px" }}
+            className="w-full pl-12 pr-5 py-3 text-[11px] font-bold uppercase tracking-wider focus:outline-none transition-all placeholder:text-[#F4ECC8]/50"
+            style={{
+              background: "#2B1A0E",
+              border: "2px solid #A37F3E", // Gold accent border
+              borderRadius: 4,
+              boxShadow: "3px 3px 0px rgba(43,26,14,0.8)",
+              color: "#F4ECC8",
+            }}
           />
         </div>
 
-        {/* Advanced Expedition Filters Panel (Days & Stage Locations) with loading animation */}
-        <motion.div 
+        {/* Expedition Filters Panel — dark leather bar */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 100, damping: 16 }}
-          className="w-full bg-[#E8D7A5]/30 border-2 border-[#2B1A0E] p-4.5 mb-8 flex flex-col md:flex-row gap-5 items-stretch md:items-center justify-between"
-          style={{ borderRadius: "16px 8px 14px 8px / 8px 14px 8px 16px" }}
+          className="w-full mb-4 flex flex-col md:flex-row gap-0 overflow-hidden"
+          style={{
+            background: "#1E1208",
+            border: "2px solid #2B1A0E",
+            borderRadius: 6,
+            boxShadow: "4px 4px 0px rgba(43,26,14,0.9)",
+          }}
         >
-          
-          {/* Day Filter Segment */}
-          <div className="flex-1 flex flex-col gap-1.5">
-            <span className="text-[8px] font-black uppercase text-[#5C4331]/80 tracking-widest flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#65C466] animate-pulse" />
-              <span>Expedition Day</span>
+          {/* Day Filter */}
+          <div className="flex-1 flex flex-col gap-2 p-4" style={{ borderRight: "1px solid rgba(235,220,185,0.1)" }}>
+            <span className="text-[11px] font-bold uppercase tracking-[0.15em] flex items-center gap-1.5" style={{ color: "rgba(235,220,185,0.85)" }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#65C466]" />
+              Expedition Day
             </span>
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="flex gap-2">
               {(["All Days", "Day 1", "Day 2"] as const).map((day) => {
                 const isSel = selectedDay === day;
                 return (
                   <button
                     key={day}
                     onClick={() => setSelectedDay(day)}
-                    className={`py-2 text-[9px] font-black uppercase tracking-wider border border-[#2B1A0E] transition-all cursor-pointer ${
-                      isSel ? "bg-[#65C466] text-white shadow-sm" : "bg-[#F7F1D5]/60 text-[#2B1A0E]/70 hover:bg-[#E8D7A5]/40"
-                    }`}
-                    style={{ borderRadius: "6px 3px 5px 3px / 3px 5px 3px 6px" }}
+                    className="flex-1 py-2 font-bebas text-[11px] tracking-wider uppercase cursor-pointer transition-all"
+                    style={{
+                      background: isSel ? "#37532A" : "rgba(235,220,185,0.07)",
+                      color: isSel ? "#ffffff" : "rgba(235,220,185,0.7)",
+                      border: `1.5px solid ${isSel ? "#2B1A0E" : "rgba(235,220,185,0.15)"}`,
+                      borderRadius: 3,
+                      boxShadow: isSel ? "2px 2px 0 rgba(0,0,0,0.5)" : "none",
+                    }}
                   >
                     {day}
                   </button>
@@ -994,23 +1019,27 @@ export default function EventsPage() {
             </div>
           </div>
 
-          {/* Stage Filter Segment */}
-          <div className="flex-1 flex flex-col gap-1.5">
-            <span className="text-[8px] font-black uppercase text-[#5C4331]/80 tracking-widest flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#6EC6FF] animate-pulse" />
-              <span>Event Venue (Stage)</span>
+          {/* Stage Filter */}
+          <div className="flex-1 flex flex-col gap-2 p-4">
+            <span className="text-[11px] font-bold uppercase tracking-[0.15em] flex items-center gap-1.5" style={{ color: "rgba(235,220,185,0.85)" }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#6EC6FF]" />
+              Event Venue (Stage)
             </span>
-            <div className="grid grid-cols-3 gap-1.5">
+            <div className="flex gap-2">
               {(["All Stages", "On-stage", "Off-stage"] as const).map((stg) => {
                 const isSel = selectedStage === stg;
                 return (
                   <button
                     key={stg}
                     onClick={() => setSelectedStage(stg)}
-                    className={`py-2 text-[9px] font-black uppercase tracking-wider border border-[#2B1A0E] transition-all cursor-pointer ${
-                      isSel ? "bg-[#6EC6FF] text-[#2B1A0E] shadow-sm" : "bg-[#F7F1D5]/60 text-[#2B1A0E]/70 hover:bg-[#E8D7A5]/40"
-                    }`}
-                    style={{ borderRadius: "6px 3px 5px 3px / 3px 5px 3px 6px" }}
+                    className="flex-1 py-2 font-bebas text-[11px] tracking-wider uppercase cursor-pointer transition-all"
+                    style={{
+                      background: isSel ? "#3B5E8C" : "rgba(235,220,185,0.07)",
+                      color: isSel ? "#ffffff" : "rgba(235,220,185,0.7)",
+                      border: `1.5px solid ${isSel ? "#2B1A0E" : "rgba(235,220,185,0.15)"}`,
+                      borderRadius: 3,
+                      boxShadow: isSel ? "2px 2px 0 rgba(0,0,0,0.5)" : "none",
+                    }}
                   >
                     {stg}
                   </button>
@@ -1018,161 +1047,180 @@ export default function EventsPage() {
               })}
             </div>
           </div>
-
         </motion.div>
 
-        {/* Scrollable Categories Navigation Strip with staggered load */}
-        <motion.div 
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.04
-              }
-            }
+        {/* Category Strip — flat tabbed buttons */}
+        <div
+          className="w-full mb-8 overflow-x-auto scrollbar-none"
+          style={{
+            background: "#2B1A0E",
+            border: "2px solid #1E1208",
+            borderRadius: 6,
+            boxShadow: "4px 4px 0px rgba(43,26,14,0.9)",
           }}
-          initial="hidden"
-          animate="visible"
-          className="w-full overflow-x-auto pb-4 mb-8 scrollbar-none -mx-5 px-5 flex gap-2.5 select-none justify-start md:justify-center"
         >
-          {CATEGORIES.map((cat) => {
-            const isSelected = selectedCategory === cat.name;
-            return (
-              <motion.button
-                key={cat.name}
-                variants={{
-                  hidden: { y: 15, opacity: 0 },
-                  visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 120, damping: 14 } }
-                }}
-                onClick={() => setSelectedCategory(cat.name)}
-                className={`shrink-0 px-4.5 py-2.5 flex items-center gap-2 text-[10px] font-black uppercase tracking-wider border-2 border-[#2B1A0E] transition-all cursor-pointer shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)] ${
-                  isSelected ? "text-[#2B1A0E]" : "bg-[#F7F1D5]/70 text-[#2B1A0E]/70 hover:bg-[#E8D7A5]/40"
-                }`}
-                style={{ 
-                  borderRadius: "10px 4px 8px 4px / 6px 8px 4px 6px",
-                  backgroundColor: isSelected ? cat.color : undefined
-                }}
-              >
-                <span className="text-sm">{cat.icon}</span>
-                <span>{cat.name}</span>
-              </motion.button>
-            );
-          })}
-        </motion.div>
+          <div className="flex min-w-max">
+            {CATEGORIES.filter(c => c.name !== "All Territories").map((cat, idx) => {
+              const isSelected = selectedCategory === cat.name;
+              return (
+                <button
+                  key={cat.name}
+                  onClick={() => setSelectedCategory(isSelected ? "All Territories" : cat.name)}
+                  className="flex items-center gap-2 px-5 py-3 font-sans font-extrabold text-[12px] tracking-[0.08em] uppercase cursor-pointer transition-all shrink-0"
+                  style={{
+                    background: isSelected ? "rgba(235,220,185,0.12)" : "transparent",
+                    color: isSelected ? "#F4ECC8" : "rgba(235,220,185,0.8)",
+                    borderRight: idx < CATEGORIES.length - 2 ? "1px solid rgba(235,220,185,0.08)" : "none",
+                    borderBottom: isSelected ? "2px solid #A37F3E" : "2px solid transparent",
+                  }}
+                >
+                  <span className="text-base leading-none">{cat.icon}</span>
+                  <span>{cat.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
 
-        {/* Main Grid of Quests with layout transition */}
+        {/* Main Grid of Events */}
         {filteredEvents.length > 0 ? (
-          <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full mt-4">
-            <AnimatePresence mode="popLayout">
+          <motion.div layout={!isMobile} className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+            <AnimatePresence mode={isMobile ? "wait" : "popLayout"}>
               {filteredEvents.map((evt) => {
                 const isRegistered = registeredEvents.includes(evt.id);
+                const diffBg   = evt.difficulty === "Legendary" ? "#A37F3E" : evt.difficulty === "Veteran" ? "#3B5E8C" : "#37532A";
+                const diffText = "#F4ECC8";
                 return (
                   <motion.div
                     key={evt.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    whileHover={{ scale: 1.015 }}
-                    transition={{ 
-                      type: "spring", 
-                      stiffness: 220, 
-                      damping: 24 
-                    }}
+                    layout={!isMobile}
+                    initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                    whileHover={isMobile ? {} : { y: -2 }}
+                    transition={isMobile ? { duration: 0.15 } : { type: "spring", stiffness: 200, damping: 22 }}
                     onClick={() => setActiveEvent(evt)}
-                    className="group relative flex flex-col p-5 bg-[#F7F1D5] border-2 border-[#2B1A0E] shadow-[4px_4px_0px_rgba(43,26,14,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)] hover:border-[#6EC6FF] hover:shadow-[4px_4px_0px_rgba(101,196,102,1)] transition-[border-color,box-shadow] duration-200 cursor-pointer overflow-hidden min-h-[260px] justify-between"
-                    style={{ borderRadius: "20px 8px 18px 10px / 12px 18px 10px 14px" }}
+                    className="parchment-card group relative flex flex-col overflow-hidden cursor-pointer"
                   >
-                    
-                    {/* Faded category background watermark */}
-                    <div className="absolute -right-6 -bottom-6 text-7xl opacity-[0.06] select-none pointer-events-none group-hover:scale-110 transition-transform duration-300">
-                      {evt.icon}
-                    </div>
+                    {/* Card body — sits above grain ::before overlay */}
+                    <div className="relative z-10 p-5 flex flex-col gap-3 flex-1">
 
-                    <div>
-                      {/* Header: Icon and Difficulty badge */}
-                      <div className="flex items-center justify-between w-full">
-                        <div className="text-2xl w-10 h-10 rounded-lg bg-[#E8D7A5]/50 flex items-center justify-center border border-[#2B1A0E]/20">
+                      {/* Row 1: icon box + difficulty badge */}
+                      <div className="flex items-start justify-between">
+                        {/* Green icon box */}
+                        <div
+                          className="flex items-center justify-center text-xl"
+                          style={{
+                            width: 44,
+                            height: 44,
+                            background: "#37532A",
+                            border: "2px solid #2B1A0E",
+                            borderRadius: 6,
+                            boxShadow: "2px 2px 0 rgba(43,26,14,0.8)",
+                            flexShrink: 0,
+                          }}
+                        >
                           {evt.icon}
                         </div>
-                        
+
                         {/* Difficulty badge */}
-                        <span 
-                          className="text-[8px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full border"
+                        <span
+                          className="font-bebas text-[12px] tracking-[0.12em] uppercase px-3.5 py-1"
                           style={{
-                            backgroundColor: `${evt.difficultyColor}18`,
-                            borderColor: evt.difficultyColor,
-                            color: evt.difficultyColor === "#D9B24C" ? "#9A731C" : evt.difficultyColor
+                            background: diffBg,
+                            color: diffText,
+                            border: "1.5px solid #2B1A0E",
+                            borderRadius: 3,
+                            boxShadow: "2px 2px 0 rgba(43,26,14,0.7)",
+                            letterSpacing: "0.12em",
                           }}
                         >
                           {evt.difficulty}
                         </span>
                       </div>
 
-                      {/* Quest Title */}
-                      <h3 className="font-display font-black text-base uppercase tracking-wide text-[#2B1A0E] mt-4">
-                        {evt.name}
-                      </h3>
-                      
-                      {/* Category Label */}
-                      <span className="text-[8px] font-extrabold uppercase tracking-widest text-[#5C4331]/60 block mt-0.5">
-                        {evt.category}
-                      </span>
-
-                      {/* Description */}
-                      <p className="text-[11.5px] leading-relaxed text-[#5C4331] font-medium mt-3.5 line-clamp-3">
-                        {evt.shortDesc}
-                      </p>
-                    </div>
-
-                    {/* Footing detail and Action Button */}
-                    <div className="mt-6 flex flex-col gap-3">
-                      
-                      {/* Core Specs */}
-                      <div className="flex items-center gap-2.5 text-[8.5px] font-bold text-[#5C4331]/80 uppercase flex-wrap">
-                        <span className="flex items-center gap-1">
-                          <Users className="h-3 w-3 text-[#65C466]" />
-                          {evt.teamSize}
-                        </span>
-                        <span className="w-0.5 h-0.5 rounded-full bg-[#2B1A0E]/25" />
-                        <span className="flex items-center gap-1">
-                          <MapPin className="h-3 w-3 text-[#6EC6FF]" />
-                          {evt.location}
-                        </span>
-                        <span className="w-0.5 h-0.5 rounded-full bg-[#2B1A0E]/25" />
-                        <span className="px-1.5 py-0.5 rounded-md bg-[#65C466]/12 text-[#2E7A30] border border-[#65C466]/30 font-black">
-                          {evt.day}
-                        </span>
-                        <span className="px-1.5 py-0.5 rounded-md bg-[#6EC6FF]/12 text-[#2181C4] border border-[#6EC6FF]/30 font-black">
-                          {evt.stage}
+                      {/* Title */}
+                      <div className="mt-1">
+                        <h3
+                          className="font-bebas uppercase leading-tight"
+                          style={{ fontSize: 22, color: "#1A0E05", letterSpacing: "0.04em" }}
+                        >
+                          {evt.name}
+                        </h3>
+                        <span
+                          className="font-sans font-extrabold uppercase tracking-[0.12em]"
+                          style={{ fontSize: 11, color: "#2B1A0E" }}
+                        >
+                          {evt.category}
                         </span>
                       </div>
 
-                      {/* CTA Register Button */}
-                      <button
-                        onClick={(e) => handleRegister(evt.id, e)}
-                        className={`w-full py-2.5 text-[10px] font-black tracking-widest uppercase border border-[#2B1A0E] transition-all flex items-center justify-center gap-1.5 ${
-                          isRegistered 
-                            ? "bg-[#65C466] text-white shadow-[2px_2px_0px_rgba(43,26,14,1)] active:shadow-none active:translate-y-[1px]" 
-                            : "bg-[#E8D7A5] text-[#2B1A0E] hover:bg-[#6EC6FF] shadow-[2px_2px_0px_rgba(43,26,14,1)] active:shadow-none active:translate-y-[1px]"
-                        }`}
-                        style={{ borderRadius: "10px 4px 8px 4px / 6px 8px 4px 6px" }}
+                      {/* Description */}
+                      <p
+                        className="font-sans font-semibold leading-relaxed line-clamp-3"
+                        style={{ fontSize: 13.5, color: "#2B1A0E" }}
                       >
-                        {isRegistered ? (
-                          <>
-                            <span>Charter Signed</span>
-                            <span>📜</span>
-                          </>
-                        ) : (
-                          <>
-                            <span>Sign Charter</span>
-                            <ChevronRight className="h-3.5 w-3.5" />
-                          </>
-                        )}
-                      </button>
+                        {evt.shortDesc}
+                      </p>
 
+                      {/* Metadata row */}
+                      <div className="flex items-center gap-3 flex-wrap mt-auto pt-2" style={{ borderTop: "1px solid rgba(43,26,14,0.18)" }}>
+                        <span className="flex items-center gap-1.5 font-sans" style={{ fontSize: 11, color: "#2B1A0E", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                          <Users className="h-3.5 w-3.5" style={{ color: "#2B1A0E" }} />
+                          {evt.teamSize}
+                        </span>
+                        <span style={{ color: "rgba(43,26,14,0.45)", fontSize: 12 }}>•</span>
+                        <span className="flex items-center gap-1.5 font-sans" style={{ fontSize: 11, color: "#2B1A0E", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                          <MapPin className="h-3.5 w-3.5" style={{ color: "#2B1A0E" }} />
+                          {evt.location}
+                        </span>
+                        <span style={{ color: "rgba(43,26,14,0.45)", fontSize: 12 }}>•</span>
+                        {/* Day pill */}
+                        <span
+                          className="font-bebas tracking-widest uppercase"
+                          style={{
+                            fontSize: 11,
+                            padding: "3px 9px",
+                            background: "#37532A",
+                            color: "#ffffff",
+                            borderRadius: 3,
+                            border: "1px solid #2B1A0E",
+                          }}
+                        >
+                          {evt.day}
+                        </span>
+                        {/* Stage pill */}
+                        <span
+                          className="font-bebas tracking-widest uppercase"
+                          style={{
+                            fontSize: 11,
+                            padding: "3px 9px",
+                            background: "#3B5E8C",
+                            color: "#ffffff",
+                            borderRadius: 3,
+                            border: "1px solid #2B1A0E",
+                          }}
+                        >
+                          {evt.stage}
+                        </span>
+                      </div>
                     </div>
+
+                    {/* Full-width footer CTA */}
+                    <button
+                      onClick={(e) => handleRegister(evt.id, e)}
+                      className="relative z-10 w-full flex items-center justify-center gap-2 font-bebas uppercase tracking-[0.15em] cursor-pointer transition-all"
+                      style={{
+                        fontSize: 13,
+                        padding: "13px 0",
+                        background: isRegistered ? "#1E3A1A" : "#2B3D1C",
+                        color: "#F4ECC8",
+                        borderTop: "2px solid #2B1A0E",
+                      }}
+                    >
+                      <span>{isRegistered ? "Charter Signed" : "Charter Signed"}</span>
+                      <span style={{ fontSize: 16 }}>📜</span>
+                    </button>
 
                   </motion.div>
                 );
@@ -1180,20 +1228,21 @@ export default function EventsPage() {
             </AnimatePresence>
           </motion.div>
         ) : (
-          /* Empty territory state */
-          <div className="w-full py-16 px-6 text-center border-2 border-dashed border-[#2B1A0E]/20 bg-[#E8D7A5]/10 rounded-2xl flex flex-col items-center justify-center gap-3 mt-4">
-            <Compass className="h-8 w-8 text-[#5C4331] opacity-40 animate-spin" style={{ animationDuration: "12s" }} />
-            <h3 className="font-display font-black text-sm uppercase tracking-wider text-[#2B1A0E] mt-2">
+          /* Empty state */
+          <div className="w-full py-16 px-6 text-center flex flex-col items-center gap-3 mt-4"
+            style={{ border: "2px dashed rgba(43,26,14,0.2)", borderRadius: 8, background: "rgba(244,236,200,0.08)" }}
+          >
+            <Compass className="h-8 w-8 opacity-30" style={{ color: "#5C4331", animationDuration: "12s" }} />
+            <h3 className="font-bebas text-sm uppercase tracking-wider" style={{ color: "#2B1A0E" }}>
               Unexplored Grid Coordinates
             </h3>
-            <p className="text-xs text-[#5C4331] max-w-xs leading-relaxed">
-              No expeditions match your parameters. Adjust your search or choose another region in the navigation compass above.
+            <p className="text-xs font-semibold leading-relaxed max-w-xs" style={{ color: "#5C4331" }}>
+              No expeditions match your parameters. Adjust your search or choose another territory.
             </p>
           </div>
         )}
 
       </main>
-
       {/* ─── ZOOM SHEET DETAILS MODAL (Slide-up Bottom Sheet on mobile, modal on desktop) ─── */}
       <AnimatePresence>
         {activeEvent && (
@@ -1205,7 +1254,7 @@ export default function EventsPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setActiveEvent(null)}
-              className="absolute inset-0 bg-[#2B1A0E]/40 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             />
 
             {/* Content Drawer Box */}
@@ -1214,15 +1263,15 @@ export default function EventsPage() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100%", opacity: 0.9 }}
               transition={{ type: "spring", damping: 24, stiffness: 200 }}
-              className="relative w-full max-w-md bg-[#F7F1D5] rounded-t-3xl sm:rounded-2xl border-t-2 border-x-2 sm:border-2 border-[#2B1A0E] px-6 pt-5 pb-8 shadow-[0_-8px_30px_rgba(43,26,14,0.18)] sm:shadow-[6px_6px_0px_rgba(43,26,14,1)] z-10 overflow-y-auto max-h-[85vh] sm:max-h-[80vh]"
+              className="relative w-full max-w-md bg-[#ebdcb9] bg-radial-[rgba(43,26,14,0.03)_1px,transparent_0] bg-[size:8px_8px] rounded-t-3xl sm:rounded-2xl border-t-2 border-x-2 sm:border-2 border-ink-dark px-6 pt-5 pb-8 shadow-[0_-8px_30px_rgba(43,26,14,0.3)] sm:shadow-[6px_6px_0px_rgba(43,26,14,1)] z-10 overflow-y-auto max-h-[85vh] sm:max-h-[80vh]"
             >
               {/* Handlebar drag indicator for mobile */}
-              <div className="w-12 h-1 bg-[#2B1A0E]/15 rounded-full mx-auto mb-5 sm:hidden" />
+              <div className="w-12 h-1 bg-ink-dark/15 rounded-full mx-auto mb-5 sm:hidden" />
 
               {/* Close Button */}
               <button 
                 onClick={() => setActiveEvent(null)}
-                className="absolute top-4 right-4 h-11 w-11 flex items-center justify-center text-[#2B1A0E] hover:text-[#6EC6FF] transition-colors"
+                className="absolute top-4 right-4 h-11 w-11 flex items-center justify-center text-ink-dark hover:text-gold-accent transition-colors"
                 aria-label="Close quest details"
               >
                 <X className="h-5.5 w-5.5" />
@@ -1232,76 +1281,76 @@ export default function EventsPage() {
               <div className="flex items-center gap-3.5 mt-2">
                 <span className="text-3xl">{activeEvent.icon}</span>
                 <div>
-                  <h2 className="font-display font-black text-lg text-[#2B1A0E] uppercase tracking-wide">
+                  <h2 className="font-bebas text-xl text-ink-dark uppercase tracking-wide">
                     {activeEvent.name}
                   </h2>
-                  <span className="text-[9px] font-extrabold uppercase tracking-widest px-2 py-0.5 border border-[#2B1A0E]/20 rounded-full text-[#5C4331] inline-block mt-1">
+                  <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 border border-ink-dark/30 rounded-full text-ink-dark inline-block mt-1">
                     {activeEvent.category}
                   </span>
                 </div>
               </div>
 
-              <hr className="border-[#2B1A0E]/12 my-4" />
+              <hr className="border-ink-dark/15 my-4" />
 
               {/* Quest Specs */}
               <div className="grid grid-cols-2 gap-3 mb-5">
-                <div className="p-3 bg-[#E8D7A5]/20 border border-[#2B1A0E]/15 rounded-xl flex items-center gap-2.5">
-                  <Users className="h-4.5 w-4.5 text-[#65C466] shrink-0" />
+                <div className="p-3 bg-parchment-light/40 border border-ink-dark/15 rounded-xl flex items-center gap-2.5">
+                  <Users className="h-4.5 w-4.5 text-forest-green shrink-0" />
                   <div className="flex flex-col">
-                    <span className="text-[7px] font-black uppercase text-[#5C4331]/70 tracking-wider">Party Size</span>
-                    <span className="text-[10px] font-bold text-[#2B1A0E] uppercase tracking-wide mt-0.5">{activeEvent.teamSize}</span>
+                    <span className="text-[10px] font-extrabold uppercase text-ink-dark/70 tracking-wider">Party Size</span>
+                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.teamSize}</span>
                   </div>
                 </div>
-                <div className="p-3 bg-[#E8D7A5]/20 border border-[#2B1A0E]/15 rounded-xl flex items-center gap-2.5">
-                  <Calendar className="h-4.5 w-4.5 text-[#6EC6FF] shrink-0" />
+                <div className="p-3 bg-parchment-light/40 border border-ink-dark/15 rounded-xl flex items-center gap-2.5">
+                  <Calendar className="h-4.5 w-4.5 text-gold-accent shrink-0" />
                   <div className="flex flex-col">
-                    <span className="text-[7px] font-black uppercase text-[#5C4331]/70 tracking-wider">Schedule</span>
-                    <span className="text-[10px] font-bold text-[#2B1A0E] uppercase tracking-wide mt-0.5">{activeEvent.time}</span>
+                    <span className="text-[10px] font-extrabold uppercase text-ink-dark/70 tracking-wider">Schedule</span>
+                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.time}</span>
                   </div>
                 </div>
                 {/* Day Spec */}
-                <div className="p-3 bg-[#65C466]/8 border border-[#65C466]/20 rounded-xl flex items-center gap-2.5">
+                <div className="p-3 bg-forest-green/10 border border-forest-green/20 rounded-xl flex items-center gap-2.5">
                   <span className="text-base">📅</span>
                   <div className="flex flex-col">
-                    <span className="text-[7px] font-black uppercase text-[#2E7A30] tracking-wider">Festival Day</span>
-                    <span className="text-[10px] font-bold text-[#2B1A0E] uppercase tracking-wide mt-0.5">{activeEvent.day}</span>
+                    <span className="text-[10px] font-extrabold uppercase text-forest-green tracking-wider">Festival Day</span>
+                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.day}</span>
                   </div>
                 </div>
                 {/* Stage Spec */}
-                <div className="p-3 bg-[#6EC6FF]/8 border border-[#6EC6FF]/20 rounded-xl flex items-center gap-2.5">
+                <div className="p-3 bg-sky-blue/10 border border-[#2181C4]/20 rounded-xl flex items-center gap-2.5">
                   <span className="text-base">🎭</span>
                   <div className="flex flex-col">
-                    <span className="text-[7px] font-black uppercase text-[#2181C4] tracking-wider">Event Venue</span>
-                    <span className="text-[10px] font-bold text-[#2B1A0E] uppercase tracking-wide mt-0.5">{activeEvent.stage}</span>
+                    <span className="text-[10px] font-extrabold uppercase text-[#2181C4] tracking-wider">Event Venue</span>
+                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.stage}</span>
                   </div>
                 </div>
-                <div className="p-3 bg-[#E8D7A5]/20 border border-[#2B1A0E]/15 rounded-xl flex items-center gap-2.5 col-span-2">
+                <div className="p-3 bg-parchment-light/40 border border-ink-dark/15 rounded-xl flex items-center gap-2.5 col-span-2">
                   <MapPin className="h-4.5 w-4.5 text-[#E53E3E] shrink-0" />
                   <div className="flex flex-col">
-                    <span className="text-[7px] font-black uppercase text-[#5C4331]/70 tracking-wider">Coordinates Location</span>
-                    <span className="text-[10px] font-bold text-[#2B1A0E] uppercase tracking-wide mt-0.5">{activeEvent.location}</span>
+                    <span className="text-[10px] font-extrabold uppercase text-ink-dark/70 tracking-wider">Coordinates Location</span>
+                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.location}</span>
                   </div>
                 </div>
               </div>
 
               {/* Description */}
               <div className="mb-5">
-                <h4 className="text-[9px] font-black uppercase tracking-widest text-[#2B1A0E] mb-1.5 flex items-center gap-1.5">
-                  <Compass className="h-3.5 w-3.5 text-[#6EC6FF]" />
+                <h4 className="text-[12px] font-bold uppercase tracking-wider text-ink-dark mb-1.5 flex items-center gap-1.5">
+                  <Compass className="h-3.5 w-3.5 text-gold-accent" />
                   <span>Expedition Overview</span>
                 </h4>
-                <p className="text-xs text-[#5C4331] font-medium leading-relaxed">
+                <p className="text-sm text-ink-dark font-medium leading-relaxed">
                   {activeEvent.detail}
                 </p>
               </div>
 
               {/* Rules List */}
               <div className="mb-6">
-                <h4 className="text-[9px] font-black uppercase tracking-widest text-[#2B1A0E] mb-2 flex items-center gap-1.5">
-                  <BookOpen className="h-3.5 w-3.5 text-[#65C466]" />
+                <h4 className="text-[12px] font-bold uppercase tracking-wider text-ink-dark mb-2 flex items-center gap-1.5">
+                  <BookOpen className="h-3.5 w-3.5 text-forest-green" />
                   <span>Rules of Engagement</span>
                 </h4>
-                <ul className="space-y-1.5 pl-4 list-disc text-[11px] text-[#5C4331] font-medium leading-relaxed">
+                <ul className="space-y-1.5 pl-4 list-disc text-xs text-ink-dark font-medium leading-relaxed">
                   {activeEvent.rules.map((rule, idx) => (
                     <li key={idx}>{rule}</li>
                   ))}
@@ -1309,11 +1358,11 @@ export default function EventsPage() {
               </div>
 
               {/* Prize Bounty */}
-              <div className="flex items-center gap-3 p-3.5 rounded-xl border-2 border-[#2B1A0E] bg-[#D9B24C]/10 mb-6">
-                <Trophy className="h-5.5 w-5.5 text-[#D9B24C] shrink-0" />
+              <div className="flex items-center gap-3 p-3.5 rounded-xl border-2 border-ink-dark bg-[#D9B24C]/10 mb-6">
+                <Trophy className="h-5.5 w-5.5 text-gold-accent shrink-0" />
                 <div className="flex flex-col">
-                  <span className="text-[7.5px] font-black uppercase text-[#5C4331] tracking-wider">Discovered Bounty</span>
-                  <span className="text-xs font-black text-[#2B1A0E] uppercase tracking-wide mt-0.5">{activeEvent.bounty}</span>
+                  <span className="text-[7.5px] font-black uppercase text-ink-light tracking-wider">Discovered Bounty</span>
+                  <span className="text-xs font-black text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.bounty}</span>
                 </div>
               </div>
 
@@ -1322,11 +1371,7 @@ export default function EventsPage() {
                 onClick={(e) => {
                   handleRegister(activeEvent.id, e);
                 }}
-                className={`w-full py-3.5 flex items-center justify-center gap-2 font-display text-xs font-black tracking-widest uppercase border-2 border-[#2B1A0E] transition-all cursor-pointer ${
-                  registeredEvents.includes(activeEvent.id)
-                    ? "bg-[#65C466] text-white shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)]"
-                    : "bg-[#6EC6FF] text-[#2B1A0E] shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)]"
-                }`}
+                className={`w-full py-3.5 flex items-center justify-center gap-2 font-bebas text-sm tracking-wider uppercase border-2 border-ink-dark transition-all cursor-pointer bg-forest-green text-white shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)]`}
                 style={{ borderRadius: "12px 6px 10px 6px / 6px 10px 6px 12px" }}
               >
                 {registeredEvents.includes(activeEvent.id) ? (

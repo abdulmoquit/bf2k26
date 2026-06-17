@@ -30,7 +30,7 @@ export default function Preloader() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#F7F1D5] bg-[url('/crumbled_paper.webp')] bg-cover"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#F7F1D5] bg-[url('/preloader-bg.png')] bg-cover"
         >
           {/* Central Compass Animation */}
           <motion.div

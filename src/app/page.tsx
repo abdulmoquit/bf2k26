@@ -3,100 +3,90 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { Sparkles, Star, Compass, MapPin, Landmark, ArrowDown, ChevronRight, X, Calendar, Trophy, Users, ShieldAlert } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { 
+  Sparkles, 
+  Compass, 
+  MapPin, 
+  ArrowDown, 
+  ChevronRight, 
+  X,
+  Trophy,
+  Zap,
+  Headphones,
+  Instagram,
+  Facebook,
+  Youtube,
+  Music
+} from "lucide-react";
 import confetti from "canvas-confetti";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-const SPONSORS = [
-  { name: "INTEL CORE", role: "Chipset Partner",        icon: "⚡", color: "#6EC6FF" },
-  { name: "RED BULL",   role: "Energy Partner",         icon: "🐂", color: "#D9B24C" },
-  { name: "SPOTIFY",    role: "Digital Audio Partner",  icon: "🎧", color: "#65C466" },
-];
-
-interface Location {
+interface Territory {
   id: string;
   name: string;
   preview: string;
-  detail: string;
+  category: string;
   icon: string;
-  markerColor: string;
-  tags: string[];
-  bounty: string;
+  x: string;
+  y: string;
 }
 
-const MAP_LOCATIONS: Location[] = [
+const TERRITORIES: Territory[] = [
   {
-    id: "camp",
-    name: "Explorer Camp",
-    preview: "Welcome to basecamp. Get your bearing and learn about the legacy of Boscofest.",
-    detail: "Step into the wild. Founded in 1985, Boscofest stands as Don Bosco School, Park Circus's premier youth colosseum. Over 40 top schools will travel to our coordinates to pitch their camps and lock horns in the ultimate test of creativity and teamwork.",
-    icon: "🏕️",
-    markerColor: "#65C466",
-    tags: ["Legacy", "Don Bosco", "Kolkata"],
-    bounty: "The Scroll of Honor",
+    id: "music",
+    name: "Music Territory",
+    preview: "Feel the rhythm",
+    category: "Music",
+    icon: "🎵",
+    x: "18%",
+    y: "22%",
   },
   {
-    id: "summit",
-    name: "Summit Arena",
-    preview: "The highest peaks of the island where the ultimate cultural champions clash.",
-    detail: "Climb the heights. Summit Arena hosts the most prestigious onstage showdowns, including Overture (Battle of the Bands), Step Up (Group Choreography), and Snapshot (Spot Photography). Only the most daring artists will conquer these peaks and make their voices echo.",
-    icon: "🏔️",
-    markerColor: "#6EC6FF",
-    tags: ["Music", "Dance", "Main Stage"],
-    bounty: "Trophies of Triumph",
-  },
-  {
-    id: "cavern",
-    name: "Gaming Cavern",
-    preview: "Venture deep into the dark caves where esports legends forge their paths.",
-    detail: "Enter the abyss. Gaming Cavern is home to intense multiplayer showdowns, featuring tournaments in FC24, BGMI, and Valorant. Steel your reflexes, form your squads, and prepare to navigate the labyrinth of competitive esports.",
-    icon: "🎮",
-    markerColor: "#D9B24C",
-    tags: ["Esports", "FC24", "Squad Battle"],
-    bounty: "Champion Loot Boxes",
-  },
-  {
-    id: "cove",
-    name: "Artist Cove",
-    preview: "A serene lagoon of art, sketching, digital editing, and visual styling.",
-    detail: "Paint your trail. Artist Cove brings together designers, spot-sketch artists, and creative layout wizards to illustrate their visions of the uncharted world. Events include canvas painting, digital manipulation, and creative ad design.",
-    icon: "🎨",
-    markerColor: "#65C466",
-    tags: ["Fine Arts", "Digital Design", "Sketching"],
-    bounty: "Masterpiece Medals",
-  },
-  {
-    id: "valley",
-    name: "Echo Valley",
-    preview: "Let your voice ring across the valleys of debating, quizzing, and drama.",
-    detail: "Make some noise. Echo Valley hosts classical and Western vocal showcases, stand-up comedy trials, national-level quizzing, and street plays. Here, your voice carries across the canopy, echo by echo, to win over the tribal judges.",
-    icon: "🎤",
-    markerColor: "#6EC6FF",
-    tags: ["Drama", "Quiz", "Vocal Duels"],
-    bounty: "The Laurel Wreath",
-  },
-  {
-    id: "vault",
-    name: "Treasure Vault",
-    preview: "The final hoard of gold and glory waiting for the conquerors.",
-    detail: "Claim your bounty. Over ₹1,00,000 in prizes, custom-crafted trophies, medals, certificates of triumph, and the legendary Boscofest Overall Championship Ledge await the school crew that successfully maps and conquers the entire island.",
+    id: "sports",
+    name: "Sports Territory",
+    preview: "Compete. Conquer.",
+    category: "Sports",
     icon: "🏆",
-    markerColor: "#D9B24C",
-    tags: ["Cash Prizes", "Championship Trophy", "Glory"],
-    bounty: "₹100,000+ Gold Hoard",
+    x: "48%",
+    y: "10%",
   },
   {
-    id: "dock",
-    name: "Registration Dock",
-    preview: "Sign the crew charter, prepare your coordinates, and board the ship.",
-    detail: "X marks the spot. Secure your team's passage before the chronometer runs out. All schools must register their candidates, assign event keys, and upload signatures to clear customs and begin the quest.",
-    icon: "📜",
-    markerColor: "#E53E3E",
-    tags: ["Sign-up", "Tickets", "Expedition Log"],
-    bounty: "Official Boarding Pass",
+    id: "digital",
+    name: "Digital Frontier",
+    preview: "Code the future",
+    category: "Cybernetics",
+    icon: "</>",
+    x: "72%",
+    y: "18%",
+  },
+  {
+    id: "dance",
+    name: "Dance Territory",
+    preview: "Move to inspire",
+    category: "Dance",
+    icon: "💃",
+    x: "28%",
+    y: "50%",
+  },
+  {
+    id: "literary",
+    name: "Literary Peaks",
+    preview: "Words that wander",
+    category: "Art and Literature",
+    icon: "🖋️",
+    x: "50%",
+    y: "54%",
+  },
+  {
+    id: "art",
+    name: "Art Valley",
+    preview: "Create the unseen",
+    category: "Multimedia",
+    icon: "🎨",
+    x: "74%",
+    y: "58%",
   },
 ];
 
@@ -128,9 +118,65 @@ function useCountdown() {
   return { time, mounted };
 }
 
+// Countdown Cards component — 2×2 grid of parchment cards
+function CountdownCards() {
+  const { time, mounted } = useCountdown();
+  const units = [
+    { value: mounted ? time.days    : "00", label: "Days" },
+    { value: mounted ? time.hours   : "00", label: "Hours" },
+    { value: mounted ? time.minutes : "00", label: "Mins" },
+    { value: mounted ? time.seconds : "00", label: "Secs" },
+  ];
+
+  return (
+    <div className="flex flex-col items-start gap-3 w-full">
+      {/* Header */}
+      <p className="font-bebas text-[10px] tracking-[0.35em] text-[#ebdcb9]/60 uppercase mb-1">
+        Expedition Begins In
+      </p>
+
+      {/* 2×2 Grid */}
+      <div className="grid grid-cols-2 gap-2.5 w-full">
+        {units.map((u, i) => (
+          <motion.div
+            key={u.label}
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.15 + i * 0.08, type: "spring", stiffness: 130, damping: 16 }}
+            className="flex flex-col items-center justify-center"
+            style={{
+              background: "rgba(244, 236, 200, 0.92)",
+              border: "2px solid #2B1A0E",
+              borderRadius: 8,
+              boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+              padding: "10px 8px 8px",
+            }}
+          >
+            <span
+              className="font-bebas leading-none text-[#2B1A0E]"
+              style={{ fontSize: 42, lineHeight: 1 }}
+            >
+              {u.value}
+            </span>
+            <span
+              className="font-sans font-extrabold uppercase tracking-[0.1em] text-[#2B1A0E] mt-1.5"
+              style={{ fontSize: 11 }}
+            >
+              {u.label}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Coordinates tagline */}
+      <p className="font-mono text-[9px] text-[#ebdcb9]/50 tracking-widest uppercase mt-1">
+        22.5478° N, 88.3091° E
+      </p>
+    </div>
+  );
+}
+
 export default function Home() {
-  const { time, mounted: timerMounted } = useCountdown();
-  const [activeLocation, setActiveLocation] = useState<Location | null>(null);
   const mapSectionRef = useRef<HTMLDivElement>(null);
 
   const scrollMap = () => {
@@ -143,485 +189,603 @@ export default function Home() {
       particleCount: 150,
       spread: 80,
       origin: { y: 0.6 },
-      colors: ["#6EC6FF", "#65C466", "#D9B24C", "#E8D7A5"],
+      colors: ["#37532A", "#ebdcb9", "#A37F3E", "#ffffff"],
     });
   };
 
-  // Scroll linked values for hero background compass
-  const { scrollY } = useScroll();
-  const compassRotate = useTransform(scrollY, [0, 1500], [0, 90]);
-
-  // Framer Motion variants for stagger entrance
-  const heroContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1,
-      }
-    }
-  } as const;
-
-  const heroItemVariants = {
-    hidden: { y: 30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 90,
-        damping: 14
-      }
-    }
-  } as const;
-
-  const logoVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: { 
-      scale: 1, 
-      opacity: 1, 
-      transition: { type: "spring" as const, stiffness: 150, damping: 15 } 
-    }
-  } as const;
+  const PARTNERS = [
+    { name: "INTEL CORE", role: "CHIPSET PARTNER",       icon: <Zap className="h-5 w-5" style={{ color: "#E53E3E" }} /> },
+    { name: "RED BULL",   role: "ENERGY PARTNER",         icon: <span className="text-xl">🐂</span> },
+    { name: "SPOTIFY",    role: "DIGITAL AUDIO PARTNER",  icon: <Headphones className="h-5 w-5" style={{ color: "#1DB954" }} /> },
+  ];
 
   return (
-    <div className="min-h-screen bg-parchment-texture relative flex flex-col pb-0">
+    <div className="min-h-screen bg-[#0b0f0a] relative flex flex-col pb-0">
       
-
       <Navbar />
 
       <main className="flex-1 w-full flex flex-col items-center relative z-20">
 
-        {/* ═══════════════════════════════════════════════════════════════════
-            1. HERO SECTION: Beginning of the Expedition (Merged Layout)
-            ═══════════════════════════════════════════════════════════════════ */}
-        <section className="min-h-screen w-full flex flex-col items-center justify-center px-5 pt-28 pb-16 relative">
-          
-          {/* Faded background compass illustration with scroll linked rotation */}
-          <motion.div 
-            style={{ 
-              rotate: compassRotate,
-              x: "-50%",
-              y: "-50%"
-            }}
-            className="absolute top-1/2 left-1/2 w-[350px] h-[350px] md:w-[600px] md:h-[600px] opacity-[0.035] pointer-events-none"
+        {/* ═══ HERO SECTION ══════════════════════════════════════════════════ */}
+        <section className="min-h-screen w-full relative overflow-hidden bg-[#0b0f0a]">
+
+          {/* ── Full-screen background video ── */}
+          {/* Landscape video for desktop */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/hero-bg.jpg"
+            className="hidden lg:block absolute inset-0 w-full h-full object-cover"
+            style={{ zIndex: 0 }}
           >
-            <svg className="w-full h-full text-[#2B1A0E]" viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="1">
-              <circle cx="50" cy="50" r="45" />
-              <path d="M 50,5 L 50,95 M 5,50 L 95,50 M 18,18 L 82,82 M 18,82 L 82,18" />
-            </svg>
-          </motion.div>
+            <source src="/hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Portrait video for mobile */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/hero-bg.jpg"
+            className="block lg:hidden absolute inset-0 w-full h-full object-cover"
+            style={{ zIndex: 0 }}
+          >
+            <source src="/hero-bg-mobile.mp4" type="video/mp4" />
+          </video>
 
-          <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-20">
-            
-            {/* LEFT SIDE: Compass Countdown (lg:col-span-3, lg:order-1) */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.35, type: "spring", stiffness: 80, damping: 15 }}
-              className="lg:col-span-3 order-2 lg:order-1 flex flex-col items-center text-center gap-4 w-full"
+          {/* ── Dark gradient overlay so text stays legible ── */}
+          <div
+            className="absolute inset-0"
+            style={{
+              zIndex: 1,
+              background:
+                "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.55) 100%)",
+            }}
+          />
+
+          {/* ── Three-column layout (Desktop only) ── */}
+          <div
+            className="hidden lg:flex absolute inset-0 items-center justify-between px-10 lg:px-24 xl:px-40"
+            style={{ paddingTop: 80, zIndex: 2 }}
+          >
+            {/* ── LEFT: Countdown Cards ── */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 80, damping: 16 }}
+              className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0"
             >
-              <span className="font-display font-black text-[10px] tracking-[0.25em] text-[#5C4331] uppercase block">
-                Expedition Begins In
-              </span>
-              
-              {/* Outer Brass Rim */}
-              <div className="relative p-1.5 rounded-full bg-gradient-to-tr from-[#5C4331] via-[#D9B24C] to-[#F7F1D5] border-2 border-[#2B1A0E] shadow-[6px_6px_0px_rgba(43,26,14,1)]">
-                
-                {/* Circular Compass Chronometer */}
-                <div className="relative w-56 h-56 md:w-60 md:h-60 rounded-full bg-gradient-to-b from-[#F2EAC4] to-[#E5D295] overflow-hidden border border-[#2B1A0E]/30 flex items-center justify-center">
-                  
-                  {/* Subtle glass reflection overlay */}
-                  <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-transparent via-white/5 to-white/20 z-20" />
-                  
-                  {/* Compass Rose Star Background */}
-                  <svg className="absolute w-32 h-32 text-[#2B1A0E]/5 pointer-events-none" viewBox="0 0 100 100" fill="currentColor">
-                    <path d="M 50,5 L 53,47 L 95,50 L 53,53 L 50,95 L 47,53 L 5,50 L 47,47 Z" />
-                    <path d="M 50,5 L 50,50 L 53,47 Z" fill="black" opacity="0.1" />
-                    <path d="M 95,50 L 50,50 L 53,53 Z" fill="black" opacity="0.1" />
-                    <path d="M 50,95 L 50,50 L 47,53 Z" fill="black" opacity="0.1" />
-                    <path d="M 5,50 L 50,50 L 47,47 Z" fill="black" opacity="0.1" />
-                    <circle cx="50" cy="50" r="10" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="1 1" />
-                  </svg>
-
-                  {/* Outer degree ticks (SVG) */}
-                  <svg className="absolute inset-0 w-full h-full text-[#2B1A0E]/20" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="47" stroke="currentColor" strokeWidth="1.5" strokeDasharray="0.7 2.3" fill="none" />
-                    <circle cx="50" cy="50" r="44" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 6" fill="none" />
-                    <circle cx="50" cy="50" r="41" stroke="currentColor" strokeWidth="0.5" fill="none" />
-                  </svg>
-
-                  {/* Cardinal Directions */}
-                  <div className="absolute inset-0 pointer-events-none p-3.5 flex flex-col justify-between items-center text-[10px] font-display font-black text-[#2B1A0E]">
-                    <span className="text-[#A72A2A] font-extrabold tracking-wider">N</span>
-                    <div className="w-full flex justify-between items-center px-1.5">
-                      <span className="font-extrabold tracking-wider">W</span>
-                      <span className="font-extrabold tracking-wider">E</span>
-                    </div>
-                    <span className="font-extrabold tracking-wider">S</span>
-                  </div>
-
-                  {/* Ordinal directions */}
-                  <div className="absolute inset-0 pointer-events-none p-6.5 flex flex-col justify-between items-center text-[7px] font-sans font-bold text-[#2B1A0E]/55">
-                    <div className="w-full flex justify-between items-center">
-                      <span>NW</span>
-                      <span>NE</span>
-                    </div>
-                    <div className="w-full flex justify-between items-center">
-                      <span>SW</span>
-                      <span>SE</span>
-                    </div>
-                  </div>
-
-                  {/* Rotating vintage detailed needle */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none animate-compass-spin z-10">
-                    <svg className="w-full h-full drop-shadow-[1px_2px_1.5px_rgba(43,26,14,0.35)]" viewBox="0 0 100 100">
-                      {/* North point (red) */}
-                      <path d="M 50,14 L 53,50 L 50,47 Z" fill="#E53E3E" />
-                      <path d="M 50,14 L 47,50 L 50,47 Z" fill="#C53030" />
-                      {/* South point (blue) */}
-                      <path d="M 50,86 L 53,50 L 50,53 Z" fill="#6EC6FF" />
-                      <path d="M 50,86 L 47,50 L 50,53 Z" fill="#4299E1" />
-                      {/* Central brass cap */}
-                      <circle cx="50" cy="50" r="4" fill="#D9B24C" stroke="#2B1A0E" strokeWidth="0.75" />
-                      <circle cx="50" cy="50" r="1.5" fill="#F7F1D5" />
-                    </svg>
-                  </div>
-
-                  {/* Internal Time Boxes (floating transparent glass cards) */}
-                  {timerMounted ? (
-                    <div className="relative z-15 grid grid-cols-2 gap-2 p-3">
-                      {[
-                        { v: time.days,    l: "Days" },
-                        { v: time.hours,   l: "Hrs"  },
-                        { v: time.minutes, l: "Min"  },
-                        { v: time.seconds, l: "Sec"  },
-                      ].map((item, idx) => (
-                        <div key={idx} className="bg-[#E8D7A5]/80 backdrop-blur-[1.5px] border border-[#2B1A0E]/70 px-2.5 py-1.5 flex flex-col items-center min-w-[52px] rounded-lg shadow-sm">
-                          <span className="font-display font-black text-sm text-[#2B1A0E] tabular-nums tracking-tight leading-none">
-                            {item.v}
-                          </span>
-                          <span className="text-[6px] uppercase tracking-wider font-bold text-[#5C4331] mt-0.5">{item.l}</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="relative z-15 font-display font-black text-xs text-[#2B1A0E] opacity-50 bg-[#E8D7A5]/80 px-4 py-2 rounded-lg border border-[#2B1A0E]/30">
-                      TIMING...
-                    </div>
-                  )}
-                  
-                  {/* Real Coordinates of the School at DBPC */}
-                  <div className="absolute bottom-6.5 pointer-events-none text-[6.5px] font-mono tracking-widest text-[#2B1A0E]/50 font-bold">
-                    22.541°N 88.390°E
-                  </div>
-                  
-                </div>
-              </div>
+              <CountdownCards />
             </motion.div>
 
-            {/* CENTER COLUMN: Main Brand / Logo / Title / CTAs (lg:col-span-6, lg:order-2) */}
-            <motion.div 
-              variants={heroContainerVariants}
-              initial="hidden"
-              animate="visible"
-              className="lg:col-span-6 order-1 lg:order-2 flex flex-col items-center text-center gap-6 w-full"
-            >
-              
-              {/* Logo wrapper (Bigger and main attraction!) */}
-              <motion.div 
-                variants={logoVariants}
-                className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 overflow-hidden rounded-full border-2 border-[#2B1A0E] shadow-[8px_8px_0px_rgba(43,26,14,1)] bg-[#E8D7A5] p-2.5"
-              >
-                <Image 
-                  src="/logo2026.png" 
-                  alt="Boscofest 2026 Logo"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 256px, 384px"
-                  className="object-contain p-1.5"
-                />
-              </motion.div>
-
-              {/* Title / Taglines */}
-              <motion.div variants={heroItemVariants} className="flex flex-col gap-2.5">
-                <span className="font-display font-black text-[10px] tracking-[0.3em] text-[#65C466] uppercase block">
-                  Don Bosco School · Kolkata
-                </span>
-                <h1 className="font-display font-black text-3xl md:text-4xl lg:text-5xl tracking-wide uppercase text-[#2B1A0E] leading-none">
-                  BOSCO FEST <span className="text-[#6EC6FF]">2026</span>
-                </h1>
-                <p className="font-display font-black text-xs md:text-sm tracking-[0.2em] text-[#A07722] uppercase bg-[#E8D7A5]/40 px-3.5 py-1 border-sketch-thin max-w-max mx-auto">
-                  &ldquo;UNTOLD. UNFAZED. UNCHARTED.&rdquo;
-                </p>
-              </motion.div>
-
-              {/* Description */}
-              <motion.p variants={heroItemVariants} className="text-xs text-[#5C4331] font-medium max-w-md leading-relaxed">
-                Embark on an unforgettable journey through competitions, culture, creativity and adventure. Sign the charter and begin the quest.
-              </motion.p>
-
-              {/* CTAs */}
-              <motion.div variants={heroItemVariants} className="flex justify-center items-center mt-1 w-full">
-                <Link
-                  href="/events"
-                  className="w-full sm:w-auto px-8 py-3 flex items-center justify-center gap-2 font-display text-xs font-black tracking-widest uppercase text-[#2B1A0E] bg-[#6EC6FF] border-2 border-[#2B1A0E] shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_rgba(43,26,14,1)] transition-all text-center"
-                  style={{ borderRadius: "20px 8px 18px 10px / 10px 18px 10px 14px" }}
-                >
-                  Explore Events
-                </Link>
-              </motion.div>
-
-            </motion.div>
-
-            {/* RIGHT SIDE: Expedition Partners (lg:col-span-3, lg:order-3) */}
-            <motion.div 
+            {/* ── CENTER: Logo + Title + Button ── */}
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.55, type: "spring", stiffness: 80, damping: 15 }}
-              id="sponsors" 
-              className="lg:col-span-3 order-3 lg:order-3 w-full flex flex-col items-center gap-5"
+              transition={{ delay: 0.3, type: "spring", stiffness: 70, damping: 14 }}
+              className="flex flex-col items-center justify-center flex-1 text-center px-4 lg:px-8"
             >
-              <h3 className="font-display font-black text-[10px] tracking-[0.25em] text-[#2B1A0E] uppercase text-center bg-[#E8D7A5]/50 px-3.5 py-1.5 border border-[#2B1A0E]/15 rounded-full">
-                Expedition Partners
-              </h3>
+              {/* Emblem Logo — large */}
+              <div
+                className="relative select-none"
+                style={{
+                  width: "min(420px, 90vw)",
+                  height: "min(420px, 90vw)",
+                  filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.75))",
+                }}
+              >
+                <Image
+                  src="/logo2026.webp"
+                  alt="Boscofest 2026 Emblem"
+                  fill
+                  priority
+                  sizes="420px"
+                  className="object-contain"
+                />
+              </div>
 
-              {/* Vertical stacked/scroll layout for right side */}
-              <div className="w-full flex flex-row lg:flex-col items-center justify-center gap-4.5 overflow-x-auto lg:overflow-visible pb-2.5 lg:pb-0 scrollbar-none">
-                {SPONSORS.map((s, idx) => (
-                  <motion.div 
-                    key={idx}
-                    whileHover={{ y: -3, x: -1, scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    className="shrink-0 flex items-center gap-4 px-4 py-3.5 rounded-2xl border-2 border-[#2B1A0E] bg-[#F7F1D5] min-w-[195px] lg:w-full max-w-[210px] lg:max-w-none cursor-default shadow-[3.5px_3.5px_0px_rgba(43,26,14,1)] hover:shadow-[5px_5px_0px_rgba(43,26,14,1)] hover:border-[#6EC6FF] transition-all duration-200"
+              {/* Sub-header */}
+              <p
+                className="font-sans font-black uppercase tracking-[0.3em] mt-3 mb-2"
+                style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
+              >
+                Don Bosco School · Kolkata
+              </p>
+
+              {/* Main Title */}
+              <h1
+                className="font-bebas uppercase leading-none select-none"
+                style={{ fontSize: "clamp(52px, 7vw, 84px)", letterSpacing: "0.03em" }}
+              >
+                <span style={{ color: "#F4ECC8" }}>BOSCO FEST </span>
+                <span style={{ color: "#37532A" }}>2026</span>
+              </h1>
+
+              {/* Motto banner */}
+              <div
+                className="flex items-center gap-3.5 my-5 px-10 py-3 relative overflow-hidden"
+                style={{
+                  borderTop: "2px solid #A37F3E",
+                  borderBottom: "2px solid #A37F3E",
+                  background: "rgba(43,26,14,0.45)",
+                  backdropFilter: "blur(4px)",
+                  borderRadius: 4,
+                  boxShadow: "inset 0 0 15px rgba(163,127,62,0.15)",
+                }}
+              >
+                {/* Glowing gold star markers */}
+                <span className="text-[#A37F3E] text-xs">✦</span>
+                <span
+                  className="font-bebas uppercase tracking-[0.25em] font-extrabold text-center"
+                  style={{
+                    fontSize: 18,
+                    background: "linear-gradient(to right, #F4ECC8, #A37F3E, #F4ECC8)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    textShadow: "0 0 10px rgba(244,236,200,0.15)",
+                  }}
+                >
+                  "UNTOLD. UNFAZED. UNCHARTED."
+                </span>
+                <span className="text-[#A37F3E] text-xs">✦</span>
+              </div>
+
+              {/* Description */}
+              <p
+                className="font-sans font-medium max-w-md leading-relaxed mb-6"
+                style={{ fontSize: 12.5, color: "rgba(235,220,185,0.85)" }}
+              >
+                Embark on an unforgettable journey through competitions, culture, creativity and
+                adventure. Sign the charter and begin the quest.
+              </p>
+
+              {/* CTA Button */}
+              <button
+                onClick={scrollMap}
+                className="green-btn flex items-center justify-center gap-2.5 px-10 py-3.5"
+                style={{ fontSize: 12, letterSpacing: "0.12em" }}
+              >
+                <Compass className="h-4 w-4" />
+                <span>EXPLORE EVENTS</span>
+              </button>
+            </motion.div>
+
+            {/* ── RIGHT: Expedition Partners ── */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.45, type: "spring", stiffness: 80, damping: 16 }}
+              className="hidden lg:flex flex-col items-end justify-center w-[240px] shrink-0 gap-3"
+            >
+              <p
+                className="font-bebas uppercase tracking-[0.28em] self-start"
+                style={{ fontSize: 10, color: "rgba(235,220,185,0.7)" }}
+              >
+                Expedition Partners
+              </p>
+
+              <div className="flex flex-col gap-2.5 w-full">
+                {PARTNERS.map((p, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ y: -2 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                    className="flex items-center gap-3 w-full"
+                    style={{
+                      background: "#F4ECC8",
+                      border: "2px solid #2B1A0E",
+                      borderRadius: 6,
+                      padding: "8px 12px",
+                      boxShadow: "3px 3px 0 rgba(43,26,14,1)",
+                    }}
                   >
-                    <div 
-                      className="w-10 h-10 rounded-xl flex items-center justify-center text-lg border-2 border-[#2B1A0E] shadow-[1px_1px_0px_rgba(43,26,14,1)] shrink-0 transition-transform duration-300"
-                      style={{ 
-                        backgroundColor: `${s.color}15`,
-                        borderColor: '#2B1A0E'
+                    {/* Icon box */}
+                    <div
+                      className="flex items-center justify-center shrink-0"
+                      style={{
+                        width: 32,
+                        height: 32,
+                        background: "#ebdcb9",
+                        border: "2px solid #2B1A0E",
+                        borderRadius: 6,
+                        boxShadow: "2px 2px 0 rgba(43,26,14,0.8)",
                       }}
                     >
-                      {s.icon}
+                      {p.icon}
                     </div>
-                    <div className="flex flex-col text-left leading-tight">
-                      <span className="font-display font-black text-[10.5px] text-[#2B1A0E] uppercase tracking-wider">{s.name}</span>
-                      <span className="text-[7.5px] font-black text-[#5C4331] uppercase tracking-widest mt-1 bg-[#E8D7A5]/40 px-2 py-0.5 border border-[#2B1A0E]/10 rounded-md max-w-max">
-                        {s.role}
+                    <div className="flex flex-col text-left">
+                      <span
+                        className="font-bebas uppercase tracking-wider"
+                        style={{ fontSize: 14, color: "#2B1A0E", lineHeight: 1 }}
+                      >
+                        {p.name}
+                      </span>
+                      <span
+                        className="font-sans font-extrabold uppercase tracking-wider"
+                        style={{
+                          fontSize: 10,
+                          color: "#2B1A0E",
+                          marginTop: 3,
+                          background: "rgba(43,26,14,0.12)",
+                          padding: "2px 8px",
+                          borderRadius: 3,
+                          border: "1px solid rgba(43,26,14,0.25)",
+                          display: "inline-block",
+                        }}
+                      >
+                        {p.role}
                       </span>
                     </div>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
-
           </div>
+
+          {/* ── Vertical layout (Mobile only) ── */}
+          <div
+            className="flex lg:hidden flex-col items-center justify-start w-full px-5 py-24 relative z-10 gap-8"
+          >
+            {/* Emblem Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 100, damping: 15 }}
+              className="relative select-none shrink-0"
+              style={{
+                width: "min(220px, 55vw)",
+                height: "min(220px, 55vw)",
+                filter: "drop-shadow(0 12px 30px rgba(0,0,0,0.75))",
+              }}
+            >
+              <Image
+                src="/logo2026.webp"
+                alt="Boscofest 2026 Emblem"
+                fill
+                priority
+                sizes="220px"
+                className="object-contain"
+              />
+            </motion.div>
+
+            {/* Core Titles */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 90, damping: 14 }}
+              className="flex flex-col items-center text-center w-full"
+            >
+              {/* Sub-header */}
+              <p
+                className="font-sans font-black uppercase tracking-[0.25em] mb-1.5"
+                style={{ fontSize: 9.5, color: "#82C341" }}
+              >
+                Don Bosco School · Kolkata
+              </p>
+
+              {/* Main Title */}
+              <h1
+                className="font-bebas uppercase leading-none select-none"
+                style={{ fontSize: "44px", letterSpacing: "0.03em" }}
+              >
+                <span style={{ color: "#F4ECC8" }}>BOSCO FEST </span>
+                <span style={{ color: "#37532A" }}>2026</span>
+              </h1>
+
+              {/* Motto banner */}
+              <div
+                className="flex items-center justify-center gap-2 px-4 py-2.5 w-full max-w-[320px]"
+                style={{
+                  borderTop: "2px solid #A37F3E",
+                  borderBottom: "2px solid #A37F3E",
+                  background: "rgba(43,26,14,0.45)",
+                  borderRadius: 4,
+                  boxShadow: "inset 0 0 12px rgba(163,127,62,0.15)",
+                }}
+              >
+                <span className="text-[#A37F3E] text-[10px]">✦</span>
+                <span
+                  className="font-bebas uppercase tracking-[0.18em] font-extrabold text-center text-[13px]"
+                  style={{
+                    background: "linear-gradient(to right, #F4ECC8, #A37F3E, #F4ECC8)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    textShadow: "0 0 8px rgba(244,236,200,0.15)",
+                  }}
+                >
+                  "UNTOLD. UNFAZED. UNCHARTED."
+                </span>
+                <span className="text-[#A37F3E] text-[10px]">✦</span>
+              </div>
+            </motion.div>
+
+            {/* Countdown Cards Wrapper */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, type: "spring", stiffness: 80, damping: 15 }}
+              className="w-full max-w-[280px]"
+            >
+              <CountdownCards />
+            </motion.div>
+
+            {/* Description & CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, type: "spring", stiffness: 80, damping: 15 }}
+              className="flex flex-col items-center text-center w-full max-w-sm px-2"
+            >
+              <p
+                className="font-sans font-medium leading-relaxed mb-5 text-center"
+                style={{ fontSize: 12, color: "rgba(235,220,185,0.85)" }}
+              >
+                Embark on an unforgettable journey through competitions, culture, creativity and
+                adventure. Sign the charter and begin the quest.
+              </p>
+
+              <button
+                onClick={scrollMap}
+                className="green-btn flex items-center justify-center gap-2 px-8 py-3.5 w-full max-w-[240px]"
+                style={{ fontSize: 11.5, letterSpacing: "0.1em" }}
+              >
+                <Compass className="h-4 w-4" />
+                <span>EXPLORE EVENTS</span>
+              </button>
+            </motion.div>
+
+            {/* Expedition Partners */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, type: "spring", stiffness: 80, damping: 15 }}
+              className="w-full max-w-[280px] flex flex-col items-center mt-4"
+            >
+              <p
+                className="font-bebas uppercase tracking-[0.25em] mb-3"
+                style={{ fontSize: 9.5, color: "rgba(235,220,185,0.7)" }}
+              >
+                Expedition Partners
+              </p>
+
+              <div className="flex flex-col gap-2.5 w-full">
+                {PARTNERS.map((p, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ y: -2 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                    className="flex items-center gap-3 w-full"
+                    style={{
+                      background: "#F4ECC8",
+                      border: "2px solid #2B1A0E",
+                      borderRadius: 6,
+                      padding: "8px 12px",
+                      boxShadow: "3px 3px 0 rgba(43,26,14,1)",
+                    }}
+                  >
+                    <div
+                      className="flex items-center justify-center shrink-0"
+                      style={{
+                        width: 32,
+                        height: 32,
+                        background: "#ebdcb9",
+                        border: "2px solid #2B1A0E",
+                        borderRadius: 6,
+                        boxShadow: "2px 2px 0 rgba(43,26,14,0.8)",
+                      }}
+                    >
+                      {p.icon}
+                    </div>
+                    <div className="flex flex-col text-left">
+                      <span
+                        className="font-bebas uppercase tracking-wider"
+                        style={{ fontSize: 13, color: "#2B1A0E", lineHeight: 1 }}
+                      >
+                        {p.name}
+                      </span>
+                      <span
+                        className="font-sans font-extrabold uppercase tracking-wider"
+                        style={{
+                          fontSize: 9.5,
+                          color: "#2B1A0E",
+                          marginTop: 2.5,
+                          background: "rgba(43,26,14,0.12)",
+                          padding: "1.5px 6px",
+                          borderRadius: 3,
+                          border: "1px solid rgba(43,26,14,0.25)",
+                          display: "inline-block",
+                        }}
+                      >
+                        {p.role}
+                      </span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ── Bottom-left social icons ── */}
+          <div className="absolute bottom-8 left-8 hidden md:flex items-center gap-3.5 z-30">
+            {[
+              { href: "https://instagram.com", icon: <Instagram className="h-4 w-4" /> },
+              { href: "https://facebook.com",  icon: <Facebook className="h-4 w-4" /> },
+              { href: "https://youtube.com",   icon: <Youtube className="h-4 w-4" /> },
+              { href: "https://spotify.com",   icon: <Music className="h-4 w-4" /> },
+            ].map((s, i) => (
+              <a
+                key={i}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#ebdcb9]/60 hover:text-[#ebdcb9] transition-colors"
+              >
+                {s.icon}
+              </a>
+            ))}
+          </div>
+
+          {/* ── Bottom-right scroll indicator ── */}
+          <button
+            onClick={scrollMap}
+            className="absolute bottom-8 right-8 hidden md:flex items-center gap-2 text-[#ebdcb9]/60 hover:text-[#ebdcb9] transition-colors cursor-pointer z-30"
+          >
+            <span className="font-bebas text-[10px] tracking-[0.25em] uppercase">Scroll to Explore</span>
+            <ArrowDown className="h-3.5 w-3.5 animate-bounce" />
+          </button>
+
         </section>
 
-        {/* ═══════════════════════════════════════════════════════════════════
-            3. INTERACTIVE MAP SECTION: Scrollable Vertical Trail
-            ═══════════════════════════════════════════════════════════════════ */}
-        <section 
+        {/* ═══ INTERACTIVE MAP SECTION ═══════════════════════════════════════ */}
+        <section
           ref={mapSectionRef}
-          className="w-full py-20 px-5 max-w-md mx-auto flex flex-col items-center relative"
+          className="w-full py-24 px-6 flex flex-col items-center relative border-t-2 border-ink-dark overflow-hidden bg-zinc-950"
+          style={{
+            backgroundImage: "url('/adventure-map-bg.png')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundAttachment: typeof window !== "undefined" && window.innerWidth >= 768 ? "fixed" : "scroll",
+          }}
         >
+          {/* Dark overlay to keep content legible */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(to bottom, rgba(10,6,2,0.6) 0%, rgba(10,6,2,0.4) 50%, rgba(10,6,2,0.7) 100%)",
+              zIndex: 0,
+            }}
+          />
+
           {/* Section Headers */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 35 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ type: "spring", stiffness: 90, damping: 16 }}
-            className="text-center mb-16 relative z-10 px-4"
+            className="text-center mb-8 relative z-10 px-4 flex flex-col items-center"
           >
-            <span className="font-display font-black text-[10px] tracking-[0.3em] text-[#65C466] uppercase block mb-2">
-              Unexplored Territories
-            </span>
-            <h2 className="font-display font-black text-2xl md:text-3xl text-[#2B1A0E] uppercase">
-              THE ADVENTURE MAP
+            <h2 className="font-bebas font-black text-4xl md:text-5xl text-[#F4ECC8] uppercase tracking-[0.06em]">
+              EXPLORE THE TERRITORIES
             </h2>
-            <p className="text-[10px] text-[#5C4331] font-bold uppercase tracking-wider mt-2.5 max-w-xs mx-auto leading-relaxed">
-              Scroll down the trail to discover coordinates & details of each landmark point.
+            <p className="font-sans font-semibold text-xs md:text-sm text-[#ebdcb9]/85 mt-2 max-w-lg mx-auto">
+              Discover events. Challenge limits. Create memories.
             </p>
+            {/* Compass decorative separator */}
+            <div className="flex items-center gap-3.5 mt-5 opacity-80">
+              <div className="w-16 md:w-28 h-[1px] bg-gradient-to-r from-transparent to-[#A37F3E]" />
+              <span className="text-[#A37F3E] text-lg select-none">🧭</span>
+              <div className="w-16 md:w-28 h-[1px] bg-gradient-to-l from-transparent to-[#A37F3E]" />
+            </div>
           </motion.div>
 
-          {/* Vertical Trail Nodes Container */}
-          <div className="relative w-full flex flex-col items-center z-10">
-            
-            {MAP_LOCATIONS.map((loc, idx) => {
-              const isEven = idx % 2 === 0;
-              return (
-                <div key={loc.id} className="w-full flex flex-col items-center">
-                  
-                  {/* Landmark Node Card wrapper */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: isEven ? -45 : 45 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, margin: "-60px" }}
-                    transition={{ type: "spring", stiffness: 80, damping: 14 }}
-                    className={`w-full flex ${
-                      isEven ? "justify-start" : "justify-end"
-                    } px-4 relative`}
-                  >
-                    
-                    {/* Location Card Node */}
-                    <motion.div 
-                      onClick={() => setActiveLocation(loc)}
-                      whileHover={{ scale: 1.025 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                      className="group flex flex-col p-4 w-[75%] rounded-2xl border-2 border-[#2B1A0E] bg-[#F7F1D5] shadow-[4px_4px_0px_rgba(43,26,14,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)] hover:border-[#6EC6FF] hover:shadow-[4px_4px_0px_rgba(101,196,102,1)] transition-[border-color,box-shadow] duration-200 cursor-pointer relative"
-                    >
-                      {/* Bouncing Map Marker Pin */}
-                      <div 
-                        className="absolute -top-3.5 left-4 w-7 h-7 rounded-full flex items-center justify-center border-2 border-[#2B1A0E] shadow-sm text-sm animate-marker-bounce"
-                        style={{ backgroundColor: loc.markerColor }}
-                      >
-                        {loc.icon}
-                      </div>
-
-                      {/* Content */}
-                      <div className="pt-2">
-                        <h4 className="font-display font-black text-sm text-[#2B1A0E] uppercase tracking-wide flex items-center gap-1.5">
-                          {loc.name}
-                        </h4>
-                        <p className="text-[10.5px] leading-relaxed text-[#5C4331] mt-2 group-hover:text-[#2B1A0E] transition-colors">
-                          {loc.preview}
-                        </p>
-                        <div className="flex items-center gap-1 mt-3.5 text-[9px] font-black uppercase text-[#6EC6FF] tracking-widest">
-                          <span>Map Coordinates</span>
-                          <ChevronRight className="h-3 w-3 mt-0.5" />
-                        </div>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-
-                  {/* SVG Trail Connector Dotted line (between nodes, skipped at bottom) */}
-                  {idx < MAP_LOCATIONS.length - 1 && (
-                    <div className="h-20 w-full relative flex justify-center py-2">
-                      <svg className="w-40 h-full opacity-80" viewBox="0 0 100 60" fill="none">
-                        <motion.path 
-                          d={isEven ? "M 35,0 C 35,30 65,30 65,60" : "M 65,0 C 65,30 35,30 35,60"} 
-                          stroke={idx % 2 === 0 ? "#65C466" : "#6EC6FF"} 
-                          strokeWidth="3" 
-                          strokeDasharray="6 6" 
-                          initial={{ pathLength: 0 }}
-                          whileInView={{ pathLength: 1 }}
-                          viewport={{ once: true, margin: "-30px" }}
-                          transition={{ duration: 0.85, ease: "easeInOut" }}
-                        />
-                      </svg>
-                    </div>
+          {/* Mobile Grid Layout (visible on sm and below) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full max-w-xl md:hidden relative z-10 mt-6 px-2">
+            {TERRITORIES.map((loc) => (
+              <Link
+                key={loc.id}
+                href={`/events?category=${encodeURIComponent(loc.category)}`}
+                className="parchment-card p-4.5 flex flex-col items-center text-center cursor-pointer hover:-translate-y-1 transition-all active:translate-y-0"
+              >
+                <div className="w-10 h-10 rounded-full bg-[#1E1208] border border-[#A37F3E] flex items-center justify-center text-lg relative z-10 shadow-md">
+                  {loc.icon === "</>" ? (
+                    <span className="font-mono text-xs font-black text-[#A37F3E]">&lt;/&gt;</span>
+                  ) : (
+                    loc.icon
                   )}
-
                 </div>
-              );
-            })}
+                <h4 className="font-bebas text-base text-[#2B1A0E] uppercase tracking-wider mt-3">
+                  {loc.name}
+                </h4>
+                <p className="text-[11.5px] leading-relaxed text-[#2B1A0E]/70 mt-1 font-semibold">
+                  {loc.preview}
+                </p>
+                <span className="mt-3 px-4 py-1 border border-[#A37F3E] text-[#2B1A0E] text-[10px] font-bebas tracking-wider uppercase rounded hover:bg-[#A37F3E]/15 transition-all">
+                  EXPLORE
+                </span>
+              </Link>
+            ))}
+          </div>
 
+          {/* Desktop Map Canvas Layout (visible on md and up) */}
+          <div className="hidden md:block relative w-full max-w-5xl h-[580px] z-10 mt-6">
+            
+            {/* SVG Winding Map Path */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 580" fill="none">
+              <path
+                d="M 180,165 C 300,105 380,85 480,98 C 580,113 650,113 720,138 C 760,205 770,305 740,380 C 640,380 580,360 500,360 C 400,360 330,350 280,330 C 220,295 190,205 180,165"
+                stroke="#A37F3E"
+                strokeWidth="2.5"
+                strokeDasharray="7 7"
+                className="opacity-45"
+              />
+            </svg>
+
+            {/* Absolute Positioned Map Nodes */}
+            {TERRITORIES.map((loc) => (
+              <motion.div
+                key={loc.id}
+                className="absolute flex flex-col items-center text-center group"
+                style={{
+                  left: loc.x,
+                  top: loc.y,
+                  transform: "translate(-50%, -50%)",
+                }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              >
+                <Link href={`/events?category=${encodeURIComponent(loc.category)}`} className="flex flex-col items-center">
+                  
+                  {/* Teardrop map-pin marker */}
+                  <div className="w-12 h-12 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
+                    <span className="text-xl">
+                      {loc.icon === "</>" ? (
+                        <span className="font-mono text-sm font-extrabold text-[#A37F3E]">&lt;/&gt;</span>
+                      ) : (
+                        loc.icon
+                      )}
+                    </span>
+                    {/* Pin tail */}
+                    <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#1E1208] border-r-2 border-b-2 border-[#A37F3E] rotate-45 transition-all duration-300 group-hover:border-[#ebdcb9]" />
+                  </div>
+
+                  {/* Texts - aligned below marker with some shadow backing for legibility */}
+                  <div className="mt-4 px-3 py-1.5 rounded-md bg-black/45 backdrop-blur-xs border border-[#A37F3E]/20">
+                    <h4 className="font-bebas text-xs md:text-sm text-[#F4ECC8] uppercase tracking-[0.08em] leading-tight">
+                      {loc.name}
+                    </h4>
+                    <p className="text-[10px] text-[#ebdcb9]/75 mt-0.5 whitespace-nowrap leading-none font-medium">
+                      {loc.preview}
+                    </p>
+                    <div className="inline-block mt-2 px-2.5 py-0.5 border border-[#A37F3E]/50 text-[#F4ECC8] text-[8.5px] font-bebas tracking-wider uppercase rounded transition-all group-hover:bg-[#A37F3E]/25 group-hover:border-[#ebdcb9]">
+                      EXPLORE
+                    </div>
+                  </div>
+
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom view all events CTA */}
+          <div className="mt-14 relative z-10">
+            <Link
+              href="/events"
+              className="flex items-center gap-2.5 px-8 py-3.5 bg-[#37532A] hover:bg-[#273C1E] text-[#F4ECC8] font-bebas text-sm uppercase tracking-widest border-2 border-ink-dark shadow-[4px_4px_0px_rgba(43,26,14,0.9)] rounded-full transition-all active:translate-y-[2px]"
+            >
+              {/* Binoculars SVG Icon */}
+              <svg className="h-4.5 w-4.5 shrink-0 text-[#F4ECC8]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8 8a3 3 0 100 6 3 3 0 000-6zm8 0a3 3 0 100 6 3 3 0 000-6z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 12h.01M6 14s1 2 2 2 2-2 2-2m4 0s1 2 2 2 2-2 2-2" />
+              </svg>
+              <span>VIEW ALL EVENTS</span>
+            </Link>
           </div>
         </section>
 
       </main>
-
-      {/* ═══════════════════════════════════════════════════════════════════
-          MOBILE BOTTOM SHEET DRAWER MODAL
-          ═══════════════════════════════════════════════════════════════════ */}
-      <AnimatePresence>
-        {activeLocation && (
-          <div className="fixed inset-0 z-50 flex items-end justify-center">
-            
-            {/* Dark glass backing cover */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setActiveLocation(null)}
-              className="absolute inset-0 bg-[#2B1A0E]/40 backdrop-blur-sm"
-            />
-
-            {/* Bottom sheet dialog panel */}
-            <motion.div 
-              initial={{ y: "100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "100%" }}
-              transition={{ type: "spring", damping: 22, stiffness: 220 }}
-              className="relative w-full max-w-md bg-[#F7F1D5] rounded-t-3xl border-t-2 border-x-2 border-[#2B1A0E] px-6 pt-5 pb-8 shadow-[0_-8px_30px_rgba(43,26,14,0.15)] z-10"
-            >
-              {/* Handlebar drag indicator */}
-              <div className="w-12 h-1 bg-[#2B1A0E]/15 rounded-full mx-auto mb-5" />
-
-              {/* Close button (large tap target) */}
-              <button 
-                onClick={() => setActiveLocation(null)}
-                className="absolute top-4 right-4 h-11 w-11 flex items-center justify-center text-[#2B1A0E] hover:text-[#6EC6FF] transition-colors"
-                aria-label="Close details"
-              >
-                <X className="h-5 w-5" />
-              </button>
-
-              {/* Landmark info layout */}
-              <div className="flex flex-col gap-4">
-                
-                {/* Header title */}
-                <div className="flex items-center gap-3.5">
-                  <span className="text-3xl">{activeLocation.icon}</span>
-                  <div>
-                    <h3 className="font-display font-black text-lg text-[#2B1A0E] uppercase tracking-wide">
-                      {activeLocation.name}
-                    </h3>
-                    <div className="flex flex-wrap gap-1.5 mt-1.5">
-                      {activeLocation.tags.map((t, i) => (
-                        <span key={i} className="text-[7.5px] font-extrabold uppercase tracking-widest px-2 py-0.5 border border-[#2B1A0E]/30 rounded-full text-[#5C4331]">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <hr className="border-[#2B1A0E]/12 my-1" />
-
-                {/* Detail text */}
-                <p className="text-xs md:text-sm text-[#5C4331] font-medium leading-relaxed">
-                  {activeLocation.detail}
-                </p>
-
-                {/* Bounty / Reward info */}
-                <div className="flex items-center gap-2.5 p-3 rounded-xl border border-[#2B1A0E]/20 bg-[#E8D7A5]/25">
-                  <Trophy className="h-5 w-5 text-[#D9B24C] shrink-0" />
-                  <div className="flex flex-col">
-                    <span className="text-[7.5px] font-black uppercase text-[#5C4331] tracking-wider">Discovered Bounty</span>
-                    <span className="text-xs font-black text-[#2B1A0E] uppercase tracking-wide mt-0.5">{activeLocation.bounty}</span>
-                  </div>
-                </div>
-
-                {/* Primary Action Button (Sign Charter) */}
-                <div className="flex flex-col gap-2.5 mt-2">
-                  {activeLocation.id === "dock" ? (
-                    <button
-                      onClick={handleRegister}
-                      className="w-full py-3.5 flex items-center justify-center gap-2 font-display text-xs font-black tracking-widest uppercase text-[#2B1A0E] bg-[#6EC6FF] border-2 border-[#2B1A0E] shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)] transition-all cursor-pointer"
-                    >
-                      <Sparkles className="h-4 w-4" />
-                      <span>Sign Expedition Pass</span>
-                    </button>
-                  ) : (
-                    <Link
-                      href="/events"
-                      onClick={() => setActiveLocation(null)}
-                      className="w-full py-3.5 flex items-center justify-center gap-2 font-display text-xs font-black tracking-widest uppercase text-[#2B1A0E] bg-[#65C466] border-2 border-[#2B1A0E] shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)] transition-all text-center"
-                    >
-                      <Compass className="h-4 w-4" />
-                      <span>Explore Area Events</span>
-                    </Link>
-                  )}
-                </div>
-
-              </div>
-
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
       <Footer />
     </div>

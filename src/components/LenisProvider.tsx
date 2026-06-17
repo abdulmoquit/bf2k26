@@ -5,6 +5,11 @@ import Lenis from "lenis";
 
 export default function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // Disable smooth scroll on mobile devices for smooth native 60/120 FPS scrolling
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      return;
+    }
+
     // Initialize Lenis
     const lenis = new Lenis({
       duration: 1.1,

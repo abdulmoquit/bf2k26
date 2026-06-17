@@ -30,27 +30,27 @@ export default function Navbar() {
     <header
       className={`fixed left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled 
-          ? "top-0 py-2.5 bg-[#F7F1D5]/90 backdrop-blur-md border-b border-[#2B1A0E]/15 shadow-sm" 
-          : "top-0 py-4 bg-transparent"
+          ? "top-0 py-2.5 bg-[#2B1A0E]/85 backdrop-blur-md border-b border-[#ebdcb9]/10 shadow-lg" 
+          : "top-0 py-4 bg-gradient-to-b from-black/50 to-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 flex items-center justify-between">
         
         {/* ── Logo ── */}
         <Link href="/" className="flex items-center gap-2.5 group select-none py-1">
-          <div className="relative h-9 w-9 overflow-hidden rounded-full border border-[#2B1A0E]/30 bg-[#E8D7A5]">
+          <div className="relative h-9 w-9 overflow-hidden rounded-full border border-gold-accent bg-black">
             <Image 
-              src="/logo2026.png" 
+              src="/logo2026.webp" 
               alt="Boscofest 2026" 
               fill
               className="object-contain p-0.5 group-hover:scale-110 transition-transform duration-300"
             />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="font-display font-black tracking-widest text-sm text-[#2B1A0E] uppercase">
-              BOSCO<span className="text-[#65C466] font-light">FEST</span>
+            <span className="font-bebas text-lg tracking-wider text-white uppercase">
+              BOSCO FEST
             </span>
-            <span className="text-[7.5px] tracking-[0.2em] text-[#5C4331] uppercase font-bold mt-0.5">
+            <span className="text-[7.5px] tracking-[0.2em] text-gold-accent uppercase font-bold mt-0.5">
               2026 · Uncharted
             </span>
           </div>
@@ -65,14 +65,16 @@ export default function Navbar() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="relative px-3.5 py-2 flex items-center gap-2 font-sans text-xs font-bold tracking-wider uppercase text-[#2B1A0E] hover:text-[#6EC6FF] transition-colors rounded-lg"
+                className={`relative px-3.5 py-2 flex items-center gap-2 font-sans text-xs font-bold tracking-wider uppercase transition-colors rounded-lg ${
+                  isActive ? "text-white" : "text-white/75 hover:text-white"
+                }`}
               >
                 <Icon className="h-3.5 w-3.5 opacity-70" />
                 <span>{item.label}</span>
                 {isActive && (
                   <motion.div
                     layoutId="activeNavIndicator"
-                    className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#65C466]"
+                    className="absolute bottom-0 left-3 right-3 h-[2px] bg-map-green"
                     transition={{ type: "spring", stiffness: 350, damping: 25 }}
                   />
                 )}
@@ -85,18 +87,17 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Link
             href="#register"
-            className="inline-flex items-center gap-1.5 px-4.5 py-2 text-xs font-black tracking-widest uppercase text-[#2B1A0E] bg-[#6EC6FF] border border-[#2B1A0E] shadow-[2px_2px_0px_rgba(43,26,14,1)] hover:bg-[#6EC6FF]/80 transition-all active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_rgba(43,26,14,1)]"
-            style={{ borderRadius: "20px 8px 18px 10px / 12px 18px 10px 14px" }}
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 green-btn text-xs font-bebas tracking-wider uppercase"
           >
             <span>Register Now</span>
-            <ArrowRight className="h-3 w-3" />
+            <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
-        {/* ── Mobile menu toggle (large 48px hit box) ── */}
+        {/* ── Mobile menu toggle ── */}
         <button
           onClick={() => setMobile(!mobileOpen)}
-          className="md:hidden flex items-center justify-center h-11 w-11 text-[#2B1A0E] hover:text-[#6EC6FF] transition-colors"
+          className="md:hidden flex items-center justify-center h-11 w-11 text-white hover:text-gold-accent transition-colors"
           aria-label="Toggle Navigation Menu"
         >
           {mobileOpen ? <X className="h-5.5 w-5.5" /> : <Menu className="h-5.5 w-5.5" />}
@@ -110,7 +111,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden w-full overflow-hidden bg-[#F7F1D5] border-b border-[#2B1A0E]/15 shadow-md"
+            className="md:hidden w-full overflow-hidden bg-[#2B1A0E]/95 backdrop-blur-lg border-b border-white/10 shadow-md"
           >
             <div className="px-6 py-6 flex flex-col gap-3">
               {NAV_ITEMS.map((item) => {
@@ -121,13 +122,11 @@ export default function Navbar() {
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobile(false)}
-                    className="flex items-center gap-3.5 py-3 px-4 rounded-xl border border-transparent font-sans text-sm font-black tracking-widest uppercase text-[#2B1A0E] transition-all"
-                    style={isActive ? {
-                      backgroundColor: "rgba(232, 215, 165, 0.4)",
-                      borderColor: "rgba(43, 26, 14, 0.12)"
-                    } : {}}
+                    className={`flex items-center gap-3.5 py-3 px-4 rounded-xl border border-transparent font-sans text-sm font-black tracking-widest uppercase transition-all ${
+                      isActive ? "text-white bg-white/10 border-white/10" : "text-white/80 hover:text-white"
+                    }`}
                   >
-                    <Icon className={`h-4.5 w-4.5 ${isActive ? "text-[#65C466]" : "opacity-60"}`} />
+                    <Icon className={`h-4.5 w-4.5 ${isActive ? "text-map-green" : "opacity-60"}`} />
                     <span>{item.label}</span>
                   </Link>
                 );
@@ -135,7 +134,7 @@ export default function Navbar() {
               <Link
                 href="#register"
                 onClick={() => setMobile(false)}
-                className="mt-4 flex items-center justify-center gap-2 py-3.5 rounded-full font-sans text-sm font-black tracking-widest uppercase text-[#2B1A0E] bg-[#6EC6FF] border border-[#2B1A0E] shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)] transition-all"
+                className="mt-4 flex items-center justify-center gap-2 py-3.5 green-btn text-sm font-bebas tracking-widest uppercase"
               >
                 <Flag className="h-4 w-4" />
                 <span>Register Now</span>

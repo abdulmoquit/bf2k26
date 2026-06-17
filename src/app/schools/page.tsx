@@ -46,56 +46,56 @@ export default function Schools() {
   };
 
   return (
-    <div className="min-h-screen bg-parchment-texture relative flex flex-col pb-0">
+    <div className="min-h-screen bg-rest-texture relative flex flex-col pb-0">
       
-
-
       <Navbar />
 
-      <main className="flex-1 w-full max-w-7xl mx-auto px-6 pt-32 pb-20 relative z-20">
+      <main className="flex-1 w-full max-w-4xl mx-auto px-6 pt-32 pb-20 relative z-20">
         
         {/* Header Section */}
         <div className="text-center mb-16 relative">
-          <span className="font-display font-black text-[10px] tracking-[0.3em] text-[#65C466] uppercase block mb-2">
+          <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-forest-green uppercase block mb-2">
             Expedition Alliance
           </span>
-          <h1 className="font-display font-black text-4xl md:text-5xl lg:text-6xl text-[#2B1A0E] uppercase tracking-wide">
+          <h1 className="font-bebas font-black text-4xl md:text-5xl lg:text-6xl text-ink-dark uppercase tracking-wide">
             Participating Schools
           </h1>
-          <div className="w-32 h-[3px] bg-gradient-to-r from-transparent via-[#D9B24C] to-transparent mx-auto mt-4" />
+          <div className="w-16 h-[2px] bg-gold-accent mx-auto mt-4" />
+          <p className="font-caveat text-xl text-ink-light mt-3 max-w-sm mx-auto">
+            Uniting minds. Igniting spirit. Together we embark on an unforgettable journey.
+          </p>
         </div>
 
-        {/* Schools Grid */}
+        {/* Schools Grid (5 columns matching mockup) */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-7 w-full"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5.5 w-full"
         >
           {SCHOOLS.map((school, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
               whileHover={{ 
-                scale: 1.1, 
-                translateY: -5,
-                borderColor: "#D9B24C"
+                scale: 1.05, 
+                translateY: -3,
               }}
-              className="flex flex-col items-center justify-between p-6 h-64 bg-[#F7F1D5] hover:bg-[#F0EED2] border border-[#2B1A0E]/15 rounded-2xl cursor-default transition-all duration-200 shadow-[3px_3px_0px_rgba(43,26,14,0.15)] hover:shadow-[6px_6px_0px_rgba(43,26,14,0.25)]"
+              className="parchment-card flex flex-col items-center justify-between p-5.5 h-60 cursor-default shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:shadow-[5px_5px_0px_rgba(43,26,14,1)]"
             >
               {/* Logo Wrapper */}
-              <div className="relative w-28 h-28 flex items-center justify-center flex-shrink-0 bg-transparent">
+              <div className="relative w-24 h-24 flex items-center justify-center flex-shrink-0 bg-transparent">
                 <Image
                   src={`/school-logos/${school.logo}`}
                   alt={`${school.name} logo`}
                   fill
-                  sizes="112px"
+                  sizes="96px"
                   className="object-contain"
                 />
               </div>
 
               {/* School Name */}
-              <p className="font-sans font-bold text-center text-[11px] md:text-xs text-[#2B1A0E] tracking-wider uppercase leading-snug mt-4 min-h-[40px] flex items-center justify-center">
+              <p className="font-bebas text-center text-[11px] text-ink-dark tracking-wide uppercase leading-snug mt-3.5 min-h-[36px] flex items-center justify-center">
                 {school.name}
               </p>
             </motion.div>

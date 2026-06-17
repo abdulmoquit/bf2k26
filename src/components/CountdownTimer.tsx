@@ -33,17 +33,19 @@ export default function CountdownTimer({ size = "default" }: { size?: "default" 
     const id = setInterval(tick, 1000);
 
     const frame = requestAnimationFrame(() => {
-      setParticles(
-        Array.from({ length: 8 }, (_, i) => ({
-          width:    Math.random() * 4 + 2,
-          height:   Math.random() * 4 + 2,
-          top:      `${Math.random() * 100}%`,
-          left:     `${Math.random() * 100}%`,
-          duration: 5 + Math.random() * 5,
-          delay:    Math.random() * 2,
-          color:    PARTICLE_COLOURS[i % PARTICLE_COLOURS.length],
-        }))
-      );
+      if (typeof window !== "undefined" && window.innerWidth >= 768) {
+        setParticles(
+          Array.from({ length: 8 }, (_, i) => ({
+            width:    Math.random() * 4 + 2,
+            height:   Math.random() * 4 + 2,
+            top:      `${Math.random() * 100}%`,
+            left:     `${Math.random() * 100}%`,
+            duration: 5 + Math.random() * 5,
+            delay:    Math.random() * 2,
+            color:    PARTICLE_COLOURS[i % PARTICLE_COLOURS.length],
+          }))
+        );
+      }
       setMounted(true);
     });
 
@@ -66,7 +68,7 @@ export default function CountdownTimer({ size = "default" }: { size?: "default" 
         <div className="absolute inset-0 blur-lg pointer-events-none"
           style={{ background: "radial-gradient(circle at center, rgba(41,171,226,0.06) 0%, transparent 60%)" }} />
         <div className="relative z-10 text-center">
-          <span className="text-[9px] font-display font-extrabold tracking-[0.25em] block mb-3 animate-[pulse-sky_3s_ease-in-out_infinite]"
+          <span className="text-[11px] font-display font-extrabold tracking-[0.2em] block mb-3 animate-[pulse-sky_3s_ease-in-out_infinite]"
             style={{ color: "#29ABE2" }}>
             COUNTDOWN TO DEPARTURE
           </span>
@@ -90,7 +92,7 @@ export default function CountdownTimer({ size = "default" }: { size?: "default" 
                   >
                     {item.value}
                   </motion.span>
-                  <span className="text-gray-400 text-[8px] font-semibold uppercase tracking-wider mt-0.5">{item.label}</span>
+                  <span className="text-gray-300 text-[10px] font-bold uppercase tracking-wider mt-0.5">{item.label}</span>
                 </div>
                 {idx < 3 && (
                   <span className="font-bold text-lg md:text-xl ml-2 animate-pulse" style={{ color: "#22C55E" }}>:</span>
@@ -106,8 +108,8 @@ export default function CountdownTimer({ size = "default" }: { size?: "default" 
   /* ── Full-size variant ── */
   return (
     <div className="relative w-full max-w-4xl mx-auto px-6 py-12">
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50">
+      {/* Floating particles - hidden on mobile for performance */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-50 hidden md:block">
         {particles.map((p, i) => (
           <motion.div
             key={i}
