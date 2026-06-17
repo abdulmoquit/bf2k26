@@ -84,7 +84,7 @@
     radial-gradient(circle at 50% 50%, transparent 60%, rgba(101, 196, 102, 0.04) 100%),
     linear-gradient(to right, rgba(101, 196, 102, 0.02) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(110, 198, 255, 0.02) 1px, transparent 1px),
-    url('/crumbled_paper.png');
+    url('/crumbled_paper.webp');
   background-size: auto, 45px 45px, 45px 45px, cover;
   background-attachment: scroll, scroll, scroll, fixed;
 }
@@ -101,7 +101,7 @@
 
 body {
   background-color: var(--background);
-  background-image: url('/crumbled_paper.png');
+  background-image: url('/crumbled_paper.webp');
   background-size: cover;
   background-attachment: fixed;
   color: var(--foreground);
