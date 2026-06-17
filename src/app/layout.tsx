@@ -3,6 +3,7 @@ import { Space_Grotesk, Outfit } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import Preloader from "@/components/Preloader";
+import CustomCursor from "@/components/CustomCursor";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -107,6 +108,7 @@ export default function RootLayout({
     >
       <body className="text-[#2B1A0E] font-sans min-h-screen">
         <Preloader />
+        <CustomCursor />
         <LeftPaperBorder />
         <RightPaperBorder />
         <LenisProvider>
