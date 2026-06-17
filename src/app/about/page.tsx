@@ -231,17 +231,23 @@ export default function About() {
 
         {/* Narrative / About Text */}
         <div className="max-w-4xl mx-auto mb-28 text-center px-4 leading-relaxed font-sans font-medium text-sm md:text-base text-[#5C4331] space-y-6">
-          <p>Psst... still think dreams are soft, quiet things? Think again.</p>
-          <p>Dreams aren’t just flights of the imagination to be forgotten as soon as the alarm clock rings — they are revolutions waiting to happen...</p>
-          <p>Introducing the 41st Edition of Bosco Fest — a universe where imagination takes control and reality bends to creativity...</p>
-          <p>Step into a dimension fueled by innovation, chaos, brilliance, and passion...</p>
-          <p>This edition is built for the dreamers, the creators, the risk-takers, and the ones fearless enough to challenge convention...</p>
-          <p>With 36 electrifying events spread across 2 unforgettable days, Bosco Fest 2026 promises an atmosphere unlike anything before...</p>
-          <p>But dreams are not easy. They demand courage, obsession, resilience, and the willingness to fail spectacularly before succeeding...</p>
-          <p>So build your team. Charge your energy. Forget the rules. Bring your vision to life.</p>
-          <p className="text-[#2B1A0E] font-bold">Because here, dreams do not stay dreams. They evolve into reality.</p>
-          <p className="font-display font-black text-lg tracking-widest text-[#D9B24C]">36 EVENTS. 2 DAYS. INFINITE TALENT.</p>
-          <p className="font-display font-black text-xl tracking-widest text-[#6EC6FF]">THIS IS BOSCO FEST 2026. THE RUBY EDITION.</p>
+          <p className="text-lg font-bold text-[#2B1A0E]">Ever noticed how the best stories start with a bad decision?</p>
+          <p>The wrong turn. The missed train. The message that begins with &ldquo;I've got an idea...&rdquo; at 2 a.m. Most people call them mistakes. Adventurers call them beginnings.</p>
+          <p>Adventure isn't hidden at the summit of Everest. It isn't buried beneath ancient ruins. It isn't waiting at the end of a treasure map marked with a giant red X.</p>
+          <p className="font-display font-black text-lg text-[#2B1A0E] tracking-wider uppercase">Adventure is choosing the unknown.</p>
+          <p>It's taking the longer route home just to see where it leads. It's clicking &ldquo;Accept Quest&rdquo; before reading the difficulty level. It's every side quest that somehow becomes more memorable than the main storyline. It's every impulsive decision, every wrong turn, every &ldquo;trust me, bro&rdquo; that somehow evolves into a legendary tale.</p>
+          <p className="font-display font-black text-[#65C466] tracking-widest uppercase">Adventure isn't found. It's created.</p>
+          <p className="text-[#2B1A0E] font-bold">And this year, it's breaking free.</p>
+          <p>Introducing the 41st Edition of Bosco Fest, where curiosity outruns caution, where comfort zones become archaeological artifacts, and where every ordinary moment has the potential to become an unforgettable story. No maps. No cheat codes. No save files. Just possibilities.</p>
+          <p>Imagine the unpredictability of a Marvel post-credit scene, the thrill of discovering a hidden Minecraft biome nobody has ever seen before, the determination of Luffy chasing the impossible, the curiosity of Doraemon opening a gadget with absolutely zero instructions, the survival instincts of Bear Grylls, and the confidence of somebody walking into an exam with &ldquo;it is what it is&rdquo; energy.</p>
+          <p className="text-[#A07722] font-semibold">If that sounds reckless, good. The greatest adventures usually are.</p>
+          <p>Some adventures will test your mind. Others your instincts. A few might test your sanity. But every single one will leave a story worth telling. Waiting beyond the horizon lie 36 gateways into the extraordinary.</p>
+          <p>So gather your crew. Charge your energy. Forget the rulebook. The compass is spinning. The horizon is calling. And somewhere beyond it lies the adventure you've been waiting for.</p>
+          <p className="font-display font-black text-lg tracking-widest text-[#D9B24C] uppercase">36 Events. 2 Days. One Extraordinary Journey.</p>
+          <p>Some will play it safe. Some will stay behind. And some will venture where nobody else dares to go.</p>
+          <p className="text-lg font-bold text-[#2B1A0E]">Be one of them.</p>
+          <p className="font-display font-black text-2xl tracking-widest text-[#6EC6FF] uppercase">Untold. Unfazed. Uncharted.</p>
+          <p className="font-display font-black text-base tracking-widest text-[#2B1A0E] uppercase">This is us. Bosco Fest 2026.</p>
         </div>
 
         {/* ── Committee / Teams sections ── */}
