@@ -88,7 +88,7 @@ export default function Navbar() {
             className="inline-flex items-center gap-1.5 px-4.5 py-2 text-xs font-black tracking-widest uppercase text-[#2B1A0E] bg-[#6EC6FF] border border-[#2B1A0E] shadow-[2px_2px_0px_rgba(43,26,14,1)] hover:bg-[#6EC6FF]/80 transition-all active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_rgba(43,26,14,1)]"
             style={{ borderRadius: "20px 8px 18px 10px / 12px 18px 10px 14px" }}
           >
-            <span>Begin Expedition</span>
+            <span>Register</span>
             <ArrowRight className="h-3 w-3" />
           </Link>
         </div>
@@ -138,7 +138,7 @@ export default function Navbar() {
                 className="mt-4 flex items-center justify-center gap-2 py-3.5 rounded-full font-sans text-sm font-black tracking-widest uppercase text-[#2B1A0E] bg-[#6EC6FF] border border-[#2B1A0E] shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)] transition-all"
               >
                 <Flag className="h-4 w-4" />
-                <span>Begin The Expedition</span>
+                <span>Register</span>
               </Link>
             </div>
           </motion.div>

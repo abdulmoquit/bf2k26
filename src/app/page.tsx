@@ -363,19 +363,11 @@ export default function Home() {
               </motion.p>
 
               {/* CTAs */}
-              <motion.div variants={heroItemVariants} className="flex flex-col sm:flex-row gap-3.5 w-full max-w-xs justify-center items-center mt-1">
-                <button
-                  onClick={scrollMap}
-                  className="w-full sm:w-auto px-6 py-3 flex items-center justify-center gap-2 font-display text-xs font-black tracking-widest uppercase text-[#2B1A0E] bg-[#6EC6FF] border-2 border-[#2B1A0E] shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_rgba(43,26,14,1)] transition-all cursor-pointer"
-                  style={{ borderRadius: "20px 8px 18px 10px / 10px 18px 10px 14px" }}
-                >
-                  <span>Begin Expedition</span>
-                  <ArrowDown className="h-3.5 w-3.5" />
-                </button>
+              <motion.div variants={heroItemVariants} className="flex justify-center items-center mt-1 w-full">
                 <Link
                   href="/events"
-                  className="w-full sm:w-auto px-6 py-3 flex items-center justify-center gap-2 font-display text-xs font-black tracking-widest uppercase text-[#2B1A0E] bg-[#E8D7A5] border-2 border-[#2B1A0E] shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_rgba(43,26,14,1)] transition-all"
-                  style={{ borderRadius: "8px 20px 10px 18px / 16px 10px 14px 8px" }}
+                  className="w-full sm:w-auto px-8 py-3 flex items-center justify-center gap-2 font-display text-xs font-black tracking-widest uppercase text-[#2B1A0E] bg-[#6EC6FF] border-2 border-[#2B1A0E] shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[1px_1px_0px_rgba(43,26,14,1)] transition-all text-center"
+                  style={{ borderRadius: "20px 8px 18px 10px / 10px 18px 10px 14px" }}
                 >
                   Explore Events
                 </Link>
