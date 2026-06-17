@@ -335,7 +335,7 @@ export default function Home() {
                 className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 overflow-hidden rounded-full border-2 border-[#2B1A0E] shadow-[8px_8px_0px_rgba(43,26,14,1)] bg-[#E8D7A5] p-2.5"
               >
                 <Image 
-                  src="/logo2026.png" 
+                  src="/logo2026.webp" 
                   alt="Boscofest 2026 Logo"
                   fill
                   priority

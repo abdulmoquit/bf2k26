@@ -40,7 +40,7 @@ export default function Navbar() {
         <Link href="/" className="flex items-center gap-2.5 group select-none py-1">
           <div className="relative h-9 w-9 overflow-hidden rounded-full border border-[#2B1A0E]/30 bg-[#E8D7A5]">
             <Image 
-              src="/logo2026.png" 
+              src="/logo2026.webp" 
               alt="Boscofest 2026" 
               fill
               className="object-contain p-0.5 group-hover:scale-110 transition-transform duration-300"

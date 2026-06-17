@@ -14,7 +14,7 @@ export default function Preloader() {
       setLoading(false);
       // Restore scrolling
       document.body.style.overflow = "";
-    }, 2200);
+    }, 800);
 
     return () => {
       clearTimeout(timer);
