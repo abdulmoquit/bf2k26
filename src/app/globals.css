@@ -1,127 +1,143 @@
 @import "tailwindcss";
 
 :root {
-  /* ═══ BoscoFest 2026 — Logo Colors theme ═══ */
-  --logo-navy:       204 80%  27%;   /* #0d2f47  deep logo blue  */
-  --logo-sky:        200 80%  53%;   /* #29ABE2  sky blue        */
-  --logo-green:       95 62%  44%;   /* #6aad1a  globe green     */
-  --logo-mint:       162 48%  86%;   /* #c2f0e4  light teal/mint */
-  --logo-gold:        36 68%  88%;   /* #f7e7ce  parchment gold  */
+  --background: #F7F1D5;      /* Light Cream */
+  --foreground: #2B1A0E;      /* Dark ink */
   
-  /* System mappings mapped to logo values */
-  --background:      205 62%   4%;   /* #020c12  deep night sky  */
-  --foreground:       53 45%  95%;   /* #fbf8e1  warm parchment  */
-  --jungle-void:     205 62%   3%;   /* canopy navy black    */
-  --jungle-deep:     204 69%   9%;   /* logo navy dark       */
-  --jungle-mid:      204 58%  15%;   /* logo navy mid        */
-  --jungle-bright:    95 62%  44%;   /* globe green          */
+  --sky-blue: #6EC6FF;        /* Primary Sky Blue */
+  --green: #65C466;           /* Primary Green */
+  --parchment: #E8D7A5;       /* Parchment Beige */
+  --gold: #D9B24C;            /* Accent Gold */
   
-  --sky:             200 80%  53%;   /* sky blue             */
-  --sky-light:       198 85%  67%;   /* light sky            */
-  --sky-deep:        204 80%  27%;   /* deep logo navy       */
-  --sky-glow:        200 80%  53%;
-  --leaf:             95 62%  44%;   /* globe green          */
-  --mint:            162 48%  86%;   /* light teal/mint      */
-  --gold:             36 68%  88%;   /* parchment gold       */
-  --bark-mid:         28 60%  34%;
+  --ink: #2B1A0E;
+  --ink-light: #5C4331;
 }
 
 @theme inline {
-  --color-sky:         hsl(var(--sky));
-  --color-sky-glow:    hsl(var(--sky));
-  --color-sky-light:   hsl(var(--sky-light));
-  --color-sky-deep:    hsl(var(--sky-deep));
-  --color-leaf:        hsl(var(--leaf));
-  --color-mint:        hsl(var(--mint));
-  --color-gold:        hsl(var(--gold));
-  --color-jungle:      hsl(var(--jungle-bright));
-  --color-forest:      hsl(var(--jungle-bright));
-  --color-emerald:     hsl(var(--leaf));
-  --color-dark-bg:     hsl(var(--background));
-  --color-parchment:   hsl(var(--foreground));
-
+  --color-sky-blue:   var(--sky-blue);
+  --color-map-green:  var(--green);
+  --color-cream:      var(--background);
+  --color-parchment:  var(--parchment);
+  --color-gold:       var(--gold);
+  --color-ink:        var(--foreground);
+  --color-ink-light:  var(--ink-light);
+  
   --font-sans:    var(--font-outfit), system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), monospace;
+  --font-display: var(--font-space-grotesk), serif;
 }
 
-/* ══ Keyframes ══════════════════════════════════════════════════════════ */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-18px); }
+/* ══ Keyframes & Animations ═════════════════════════════════════════════ */
+@keyframes marker-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-8px) scale(1.02); }
 }
 
-@keyframes compass-outer {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+@keyframes marker-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(101, 196, 102, 0.4); }
+  70%  { box-shadow: 0 0 0 12px rgba(101, 196, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(101, 196, 102, 0); }
 }
 
-@keyframes compass-inner {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(-360deg); }
+@keyframes compass-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-@keyframes shimmer {
-  0%   { transform: translateX(-120%) skewX(-15deg); }
-  100% { transform: translateX(250%)  skewX(-15deg); }
+@keyframes float-cloud-1 {
+  0%   { transform: translateX(-20vw) translateY(0); opacity: 0; }
+  10%  { opacity: 0.25; }
+  90%  { opacity: 0.25; }
+  100% { transform: translateX(100vw) translateY(-10px); opacity: 0; }
 }
 
-@keyframes pulse-sky {
-  0%, 100% { opacity: 0.35; }
-  50%       { opacity: 1; }
+@keyframes float-cloud-2 {
+  0%   { transform: translateX(-30vw) translateY(30px); opacity: 0; }
+  15%  { opacity: 0.2; }
+  85%  { opacity: 0.2; }
+  100% { transform: translateX(100vw) translateY(20px); opacity: 0; }
 }
 
-@keyframes pulse-amber {
-  0%, 100% { opacity: 0.35; }
-  50%       { opacity: 1; }
+.animate-marker-bounce {
+  animation: marker-bounce 2.2s ease-in-out infinite;
 }
 
-@keyframes light-shaft {
-  0%, 100% { opacity: 0.05; }
-  50%       { opacity: 0.14; }
+.animate-marker-pulse {
+  animation: marker-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.animate-compass-spin {
+  animation: compass-spin 40s linear infinite;
 }
 
-/* ══ Scrollbar ══ */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: hsl(var(--jungle-deep)); }
-::-webkit-scrollbar-thumb { background: rgba(41,171,226,0.3); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(41,171,226,0.55); }
+.animate-float-cloud-1 {
+  animation: float-cloud-1 45s linear infinite;
+}
+
+.animate-float-cloud-2 {
+  animation: float-cloud-2 60s linear infinite;
+}
+
+/* ══ Custom Textures & Styles ═══════════════════════════════════════════ */
+.bg-parchment-texture {
+  background-color: var(--background);
+  background-image: 
+    radial-gradient(circle at 50% 50%, transparent 60%, rgba(101, 196, 102, 0.04) 100%),
+    linear-gradient(to right, rgba(101, 196, 102, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(110, 198, 255, 0.02) 1px, transparent 1px),
+    url('/crumbled_paper.png');
+  background-size: auto, 45px 45px, 45px 45px, cover;
+  background-attachment: scroll, scroll, scroll, fixed;
+}
+
+.border-sketch {
+  border: 2px solid var(--foreground);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+.border-sketch-thin {
+  border: 1px solid rgba(43, 26, 14, 0.3);
+  border-radius: 120px 10px 110px 10px/10px 110px 10px 120px;
+}
 
 body {
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
+  background-color: var(--background);
+  background-image: url('/crumbled_paper.png');
+  background-size: cover;
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+  position: relative;
 }
 
-::selection {
-  background: rgba(41,171,226,0.28);
-  color: #fff;
+/* Map Vignette Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 100px rgba(43, 26, 14, 0.14), inset 0 0 35px rgba(101, 196, 102, 0.05), inset 0 0 25px rgba(110, 198, 255, 0.05);
+  z-index: 100;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   TEXT GLOWS
-   ═══════════════════════════════════════════════════════════ */
-.text-glow-sky {
-  text-shadow: 0 0 14px rgba(41,171,226,0.7), 0 0 32px rgba(41,171,226,0.3);
+/* Custom Vintage Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
-.text-glow-leaf {
-  text-shadow: 0 0 14px rgba(106,172,26,0.65), 0 0 28px rgba(106,172,26,0.25);
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-left: 1px solid rgba(43, 26, 14, 0.1);
 }
-.text-glow-gold {
-  text-shadow: 0 0 14px rgba(247,231,206,0.6), 0 0 28px rgba(247,231,206,0.2);
+::-webkit-scrollbar-thumb {
+  background: var(--parchment);
+  border: 2px solid var(--background);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sky-blue);
 }
 
-/* ══ Scrollbar hide ══ */
-.scrollbar-none::-webkit-scrollbar { display: none; }
-.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* ══ Marquee ══ */
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 40s linear infinite;
-}
+
+
