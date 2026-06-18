@@ -18,7 +18,6 @@ import {
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 // ─── Event Categories & Icon Mapping (From Spreadsheet) ────────────────────────
 const CATEGORIES = [
@@ -45,7 +44,7 @@ interface Event {
   teamSize: string;
   time: string;
   location: string;
-  day: "Day 1" | "Day 2";
+  day: "Day 1" | "Day 2" | "Day 3";
   stage: "On-stage" | "Off-stage";
   bounty: string;
   rules: string[];
@@ -55,7 +54,7 @@ const EVENTS_DATA: Event[] = [
   // ─── MUSIC ───
   {
     id: "unconventional-music",
-    name: "Unconventional Music",
+    name: "AD-LIB",
     category: "Music",
     shortDesc: "Produce percussion, beats, and melodies using everyday tools and objects.",
     detail: "Forget standard playlist filler. This event is a blind drop into uncharted territory for creators who treat audio like an open-world map. Whether you're dropping a heavy, atmospheric Metro Boomin style beat switch, warping vocals into a glitchy Spider-Man 2099 theme, or layering an aggressive, distorted bassline that hits exactly like the Prowler's siren sound effect, this is your green light to hijack the frequencies. We are skipping the generic audio loops for raw, unfiltered sonic experimentation. If your sound breaks the algorithm, ditch the manual, step up, and let the ultimate musical adventure begin.",
@@ -77,7 +76,7 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "fusion-music",
-    name: "Fusion Music (8-12) - Jukebox",
+    name: "Bosco Jukebox (Fusion Music)",
     category: "Music",
     shortDesc: "Merge Eastern traditional patterns with modern Western melodies.",
     detail: "This isn't a safe, by-the-book concert; it's the high-stakes, late-night energy of Karan Aujla vocals hitting a dark Playboi Carti rage beat, or the absolute chaos of an Anirudh-level classical melody getting completely hijacked by a heavy Travis Scott synth bassline. It's an unmapped frontier of pure sonic adventure, where aggressive Western 808s drop the rules to chart a course through traditional Eastern rhythms, and a single smooth transition can completely flip the crowd. There are no safe paths or rehearsed boundaries tonight. Listen close, feel the rhythm shift, and join the ultimate expedition into a soundscape the world hasn't discovered yet.",
@@ -99,7 +98,7 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "eastern-music",
-    name: "Eastern Music (6-12) - Raag",
+    name: "Bosco Raag (Eastern Music)",
     category: "Music",
     shortDesc: "A solo classical vocal challenge showcasing traditional ragas.",
     detail: "Welcome to an adventure where every beat has aura and every melody leaves the crowd spellbound. Inspired by the legendary artistry of Birju Maharaj and the rhythm wizardry of Ustad Zakir Hussain, this is where tradition doesn't just perform—it steals the spotlight. From graceful movements that speak louder than words to rhythms that live rent-free in your head, every act is a masterclass in culture, creativity, and pure main-character energy. Ancient art, modern chills, and a stage that refuses to be ignored. No gimmicks. Just goosebumps.",
@@ -143,18 +142,18 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "western-music",
-    name: "Western Music (8-12) - Beat",
+    name: "Bosco Beat (Western Music)",
     category: "Music",
-    shortDesc: "A solo or duet vocal showcase featuring Western contemporary genres.",
+    shortDesc: "A battle of voices and verses. Where lyrics hit harder.",
     detail: "Pack your bags, grab your playlist, and get ready for an adventure powered by pure vibes. This is your ticket to a journey where every beat unlocks a new destination. One moment you're cruising through the galaxy with the Guardians of the Galaxy, the next you're sailing the Grand Line with the Straw Hats, or embarking on a quest worthy of a legendary fantasy saga. From Bad Bunny hits and pop bangers to rock classics that never miss, the stage becomes a map and the music becomes your guide. So gather your crew, embrace your main-character arc, and let the adventure begin, one song at a time.",
     icon: "🎙️",
-    difficulty: "Veteran",
-    difficultyColor: "#6EC6FF",
-    teamSize: "1 - 2 Vocalists",
-    time: "Day 2, 12:00 PM",
-    location: "Auditorium West",
-    day: "Day 2",
-    stage: "On-stage",
+    difficulty: "Explorer",
+    difficultyColor: "#65C466",
+    teamSize: "3 - 5 Performers",
+    time: "Day 1, 12:00 PM",
+    location: "Acoustic Courtyard",
+    day: "Day 1",
+    stage: "Off-stage",
     bounty: "₹7,000 + Gold Microphone Pin",
     rules: [
       "Time limit: 4 minutes.",
@@ -167,7 +166,7 @@ const EVENTS_DATA: Event[] = [
   // ─── DANCE ───
   {
     id: "eastern-dance",
-    name: "Eastern Dance (6-12) - Nritya",
+    name: "Bosco Nritya (Eastern Dance)",
     category: "Dance",
     shortDesc: "Classical and semi-classical Indian dance storytelling.",
     detail: "Forget predictable choreography and familiar routines. This event is your invitation to step into the unknown and dance beyond the ordinary. Whether your movements flow like sailing into uncharted waters with the Straw Hats in One Piece, weave through rhythm the way Link uncovers hidden paths in Breath of the Wild or lose yourself in the beat just like in ever-shifting worlds of Spirited Away, every step becomes part of an unfolding adventure. Follow the beat into unexplored territory, uncover stories hidden within every melody, and let rhythm become your compass as you journey beyond the familiar.",
@@ -189,7 +188,7 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "western-dance",
-    name: "Western Dance (8-12) - Tango",
+    name: "Bosco Tango (Western Dance)",
     category: "Dance",
     shortDesc: "High energy, choreographed Western street and contemporary dance.",
     detail: "When the lights cut, you're diving headfirst into a high-velocity blind drop where anything can happen. We're talking about execution so razor-sharp it hits like a legendary Michael Jackson music video set, combined with the massive stadium energy of The Weeknd's halftime shows, and the chaotic, high-octane synchronization of the IPL 2026 Final dance show. No safe counts, no holding back, just sharp shifts, high stakes, and the risk of leaving everything on the floor. Ditch the manual, take the gamble, and let the ultimate stage adventure begin.",
@@ -211,17 +210,17 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "dance-faceoff",
-    name: "Dance Faceoff",
+    name: "Freestyle Frenzy",
     category: "Dance",
-    shortDesc: "On-the-spot street dance battles. Show your rhythm and impromptu styles.",
+    shortDesc: "Own the floor. No rules. Just moves that speak.",
     detail: "When an entire room locks its eyes on the center, a dance battle stops being a casual performance and becomes a massive, collective spectacle. It's the intense, underground crew rivalry of a Step Up 3D battle, the raw, legendary defiance of a 'You Got Served' faceoff, and the high-stakes, crowd-pleasing improvisation of a Red Bull Dance Your Style arena. It's turning a circle of spectators into an arena of split-second improvisation, where a single clean transition can shut down the music and a flawless counter-move changes everything. Own the center, drop your best combination, and let the ultimate stage adventure begin.",
     icon: "🔥",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "Individual Duelist",
-    time: "Day 1, 3:30 PM",
-    location: "Underground Plaza",
-    day: "Day 1",
+    teamSize: "Solo / Crew",
+    time: "Day 2, 3:30 PM",
+    location: "Open Arena",
+    day: "Day 2",
     stage: "Off-stage",
     bounty: "₹10,000 + Champion Belt",
     rules: [
@@ -235,17 +234,17 @@ const EVENTS_DATA: Event[] = [
   // ─── CYBERNETICS ───
   {
     id: "coding-debugging",
-    name: "Coding and Debugging",
+    name: "Pixel Play",
     category: "Cybernetics",
-    shortDesc: "A high-speed sprint to write clean algorithms and resolve errors.",
+    shortDesc: "Level up your skills in the ultimate gaming showdown.",
     detail: "Frodo had a map to Mordor. You have a screen full of errors. Embark on digital adventure where every bug is an obstacle, every algorithm is a hidden path and every solution is a step closer to the destination. Venture through tangled loops, cryptic clues, and unexpected dead ends as you navigate the vast landscape of code. Some challenges demand creativity, others demand patience, but all require the courage to keep moving forward. In this quest, writing code is only half the battle. The journey has begun. Will you conquer the code, or get lost in the maze?",
     icon: "💻",
-    difficulty: "Legendary",
-    difficultyColor: "#D9B24C",
-    teamSize: "2 Programmers",
-    time: "Day 1, 9:30 AM",
-    location: "Main Tech Lab",
-    day: "Day 1",
+    difficulty: "Explorer",
+    difficultyColor: "#65C466",
+    teamSize: "1 - 2 Players",
+    time: "Day 2, 9:30 AM",
+    location: "Gaming Zone",
+    day: "Day 2",
     stage: "Off-stage",
     bounty: "₹12,000 + Hacker Kit Bags",
     rules: [
@@ -347,17 +346,17 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "photography",
-    name: "Photography",
+    name: "Snapshot",
     category: "Multimedia",
-    shortDesc: "On-spot candid photography highlighting emotions and action.",
+    shortDesc: "Freeze moments. Tell stories without words.",
     detail: "Peter Parker needs his camera to pay rent. And you? You need to capture the ultimate shot of this school fest. Photography isn't just about tapping a screen. It's a high-stakes safari through unpredictable crowds and shifting lights. Think of your camera as a compass. You can chase the neon-drenched atmosphere of Blade Runner, or trek toward a raw, candid moment worthy of a National Geographic cover. Take the adventure past the obvious angles and discover a completely new perspective.",
     icon: "📸",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "Individual Photographer",
-    time: "Day 1, 10:30 AM",
-    location: "Spot Assignment",
-    day: "Day 1",
+    teamSize: "Solo",
+    time: "Day 3, 10:30 AM",
+    location: "Art Courtyard",
+    day: "Day 3",
     stage: "Off-stage",
     bounty: "₹7,000 + Lens Loot Box",
     rules: [
@@ -571,17 +570,17 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "poetry-writing",
-    name: "Theme Poetry Writing",
+    name: "Pen Storm",
     category: "Art and Literature",
-    shortDesc: "Pen down an original poem inspired by the uncharted borders.",
+    shortDesc: "Let your words create a storm that stays.",
     detail: "Forget the dusty stanzas and rigid rhyme schemes of the past. Your words aren't meant to sit quietly on a page, they are meant to seize the day, 'Carpe Diem' as John Keating said. This is your 3 a.m. notes app breakthroughs thrown into a high stakes, high reward quest for glory. Wednesday did put it right, \"It's no wonder Edgar Allan Poe became a drug-addled madman.\", not only because he went to Nevermore, but because he was trying to write a masterpiece that would shake Shakespeare himself. Now it's your turn. Follow the trail of imagination, venture beyond the ordinary, and see where the words lead.",
     icon: "✍️",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "Individual Writer",
-    time: "Day 2, 10:30 AM",
-    location: "Seminar Room A",
-    day: "Day 2",
+    teamSize: "Solo",
+    time: "Day 3, 10:30 AM",
+    location: "Literary Lounge",
+    day: "Day 3",
     stage: "Off-stage",
     bounty: "₹5,000 + Fountain Pen Set",
     rules: [
@@ -861,10 +860,46 @@ const EVENTS_DATA: Event[] = [
   }
 ];
 
+const KNOWN_LOGOS = [
+  "unconventional-music",
+  "western-music",
+  "dance-faceoff",
+  "coding-debugging",
+  "poetry-writing",
+  "photography"
+];
+
+function CircularEventLogo({ id, icon, name }: { id: string; icon: string; name: string }) {
+  const [imgFailed, setImgFailed] = useState(!KNOWN_LOGOS.includes(id));
+  const logoPath = `/event-logos/${id}.png`;
+
+  if (!imgFailed) {
+    return (
+      <img
+        src={logoPath}
+        alt={name}
+        onError={() => setImgFailed(true)}
+        className="w-full h-full object-cover"
+      />
+    );
+  }
+
+  return (
+    <div
+      className="w-full h-full flex items-center justify-center text-4xl select-none"
+      style={{
+        background: "radial-gradient(circle at center, #2B1A0E 0%, #0c0502 100%)",
+      }}
+    >
+      {icon}
+    </div>
+  );
+}
+
 export default function EventsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Territories");
-  const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 1" | "Day 2">("All Days");
+  const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 1" | "Day 2" | "Day 3">("All Days");
   const [selectedStage, setSelectedStage] = useState<"All Stages" | "On-stage" | "Off-stage">("All Stages");
   const [activeEvent, setActiveEvent] = useState<Event | null>(null);
   const [registeredEvents, setRegisteredEvents] = useState<string[]>([]);
@@ -889,6 +924,18 @@ export default function EventsPage() {
         const matched = CATEGORIES.find(c => c.name.toLowerCase() === cat.toLowerCase() || (cat.toLowerCase() === "digital" && c.name.toLowerCase() === "cybernetics"));
         if (matched) {
           setSelectedCategory(matched.name);
+        }
+      }
+      
+      const eventId = params.get("event");
+      if (eventId) {
+        const foundEvent = EVENTS_DATA.find(e => e.id === eventId);
+        if (foundEvent) {
+          setActiveEvent(foundEvent);
+          const matchedCat = CATEGORIES.find(c => c.name.toLowerCase() === foundEvent.category.toLowerCase());
+          if (matchedCat) {
+            setSelectedCategory(matchedCat.name);
+          }
         }
       }
     }
@@ -932,7 +979,7 @@ export default function EventsPage() {
       
       <Navbar />
 
-      <main className="flex-1 w-full max-w-4xl mx-auto px-6 pt-32 pb-20 relative z-20 flex flex-col">
+      <main className="flex-1 w-full max-w-5xl mx-auto px-6 pt-32 pb-20 relative z-20 flex flex-col">
         
         {/* Back Link */}
         <Link 
@@ -997,7 +1044,7 @@ export default function EventsPage() {
               Expedition Day
             </span>
             <div className="flex gap-2">
-              {(["All Days", "Day 1", "Day 2"] as const).map((day) => {
+              {(["All Days", "Day 1", "Day 2", "Day 3"] as const).map((day) => {
                 const isSel = selectedDay === day;
                 return (
                   <button
@@ -1084,7 +1131,7 @@ export default function EventsPage() {
 
         {/* Main Grid of Events */}
         {filteredEvents.length > 0 ? (
-          <motion.div layout={!isMobile} className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
+          <motion.div layout={!isMobile} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
             <AnimatePresence mode={isMobile ? "wait" : "popLayout"}>
               {filteredEvents.map((evt) => {
                 const isRegistered = registeredEvents.includes(evt.id);
@@ -1097,131 +1144,95 @@ export default function EventsPage() {
                     initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
-                    whileHover={isMobile ? {} : { y: -2 }}
+                    whileHover={isMobile ? {} : { y: -3 }}
                     transition={isMobile ? { duration: 0.15 } : { type: "spring", stiffness: 200, damping: 22 }}
                     onClick={() => setActiveEvent(evt)}
-                    className="parchment-card group relative flex flex-col overflow-hidden cursor-pointer"
+                    className="parchment-card group relative flex flex-col overflow-hidden cursor-pointer rounded-lg p-4"
+                    style={{ minHeight: "340px" }}
                   >
-                    {/* Card body — sits above grain ::before overlay */}
-                    <div className="relative z-10 p-5 flex flex-col gap-3 flex-1">
+                    {/* Inner vintage border frame */}
+                    <div className="absolute inset-2 border border-[#2B1A0E]/20 rounded-md pointer-events-none z-10" />
 
-                      {/* Row 1: icon box + difficulty badge */}
-                      <div className="flex items-start justify-between">
-                        {/* Green icon box */}
-                        <div
-                          className="flex items-center justify-center text-xl"
-                          style={{
-                            width: 44,
-                            height: 44,
-                            background: "#37532A",
-                            border: "2px solid #2B1A0E",
-                            borderRadius: 6,
-                            boxShadow: "2px 2px 0 rgba(43,26,14,0.8)",
-                            flexShrink: 0,
-                          }}
-                        >
-                          {evt.icon}
-                        </div>
+                    {/* Day tag (top right) */}
+                    <div
+                      className="absolute top-3.5 right-3.5 z-20 font-sans font-black uppercase text-[8.5px] tracking-wider px-2 py-0.5"
+                      style={{
+                        background: "#37532A",
+                        color: "#F4ECC8",
+                        border: "1.5px solid #2B1A0E",
+                        borderRadius: "3px",
+                        boxShadow: "1.5px 1.5px 0 rgba(43,26,14,1)",
+                      }}
+                    >
+                      {evt.day.toUpperCase()}
+                    </div>
 
-                        {/* Difficulty badge */}
-                        <span
-                          className="font-bebas text-[12px] tracking-[0.12em] uppercase px-3.5 py-1"
-                          style={{
-                            background: diffBg,
-                            color: diffText,
-                            border: "1.5px solid #2B1A0E",
-                            borderRadius: 3,
-                            boxShadow: "2px 2px 0 rgba(43,26,14,0.7)",
-                            letterSpacing: "0.12em",
-                          }}
-                        >
-                          {evt.difficulty}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <div className="mt-1">
-                        <h3
-                          className="font-bebas uppercase leading-tight"
-                          style={{ fontSize: 22, color: "#1A0E05", letterSpacing: "0.04em" }}
-                        >
-                          {evt.name}
-                        </h3>
-                        <span
-                          className="font-sans font-extrabold uppercase tracking-[0.12em]"
-                          style={{ fontSize: 11, color: "#2B1A0E" }}
-                        >
-                          {evt.category}
-                        </span>
-                      </div>
-
-                      {/* Description */}
-                      <p
-                        className="font-sans font-semibold leading-relaxed line-clamp-3"
-                        style={{ fontSize: 13.5, color: "#2B1A0E" }}
+                    {/* Circular Logo Container */}
+                    <div className="flex justify-center mt-2.5 mb-3 relative z-20">
+                      <div
+                        className="w-[130px] h-[130px] rounded-full border-3 border-[#2B1A0E] overflow-hidden bg-[#1E1208] flex items-center justify-center relative shadow-md"
+                        style={{
+                          boxShadow: "0 3px 8px rgba(0,0,0,0.35), 2.5px 2.5px 0 rgba(43,26,14,0.95)",
+                        }}
                       >
-                        {evt.shortDesc}
-                      </p>
-
-                      {/* Metadata row */}
-                      <div className="flex items-center gap-3 flex-wrap mt-auto pt-2" style={{ borderTop: "1px solid rgba(43,26,14,0.18)" }}>
-                        <span className="flex items-center gap-1.5 font-sans" style={{ fontSize: 11, color: "#2B1A0E", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                          <Users className="h-3.5 w-3.5" style={{ color: "#2B1A0E" }} />
-                          {evt.teamSize}
-                        </span>
-                        <span style={{ color: "rgba(43,26,14,0.45)", fontSize: 12 }}>•</span>
-                        <span className="flex items-center gap-1.5 font-sans" style={{ fontSize: 11, color: "#2B1A0E", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                          <MapPin className="h-3.5 w-3.5" style={{ color: "#2B1A0E" }} />
-                          {evt.location}
-                        </span>
-                        <span style={{ color: "rgba(43,26,14,0.45)", fontSize: 12 }}>•</span>
-                        {/* Day pill */}
-                        <span
-                          className="font-bebas tracking-widest uppercase"
-                          style={{
-                            fontSize: 11,
-                            padding: "3px 9px",
-                            background: "#37532A",
-                            color: "#ffffff",
-                            borderRadius: 3,
-                            border: "1px solid #2B1A0E",
-                          }}
-                        >
-                          {evt.day}
-                        </span>
-                        {/* Stage pill */}
-                        <span
-                          className="font-bebas tracking-widest uppercase"
-                          style={{
-                            fontSize: 11,
-                            padding: "3px 9px",
-                            background: "#3B5E8C",
-                            color: "#ffffff",
-                            borderRadius: 3,
-                            border: "1px solid #2B1A0E",
-                          }}
-                        >
-                          {evt.stage}
-                        </span>
+                        <CircularEventLogo id={evt.id} icon={evt.icon} name={evt.name} />
                       </div>
                     </div>
 
-                    {/* Full-width footer CTA */}
-                    <button
-                      onClick={(e) => handleRegister(evt.id, e)}
-                      className="relative z-10 w-full flex items-center justify-center gap-2 font-bebas uppercase tracking-[0.15em] cursor-pointer transition-all"
-                      style={{
-                        fontSize: 13,
-                        padding: "13px 0",
-                        background: isRegistered ? "#1E3A1A" : "#2B3D1C",
-                        color: "#F4ECC8",
-                        borderTop: "2px solid #2B1A0E",
-                      }}
-                    >
-                      <span>{isRegistered ? "Charter Signed" : "Charter Signed"}</span>
-                      <span style={{ fontSize: 16 }}>📜</span>
-                    </button>
+                    {/* Content Section */}
+                    <div className="text-center flex-1 flex flex-col gap-1 relative z-20 mt-3">
+                      {/* Title */}
+                      <h3
+                        className="font-bebas uppercase leading-none font-bold"
+                        style={{ fontSize: 20, color: "#2B1A0E", letterSpacing: "0.04em" }}
+                      >
+                        {evt.name}
+                      </h3>
 
+                      {/* Category */}
+                      <span
+                        className="font-sans font-black uppercase tracking-[0.16em] text-[8.5px]"
+                        style={{ color: "#2B1A0E" }}
+                      >
+                        {evt.category === "Cybernetics" ? "Gaming" : evt.category === "Art and Literature" ? "Literary" : evt.category === "Multimedia" ? "Photography" : evt.category}
+                      </span>
+
+                      {/* Description */}
+                      <p
+                        className="font-sans font-extrabold leading-normal text-[11px] text-[#2B1A0E]/95 mt-1.5 line-clamp-3 text-center px-1.5"
+                      >
+                        {evt.shortDesc}
+                      </p>
+                    </div>
+
+                    {/* Bottom Buttons/Tags Row */}
+                    <div className="flex items-center justify-between gap-2.5 mt-auto relative z-20">
+                      {/* Stage Tag */}
+                      <span
+                        className="flex-1 text-center font-bebas text-[11px] tracking-wider uppercase py-1 text-white"
+                        style={{
+                          background: "#3b5e8c",
+                          border: "2px solid #2B1A0E",
+                          borderRadius: "4px",
+                          boxShadow: "2px 2px 0 rgba(43,26,14,1)",
+                        }}
+                      >
+                        {evt.stage}
+                      </span>
+
+                      {/* View Details Tag */}
+                      <span
+                        className="flex-1 text-center font-bebas text-[11px] tracking-wider uppercase py-1 text-white"
+                        style={{
+                          background: "#37532A",
+                          border: "2px solid #2B1A0E",
+                          borderRadius: "4px",
+                          boxShadow: "2px 2px 0 rgba(43,26,14,1)",
+                        }}
+                      >
+                        VIEW DETAILS
+                      </span>
+                    </div>
                   </motion.div>
                 );
               })}
@@ -1279,13 +1290,15 @@ export default function EventsPage() {
 
               {/* Header title */}
               <div className="flex items-center gap-3.5 mt-2">
-                <span className="text-3xl">{activeEvent.icon}</span>
+                <div className="w-14 h-14 rounded-full border-2 border-[#2B1A0E] overflow-hidden bg-[#1E1208] flex items-center justify-center shrink-0">
+                  <CircularEventLogo id={activeEvent.id} icon={activeEvent.icon} name={activeEvent.name} />
+                </div>
                 <div>
                   <h2 className="font-bebas text-xl text-ink-dark uppercase tracking-wide">
                     {activeEvent.name}
                   </h2>
                   <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 border border-ink-dark/30 rounded-full text-ink-dark inline-block mt-1">
-                    {activeEvent.category}
+                    {activeEvent.category === "Cybernetics" ? "Gaming" : activeEvent.category === "Art and Literature" ? "Literary" : activeEvent.category === "Multimedia" ? "Photography" : activeEvent.category}
                   </span>
                 </div>
               </div>
@@ -1366,33 +1379,12 @@ export default function EventsPage() {
                 </div>
               </div>
 
-              {/* Primary Action Button (Sign Charter) */}
-              <button
-                onClick={(e) => {
-                  handleRegister(activeEvent.id, e);
-                }}
-                className={`w-full py-3.5 flex items-center justify-center gap-2 font-bebas text-sm tracking-wider uppercase border-2 border-ink-dark transition-all cursor-pointer bg-forest-green text-white shadow-[3px_3px_0px_rgba(43,26,14,1)] active:translate-y-[1px] active:translate-x-[1px] active:shadow-[2px_2px_0px_rgba(43,26,14,1)]`}
-                style={{ borderRadius: "12px 6px 10px 6px / 6px 10px 6px 12px" }}
-              >
-                {registeredEvents.includes(activeEvent.id) ? (
-                  <>
-                    <span>Charter Signed</span>
-                    <span>📜</span>
-                  </>
-                ) : (
-                  <>
-                    <Sparkles className="h-4 w-4" />
-                    <span>Sign Expedition Charter</span>
-                  </>
-                )}
-              </button>
 
             </motion.div>
           </div>
         )}
       </AnimatePresence>
 
-      <Footer />
     </div>
   );
 }

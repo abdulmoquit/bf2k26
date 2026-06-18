@@ -35,58 +35,49 @@ interface Territory {
 
 const TERRITORIES: Territory[] = [
   {
-    id: "music",
-    name: "Music Territory",
-    preview: "Feel the rhythm",
+    id: "fusion-music",
+    name: "Bosco Jukebox",
+    preview: "Fusion Music",
     category: "Music",
-    icon: "🎵",
+    icon: "🎸",
     x: "18%",
     y: "22%",
   },
   {
-    id: "sports",
-    name: "Sports Territory",
-    preview: "Compete. Conquer.",
-    category: "Sports",
-    icon: "🏆",
+    id: "eastern-music",
+    name: "Bosco Raag",
+    preview: "Eastern Music",
+    category: "Music",
+    icon: "🎤",
     x: "48%",
     y: "10%",
   },
   {
-    id: "digital",
-    name: "Digital Frontier",
-    preview: "Code the future",
-    category: "Cybernetics",
-    icon: "</>",
+    id: "western-music",
+    name: "Bosco Beat",
+    preview: "Western Music",
+    category: "Music",
+    icon: "🎵",
     x: "72%",
     y: "18%",
   },
   {
-    id: "dance",
-    name: "Dance Territory",
-    preview: "Move to inspire",
+    id: "western-dance",
+    name: "Bosco Tango",
+    preview: "Western Dance",
+    category: "Dance",
+    icon: "🕺",
+    x: "74%",
+    y: "58%",
+  },
+  {
+    id: "eastern-dance",
+    name: "Bosco Nritya",
+    preview: "Eastern Dance",
     category: "Dance",
     icon: "💃",
     x: "28%",
     y: "50%",
-  },
-  {
-    id: "literary",
-    name: "Literary Peaks",
-    preview: "Words that wander",
-    category: "Art and Literature",
-    icon: "🖋️",
-    x: "50%",
-    y: "54%",
-  },
-  {
-    id: "art",
-    name: "Art Valley",
-    preview: "Create the unseen",
-    category: "Multimedia",
-    icon: "🎨",
-    x: "74%",
-    y: "58%",
   },
 ];
 
@@ -96,7 +87,7 @@ function useCountdown() {
   const [time, setTime] = useState({ days: "00", hours: "00", minutes: "00", seconds: "00" });
 
   useEffect(() => {
-    const target = new Date("2026-08-15T09:00:00").getTime();
+    const target = new Date("2026-07-10T07:15:00").getTime();
     const tick = () => {
       const diff = target - Date.now();
       if (diff <= 0) {
@@ -178,6 +169,16 @@ function CountdownCards() {
 
 export default function Home() {
   const mapSectionRef = useRef<HTMLDivElement>(null);
+  const [isMobileVideo, setIsMobileVideo] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkViewport = () => {
+      setIsMobileVideo(window.innerWidth < 1024);
+    };
+    checkViewport();
+    window.addEventListener("resize", checkViewport);
+    return () => window.removeEventListener("resize", checkViewport);
+  }, []);
 
   const scrollMap = () => {
     mapSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -207,33 +208,30 @@ export default function Home() {
       <main className="flex-1 w-full flex flex-col items-center relative z-20">
 
         {/* ═══ HERO SECTION ══════════════════════════════════════════════════ */}
-        <section className="min-h-screen w-full relative overflow-hidden bg-[#0b0f0a]">
+        <section 
+          className="min-h-screen w-full relative overflow-hidden bg-[#0b0f0a]"
+          style={{
+            backgroundImage: "url('/hero-bg.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        >
 
           {/* ── Full-screen background video ── */}
-          {/* Landscape video for desktop */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/hero-bg.jpg"
-            className="hidden lg:block absolute inset-0 w-full h-full object-cover"
-            style={{ zIndex: 0 }}
-          >
-            <source src="/hero-bg.mp4" type="video/mp4" />
-          </video>
-          {/* Portrait video for mobile */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/hero-bg.jpg"
-            className="block lg:hidden absolute inset-0 w-full h-full object-cover"
-            style={{ zIndex: 0 }}
-          >
-            <source src="/hero-bg-mobile.mp4" type="video/mp4" />
-          </video>
+          {isMobileVideo !== null && (
+            <video
+              key={isMobileVideo ? "mobile-vid" : "desktop-vid"}
+              autoPlay
+              loop
+              muted
+              playsInline
+              poster="/hero-bg.jpg"
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ zIndex: 0 }}
+            >
+              <source src={isMobileVideo ? "/hero-bg-mobile.mp4" : "/hero-bg.mp4"} type="video/mp4" />
+            </video>
+          )}
 
           {/* ── Dark gradient overlay so text stays legible ── */}
           <div
@@ -286,14 +284,6 @@ export default function Home() {
                 />
               </div>
 
-              {/* Sub-header */}
-              <p
-                className="font-sans font-black uppercase tracking-[0.3em] mt-3 mb-2"
-                style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
-              >
-                Don Bosco School · Kolkata
-              </p>
-
               {/* Main Title */}
               <h1
                 className="font-bebas uppercase leading-none select-none"
@@ -304,8 +294,9 @@ export default function Home() {
               </h1>
 
               {/* Motto banner */}
-              <div
-                className="flex items-center gap-3.5 my-5 px-10 py-3 relative overflow-hidden"
+              <motion.div
+                whileHover="hover"
+                className="flex items-center gap-3.5 mt-2.5 mb-2.5 px-10 py-3 relative overflow-hidden cursor-pointer"
                 style={{
                   borderTop: "2px solid #A37F3E",
                   borderBottom: "2px solid #A37F3E",
@@ -314,31 +305,62 @@ export default function Home() {
                   borderRadius: 4,
                   boxShadow: "inset 0 0 15px rgba(163,127,62,0.15)",
                 }}
+                variants={{
+                  hover: {
+                    borderTopColor: "#ebdcb9",
+                    borderBottomColor: "#ebdcb9",
+                    boxShadow: "inset 0 0 25px rgba(163,127,62,0.3), 0 0 10px rgba(163,127,62,0.2)",
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }
+                }}
               >
                 {/* Glowing gold star markers */}
-                <span className="text-[#A37F3E] text-xs">✦</span>
-                <span
-                  className="font-bebas uppercase tracking-[0.25em] font-extrabold text-center"
+                <motion.span
+                  variants={{
+                    hover: { scale: 1.15, color: "#ebdcb9", rotate: 90 }
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="text-[#A37F3E] text-xs select-none"
+                >
+                  ✦
+                </motion.span>
+                <motion.span
+                  variants={{
+                    hover: {
+                      backgroundPosition: ["200% 0%", "0% 0%"],
+                      textShadow: "0 0 15px rgba(244,236,200,0.45)",
+                      transition: { repeat: Infinity, duration: 1.6, ease: "linear" }
+                    }
+                  }}
+                  className="font-bebas uppercase tracking-[0.25em] font-extrabold text-center cursor-pointer"
                   style={{
                     fontSize: 18,
-                    background: "linear-gradient(to right, #F4ECC8, #A37F3E, #F4ECC8)",
+                    backgroundImage: "linear-gradient(to right, #F4ECC8 0%, #A37F3E 25%, #ffffff 50%, #A37F3E 75%, #F4ECC8 100%)",
+                    backgroundSize: "200% 100%",
+                    backgroundPosition: "200% 0%",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    textShadow: "0 0 10px rgba(244,236,200,0.15)",
                   }}
                 >
                   "UNTOLD. UNFAZED. UNCHARTED."
-                </span>
-                <span className="text-[#A37F3E] text-xs">✦</span>
-              </div>
+                </motion.span>
+                <motion.span
+                  variants={{
+                    hover: { scale: 1.15, color: "#ebdcb9", rotate: -90 }
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="text-[#A37F3E] text-xs select-none"
+                >
+                  ✦
+                </motion.span>
+              </motion.div>
 
-              {/* Description */}
+              {/* Sub-header */}
               <p
-                className="font-sans font-medium max-w-md leading-relaxed mb-6"
-                style={{ fontSize: 12.5, color: "rgba(235,220,185,0.85)" }}
+                className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-3.5"
+                style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
               >
-                Embark on an unforgettable journey through competitions, culture, creativity and
-                adventure. Sign the charter and begin the quest.
+                Don Bosco School · Kolkata
               </p>
 
               {/* CTA Button */}
@@ -426,7 +448,7 @@ export default function Home() {
 
           {/* ── Vertical layout (Mobile only) ── */}
           <div
-            className="flex lg:hidden flex-col items-center justify-start w-full px-5 py-24 relative z-10 gap-8"
+            className="flex lg:hidden flex-col items-center justify-start w-full px-5 py-24 relative z-10 gap-5"
           >
             {/* Emblem Logo */}
             <motion.div
@@ -457,14 +479,6 @@ export default function Home() {
               transition={{ delay: 0.2, type: "spring", stiffness: 90, damping: 14 }}
               className="flex flex-col items-center text-center w-full"
             >
-              {/* Sub-header */}
-              <p
-                className="font-sans font-black uppercase tracking-[0.25em] mb-1.5"
-                style={{ fontSize: 9.5, color: "#82C341" }}
-              >
-                Don Bosco School · Kolkata
-              </p>
-
               {/* Main Title */}
               <h1
                 className="font-bebas uppercase leading-none select-none"
@@ -475,8 +489,10 @@ export default function Home() {
               </h1>
 
               {/* Motto banner */}
-              <div
-                className="flex items-center justify-center gap-2 px-4 py-2.5 w-full max-w-[320px]"
+              <motion.div
+                whileHover="hover"
+                whileTap="hover"
+                className="flex items-center justify-center gap-2 px-4 py-2.5 w-full max-w-[320px] cursor-pointer mt-2"
                 style={{
                   borderTop: "2px solid #A37F3E",
                   borderBottom: "2px solid #A37F3E",
@@ -484,21 +500,61 @@ export default function Home() {
                   borderRadius: 4,
                   boxShadow: "inset 0 0 12px rgba(163,127,62,0.15)",
                 }}
+                variants={{
+                  hover: {
+                    borderTopColor: "#ebdcb9",
+                    borderBottomColor: "#ebdcb9",
+                    boxShadow: "inset 0 0 20px rgba(163,127,62,0.3), 0 0 8px rgba(163,127,62,0.15)",
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }
+                }}
               >
-                <span className="text-[#A37F3E] text-[10px]">✦</span>
-                <span
-                  className="font-bebas uppercase tracking-[0.18em] font-extrabold text-center text-[13px]"
+                <motion.span
+                  variants={{
+                    hover: { scale: 1.15, color: "#ebdcb9", rotate: 90 }
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="text-[#A37F3E] text-[10px] select-none"
+                >
+                  ✦
+                </motion.span>
+                <motion.span
+                  variants={{
+                    hover: {
+                      backgroundPosition: ["200% 0%", "0% 0%"],
+                      textShadow: "0 0 12px rgba(244,236,200,0.45)",
+                      transition: { repeat: Infinity, duration: 1.6, ease: "linear" }
+                    }
+                  }}
+                  className="font-bebas uppercase tracking-[0.18em] font-extrabold text-center text-[13px] cursor-pointer"
                   style={{
-                    background: "linear-gradient(to right, #F4ECC8, #A37F3E, #F4ECC8)",
+                    backgroundImage: "linear-gradient(to right, #F4ECC8 0%, #A37F3E 25%, #ffffff 50%, #A37F3E 75%, #F4ECC8 100%)",
+                    backgroundSize: "200% 100%",
+                    backgroundPosition: "200% 0%",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    textShadow: "0 0 8px rgba(244,236,200,0.15)",
                   }}
                 >
                   "UNTOLD. UNFAZED. UNCHARTED."
-                </span>
-                <span className="text-[#A37F3E] text-[10px]">✦</span>
-              </div>
+                </motion.span>
+                <motion.span
+                  variants={{
+                    hover: { scale: 1.15, color: "#ebdcb9", rotate: -90 }
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="text-[#A37F3E] text-[10px] select-none"
+                >
+                  ✦
+                </motion.span>
+              </motion.div>
+
+              {/* Sub-header */}
+              <p
+                className="font-sans font-black uppercase tracking-[0.25em] mt-2 mb-2"
+                style={{ fontSize: 9.5, color: "#82C341" }}
+              >
+                Don Bosco School · Kolkata
+              </p>
             </motion.div>
 
             {/* Countdown Cards Wrapper */}
@@ -518,14 +574,6 @@ export default function Home() {
               transition={{ delay: 0.4, type: "spring", stiffness: 80, damping: 15 }}
               className="flex flex-col items-center text-center w-full max-w-sm px-2"
             >
-              <p
-                className="font-sans font-medium leading-relaxed mb-5 text-center"
-                style={{ fontSize: 12, color: "rgba(235,220,185,0.85)" }}
-              >
-                Embark on an unforgettable journey through competitions, culture, creativity and
-                adventure. Sign the charter and begin the quest.
-              </p>
-
               <button
                 onClick={scrollMap}
                 className="green-btn flex items-center justify-center gap-2 px-8 py-3.5 w-full max-w-[240px]"
@@ -643,7 +691,7 @@ export default function Home() {
           ref={mapSectionRef}
           className="w-full py-24 px-6 flex flex-col items-center relative border-t-2 border-ink-dark overflow-hidden bg-zinc-950"
           style={{
-            backgroundImage: "url('/adventure-map-bg.png')",
+            backgroundImage: "url('/adventure-map-bg.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -686,7 +734,7 @@ export default function Home() {
             {TERRITORIES.map((loc) => (
               <Link
                 key={loc.id}
-                href={`/events?category=${encodeURIComponent(loc.category)}`}
+                href={`/events?event=${encodeURIComponent(loc.id)}`}
                 className="parchment-card p-4.5 flex flex-col items-center text-center cursor-pointer hover:-translate-y-1 transition-all active:translate-y-0"
               >
                 <div className="w-10 h-10 rounded-full bg-[#1E1208] border border-[#A37F3E] flex items-center justify-center text-lg relative z-10 shadow-md">
@@ -736,7 +784,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <Link href={`/events?category=${encodeURIComponent(loc.category)}`} className="flex flex-col items-center">
+                <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
                   
                   {/* Teardrop map-pin marker */}
                   <div className="w-12 h-12 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">

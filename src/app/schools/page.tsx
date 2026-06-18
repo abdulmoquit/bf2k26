@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const SCHOOLS = [
   { name: "Assembly of God Church School", logo: "agcs.png" },
@@ -23,7 +22,7 @@ const SCHOOLS = [
   { name: "St. James' School", logo: "sjs.png" },
   { name: "St. Lawrence High School", logo: "slhs.png" },
   { name: "St. Pauls Boarding & Day School", logo: "spbds.webp" },
-  { name: "The Newton School", logo: "nts2.png" },
+  { name: "The Newtown School", logo: "nts2.png" },
   { name: "Queen Of The Mission School Park Circus", logo: "qms.png" },
   { name: "Queen Of The Mission School Salt Lake", logo: "qms.png" },
   { name: "Don Bosco School Park Circus", logo: "dbpc.png" },
@@ -46,22 +45,35 @@ export default function Schools() {
   };
 
   return (
-    <div className="min-h-screen bg-rest-texture relative flex flex-col pb-0">
+    <div className="min-h-screen relative flex flex-col pb-0">
+      {/* Fixed Background Texture to prevent mobile stretching and layout glitches */}
+      <div className="fixed inset-0 bg-rest-texture z-0 pointer-events-none" />
       
       <Navbar />
+
+      {/* Global SVG Stamp Defs */}
+      <svg className="absolute w-0 h-0 pointer-events-none" aria-hidden="true">
+        <defs>
+          <filter id="stamp-distort">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+          <path id="stamp-text-path" d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" />
+        </defs>
+      </svg>
 
       <main className="flex-1 w-full max-w-4xl mx-auto px-6 pt-32 pb-20 relative z-20">
         
         {/* Header Section */}
         <div className="text-center mb-16 relative">
-          <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-forest-green uppercase block mb-2">
+          <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-[#82C341] uppercase block mb-2">
             Expedition Alliance
           </span>
-          <h1 className="font-bebas font-black text-4xl md:text-5xl lg:text-6xl text-ink-dark uppercase tracking-wide">
+          <h1 className="font-bebas font-black text-4xl md:text-5xl lg:text-6xl text-[#F4ECC8] uppercase tracking-wide">
             Participating Schools
           </h1>
           <div className="w-16 h-[2px] bg-gold-accent mx-auto mt-4" />
-          <p className="font-caveat text-xl text-ink-light mt-3 max-w-sm mx-auto">
+          <p className="font-caveat text-xl text-[#ebdcb9] mt-3 max-w-sm mx-auto">
             Uniting minds. Igniting spirit. Together we embark on an unforgettable journey.
           </p>
         </div>
@@ -81,21 +93,45 @@ export default function Schools() {
                 scale: 1.05, 
                 translateY: -3,
               }}
-              className="parchment-card flex flex-col items-center justify-between p-5.5 h-60 cursor-default shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:shadow-[5px_5px_0px_rgba(43,26,14,1)]"
+              className={`parchment-card flex flex-col items-center justify-center p-4 h-60 cursor-default shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:shadow-[5px_5px_0px_rgba(43,26,14,1)] gap-1.5 ${
+                index === SCHOOLS.length - 1
+                  ? "col-span-2 justify-self-center w-full max-w-[170px] sm:col-span-3 sm:justify-self-center sm:max-w-[170px] md:col-span-5 md:justify-self-center md:max-w-[170px]"
+                  : ""
+              }`}
             >
-              {/* Logo Wrapper */}
-              <div className="relative w-24 h-24 flex items-center justify-center flex-shrink-0 bg-transparent">
-                <Image
-                  src={`/school-logos/${school.logo}`}
-                  alt={`${school.name} logo`}
-                  fill
-                  sizes="96px"
-                  className="object-contain"
-                />
+              {/* Stamp-like Circular Logo Container */}
+              <div className="relative w-28 h-28 flex items-center justify-center flex-shrink-0 select-none">
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full pointer-events-none text-ink-dark/75 fill-none stroke-current">
+                  <g filter="url(#stamp-distort)">
+                    {/* Outer wavy/dashed circle */}
+                    <circle cx="50" cy="50" r="46" strokeWidth="2" strokeDasharray="3.5 2" className="opacity-90" />
+                    {/* Middle solid circle */}
+                    <circle cx="50" cy="50" r="42" strokeWidth="0.8" className="opacity-75" />
+                    {/* Inner solid circle */}
+                    <circle cx="50" cy="50" r="31" strokeWidth="1.2" className="opacity-90" />
+                    {/* Text around the logo */}
+                    <text className="fill-ink-dark font-bebas text-[7px] tracking-[0.14em] opacity-80">
+                      <textPath href="#stamp-text-path" textLength="220" startOffset="0%">
+                        • BOSCO FEST 2026 • EXPEDITION ALLIANCE •
+                      </textPath>
+                    </text>
+                  </g>
+                </svg>
+
+                {/* Logo Image with blend styling */}
+                <div className="relative w-14 h-14 flex items-center justify-center z-10 transition-transform duration-300 hover:scale-110">
+                  <Image
+                    src={`/school-logos/${school.logo}`}
+                    alt={`${school.name} logo`}
+                    fill
+                    sizes="56px"
+                    className="object-contain mix-blend-multiply opacity-90 hover:opacity-100 transition-opacity duration-300"
+                  />
+                </div>
               </div>
 
               {/* School Name */}
-              <p className="font-bebas text-center text-[11px] text-ink-dark tracking-wide uppercase leading-snug mt-3.5 min-h-[36px] flex items-center justify-center">
+              <p className="font-bebas text-center text-[15.5px] font-black text-ink-dark tracking-wide uppercase leading-tight min-h-[38px] flex items-center justify-center px-1">
                 {school.name}
               </p>
             </motion.div>
@@ -103,8 +139,6 @@ export default function Schools() {
         </motion.div>
 
       </main>
-
-      <Footer />
     </div>
   );
 }

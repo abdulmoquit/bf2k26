@@ -51,11 +51,11 @@ export default function Navbar() {
               BOSCO FEST
             </span>
             <span className="text-[7.5px] tracking-[0.2em] text-gold-accent uppercase font-bold mt-0.5">
-              2026 · Uncharted
+              2026
             </span>
           </div>
         </Link>
-
+ 
         {/* ── Desktop Nav ── */}
         <nav className="hidden md:flex items-center gap-1.5">
           {NAV_ITEMS.map((item) => {
@@ -82,12 +82,12 @@ export default function Navbar() {
             );
           })}
         </nav>
-
+ 
         {/* ── Desktop CTA button ── */}
         <div className="hidden md:block">
           <Link
             href="#register"
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 green-btn text-xs font-bebas tracking-wider uppercase"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 green-btn text-sm font-bebas tracking-wider uppercase"
           >
             <span>Register Now</span>
             <ArrowRight className="h-3.5 w-3.5" />

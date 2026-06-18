@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, MapPin, Building, Clock, Search, X, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 interface EventItem {
   activity: string;
@@ -127,7 +126,9 @@ export default function Schedule() {
   };
 
   return (
-    <div className="min-h-screen bg-rest-texture relative flex flex-col pb-0">
+    <div className="min-h-screen relative flex flex-col pb-0">
+      {/* Fixed Background Texture to prevent mobile stretching and layout glitches */}
+      <div className="fixed inset-0 bg-rest-texture z-0 pointer-events-none" />
       
       <Navbar />
 
@@ -135,10 +136,10 @@ export default function Schedule() {
         
         {/* Header */}
         <div className="text-center mb-10 relative">
-          <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-forest-green uppercase block mb-2">
+          <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-[#82C341] uppercase block mb-2">
             Chronometer Log
           </span>
-          <h1 className="font-bebas font-black text-4xl md:text-5xl lg:text-6xl text-ink-dark uppercase tracking-wide">
+          <h1 className="font-bebas font-black text-4xl md:text-5xl lg:text-6xl text-[#F4ECC8] uppercase tracking-wide">
             Event Schedule
           </h1>
           <div className="w-16 h-[2px] bg-gold-accent mx-auto mt-4" />
@@ -153,7 +154,7 @@ export default function Schedule() {
               className={`px-6 py-2.5 rounded-full font-bebas text-xs md:text-sm tracking-wider uppercase border-2 transition-all cursor-pointer ${
                 activeDay === "day1"
                   ? "bg-forest-green text-white border-ink-dark shadow-[2px_2px_0px_rgba(43,26,14,1)]"
-                  : "bg-transparent text-ink-dark/70 border-ink-dark/20 hover:border-ink-dark/60"
+                  : "bg-transparent text-[#ebdcb9]/80 border-[#ebdcb9]/30 hover:border-[#ebdcb9]/75 hover:text-white"
               }`}
             >
               Day One
@@ -163,7 +164,7 @@ export default function Schedule() {
               className={`px-6 py-2.5 rounded-full font-bebas text-xs md:text-sm tracking-wider uppercase border-2 transition-all cursor-pointer ${
                 activeDay === "day2"
                   ? "bg-forest-green text-white border-ink-dark shadow-[2px_2px_0px_rgba(43,26,14,1)]"
-                  : "bg-transparent text-ink-dark/70 border-ink-dark/20 hover:border-ink-dark/60"
+                  : "bg-transparent text-[#ebdcb9]/80 border-[#ebdcb9]/30 hover:border-[#ebdcb9]/75 hover:text-white"
               }`}
             >
               Day Two
@@ -208,36 +209,38 @@ export default function Schedule() {
               {/* Day 1 Section */}
               {(activeDay === "day1" || activeDay === "all") && (
                 <div className="space-y-4">
-                  <h2 className="font-bebas font-black text-xl md:text-2xl text-forest-green uppercase tracking-wider text-center md:text-left">
+                  <h2 className="font-bebas font-black text-xl md:text-2xl text-[#E8D7A5] uppercase tracking-wider text-center md:text-left">
                     Day 1 - (10.07.2026)
                   </h2>
-                  <div className="overflow-x-auto parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]">
-                    <table className="w-full min-w-[600px] border-collapse">
-                      <thead>
-                        <tr className="border-b-2 border-ink-dark text-ink-dark font-bebas text-xs md:text-sm tracking-wider uppercase text-left">
-                          <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-gold-accent" /> EVENT</th>
-                          <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-forest-green" /> VENUE</span></th>
-                          <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-sky-blue" /> FLOOR</span></th>
-                          <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-gold-accent" /> TIME</span></th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-light">
-                        {filteredDay1.length > 0 ? (
-                          filteredDay1.map((item, idx) => (
-                            <tr key={idx} className="hover:bg-black/5 transition-colors">
-                              <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
-                              <td className="px-6 py-4.5">{item.location}</td>
-                              <td className="px-6 py-4.5">{item.floor}</td>
-                              <td className="px-6 py-4.5 font-bold text-forest-green">{item.time}</td>
-                            </tr>
-                          ))
-                        ) : (
-                          <tr>
-                            <td colSpan={4} className="text-center py-8 text-ink-light/60 uppercase tracking-widest font-bold">No expeditions match search coordinates</td>
+                  <div className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]">
+                    <div className="overflow-x-auto w-full">
+                      <table className="w-full min-w-[600px] border-collapse">
+                        <thead>
+                          <tr className="border-b-2 border-ink-dark text-ink-dark font-bebas text-xs md:text-sm tracking-wider uppercase text-left">
+                            <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-gold-accent" /> EVENT</th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-forest-green" /> VENUE</span></th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-sky-blue" /> FLOOR</span></th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-gold-accent" /> TIME</span></th>
                           </tr>
-                        )}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
+                          {filteredDay1.length > 0 ? (
+                            filteredDay1.map((item, idx) => (
+                              <tr key={idx} className="hover:bg-black/5 transition-colors">
+                                <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
+                                <td className="px-6 py-4.5">{item.location}</td>
+                                <td className="px-6 py-4.5">{item.floor}</td>
+                                <td className="px-6 py-4.5 font-bold text-forest-green">{item.time}</td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan={4} className="text-center py-8 text-ink-light/60 uppercase tracking-widest font-bold">No expeditions match search coordinates</td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               )}
@@ -245,36 +248,38 @@ export default function Schedule() {
               {/* Day 2 Section */}
               {(activeDay === "day2" || activeDay === "all") && (
                 <div className="space-y-4">
-                  <h2 className="font-bebas font-black text-xl md:text-2xl text-gold-accent uppercase tracking-wider text-center md:text-left">
+                  <h2 className="font-bebas font-black text-xl md:text-2xl text-[#E8D7A5] uppercase tracking-wider text-center md:text-left">
                     Day 2 - (11.07.2026)
                   </h2>
-                  <div className="overflow-x-auto parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]">
-                    <table className="w-full min-w-[600px] border-collapse">
-                      <thead>
-                        <tr className="border-b-2 border-ink-dark text-ink-dark font-bebas text-xs md:text-sm tracking-wider uppercase text-left">
-                          <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-gold-accent" /> EVENT</th>
-                          <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-forest-green" /> VENUE</span></th>
-                          <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-sky-blue" /> FLOOR</span></th>
-                          <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-gold-accent" /> TIME</span></th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-light">
-                        {filteredDay2.length > 0 ? (
-                          filteredDay2.map((item, idx) => (
-                            <tr key={idx} className="hover:bg-black/5 transition-colors">
-                              <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
-                              <td className="px-6 py-4.5">{item.location}</td>
-                              <td className="px-6 py-4.5">{item.floor}</td>
-                              <td className="px-6 py-4.5 font-bold text-forest-green">{item.time}</td>
-                            </tr>
-                          ))
-                        ) : (
-                          <tr>
-                            <td colSpan={4} className="text-center py-8 text-ink-light/60 uppercase tracking-widest font-bold">No expeditions match search coordinates</td>
+                  <div className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]">
+                    <div className="overflow-x-auto w-full">
+                      <table className="w-full min-w-[600px] border-collapse">
+                        <thead>
+                          <tr className="border-b-2 border-ink-dark text-ink-dark font-bebas text-xs md:text-sm tracking-wider uppercase text-left">
+                            <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-gold-accent" /> EVENT</th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-forest-green" /> VENUE</span></th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-sky-blue" /> FLOOR</span></th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-gold-accent" /> TIME</span></th>
                           </tr>
-                        )}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
+                          {filteredDay2.length > 0 ? (
+                            filteredDay2.map((item, idx) => (
+                              <tr key={idx} className="hover:bg-black/5 transition-colors">
+                                <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
+                                <td className="px-6 py-4.5">{item.location}</td>
+                                <td className="px-6 py-4.5">{item.floor}</td>
+                                <td className="px-6 py-4.5 font-bold text-forest-green">{item.time}</td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan={4} className="text-center py-8 text-ink-light/60 uppercase tracking-widest font-bold">No expeditions match search coordinates</td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               )}
@@ -283,8 +288,6 @@ export default function Schedule() {
         )}
 
       </main>
-
-      <Footer />
     </div>
   );
 }
