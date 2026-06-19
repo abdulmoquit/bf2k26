@@ -79,12 +79,18 @@ export default function Footer() {
               JUMP BACK TO
             </h4>
             <ul className="space-y-2.5 text-xs font-bold uppercase text-[#ebdcb9]">
-              {["Home", "Events", "Sponsors", "Register"].map((label) => (
-                <li key={label}>
-                  <Link href={label === "Home" || label === "Events" ? (label === "Home" ? "/" : "/events") : `#${label.toLowerCase()}`}
+              {[
+                { label: "Home Page", href: "/" },
+                { label: "Events Page", href: "/events" },
+                { label: "Schedule Page", href: "/schedule" },
+                { label: "Schools Page", href: "/schools" },
+                { label: "About Us Page", href: "/about" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <Link href={item.href}
                     className="hover:text-[#6EC6FF] transition-colors inline-flex items-center gap-1.5 py-1 text-[#ebdcb9]">
                     <span className="w-1 h-1 rounded-full bg-[#65C466]" />
-                    {label}
+                    {item.label}
                   </Link>
                 </li>
               ))}
