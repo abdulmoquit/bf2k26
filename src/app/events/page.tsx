@@ -909,11 +909,14 @@ export default function EventsPage() {
   useEffect(() => {
     if (activeEvent) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [activeEvent]);
 
@@ -1282,7 +1285,8 @@ export default function EventsPage() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100%", opacity: 0.9 }}
               transition={{ type: "spring", damping: 24, stiffness: 200 }}
-              className="relative w-full max-w-md bg-[#ebdcb9] bg-radial-[rgba(43,26,14,0.03)_1px,transparent_0] bg-[size:8px_8px] rounded-t-3xl sm:rounded-2xl border-t-2 border-x-2 sm:border-2 border-ink-dark px-6 pt-5 pb-8 shadow-[0_-8px_30px_rgba(43,26,14,0.3)] sm:shadow-[6px_6px_0px_rgba(43,26,14,1)] z-10 overflow-y-auto max-h-[85vh] sm:max-h-[80vh]"
+              className="relative w-full max-w-md bg-[#ebdcb9] bg-radial-[rgba(43,26,14,0.03)_1px,transparent_0] bg-[size:8px_8px] rounded-t-3xl sm:rounded-2xl border-t-2 border-x-2 sm:border-2 border-ink-dark px-6 pt-5 pb-8 shadow-[0_-8px_30px_rgba(43,26,14,0.3)] sm:shadow-[6px_6px_0px_rgba(43,26,14,1)] z-10 overflow-y-auto"
+              style={{ maxHeight: isMobile ? "85vh" : "80vh" }}
             >
               {/* Handlebar drag indicator for mobile */}
               <div className="w-12 h-1 bg-ink-dark/15 rounded-full mx-auto mb-5 sm:hidden" />
