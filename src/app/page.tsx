@@ -166,6 +166,28 @@ function CountdownCards() {
   );
 }
 
+function TerritoryLogo({ id, icon, name, isMobile }: { id: string; icon: string; name: string; isMobile?: boolean }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const logoPath = `/event-logos/${id}.avif`;
+
+  if (!imgFailed) {
+    return (
+      <img
+        src={logoPath}
+        alt={name}
+        onError={() => setImgFailed(true)}
+        className="w-full h-full object-cover rounded-full"
+      />
+    );
+  }
+
+  return (
+    <span className={isMobile ? "text-lg select-none" : "text-xl select-none"}>
+      {icon}
+    </span>
+  );
+}
+
 export default function Home() {
   const mapSectionRef = useRef<HTMLDivElement>(null);
   const [isMobileVideo, setIsMobileVideo] = useState<boolean | null>(null);
@@ -736,12 +758,8 @@ export default function Home() {
                 href={`/events?event=${encodeURIComponent(loc.id)}`}
                 className="parchment-card p-4.5 flex flex-col items-center text-center cursor-pointer hover:-translate-y-1 transition-all active:translate-y-0"
               >
-                <div className="w-10 h-10 rounded-full bg-[#1E1208] border border-[#A37F3E] flex items-center justify-center text-lg relative z-10 shadow-md">
-                  {loc.icon === "</>" ? (
-                    <span className="font-mono text-xs font-black text-[#A37F3E]">&lt;/&gt;</span>
-                  ) : (
-                    loc.icon
-                  )}
+                <div className="w-10 h-10 rounded-full bg-[#1E1208] border border-[#A37F3E] flex items-center justify-center overflow-hidden relative z-10 shadow-md">
+                  <TerritoryLogo id={loc.id} icon={loc.icon} name={loc.name} isMobile />
                 </div>
                 <h4 className="font-bebas text-base text-[#2B1A0E] uppercase tracking-wider mt-3">
                   {loc.name}
@@ -787,15 +805,11 @@ export default function Home() {
                   
                   {/* Teardrop map-pin marker */}
                   <div className="w-12 h-12 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
-                    <span className="text-xl">
-                      {loc.icon === "</>" ? (
-                        <span className="font-mono text-sm font-extrabold text-[#A37F3E]">&lt;/&gt;</span>
-                      ) : (
-                        loc.icon
-                      )}
-                    </span>
+                    <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center z-10">
+                      <TerritoryLogo id={loc.id} icon={loc.icon} name={loc.name} />
+                    </div>
                     {/* Pin tail */}
-                    <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#1E1208] border-r-2 border-b-2 border-[#A37F3E] rotate-45 transition-all duration-300 group-hover:border-[#ebdcb9]" />
+                    <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#1E1208] border-r-2 border-b-2 border-[#A37F3E] rotate-45 transition-all duration-300 group-hover:border-[#ebdcb9] z-0" />
                   </div>
 
                   {/* Texts - aligned below marker with some shadow backing for legibility */}
