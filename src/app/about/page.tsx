@@ -228,41 +228,19 @@ export default function About() {
 
         </div>
 
-        {/* Narrative / About Text Panel styled as torn parchment banner */}
-        <div className="parchment-card p-6 md:p-8 mb-16 text-center shadow-[4px_4px_0px_rgba(43,26,14,1)] max-w-3xl mx-auto">
-          <h3 className="font-bebas text-xl text-ink-dark tracking-wider uppercase mb-4">OUR STORY</h3>
-          <p className="font-sans font-bold text-xs md:text-sm text-ink-dark leading-relaxed mb-6">
-            Bosco Fest is more than just an event — it is a celebration of creativity, passion, and unity. For over four decades, it has brought together young minds to explore their talents, challenge their limits, and create memories that last a lifetime.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-ink-dark/15">
-            {[
-              { title: "INSPIRE", desc: "We ignite creativity and new ideas.", icon: "🧭" },
-              { title: "UNITE", desc: "We connect people beyond boundaries.", icon: "👥" },
-              { title: "EMPOWER", desc: "We encourage growth and confidence.", icon: "⚡" },
-              { title: "CREATE MEMORIES", desc: "We cherish moments that last forever.", icon: "⭐" },
-            ].map((f, i) => (
-              <div key={i} className="flex flex-col items-center text-center">
-                <span className="text-xl mb-1">{f.icon}</span>
-                <span className="font-bebas text-xs text-ink-dark tracking-wide">{f.title}</span>
-                <span className="text-[11px] text-ink-dark font-medium mt-1 leading-snug">{f.desc}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
         {/* Narrative text scroll */}
-        <div className="max-w-2xl mx-auto mb-28 text-center px-4 leading-relaxed font-sans font-semibold text-xs md:text-sm text-[#ebdcb9]/90 space-y-5">
-          <p className="text-sm font-bold text-[#F4ECC8]">Ever noticed how the best stories start with a bad decision?</p>
+        <div className="max-w-2xl mx-auto mb-28 text-center px-4 leading-relaxed font-sans font-semibold text-base md:text-lg text-[#ebdcb9]/90 space-y-6">
+          <p className="text-lg md:text-xl font-bold text-[#F4ECC8]">Ever noticed how the best stories start with a bad decision?</p>
           <p>The wrong turn. The missed train. The message that begins with &ldquo;I've got an idea...&rdquo; at 2 a.m. Most people call them mistakes. Adventurers call them beginnings.</p>
-          <p className="font-bebas text-base text-[#F4ECC8] tracking-wider uppercase">Adventure is choosing the unknown.</p>
+          <p className="font-bebas text-xl md:text-2xl text-[#F4ECC8] tracking-wider uppercase">Adventure is choosing the unknown.</p>
           <p>It's taking the longer route home just to see where it leads. It's clicking &ldquo;Accept Quest&rdquo; before reading the difficulty level. It's every side quest that somehow becomes more memorable than the main storyline.</p>
-          <p className="font-caveat text-xl text-[#65C466] tracking-wide">Adventure isn't found. It's created.</p>
+          <p className="font-caveat text-2xl md:text-3xl text-[#65C466] tracking-wide">Adventure isn't found. It's created.</p>
           <p className="font-bold text-[#ebdcb9]">And this year, it's breaking free.</p>
           <p>Introducing the 41st Edition of Bosco Fest, where curiosity outruns caution, where comfort zones become archaeological artifacts, and where every ordinary moment has the potential to become an unforgettable story. No maps. No cheat codes. No save files. Just possibilities.</p>
           <p className="text-[#E8D7A5] font-bold">If that sounds reckless, good. The greatest adventures usually are.</p>
-          <p className="font-bebas text-lg tracking-widest text-[#F4ECC8] uppercase">36 Events. 2 Days. One Extraordinary Journey.</p>
-          <p className="font-bebas text-2xl tracking-widest text-[#6EC6FF] uppercase">Untold. Unfazed. Uncharted.</p>
-          <p className="font-bebas text-sm tracking-widest text-[#F4ECC8] uppercase">This is us. Bosco Fest 2026.</p>
+          <p className="font-bebas text-xl md:text-2xl tracking-widest text-[#F4ECC8] uppercase">36 Events. 2 Days. One Extraordinary Journey.</p>
+          <p className="font-bebas text-3xl md:text-4xl tracking-widest text-[#6EC6FF] uppercase">Untold. Unfazed. Uncharted.</p>
+          <p className="font-bebas text-base md:text-lg tracking-widest text-[#F4ECC8] uppercase">This is us. Bosco Fest 2026.</p>
         </div>
 
         {/* ── Committee / Teams sections (styled as parchment panels) ── */}
