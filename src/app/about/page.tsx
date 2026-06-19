@@ -85,7 +85,6 @@ export default function About() {
   ];
 
   const graphicsTeam = [
-    "VATSAL NEWAR",
     "RISHIK ROY",
     "DHRUV ARORA",
     "AAYANSH BHALOTIA",
@@ -96,7 +95,6 @@ export default function About() {
   ];
 
   const videoTeam = [
-    "ARYAVEER AGARWAL",
     "FARZAN RAZA",
     "SOUMITRO SAMANTA",
     "RUDRA DAS",
@@ -120,7 +118,7 @@ export default function About() {
     "MRS. ANANNYA DASGUPTA",
     "MR. SUMIT SENGUPTA",
     "MRS. GILLIAN CULPEPER",
-    "MRS. SWAGATA DUTTA",
+    "MRS. SWAGATA ROY",
     "MR. THOMAS ANTHONY",
     "MRS. SHARMILEE ACHARYYA",
   ];
