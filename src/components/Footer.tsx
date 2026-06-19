@@ -36,19 +36,29 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
 
-          {/* Brand */}
+          {/* Brand & Contact Info */}
           <div className="md:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2.5 mb-5 select-none">
               <span className="font-display font-black tracking-widest text-xl text-[#E8D7A5] uppercase">
                 BOSCO<span className="text-[#65C466] font-light">FEST</span>
               </span>
             </Link>
-            <p className="font-display font-bold text-sm tracking-[0.15em] text-[#E8D7A5] uppercase mb-1">
-              UNTOLD. UNFAZED. UNCHARTED.
-            </p>
-            <p className="text-xs italic text-[#ebdcb9]/80 font-medium max-w-sm mb-6">
-              &ldquo;Every expedition begins with a single step.&rdquo; Step beyond the horizon at the annual flagship fest of Don Bosco School, Park Circus, Kolkata.
-            </p>
+            
+            <ul className="space-y-3 text-xs text-[#ebdcb9] font-medium mb-6 max-w-sm">
+              <li className="flex items-start gap-2.5">
+                <MapPin className="h-4.5 w-4.5 shrink-0 mt-0.5 text-[#E8D7A5]" />
+                <span>Don Bosco School, Park Circus, Kolkata, West Bengal 700017</span>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Phone className="h-4 w-4 shrink-0 text-[#65C466]" />
+                <a href="tel:+919876543210" className="hover:text-white transition-colors font-bold text-[#ebdcb9]">+91 98765 43210</a>
+              </li>
+              <li className="flex items-center gap-2.5">
+                <Mail className="h-4 w-4 shrink-0 text-[#6EC6FF]" />
+                <a href="mailto:info@boscofest.in" className="hover:text-white transition-colors font-bold text-[#ebdcb9]">info@boscofest.in</a>
+              </li>
+            </ul>
+
             <div className="flex gap-3">
               {[
                 { href: "https://instagram.com", Icon: Instagram },
@@ -82,25 +92,22 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
+          {/* Map Location */}
+          <div className="w-full flex flex-col">
             <h4 className="font-display font-bold uppercase tracking-widest text-xs mb-4 text-[#E8D7A5]">
-              Headquarters
+              Location Map
             </h4>
-            <ul className="space-y-3.5 text-xs text-[#ebdcb9] font-medium">
-              <li className="flex items-start gap-2.5">
-                <MapPin className="h-4.5 w-4.5 shrink-0 mt-0.5 text-[#E8D7A5]" />
-                <span>Don Bosco School, Park Circus, Kolkata, West Bengal 700017</span>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Phone className="h-4 w-4 shrink-0 text-[#65C466]" />
-                <a href="tel:+919876543210" className="hover:text-white transition-colors font-bold text-[#ebdcb9]">+91 98765 43210</a>
-              </li>
-              <li className="flex items-center gap-2.5">
-                <Mail className="h-4 w-4 shrink-0 text-[#6EC6FF]" />
-                <a href="mailto:info@boscofest.in" className="hover:text-white transition-colors font-bold text-[#ebdcb9]">info@boscofest.in</a>
-              </li>
-            </ul>
+            <div className="w-full h-36 border-2 border-[#A37F3E]/40 rounded-lg overflow-hidden shadow-md">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.580796347101!2d88.36931137593645!3d22.54421733346617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0276d498292c3f%3A0x633d1b6441d65d49!2sDon%20Bosco%20School%2C%20Park%20Circus!5e0!3m2!1sen!2sin!4v1718774000000!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
           </div>
         </div>
 
