@@ -80,11 +80,11 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs font-bold uppercase text-[#ebdcb9]">
               {[
-                { label: "Home Page", href: "/" },
-                { label: "Events Page", href: "/events" },
-                { label: "Schedule Page", href: "/schedule" },
-                { label: "Schools Page", href: "/schools" },
-                { label: "About Us Page", href: "/about" },
+                { label: "Home", href: "/" },
+                { label: "Events", href: "/events" },
+                { label: "Schedule", href: "/schedule" },
+                { label: "Schools", href: "/schools" },
+                { label: "About Us", href: "/about" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href}
