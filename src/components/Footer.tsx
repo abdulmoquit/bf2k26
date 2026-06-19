@@ -61,8 +61,8 @@ export default function Footer() {
 
             <div className="flex gap-3">
               {[
-                { href: "https://instagram.com", Icon: Instagram },
-                { href: "https://youtube.com",   Icon: Youtube   },
+                { href: "https://www.instagram.com/boscofest26?igsh=eW14dnphMGltdDEz", Icon: Instagram },
+                { href: "https://youtube.com/@donboscoschoolparkcircus1452?si=-cOPtOWFAypyTlL2",   Icon: Youtube   },
               ].map(({ href, Icon }, idx) => (
                 <a key={idx} href={href} target="_blank" rel="noreferrer"
                   className="w-10 h-10 rounded-full flex items-center justify-center border border-[#ebdcb9]/20 bg-[#2B1A0E]/50 hover:bg-[#6EC6FF]/25 hover:border-white transition-all hover:scale-105"
