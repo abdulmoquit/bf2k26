@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Phone, MapPin, Instagram, Youtube, Facebook, ArrowUp } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Youtube, ArrowUp } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -51,11 +51,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="h-4 w-4 shrink-0 text-[#65C466]" />
-                <a href="tel:+919876543210" className="hover:text-white transition-colors font-bold text-[#ebdcb9]">+91 98765 43210</a>
+                <a href="tel:+913333879202" className="hover:text-white transition-colors font-bold text-[#ebdcb9]">+91 33 3387-9202</a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 shrink-0 text-[#6EC6FF]" />
-                <a href="mailto:info@boscofest.in" className="hover:text-white transition-colors font-bold text-[#ebdcb9]">info@boscofest.in</a>
+                <a href="mailto:home.boscofest@gmail.com" className="hover:text-white transition-colors font-bold text-[#ebdcb9]">home.boscofest@gmail.com</a>
               </li>
             </ul>
 
@@ -63,7 +63,6 @@ export default function Footer() {
               {[
                 { href: "https://instagram.com", Icon: Instagram },
                 { href: "https://youtube.com",   Icon: Youtube   },
-                { href: "https://facebook.com",  Icon: Facebook  },
               ].map(({ href, Icon }, idx) => (
                 <a key={idx} href={href} target="_blank" rel="noreferrer"
                   className="w-10 h-10 rounded-full flex items-center justify-center border border-[#ebdcb9]/20 bg-[#2B1A0E]/50 hover:bg-[#6EC6FF]/25 hover:border-white transition-all hover:scale-105"
@@ -77,7 +76,7 @@ export default function Footer() {
           {/* Navigation */}
           <div>
             <h4 className="font-display font-bold uppercase tracking-widest text-xs mb-4 text-[#E8D7A5]">
-              Expedition Log
+              JUMP BACK TO
             </h4>
             <ul className="space-y-2.5 text-xs font-bold uppercase text-[#ebdcb9]">
               {["Home", "Events", "Sponsors", "Register"].map((label) => (
@@ -97,7 +96,7 @@ export default function Footer() {
             <h4 className="font-display font-bold uppercase tracking-widest text-xs mb-4 text-[#E8D7A5]">
               Location Map
             </h4>
-            <div className="w-full h-36 border-2 border-[#A37F3E]/40 rounded-lg overflow-hidden shadow-md">
+            <div className="w-full h-48 border-2 border-[#A37F3E]/40 rounded-lg overflow-hidden shadow-md">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.580796347101!2d88.36931137593645!3d22.54421733346617!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0276d498292c3f%3A0x633d1b6441d65d49!2sDon%20Bosco%20School%2C%20Park%20Circus!5e0!3m2!1sen!2sin!4v1718774000000!5m2!1sen!2sin"
                 width="100%"
