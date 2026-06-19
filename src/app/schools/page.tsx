@@ -66,16 +66,10 @@ export default function Schools() {
         
         {/* Header Section */}
         <div className="text-center mb-16 relative">
-          <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-[#82C341] uppercase block mb-2">
-            Expedition Alliance
-          </span>
           <h1 className="font-bebas font-black text-4xl md:text-5xl lg:text-6xl text-[#F4ECC8] uppercase tracking-wide">
             Participating Schools
           </h1>
           <div className="w-16 h-[2px] bg-gold-accent mx-auto mt-4" />
-          <p className="font-caveat text-xl text-[#ebdcb9] mt-3 max-w-sm mx-auto">
-            Uniting minds. Igniting spirit. Together we embark on an unforgettable journey.
-          </p>
         </div>
 
         {/* Schools Grid (5 columns matching mockup) */}

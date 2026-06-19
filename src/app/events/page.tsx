@@ -44,7 +44,7 @@ interface Event {
   teamSize: string;
   time: string;
   location: string;
-  day: "Day 1" | "Day 2" | "Day 3";
+  day: "Day 1" | "Day 2";
   stage: "On-stage" | "Off-stage";
   bounty: string;
   rules: string[];
@@ -354,9 +354,9 @@ const EVENTS_DATA: Event[] = [
     difficulty: "Explorer",
     difficultyColor: "#65C466",
     teamSize: "Solo",
-    time: "Day 3, 10:30 AM",
+    time: "Day 1, 10:30 AM",
     location: "Art Courtyard",
-    day: "Day 3",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹7,000 + Lens Loot Box",
     rules: [
@@ -578,9 +578,9 @@ const EVENTS_DATA: Event[] = [
     difficulty: "Explorer",
     difficultyColor: "#65C466",
     teamSize: "Solo",
-    time: "Day 3, 10:30 AM",
+    time: "Day 1, 10:30 AM",
     location: "Literary Lounge",
-    day: "Day 3",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹5,000 + Fountain Pen Set",
     rules: [
@@ -899,11 +899,23 @@ function CircularEventLogo({ id, icon, name }: { id: string; icon: string; name:
 export default function EventsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Territories");
-  const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 1" | "Day 2" | "Day 3">("All Days");
+  const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 1" | "Day 2">("All Days");
   const [selectedStage, setSelectedStage] = useState<"All Stages" | "On-stage" | "Off-stage">("All Stages");
   const [activeEvent, setActiveEvent] = useState<Event | null>(null);
   const [registeredEvents, setRegisteredEvents] = useState<string[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Lock scroll when event sheet/modal is open
+  useEffect(() => {
+    if (activeEvent) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeEvent]);
 
   // Load registration state and URL search params on mount
   useEffect(() => {
@@ -992,9 +1004,6 @@ export default function EventsPage() {
 
         {/* Page Title Header */}
         <div className="text-center mb-10">
-          <span className="font-sans font-extrabold text-[12px] tracking-[0.2em] text-map-green uppercase block mb-1.5">
-            Territories and Logbook
-          </span>
           <h1 className="font-bebas font-black text-4xl md:text-5xl text-parchment-light uppercase tracking-wide">
             KNOWN TERRITORIES
           </h1>
@@ -1044,7 +1053,7 @@ export default function EventsPage() {
               Expedition Day
             </span>
             <div className="flex gap-2">
-              {(["All Days", "Day 1", "Day 2", "Day 3"] as const).map((day) => {
+              {(["All Days", "Day 1", "Day 2"] as const).map((day) => {
                 const isSel = selectedDay === day;
                 return (
                   <button
@@ -1131,8 +1140,8 @@ export default function EventsPage() {
 
         {/* Main Grid of Events */}
         {filteredEvents.length > 0 ? (
-          <motion.div layout={!isMobile} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-            <AnimatePresence mode={isMobile ? "wait" : "popLayout"}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+            <AnimatePresence mode="popLayout">
               {filteredEvents.map((evt) => {
                 const isRegistered = registeredEvents.includes(evt.id);
                 const diffBg   = evt.difficulty === "Legendary" ? "#A37F3E" : evt.difficulty === "Veteran" ? "#3B5E8C" : "#37532A";
@@ -1140,12 +1149,11 @@ export default function EventsPage() {
                 return (
                   <motion.div
                     key={evt.id}
-                    layout={!isMobile}
-                    initial={isMobile ? { opacity: 0 } : { opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={isMobile ? { opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15 }}
                     whileHover={isMobile ? {} : { y: -3 }}
-                    transition={isMobile ? { duration: 0.15 } : { type: "spring", stiffness: 200, damping: 22 }}
                     onClick={() => setActiveEvent(evt)}
                     className="parchment-card group relative flex flex-col overflow-hidden cursor-pointer rounded-lg p-4"
                     style={{ minHeight: "340px" }}
@@ -1237,7 +1245,7 @@ export default function EventsPage() {
                 );
               })}
             </AnimatePresence>
-          </motion.div>
+          </div>
         ) : (
           /* Empty state */
           <div className="w-full py-16 px-6 text-center flex flex-col items-center gap-3 mt-4"
@@ -1370,14 +1378,8 @@ export default function EventsPage() {
                 </ul>
               </div>
 
-              {/* Prize Bounty */}
-              <div className="flex items-center gap-3 p-3.5 rounded-xl border-2 border-ink-dark bg-[#D9B24C]/10 mb-6">
-                <Trophy className="h-5.5 w-5.5 text-gold-accent shrink-0" />
-                <div className="flex flex-col">
-                  <span className="text-[7.5px] font-black uppercase text-ink-light tracking-wider">Discovered Bounty</span>
-                  <span className="text-xs font-black text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.bounty}</span>
-                </div>
-              </div>
+              {/* Spacer at the bottom since bounty is removed */}
+              <div className="h-2" />
 
 
             </motion.div>

@@ -136,9 +136,6 @@ export default function About() {
         
         {/* About Us Title */}
         <div className="text-center mb-10 relative">
-          <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-[#82C341] uppercase block mb-2">
-            The Chronicle
-          </span>
           <h1 className="font-bebas font-black text-4xl md:text-5xl lg:text-6xl text-[#F4ECC8] uppercase tracking-wide">
             About Us
           </h1>

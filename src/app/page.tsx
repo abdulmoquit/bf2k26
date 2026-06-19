@@ -21,7 +21,6 @@ import {
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 interface Territory {
   id: string;
@@ -290,7 +289,7 @@ export default function Home() {
                 style={{ fontSize: "clamp(52px, 7vw, 84px)", letterSpacing: "0.03em" }}
               >
                 <span style={{ color: "#F4ECC8" }}>BOSCO FEST </span>
-                <span style={{ color: "#37532A" }}>2026</span>
+                <span style={{ color: "#82C341" }}>2026</span>
               </h1>
 
               {/* Motto banner */}
@@ -485,7 +484,7 @@ export default function Home() {
                 style={{ fontSize: "44px", letterSpacing: "0.03em" }}
               >
                 <span style={{ color: "#F4ECC8" }}>BOSCO FEST </span>
-                <span style={{ color: "#37532A" }}>2026</span>
+                <span style={{ color: "#82C341" }}>2026</span>
               </h1>
 
               {/* Motto banner */}
@@ -834,8 +833,6 @@ export default function Home() {
         </section>
 
       </main>
-
-      <Footer />
     </div>
   );
 }

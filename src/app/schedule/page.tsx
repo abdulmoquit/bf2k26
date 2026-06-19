@@ -136,9 +136,6 @@ export default function Schedule() {
         
         {/* Header */}
         <div className="text-center mb-10 relative">
-          <span className="font-sans font-bold text-[10px] tracking-[0.3em] text-[#82C341] uppercase block mb-2">
-            Chronometer Log
-          </span>
           <h1 className="font-bebas font-black text-4xl md:text-5xl lg:text-6xl text-[#F4ECC8] uppercase tracking-wide">
             Event Schedule
           </h1>
@@ -181,13 +178,13 @@ export default function Schedule() {
 
           {/* Search Bar (parchment-scroll style) */}
           <div className="relative w-full max-w-xs">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-light opacity-65" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-black" />
             <input
               type="text"
               placeholder="Search events, venues, or times..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-5 py-2.5 parchment-scroll text-ink-dark focus:outline-none focus:border-gold-accent transition-all text-xs font-bold placeholder-ink-light/50"
+              className="w-full pl-11 pr-5 py-2.5 parchment-scroll text-black focus:outline-none focus:border-gold-accent transition-all text-xs font-bold placeholder-black/60"
             />
           </div>
         </div>
@@ -217,10 +214,10 @@ export default function Schedule() {
                       <table className="w-full min-w-[600px] border-collapse">
                         <thead>
                           <tr className="border-b-2 border-ink-dark text-ink-dark font-bebas text-xs md:text-sm tracking-wider uppercase text-left">
-                            <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-gold-accent" /> EVENT</th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-forest-green" /> VENUE</span></th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-sky-blue" /> FLOOR</span></th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-gold-accent" /> TIME</span></th>
+                            <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-black" /> EVENT</th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-black" /> VENUE</span></th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-black" /> FLOOR</span></th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-black" /> TIME</span></th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
@@ -230,7 +227,7 @@ export default function Schedule() {
                                 <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
                                 <td className="px-6 py-4.5">{item.location}</td>
                                 <td className="px-6 py-4.5">{item.floor}</td>
-                                <td className="px-6 py-4.5 font-bold text-forest-green">{item.time}</td>
+                                <td className="px-6 py-4.5 font-bold text-black">{item.time}</td>
                               </tr>
                             ))
                           ) : (
@@ -256,10 +253,10 @@ export default function Schedule() {
                       <table className="w-full min-w-[600px] border-collapse">
                         <thead>
                           <tr className="border-b-2 border-ink-dark text-ink-dark font-bebas text-xs md:text-sm tracking-wider uppercase text-left">
-                            <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-gold-accent" /> EVENT</th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-forest-green" /> VENUE</span></th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-sky-blue" /> FLOOR</span></th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-gold-accent" /> TIME</span></th>
+                            <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-black" /> EVENT</th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-black" /> VENUE</span></th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-black" /> FLOOR</span></th>
+                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-black" /> TIME</span></th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
@@ -269,7 +266,7 @@ export default function Schedule() {
                                 <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
                                 <td className="px-6 py-4.5">{item.location}</td>
                                 <td className="px-6 py-4.5">{item.floor}</td>
-                                <td className="px-6 py-4.5 font-bold text-forest-green">{item.time}</td>
+                                <td className="px-6 py-4.5 font-bold text-black">{item.time}</td>
                               </tr>
                             ))
                           ) : (
