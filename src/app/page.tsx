@@ -644,10 +644,8 @@ export default function Home() {
           {/* ── Bottom-left social icons ── */}
           <div className="absolute bottom-8 left-8 hidden md:flex items-center gap-3.5 z-30">
             {[
-              { href: "https://instagram.com", icon: <Instagram className="h-4 w-4" /> },
-              { href: "https://facebook.com", icon: <Facebook className="h-4 w-4" /> },
-              { href: "https://youtube.com", icon: <Youtube className="h-4 w-4" /> },
-              { href: "https://spotify.com", icon: <Music className="h-4 w-4" /> },
+              { href: "https://www.instagram.com/boscofest26?igsh=eW14dnphMGltdDEz", icon: <Instagram className="h-4 w-4" /> },
+              { href: "https://youtube.com/@donboscoschoolparkcircus1452?si=-cOPtOWFAypyTlL2", icon: <Youtube className="h-4 w-4" /> },
             ].map((s, i) => (
               <a
                 key={i}
