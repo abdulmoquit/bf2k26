@@ -1,19 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Sparkles, 
   MapPin, 
-  ChevronRight, 
   X, 
   Calendar, 
-  Trophy, 
   Users, 
   Search, 
   BookOpen, 
-  ArrowLeft,
   Compass
 } from "lucide-react";
 import confetti from "canvas-confetti";
@@ -987,14 +982,7 @@ export default function EventsPage() {
 
       <main className="flex-1 w-full max-w-5xl mx-auto px-6 pt-32 pb-20 relative z-20 flex flex-col">
         
-        {/* Back Link */}
-        <Link 
-          href="/" 
-          className="inline-flex items-center gap-2 text-xs font-bebas tracking-wider text-gold-accent hover:text-white transition-colors mb-6 max-w-max"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          <span>Back to Adventure Map</span>
-        </Link>
+
 
         {/* Page Title Header */}
         <div className="text-center mb-10">
@@ -1134,7 +1122,7 @@ export default function EventsPage() {
 
         {/* Main Grid of Events */}
         {filteredEvents.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 w-full">
             <AnimatePresence mode="popLayout">
               {filteredEvents.map((evt) => {
                 const isRegistered = registeredEvents.includes(evt.id);
@@ -1147,84 +1135,63 @@ export default function EventsPage() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.15 }}
-                    whileHover={isMobile ? {} : { y: -3 }}
+                    whileHover={isMobile ? {} : { y: -4, boxShadow: "6px 6px 0px rgba(43,26,14,0.95), 0 0 20px rgba(163,127,62,0.15)" }}
                     onClick={() => setActiveEvent(evt)}
-                    className="parchment-card group relative flex flex-col overflow-hidden cursor-pointer rounded-lg p-4"
-                    style={{ minHeight: "340px" }}
+                    className="parchment-card group relative flex flex-col overflow-hidden cursor-pointer rounded-lg px-4 pt-5 pb-4"
                   >
-                    {/* Inner vintage border frame */}
-                    <div className="absolute inset-2 border border-[#2B1A0E]/20 rounded-md pointer-events-none z-10" />
-
-                    {/* Day tag (top right) */}
+                    {/* Stage tag (top right) */}
                     <div
-                      className="absolute top-3.5 right-3.5 z-20 font-sans font-black uppercase text-[8.5px] tracking-wider px-2 py-0.5"
+                      className="absolute top-3 right-3 z-20 font-sans font-black uppercase text-[8px] tracking-wider px-2 py-0.5"
                       style={{
-                        background: "#37532A",
+                        background: evt.stage === "On-stage" ? "#3B5E8C" : "#37532A",
                         color: "#F4ECC8",
                         border: "1.5px solid #2B1A0E",
                         borderRadius: "3px",
                         boxShadow: "1.5px 1.5px 0 rgba(43,26,14,1)",
                       }}
                     >
-                      {evt.day.toUpperCase()}
+                      {evt.stage.toUpperCase()}
                     </div>
 
-                    {/* Circular Logo Container */}
-                    <div className="flex justify-center mt-2.5 mb-3 relative z-20">
+                    {/* Circular Logo */}
+                    <div className="flex justify-center mb-3 relative z-20">
                       <div
-                        className="w-[130px] h-[130px] rounded-full border-[3px] border-[#2B1A0E] overflow-hidden bg-[#1E1208] flex items-center justify-center relative shadow-md"
+                        className="w-[120px] h-[120px] rounded-full border-[3px] border-[#2B1A0E] overflow-hidden bg-[#1E1208] flex items-center justify-center relative"
                         style={{
-                          boxShadow: "0 3px 8px rgba(0,0,0,0.35), 2.5px 2.5px 0 rgba(43,26,14,0.95)",
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.4), 2.5px 2.5px 0 rgba(43,26,14,0.95)",
                         }}
                       >
                         <CircularEventLogo id={evt.id} icon={evt.icon} name={evt.name} />
                       </div>
                     </div>
 
-                    {/* Content Section */}
-                    <div className="text-center flex-1 flex flex-col gap-1 relative z-20 mt-3">
-                      {/* Title */}
-                      <h3
-                        className="font-bebas uppercase leading-none font-bold"
-                        style={{ fontSize: 20, color: "#2B1A0E", letterSpacing: "0.04em" }}
-                      >
-                        {evt.name}
-                      </h3>
+                    {/* Title */}
+                    <h3
+                      className="font-bebas uppercase leading-none font-bold text-center relative z-20"
+                      style={{ fontSize: 20, color: "#2B1A0E", letterSpacing: "0.04em" }}
+                    >
+                      {evt.name}
+                    </h3>
 
-                      {/* Category */}
+                    {/* Day Badge */}
+                    <div className="flex justify-center mt-1.5 relative z-20">
                       <span
-                        className="font-sans font-black uppercase tracking-[0.16em] text-[8.5px]"
-                        style={{ color: "#2B1A0E" }}
-                      >
-                        {evt.category === "Cybernetics" ? "Gaming" : evt.category === "Art and Literature" ? "Literary" : evt.category === "Multimedia" ? "Photography" : evt.category}
-                      </span>
-
-                      {/* Description */}
-                      <p
-                        className="font-sans font-extrabold leading-normal text-[11px] text-[#2B1A0E]/95 mt-1.5 line-clamp-3 text-center px-1.5"
-                      >
-                        {evt.shortDesc}
-                      </p>
-                    </div>
-
-                    {/* Bottom Buttons/Tags Row */}
-                    <div className="flex items-center justify-between gap-2.5 mt-auto relative z-20">
-                      {/* Stage Tag */}
-                      <span
-                        className="flex-1 text-center font-bebas text-[11px] tracking-wider uppercase py-1 text-white"
+                        className="font-sans font-black uppercase tracking-[0.14em] text-[9px] px-4 py-1 rounded-sm"
                         style={{
-                          background: "#3b5e8c",
-                          border: "2px solid #2B1A0E",
-                          borderRadius: "4px",
-                          boxShadow: "2px 2px 0 rgba(43,26,14,1)",
+                          background: "#3B5E8C",
+                          color: "#F4ECC8",
+                          border: "1.5px solid #2B1A0E",
+                          boxShadow: "1.5px 1.5px 0 rgba(43,26,14,0.8)",
                         }}
                       >
-                        {evt.stage}
+                        {evt.day.toUpperCase()}
                       </span>
+                    </div>
 
-                      {/* View Details Tag */}
+                    {/* View Details Button */}
+                    <div className="mt-auto pt-3 relative z-20">
                       <span
-                        className="flex-1 text-center font-bebas text-[11px] tracking-wider uppercase py-1 text-white"
+                        className="block w-full text-center font-bebas text-[13px] tracking-wider uppercase py-1.5 text-white"
                         style={{
                           background: "#37532A",
                           border: "2px solid #2B1A0E",
