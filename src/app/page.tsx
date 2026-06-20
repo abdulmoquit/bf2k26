@@ -202,28 +202,39 @@ export default function Home() {
     if (!video) return;
 
     let isReversing = false;
-    let intervalId: any;
+    let seekTimeoutId: any;
+
+    const performReverseStep = () => {
+      if (!isReversing || !video) return;
+
+      if (video.currentTime <= 0.1) {
+        isReversing = false;
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      } else {
+        video.currentTime = Math.max(0, video.currentTime - 0.1);
+      }
+    };
 
     const handleEnded = () => {
       isReversing = true;
       video.pause();
-      intervalId = setInterval(() => {
-        if (video.currentTime <= 0.1) {
-          isReversing = false;
-          clearInterval(intervalId);
-          video.currentTime = 0;
-          video.play().catch(() => {});
-        } else {
-          video.currentTime -= 0.06; // Decrement by 60ms every 30ms (~2x speed reverse playback)
-        }
-      }, 30);
+      seekTimeoutId = setTimeout(performReverseStep, 10);
+    };
+
+    const handleSeeked = () => {
+      if (isReversing) {
+        seekTimeoutId = setTimeout(performReverseStep, 40);
+      }
     };
 
     video.addEventListener("ended", handleEnded);
+    video.addEventListener("seeked", handleSeeked);
 
     return () => {
       video.removeEventListener("ended", handleEnded);
-      if (intervalId) clearInterval(intervalId);
+      video.removeEventListener("seeked", handleSeeked);
+      if (seekTimeoutId) clearTimeout(seekTimeoutId);
     };
   }, [isMobileVideo]);
 
