@@ -4,12 +4,12 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Sparkles, 
-  Compass, 
-  MapPin, 
-  ArrowDown, 
-  ChevronRight, 
+import {
+  Sparkles,
+  Compass,
+  MapPin,
+  ArrowDown,
+  ChevronRight,
   X,
   Trophy,
   Zap,
@@ -94,8 +94,8 @@ function useCountdown() {
         return;
       }
       setTime({
-        days:    Math.floor(diff / 86_400_000).toString().padStart(2, "0"),
-        hours:   Math.floor((diff % 86_400_000) / 3_600_000).toString().padStart(2, "0"),
+        days: Math.floor(diff / 86_400_000).toString().padStart(2, "0"),
+        hours: Math.floor((diff % 86_400_000) / 3_600_000).toString().padStart(2, "0"),
         minutes: Math.floor((diff % 3_600_000) / 60_000).toString().padStart(2, "0"),
         seconds: Math.floor((diff % 60_000) / 1000).toString().padStart(2, "0"),
       });
@@ -112,8 +112,8 @@ function useCountdown() {
 function CountdownCards() {
   const { time, mounted } = useCountdown();
   const units = [
-    { value: mounted ? time.days    : "00", label: "Days" },
-    { value: mounted ? time.hours   : "00", label: "Hours" },
+    { value: mounted ? time.days : "00", label: "Days" },
+    { value: mounted ? time.hours : "00", label: "Hours" },
     { value: mounted ? time.minutes : "00", label: "Mins" },
     { value: mounted ? time.seconds : "00", label: "Secs" },
   ];
@@ -216,20 +216,20 @@ export default function Home() {
   };
 
   const PARTNERS = [
-    { name: "INTEL CORE", role: "CHIPSET PARTNER",       icon: <Zap className="h-5 w-5" style={{ color: "#E53E3E" }} /> },
-    { name: "RED BULL",   role: "ENERGY PARTNER",         icon: <span className="text-xl">🐂</span> },
-    { name: "SPOTIFY",    role: "DIGITAL AUDIO PARTNER",  icon: <Headphones className="h-5 w-5" style={{ color: "#1DB954" }} /> },
+    { name: "INTEL CORE", role: "CHIPSET PARTNER", icon: <Zap className="h-5 w-5" style={{ color: "#E53E3E" }} /> },
+    { name: "RED BULL", role: "ENERGY PARTNER", icon: <span className="text-xl">🐂</span> },
+    { name: "SPOTIFY", role: "DIGITAL AUDIO PARTNER", icon: <Headphones className="h-5 w-5" style={{ color: "#1DB954" }} /> },
   ];
 
   return (
     <div className="min-h-screen bg-[#0b0f0a] relative flex flex-col pb-0">
-      
+
       <Navbar />
 
       <main className="flex-1 w-full flex flex-col items-center relative z-20">
 
         {/* ═══ HERO SECTION ══════════════════════════════════════════════════ */}
-        <section 
+        <section
           className="min-h-screen w-full relative overflow-hidden bg-[#0b0f0a]"
           style={{
             backgroundImage: "url('/hero-bg.jpg')",
@@ -680,9 +680,9 @@ export default function Home() {
           <div className="absolute bottom-8 left-8 hidden md:flex items-center gap-3.5 z-30">
             {[
               { href: "https://instagram.com", icon: <Instagram className="h-4 w-4" /> },
-              { href: "https://facebook.com",  icon: <Facebook className="h-4 w-4" /> },
-              { href: "https://youtube.com",   icon: <Youtube className="h-4 w-4" /> },
-              { href: "https://spotify.com",   icon: <Music className="h-4 w-4" /> },
+              { href: "https://facebook.com", icon: <Facebook className="h-4 w-4" /> },
+              { href: "https://youtube.com", icon: <Youtube className="h-4 w-4" /> },
+              { href: "https://spotify.com", icon: <Music className="h-4 w-4" /> },
             ].map((s, i) => (
               <a
                 key={i}
@@ -776,7 +776,7 @@ export default function Home() {
 
           {/* Desktop Map Canvas Layout (visible on md and up) */}
           <div className="hidden md:block relative w-full max-w-5xl h-[580px] z-10 mt-6">
-            
+
             {/* SVG Winding Map Path */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 580" fill="none">
               <path
@@ -802,7 +802,7 @@ export default function Home() {
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
-                  
+
                   {/* Teardrop map-pin marker */}
                   <div className="w-12 h-12 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
                     <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center z-10">
