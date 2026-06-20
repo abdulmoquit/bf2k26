@@ -700,12 +700,6 @@ export default function Home() {
             <p className="font-sans font-semibold text-xs md:text-sm text-[#ebdcb9]/85 mt-2 max-w-lg mx-auto">
               Discover events. Challenge limits. Create memories.
             </p>
-            {/* Compass decorative separator */}
-            <div className="flex items-center gap-3.5 mt-5 opacity-80">
-              <div className="w-16 md:w-28 h-[1px] bg-gradient-to-r from-transparent to-[#A37F3E]" />
-              <span className="text-[#A37F3E] text-lg select-none">🧭</span>
-              <div className="w-16 md:w-28 h-[1px] bg-gradient-to-l from-transparent to-[#A37F3E]" />
-            </div>
           </motion.div>
 
           {/* Mobile Grid Layout (visible on sm and below) */}
@@ -716,7 +710,7 @@ export default function Home() {
                 href={`/events?event=${encodeURIComponent(loc.id)}`}
                 className="parchment-card p-4.5 flex flex-col items-center text-center cursor-pointer hover:-translate-y-1 transition-all active:translate-y-0"
               >
-                <div className="w-14 h-14 rounded-full bg-[#1E1208] border border-[#A37F3E] flex items-center justify-center overflow-hidden relative z-10 shadow-md">
+                <div className="w-20 h-20 rounded-full bg-[#1E1208] border border-[#A37F3E] flex items-center justify-center overflow-hidden relative z-10 shadow-md">
                   <TerritoryLogo id={loc.id} icon={loc.icon} name={loc.name} isMobile />
                 </div>
                 <h4 className="font-bebas text-base text-[#2B1A0E] uppercase tracking-wider mt-3">
@@ -765,12 +759,12 @@ export default function Home() {
                   <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
 
                     {/* Teardrop map-pin marker */}
-                    <div className="w-16 h-16 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
+                    <div className="w-24 h-24 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
                       <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center z-10">
                         <TerritoryLogo id={loc.id} icon={loc.icon} name={loc.name} />
                       </div>
                       {/* Pin tail */}
-                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-[#1E1208] border-r-2 border-b-2 border-[#A37F3E] rotate-45 transition-all duration-300 group-hover:border-[#ebdcb9] z-0" />
+                      <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-5.5 h-5.5 bg-[#1E1208] border-r-2 border-b-2 border-[#A37F3E] rotate-45 transition-all duration-300 group-hover:border-[#ebdcb9] z-0" />
                     </div>
 
                     {/* Texts - aligned below marker with some shadow backing for legibility */}
@@ -793,7 +787,7 @@ export default function Home() {
           </div>
 
           {/* Bottom view all events CTA */}
-          <div className="mt-14 relative z-10">
+          <div className="mt-4 md:-mt-10 relative z-10">
             <Link
               href="/events"
               className="flex items-center gap-2.5 px-8 py-3.5 bg-[#37532A] hover:bg-[#273C1E] text-[#F4ECC8] font-bebas text-sm uppercase tracking-widest border-2 border-ink-dark shadow-[4px_4px_0px_rgba(43,26,14,0.9)] rounded-full transition-all active:translate-y-[2px]"
