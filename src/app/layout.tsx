@@ -3,6 +3,7 @@ import { Bebas_Neue, Cinzel, Caveat, Outfit } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import Preloader from "@/components/Preloader";
+import Script from "next/script";
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas",
@@ -48,6 +49,43 @@ export default function RootLayout({
         <LenisProvider>
           {children}
         </LenisProvider>
+        <Script id="disable-inspect" strategy="afterInteractive">
+          {`
+            if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+              // Disable right-click context menu
+              document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+              // Disable standard DevTools keyboard shortcuts
+              document.addEventListener('keydown', (e) => {
+                // F12
+                if (e.keyCode === 123 || e.key === 'F12') {
+                  e.preventDefault();
+                  return false;
+                }
+                // Ctrl+Shift+I / Cmd+Opt+I (DevTools)
+                if ((e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (e.keyCode === 73 || e.key === 'i' || e.key === 'I')) {
+                  e.preventDefault();
+                  return false;
+                }
+                // Ctrl+Shift+J / Cmd+Opt+J (Console)
+                if ((e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (e.keyCode === 74 || e.key === 'j' || e.key === 'J')) {
+                  e.preventDefault();
+                  return false;
+                }
+                // Ctrl+Shift+C / Cmd+Opt+C (Element selector)
+                if ((e.ctrlKey || e.metaKey) && (e.shiftKey || e.altKey) && (e.keyCode === 67 || e.key === 'c' || e.key === 'C')) {
+                  e.preventDefault();
+                  return false;
+                }
+                // Ctrl+U / Cmd+U (View Source)
+                if ((e.ctrlKey || e.metaKey) && (e.keyCode === 85 || e.key === 'u' || e.key === 'U')) {
+                  e.preventDefault();
+                  return false;
+                }
+              });
+            }
+          `}
+        </Script>
       </body>
     </html>
   );
