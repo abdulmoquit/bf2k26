@@ -185,7 +185,6 @@ function TerritoryLogo({ id, icon, name, isMobile }: { id: string; icon: string;
 
 export default function Home() {
   const mapSectionRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [isMobileVideo, setIsMobileVideo] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -196,47 +195,6 @@ export default function Home() {
     window.addEventListener("resize", checkViewport);
     return () => window.removeEventListener("resize", checkViewport);
   }, []);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    let isReversing = false;
-    let seekTimeoutId: any;
-
-    const performReverseStep = () => {
-      if (!isReversing || !video) return;
-
-      if (video.currentTime <= 0.1) {
-        isReversing = false;
-        video.currentTime = 0;
-        video.play().catch(() => {});
-      } else {
-        video.currentTime = Math.max(0, video.currentTime - 0.1);
-      }
-    };
-
-    const handleEnded = () => {
-      isReversing = true;
-      video.pause();
-      seekTimeoutId = setTimeout(performReverseStep, 10);
-    };
-
-    const handleSeeked = () => {
-      if (isReversing) {
-        seekTimeoutId = setTimeout(performReverseStep, 40);
-      }
-    };
-
-    video.addEventListener("ended", handleEnded);
-    video.addEventListener("seeked", handleSeeked);
-
-    return () => {
-      video.removeEventListener("ended", handleEnded);
-      video.removeEventListener("seeked", handleSeeked);
-      if (seekTimeoutId) clearTimeout(seekTimeoutId);
-    };
-  }, [isMobileVideo]);
 
   const scrollMap = () => {
     mapSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -274,9 +232,9 @@ export default function Home() {
           {/* ── Full-screen background video ── */}
           {isMobileVideo !== null && (
             <video
-              ref={videoRef}
               key={isMobileVideo ? "mobile-vid" : "desktop-vid"}
               autoPlay
+              loop
               muted
               playsInline
               poster="/hero-bg.jpg"
@@ -792,32 +750,28 @@ export default function Home() {
             {TERRITORIES.map((loc) => (
               <div
                 key={loc.id}
-                className="absolute flex flex-col items-center text-center group z-10 -translate-x-1/2 -translate-y-1/2"
+                className="absolute"
                 style={{
                   left: loc.x,
                   top: loc.y,
+                  transform: "translate(-50%, -50%)",
                 }}
               >
                 <motion.div
-                  whileHover="hover"
-                  className="flex flex-col items-center"
+                  className="flex flex-col items-center text-center group"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
                   <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
 
                     {/* Teardrop map-pin marker */}
-                    <motion.div
-                      variants={{
-                        hover: { scale: 1.15 }
-                      }}
-                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                      className="w-16 h-16 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-colors duration-300 group-hover:border-[#ebdcb9] relative z-10"
-                    >
+                    <div className="w-16 h-16 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
                       <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center z-10">
                         <TerritoryLogo id={loc.id} icon={loc.icon} name={loc.name} />
                       </div>
                       {/* Pin tail */}
-                      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#1E1208] border-r-2 border-b-2 border-[#A37F3E] rotate-45 transition-colors duration-300 group-hover:border-[#ebdcb9] z-0" />
-                    </motion.div>
+                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-[#1E1208] border-r-2 border-b-2 border-[#A37F3E] rotate-45 transition-all duration-300 group-hover:border-[#ebdcb9] z-0" />
+                    </div>
 
                     {/* Texts - aligned below marker with some shadow backing for legibility */}
                     <div className="mt-4 px-3 py-1.5 rounded-md bg-black/45 backdrop-blur-xs border border-[#A37F3E]/20">
