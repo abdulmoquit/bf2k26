@@ -52,21 +52,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Remix",
     category: "Music",
     shortDesc: "Produce percussion, beats, and melodies using everyday tools and objects.",
-    detail: "Forget standard playlist filler. This event is a blind drop into uncharted territory for creators who treat audio like an open-world map. Whether you're dropping a heavy, atmospheric Metro Boomin style beat switch, warping vocals into a glitchy Spider-Man 2099 theme, or layering an aggressive, distorted bassline that hits exactly like the Prowler's siren sound effect, this is your green light to hijack the frequencies. We are skipping the generic audio loops for raw, unfiltered sonic experimentation. If your sound breaks the algorithm, ditch the manual, step up, and let the ultimate musical adventure begin.",
+    detail: "Forget standard playlist filler. This event is a blind drop into uncharted territory for creators who treat audio like an open-world map. Whether you are dropping a heavy, atmospheric Metro Boomin style beat switch, warping vocals into a glitchy Spider-Man 2099 theme, or layering an aggressive, distorted bassline that hits exactly like the Prowler's siren sound effect, this is your green light to hijack the frequencies. We are skipping the generic audio loops for raw, unfiltered sonic experimentation. If your sound breaks the algorithm, ditch the manual, step up, and let the ultimate musical adventure begin.",
     icon: "🎵",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "3 - 5 Performers",
+    teamSize: "7 Performers",
     time: "Day 1, 10:00 AM",
     location: "Acoustic Courtyard",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹8,000 + Custom Medals",
     rules: [
-      "No standard instruments (guitar, piano, drums, flute, etc.) allowed.",
-      "Vocal hums and singing are permitted, but core instrumentation must be unconventional.",
-      "Performance duration: 3 - 5 minutes.",
-      "Setup time must not exceed 2 minutes."
+      "Participants must bring their own unconventional instruments.",
+      "Traditional instruments like guitars, pianos, drums, etc. must not be used. Drum sticks cannot be used.",
+      "Beatboxing is allowed but singing is not allowed.",
+      "Time for stage and instrument setup is maximum 1 minute. Performance time: 4+1 minutes.",
+      "Use of electronic gadgets is strictly prohibited.",
+      "All requirements (tables, chairs, microphones) should be emailed to home.boscofest@gmail.com by 3rd July, 2026.",
+      "All contestants must adhere strictly to the rules, failing which they may be disqualified."
     ]
   },
   {
@@ -74,21 +77,25 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Jukebox",
     category: "Music",
     shortDesc: "Merge Eastern traditional patterns with modern Western melodies.",
-    detail: "This isn't a safe, by-the-book concert; it's the high-stakes, late-night energy of Karan Aujla vocals hitting a dark Playboi Carti rage beat, or the absolute chaos of an Anirudh-level classical melody getting completely hijacked by a heavy Travis Scott synth bassline. It's an unmapped frontier of pure sonic adventure, where aggressive Western 808s drop the rules to chart a course through traditional Eastern rhythms, and a single smooth transition can completely flip the crowd. There are no safe paths or rehearsed boundaries tonight. Listen close, feel the rhythm shift, and join the ultimate expedition into a soundscape the world hasn't discovered yet.",
+    detail: "This is not a safe, by-the-book concert; it is the high-stakes, late-night energy of Karan Aujla vocals hitting a dark Playboi Carti rage beat, or the absolute chaos of an Anirudh-level classical melody getting completely hijacked by a heavy Travis Scott synth bassline. It is an unmapped frontier of pure sonic adventure, where aggressive Western 808s drop the rules to chart a course through traditional Eastern rhythms, and a single smooth transition can completely flip the crowd. There are no safe paths or rehearsed boundaries tonight. Listen close, feel the rhythm shift, and join the ultimate expedition into a soundscape the world has not discovered yet.",
     icon: "🎸",
     difficulty: "Legendary",
     difficultyColor: "#D9B24C",
-    teamSize: "4 - 8 Musicians",
+    teamSize: "8 + 3 Musicians",
     time: "Day 2, 2:30 PM",
     location: "Main Open-Air Stage",
     day: "Day 2",
     stage: "On-stage",
     bounty: "₹15,000 + Band Trophy",
     rules: [
-      "Must feature at least one Eastern and one Western instrument.",
-      "Vocal and instrumental elements must be balanced.",
-      "Maximum performance time: 6 minutes (including soundcheck).",
-      "Backing tracks are not allowed; all sounds must be live."
+      "Duration: 6+2 minutes (including setup). Must perform a fusion of at least one Eastern and one Western song.",
+      "Vocals and instruments given equal weightage. At least 2 Eastern and 2 Western instruments must be used.",
+      "Only one drum kit provided by host school. All other instruments brought by participants.",
+      "Pre-recorded and pre-programmed music not allowed. Laptops permitted for VST tones only.",
+      "Addition and alteration of original lyrics is not allowed. The whole song or a part may be used.",
+      "Song list with lyrics must be emailed to home.boscofest@gmail.com by 3rd July, 2026.",
+      "Usage of objectionable, obscene, or derogatory lyrics leads to immediate disqualification.",
+      "Depiction of the theme in the performance would be appreciated."
     ]
   },
   {
@@ -96,21 +103,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Raag",
     category: "Music",
     shortDesc: "A solo classical vocal challenge showcasing traditional ragas.",
-    detail: "Welcome to an adventure where every beat has aura and every melody leaves the crowd spellbound. Inspired by the legendary artistry of Birju Maharaj and the rhythm wizardry of Ustad Zakir Hussain, this is where tradition doesn't just perform—it steals the spotlight. From graceful movements that speak louder than words to rhythms that live rent-free in your head, every act is a masterclass in culture, creativity, and pure main-character energy. Ancient art, modern chills, and a stage that refuses to be ignored. No gimmicks. Just goosebumps.",
+    detail: "Welcome to an adventure where every beat has aura and every melody leaves the crowd spellbound. Inspired by the legendary artistry of Birju Maharaj and the rhythm wizardry of Ustad Zakir Hussain, this is where tradition does not just perform—it steals the spotlight. From graceful movements that speak louder than words to rhythms that live rent-free in your head, every act is a masterclass in culture, creativity, and pure main-character energy. Ancient art, modern chills, and a stage that refuses to be ignored. No gimmicks. Just goosebumps.",
     icon: "🎤",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "Individual Solo",
+    teamSize: "6 + 4 Musicians",
     time: "Day 1, 11:30 AM",
     location: "Senate Hall",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹6,000 + Vocalist Scroll",
     rules: [
-      "Time limit: 4 - 6 minutes.",
-      "Accompaniment limited to a maximum of 2 instruments (e.g. Harmonium, Tabla, Tanpura).",
-      "No film music or pop songs allowed; must be classical or semi-classical.",
-      "Raga must be announced prior to the performance."
+      "Duration: 12+3 minutes (including setup). Three categories: Rabindra Sangeet Solo (~3 min), Instrumentals Solo (~4 min), Group Song (~5 min).",
+      "Group Song: Regional folk song medley or 'gana sangeet' medley. Minimum 4, maximum 6 vocalists.",
+      "Only Indian classical instruments allowed for accompaniment (except violin and keyboard).",
+      "Maximum 4 musicians. Tabla player may be a professional (not from the school).",
+      "Instrumental Solo: Only Eastern (Indian) instruments. No pre-recorded music except electronic tanpura.",
+      "Dress code must be absolutely Eastern (or as per the region being portrayed).",
+      "The host school will not provide any instruments. Strictly adhere to the 12+3 minute time limit."
     ]
   },
   {
@@ -118,21 +128,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Sur Sangam",
     category: "Music",
     shortDesc: "The legendary team-based singing and song recall duel.",
-    detail: "With the memorable road trips from Zindagi Na Milegi Dobara to the spontaneous fun and friendships of Yeh Jawaani Hai Deewani, this event is all about music, memories, and good vibes. Every lyric is a clue, every song unlocks a new memory, and every team races to keep the rhythm alive. One moment you're hit with nostalgia, the next you're laughing through the chaos of fierce competition, adventure in every flow. Expect surprise bangers, throwback hits, and nonstop energy—know the track, own the mic, take the W.",
+    detail: "With the unforgettable soundtrack moments of Guardians of the Galaxy to the musical energy and friendships of Pitch Perfect, this event is all about music, memories, and good vibes. Every lyric is a clue, every song unlocks a new memory, and every team races to keep the rhythm alive. One moment you are hit with nostalgia; the next, you are laughing through the chaos of fierce competition and adventure in every flow. Expect surprise bangers, throwback hits, and nonstop energy—know the track, own the mic, take the Win.",
     icon: "🎼",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "3 Explorers per Team",
+    teamSize: "3 + 1 Reserve",
     time: "Day 1, 4:00 PM",
     location: "Assembly Grounds",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹5,000 + Singing Crowns",
     rules: [
-      "Recall time: 15 seconds after the cue.",
-      "Must sing at least 2 full lines of the song correctly.",
-      "No repetitions of songs previously sung in the same round.",
-      "Buzzer rounds apply in intermediate stages."
+      "Duration: 120 minutes. Only Hindi songs allowed.",
+      "Singing songs containing vulgar lyrics will lead to disqualification.",
+      "Elimination round consisting of three rounds; top 8 teams advance to the next level.",
+      "After elimination rounds, participants can interchange with reserve participant once (with organiser permission).",
+      "Questions based on Hindi movies and audio/visual clips. Some rounds have negative markings; bonus rounds included.",
+      "There will be a retro round from the 1960s onwards.",
+      "The game master's decision will be final and binding."
     ]
   },
   {
@@ -140,21 +153,25 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Beat",
     category: "Music",
     shortDesc: "A battle of voices and verses. Where lyrics hit harder.",
-    detail: "Pack your bags, grab your playlist, and get ready for an adventure powered by pure vibes. This is your ticket to a journey where every beat unlocks a new destination. One moment you're cruising through the galaxy with the Guardians of the Galaxy, the next you're sailing the Grand Line with the Straw Hats, or embarking on a quest worthy of a legendary fantasy saga. From Bad Bunny hits and pop bangers to rock classics that never miss, the stage becomes a map and the music becomes your guide. So gather your crew, embrace your main-character arc, and let the adventure begin, one song at a time.",
+    detail: "Pack your bags, grab your playlist, and get ready for an adventure powered by pure vibes. This is your ticket to a journey where every beat unlocks a new destination. One moment you are cruising through the galaxy with the Guardians of the Galaxy, the next you are sailing the Grand Line with the Straw Hats, or embarking on a quest worthy of a legendary fantasy saga. From Bad Bunny hits and pop bangers to rock classics that never miss, the stage becomes a map and the music becomes your guide. So gather your crew, embrace your main-character arc, and let the adventure begin, one song at a time.",
     icon: "🎙️",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "3 - 5 Performers",
+    teamSize: "6 + 4 Performers",
     time: "Day 1, 12:00 PM",
     location: "Acoustic Courtyard",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹7,000 + Gold Microphone Pin",
     rules: [
-      "Time limit: 4 minutes.",
-      "Accompaniment allowed (1 instrument or backing track).",
-      "No lyrics sheet or devices permitted on stage.",
-      "Grading based on vocal range, pitch accuracy, and stage projection."
+      "Duration: 10+3 minutes (including setup). Three categories: Vocals Solo (3 min), Group Song (5 min), Group Instrumentals (2 min).",
+      "All participants must be in school uniform. Songs with objectionable lyrics not allowed.",
+      "Pre-recorded music not allowed (including synthesizer accompaniments). Laptops for VST tones only.",
+      "Maximum 7 musicians allowed. Group song needs more than one vocalist and minimum 3 instruments.",
+      "Only drum kit provided by host school. Guitar processors, keyboard stands, etc. brought by participants.",
+      "Solo Singing must be accompanied by a live musician or band. No karaoke tracks.",
+      "Timing starts when first item begins. Bell at 9th minute; stop at 10th minute. Overshooting leads to downmarking.",
+      "Instrument list and singer count must be emailed to home.boscofest@gmail.com by 3rd July, 2026."
     ]
   },
 
@@ -168,17 +185,20 @@ const EVENTS_DATA: Event[] = [
     icon: "💃",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "Individual Solo",
+    teamSize: "7 + 3 Dancers",
     time: "Day 1, 1:00 PM",
     location: "Main Auditorium",
     day: "Day 1",
     stage: "On-stage",
     bounty: "₹8,000 + Temple Dance Plaque",
     rules: [
-      "Time limit: 4 - 5 minutes.",
-      "Classical costumes and ankle bells (ghungroo) are encouraged.",
-      "Audio track must be uploaded in MP3 format 24 hours prior.",
-      "No cinematic/Bollywood elements allowed."
+      "Duration: 10 minutes (empty stage to empty stage). Minimum 4 participants on stage throughout.",
+      "Performance must include at least one Eastern dance form (Bharatnatyam, Kathak, Semi-Classical, Odissi, etc.).",
+      "The entire performance must be ethnic in nature (costumes and music included).",
+      "Film songs (only instrumentals) are allowed, only if appropriate.",
+      "Vulgarity of any sort will lead to immediate disqualification.",
+      "Music must be emailed to home.boscofest@gmail.com by 4th July, 2026.",
+      "Songs must also be submitted in a pen drive at the registration desk on fest day."
     ]
   },
   {
@@ -186,21 +206,25 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Tango",
     category: "Dance",
     shortDesc: "High energy, choreographed Western street and contemporary dance.",
-    detail: "When the lights cut, you're diving headfirst into a high-velocity blind drop where anything can happen. We're talking about execution so razor-sharp it hits like a legendary Michael Jackson music video set, combined with the massive stadium energy of The Weeknd's halftime shows, and the chaotic, high-octane synchronization of the IPL 2026 Final dance show. No safe counts, no holding back, just sharp shifts, high stakes, and the risk of leaving everything on the floor. Ditch the manual, take the gamble, and let the ultimate stage adventure begin.",
+    detail: "When the lights cut, you are diving headfirst into a high-velocity blind drop where anything can happen. The execution has to be so razor-sharp that it feels like stepping into a legendary Michael Jackson music video set, combined with the massive stadium energy of The Weeknd's halftime shows and the chaotic, high-octane synchronization of the IPL 2026 Final dance show. No safe counts, no holding back, just sharp shifts, high stakes, and the risk of leaving everything on the floor. Ditch the manual, take the gamble, and let the ultimate stage adventure begin.",
     icon: "🕺",
     difficulty: "Legendary",
     difficultyColor: "#D9B24C",
-    teamSize: "5 - 10 Dancers",
+    teamSize: "7 + 5 Dancers",
     time: "Day 2, 3:00 PM",
     location: "Main Auditorium",
     day: "Day 2",
     stage: "On-stage",
     bounty: "₹18,000 + Dance Championship Ledge",
     rules: [
-      "Stage time: 5 - 7 minutes.",
-      "Props must be verified by the organizers before use.",
-      "Use of fire, water, or hazardous elements is strictly prohibited.",
-      "Judging based on choreography, sync, costumes, and expression."
+      "Duration: 5+2 minutes. Minimum 5 participants on stage at all times.",
+      "Points will be deducted for exceeding the prescribed time limit.",
+      "Any form of vulgarity, inappropriateness, or suggestive movements will lead to disqualification.",
+      "Dance track must be emailed to home.boscofest@gmail.com by 4th July, 2026.",
+      "Songs must be submitted in a pen drive at the registration desk on fest day.",
+      "Each participating school must bring their own props.",
+      "Any inappropriate dress will lead to the cancellation of the performance.",
+      "The decision of the judges will be final and binding."
     ]
   },
   {
@@ -208,21 +232,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Overdrive",
     category: "Dance",
     shortDesc: "Own the floor. No rules. Just moves that speak.",
-    detail: "When an entire room locks its eyes on the center, a dance battle stops being a casual performance and becomes a massive, collective spectacle. It's the intense, underground crew rivalry of a Step Up 3D battle, the raw, legendary defiance of a 'You Got Served' faceoff, and the high-stakes, crowd-pleasing improvisation of a Red Bull Dance Your Style arena. It's turning a circle of spectators into an arena of split-second improvisation, where a single clean transition can shut down the music and a flawless counter-move changes everything. Own the center, drop your best combination, and let the ultimate stage adventure begin.",
+    detail: "When an entire room locks its eyes on the center, a dance battle stops being a casual performance and becomes a massive, collective spectacle. It is the intense, underground crew rivalry of a Step Up 3D battle, the raw, legendary defiance of a 'You Got Served' faceoff, and the high-stakes, crowd-pleasing improvisation of a world-class dance arena. It is turning a circle of spectators into an arena of split-second improvisation, where a single clean transition can shut down the music and a flawless counter-move changes everything. Own the center, drop your best combination, and let the ultimate stage adventure begin.",
     icon: "🔥",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "Solo / Crew",
+    teamSize: "2 Dancers",
     time: "Day 2, 3:30 PM",
     location: "Open Arena",
     day: "Day 2",
     stage: "Off-stage",
     bounty: "₹10,000 + Champion Belt",
     rules: [
-      "Matches are 1v1 formats.",
-      "Each round consists of 2 entries of 45 seconds per dancer.",
-      "No choreography prep; performance must be completely freestyle.",
-      "Physical contact results in immediate disqualification."
+      "All forms of dance are allowed. Participants dance one by one; opponents do not dance at the same time.",
+      "Event begins with a cipher where each team showcases skills for selection. Top 8 teams advance.",
+      "Each matchup consists of 2 rounds where both participants must exhibit their skills.",
+      "Commandos (synchronized dancing together) are allowed but must not exceed 30 seconds.",
+      "Participants must be prepared to dance to any of 20 preset songs (sent on 5th July, 2026).",
+      "Any obscenity, suggestive movements, insults or vulgarity leads to immediate disqualification.",
+      "The judges' decision is final and binding."
     ]
   },
 
@@ -232,21 +259,23 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Byte-Blitz",
     category: "Cybernetics",
     shortDesc: "Level up your skills in the ultimate gaming showdown.",
-    detail: "Frodo had a map to Mordor. You have a screen full of errors. Embark on digital adventure where every bug is an obstacle, every algorithm is a hidden path and every solution is a step closer to the destination. Venture through tangled loops, cryptic clues, and unexpected dead ends as you navigate the vast landscape of code. Some challenges demand creativity, others demand patience, but all require the courage to keep moving forward. In this quest, writing code is only half the battle. The journey has begun. Will you conquer the code, or get lost in the maze?",
+    detail: "Frodo had a map to Mordor. You have a screen full of errors. Embark on a digital adventure where every bug is an obstacle, every algorithm is a hidden path and every solution is a step closer to the destination. Venture through tangled loops, cryptic clues, and unexpected dead ends as you navigate the vast landscape of code. Some challenges demand creativity, others demand patience, but all require the courage to keep moving forward. In this quest, writing a code is only half the battle. The journey has begun. Will you conquer the code, or get lost in the maze?",
     icon: "💻",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "1 - 2 Players",
+    teamSize: "2 Players",
     time: "Day 2, 9:30 AM",
     location: "Gaming Zone",
     day: "Day 2",
     stage: "Off-stage",
     bounty: "₹12,000 + Hacker Kit Bags",
     rules: [
-      "Supported languages: C++, Java, Python, Go.",
-      "Total duration: 2 hours.",
-      "No internet search or generative AI systems allowed.",
-      "Grading based on test cases passed and execution speed."
+      "Round 1 (30+5 min): Solve a coding challenge in Python or Java. 5 minutes brainstorming, then 30 minutes coding.",
+      "Both participants must participate simultaneously. Programs considered wrong if they fail any test case.",
+      "Round 2 (10 min): Quiz via Google Form on historical and technological timeline of Computer Science.",
+      "Round 3 (20 min): Debug a block of code—identify and fix syntax/logical/runtime errors without changing the logic.",
+      "Participants will not be allowed to access the internet for any purpose.",
+      "The method of submission will be provided on the day of the event."
     ]
   },
   {
@@ -258,17 +287,21 @@ const EVENTS_DATA: Event[] = [
     icon: "🔍",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "3 Investigators",
+    teamSize: "2 Investigators",
     time: "Day 2, 10:00 AM",
     location: "Lab Room Gamma",
     day: "Day 2",
     stage: "Off-stage",
     bounty: "₹10,000 + Decryption Badge",
     rules: [
-      "Teams can use search engines, but no team-to-team sharing of clues.",
-      "Flag format must match the specified regex patterns.",
-      "Time limit: 3 hours.",
-      "Any DDoS or exploit targeting the hunt servers will lead to ban."
+      "Clues will be based on tech concepts, general knowledge, encryption and basic computer skills.",
+      "Participants will be allotted two computers to look for clues and hints.",
+      "Use of the Internet and AI is strictly prohibited unless stated otherwise by the judges.",
+      "Participants are not allowed to bring their own gadgets.",
+      "One hint token per team adds a 5-minute time penalty if used.",
+      "Clues may be in forms like QR codes, binary, riddles, or tech trivia.",
+      "All team members must reach the final checkpoint to complete the hunt.",
+      "Whoever finishes the hunt with the shortest time wins."
     ]
   },
   {
@@ -276,7 +309,7 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Pixelcraft",
     category: "Cybernetics",
     shortDesc: "Vector design and digital painting illustrating the untouched nature.",
-    detail: "From charting unexplored fantasy realms to rendering neon cyberpunk frontiers that don't exist yet, digital art is a high-stakes expedition into the unknown. It's Spider-Verse level dimension-hopping, the breathless thrill of an uncharted open-world RPG, and a little chaos when you venture off the map without a backup file. It's turning a blank canvas into a portal of pure discovery, where a single brushstroke opens a wormhole and a massive composition rewrites reality itself. This is where you don't just create, you pioneer. Ready your tools, load your coordinates, plant your flag on undiscovered ground, and let the ultimate creative adventure begin.",
+    detail: "From charting unexplored fantasy realms to rendering neon cyberpunk frontiers that do not exist yet, digital art is a high-stakes expedition into the unknown. It is Spider-Verse level dimension-hopping, the breathless thrill of an uncharted open-world RPG, and a little chaos when you venture off the map without a backup file. It is turning a blank canvas into a portal of pure discovery, where a single brushstroke opens a wormhole and a massive composition rewrites reality itself. This is where you do not just create, you pioneer. Ready your tools, load your coordinates, plant your flag on undiscovered ground, and let the ultimate creative adventure begin.",
     icon: "🖥️",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
@@ -287,10 +320,13 @@ const EVENTS_DATA: Event[] = [
     stage: "Off-stage",
     bounty: "₹8,000 + Graphics Tablet",
     rules: [
-      "Time limit: 2 hours.",
-      "Adobe Suite, Figma, or CorelDraw allowed.",
-      "Must submit the raw layered file (.psd, .ai, or .fig) alongside final export.",
-      "AI art generators are strictly forbidden."
+      "Phase 1 (30 min): Brainstorming with sketch pads and traditional art materials. Internet allowed only in this phase.",
+      "Phase 2 (90 min): Create actual digital artwork using a stylus and iPad. Internet is strictly prohibited.",
+      "Participants must bring their own equipment (iPad, stylus, etc.).",
+      "Failing to adhere to the theme will result in reduction of score.",
+      "Any form of plagiarism or copied content will lead to immediate disqualification.",
+      "Use of mobile phones, laptops, AI tools is strictly prohibited during Phase 2.",
+      "The decision of the judges shall be final and binding."
     ]
   },
 
@@ -300,21 +336,26 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Montage",
     category: "Multimedia",
     shortDesc: "Create, shoot, and compile a short narrative film based on the theme.",
-    detail: "From the crazy adventures of Indiana Jones to the cinematic genius of Christopher Nolan, cinema has always been for people bold enough to go all in on their ideas. This event is your chance to lock in and direct your own masterpiece—where every shot gives Interstellar vibes, every twist has the intensity of Mission Impossible, and every scene is an absolute mic-drop moment. This isn't just filmmaking—it's your chance to let the creative thoughts win, build entire worlds, and turn random ideas into something that feels straight out of Netflix. Because sometimes the biggest flex isn't finding the treasure—it's creating a story so peak that nobody can look away from it.",
+    detail: "From the crazy adventures of Indiana Jones to the cinematic genius of Christopher Nolan, cinema has always been for people bold enough to go all in on their ideas. This event is your chance to lock in and direct your own masterpiece—where every shot gives Interstellar vibes, every twist has the intensity of Mission Impossible, and every scene is an absolute mic-drop moment. This is not just filmmaking—it is your chance to let the creative thoughts win, build entire worlds, and turn random ideas into something that feels straight out of Netflix; after all, sometimes the biggest flex is not finding the treasure—it is creating a story so peak that nobody can look away from it.",
     icon: "🎥",
     difficulty: "Legendary",
     difficultyColor: "#D9B24C",
-    teamSize: "3 - 5 Filmmakers",
+    teamSize: "5 - 15 Filmmakers",
     time: "Day 1 & Day 2",
     location: "Outdoor Campus",
     day: "Day 2",
     stage: "Off-stage",
     bounty: "₹15,000 + Golden Clapperboard Trophy",
     rules: [
-      "All filming must take place during the festival hours.",
-      "Final video duration: 2 - 3 minutes.",
-      "Must submit raw footage snippets for validation.",
-      "Standard software (Premiere, FCP, DaVinci) allowed."
+      "All schools must register as a team, having a minimum of 5 and a maximum of 15 participants.",
+      "The storyline of the film should be an original one and should not be plagiarised from any existing project.",
+      "Each school must give an introduction to the film, before the film starts.",
+      "The time duration of the film (5-10 minutes) will include the introduction and the credits.",
+      "Exceeding the given time limit will result in penalisation.",
+      "The theme will be given on 27th June, 2026 and the film must be submitted by 3rd July, 2026 to home.boscofest@gmail.com.",
+      "No part of the film should endorse any form of vulgarity or obscenity.",
+      "The script should be predominantly in English. Excessive use of vernacular language and visual effects will lead to penalisation.",
+      "Top 8 schools' submissions shall be screened."
     ]
   },
   {
@@ -322,21 +363,25 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Chronicles",
     category: "Multimedia",
     shortDesc: "Investigate, write, and layout a digital newspaper newsletter covering the fest.",
-    detail: "Like Peter Parker behind a camera or Clark Kent behind a notepad, journalists are superheroes hiding in plain sight. But journalism isn't just reporting the news—it's an adventure. It's following trails like Tintin on a globe-trotting investigation, uncovering secrets worthy of Gotham's finest detectives, and diving headfirst into mysteries deeper than Gravity Falls. Armed with nothing but a notebook, a camera, and your curiosity, you'll chase leads through uncharted territory, navigate twists worthy of Indiana Jones, and uncover truths hidden in plain sight. Are you ready for the journey?",
+    detail: "Like Peter Parker behind a camera or Clark Kent behind a notepad, journalists are superheroes hiding in plain sight. But journalism is not just reporting the news—it is an adventure. It is following trails like Tintin on a globe-trotting investigation, uncovering secrets worthy of Gotham's finest detectives, and diving headfirst into mysteries deeper than Gravity Falls. Armed with nothing but a notebook, a camera, and your curiosity, you will chase leads through uncharted territory, navigate twists worthy of Indiana Jones, and uncover truths hidden in plain sight. Are you ready for the journey?",
     icon: "📰",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "2 Reporters",
+    teamSize: "2 + 1 Reporters",
     time: "Day 1 & Day 2",
     location: "Editorial Suite",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹8,000 + Press Badges",
     rules: [
-      "Newsletter must be submitted in PDF layout format.",
-      "Must include at least 2 photos and 3 interviews.",
-      "Plagiarism check will run on all submitted text.",
-      "Must cover both success stories and competitive clashes."
+      "Prepare a 4-minute infotainment PowerPoint presentation covering the entire fest.",
+      "Prepare a 40-50 second video capturing the best moments (using editing software, NOT PowerPoint).",
+      "Submit a handwritten report of around 150 words summarizing the fest with experience and opinions.",
+      "Primary language must be English. Vulgarity of any kind will not be tolerated.",
+      "Use of mobile phones is strictly prohibited. Cameras and microphones allowed for recording.",
+      "Material collection till 11:00 AM Day 2; final submission ready by 12:30 PM including editing.",
+      "If any material is found on social media, it leads to immediate disqualification.",
+      "All submissions must be made in a pen drive only."
     ]
   },
   {
@@ -344,21 +389,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Vignette",
     category: "Multimedia",
     shortDesc: "Freeze moments. Tell stories without words.",
-    detail: "Peter Parker needs his camera to pay rent. And you? You need to capture the ultimate shot of this school fest. Photography isn't just about tapping a screen. It's a high-stakes safari through unpredictable crowds and shifting lights. Think of your camera as a compass. You can chase the neon-drenched atmosphere of Blade Runner, or trek toward a raw, candid moment worthy of a National Geographic cover. Take the adventure past the obvious angles and discover a completely new perspective.",
+    detail: "Peter Parker needs his camera to pay rent. And you? You need to capture the ultimate shot of this school fest. Photography is not just about tapping a screen. It is a high-stakes safari through unpredictable crowds and shifting lights. Think of your camera as a compass. You can chase the neon-drenched atmosphere of Blade Runner, or trek towards a raw, candid moment worthy of a National Geographic cover. Take the adventure past the obvious angles and discover a completely new perspective.",
     icon: "📸",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "Solo",
+    teamSize: "2 Photographers",
     time: "Day 1, 10:30 AM",
     location: "Art Courtyard",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹7,000 + Lens Loot Box",
     rules: [
-      "Must use DSLR or Mirrorless camera (no phone photography).",
-      "Can submit up to 3 candid photos.",
-      "No retouching, composition blending, or filters allowed.",
-      "Must submit raw file format alongside JPG."
+      "Duration: 90 + 30 minutes. Must use DSLR, SLR, or Mirrorless cameras. Mobile photography is not permitted.",
+      "Five topics will be given on fest day as one-liners or phrases. One topic is compulsory; choose two more from remaining four.",
+      "Submit 3 photographs total based on the given themes. All submissions via pen drive.",
+      "No touch-ups, editing, presets, or filters allowed.",
+      "Participants must give a one-line caption to each photograph.",
+      "Judges will ask questions on technical aspects and relevance of photographs to theme.",
+      "All cameras, laptops and pen drives must be brought by participants. Host school provides no equipment."
     ]
   },
   {
@@ -366,21 +414,25 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Caricature",
     category: "Multimedia",
     shortDesc: "Pitch, market, and perform a live advertisement for a bizarre gadget.",
-    detail: "Wait... a bunch of influencers convinced millions of people that a bottle of flavored water was the coolest thing on the planet? Yep. And that's exactly why advertising is one of the greatest adventures out there. This isn't just about selling a product—it's about turning the ordinary into the unforgettable. One moment you're staring at an object thinking, \"Bro, what am I even supposed to do with this?\" and the next you're building a story, creating hype, and making people believe it's the greatest thing they've seen all day. So lock in, trust the creative chaos, and let your imagination cook because somewhere between the memes, the madness, and the marketing magic, you'll discover the secret every advertiser is chasing.",
+    detail: "Wait... a bunch of influencers convinced millions of people that a bottle of flavoured water was the coolest thing on the planet? Yep. And that is exactly why advertising is one of the greatest adventures out there. This is not just about selling a product—it is about turning the ordinary into the unforgettable. One moment you are staring at an object thinking, \"Bro, what am I even supposed to do with this?\" and the next you are building a story, creating hype, and making people believe it is the greatest thing they have seen all day. So lock in, trust the creative chaos, and let your imagination cook because somewhere between the memes, the madness, and the marketing magic, you will discover the secret every advertiser is chasing.",
     icon: "📣",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "3 - 5 Performers",
+    teamSize: "6 + 2 Performers",
     time: "Day 2, 1:30 PM",
     location: "Mini Stage B",
     day: "Day 2",
     stage: "On-stage",
     bounty: "₹10,000 + Creative Ad Seal",
     rules: [
-      "Preparation time: 20 minutes; Performance time: 2 minutes.",
-      "Must highlight key features of the item given.",
-      "Prop crafting on-the-spot is encouraged.",
-      "Humor and clarity are highly rewarded."
+      "Round 1: Schools will be allotted brands on 2nd July, 2026. Ads must be submitted by 6th July before 23:59 PM.",
+      "Teams must make a minimum 1 minute advertisement highlighting their company against their rival.",
+      "Round 2: Top 6 teams make another 30+ second ad for a new company on fest day with 4 hours to shoot and edit.",
+      "Pre-recorded videos and animations are not permitted in Round 2.",
+      "No form of vulgarity or obscenity shall be tolerated.",
+      "Use of vernacular language will not be permitted.",
+      "The time limit of each round must be respected; failure will result in penalisation.",
+      "All members of all participating teams are required to be present on the day of the fest."
     ]
   },
 
@@ -390,21 +442,23 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Endgame",
     category: "Sports",
     shortDesc: "Outthink and checkmate your opponent on the chessboard grid.",
-    detail: "Think you've got the IQ of a detective, the strategy of a Marvel mastermind, and the patience of a Jedi? Then chess is your next adventure. Venture into a battlefield where every move shapes the story, every sacrifice unlocks a new path, and every checkmate feels like defeating the final boss. Whether you're channeling your inner Beth Harmon, or playing five moves ahead like a true grandmaster, this is your chance to outwit, outplay, and outlast. Gather your courage, trust your instincts, and embark on an adventure where the greatest weapon is your mind.",
+    detail: "Do you think you have got the IQ of a detective, the strategy of a Marvel mastermind, and the patience of a Jedi? Then chess is your next adventure. Venture into a battlefield where every move shapes the story, every sacrifice unlocks a new path, and every checkmate feels like defeating the final boss. Whether you are channeling your inner Beth Harmon, or playing five moves ahead like a true grandmaster, this is your chance to outwit, outplay, and outlast. Gather your courage, trust your instincts, and embark on an adventure where the greatest weapon is your mind.",
     icon: "♟️",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "Individual Player",
+    teamSize: "4 Players",
     time: "Day 1, 9:30 AM",
     location: "Quiet Study Library",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹5,000 + Wooden Knight Trophy",
     rules: [
-      "Standard FIDE rules apply.",
-      "Time control: 10 minutes per player (Blitz).",
-      "Touch-move rule strictly enforced.",
-      "Single-elimination bracket format."
+      "Tournament of 5 rounds as per FIDE Swiss League System. All FIDE rules must be followed.",
+      "National level referees will conduct the event.",
+      "Participants cannot walk in and out of the competition rooms.",
+      "Participants must ensure they are not expected to report for other events during chess.",
+      "Any hint of aggression or unparliamentary language leads to immediate disqualification.",
+      "The decision of the organisers is final and binding."
     ]
   },
   {
@@ -412,21 +466,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Ricochet",
     category: "Sports",
     shortDesc: "Rapid-fire singles table tennis matches in the recreational camp.",
-    detail: "Harry had a wand. You have a paddle. Embark on an adventure where every spin is a plot twist and every rally a battle against the odds. Following the legacy of Ma Long, Fan Zhendong, and Jan-Ove Waldner, you'll face unpredictable spins, relentless attacks, and heart-racing moments that demand split-second brilliance and unwavering composure. Every rally is an adventure. \"They call it a point. We call it a story.\" A story of courage, comebacks, and opportunities seized in the blink of an eye. The table is your stage, the racket your pen, and every shot writes a new chapter.",
+    detail: "Harry had a wand. You have a paddle. Embark on an adventure where every spin is a plot twist and every rally a battle against the odds. Following the legacy of Ma Long, Fan Zhendong, and Jan-Ove Waldner, you will face unpredictable spins, relentless attacks, and heart-racing moments that demand split-second brilliance and unwavering composure. Every rally is an adventure. 'They call it a point. We call it a story.' A story of courage, comebacks, and opportunities seized in the blink of an eye. The table is your stage, the racket your pen, and every shot writes a new chapter.",
     icon: "🏓",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "Individual Singles",
+    teamSize: "2 + 2 Players",
     time: "Day 1, 11:00 AM",
     location: "Indoors Gym Room",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹6,000 + TT Paddle Box",
     rules: [
-      "ITTF tournament scoring applies.",
-      "Best-of-3 sets; 11 points per set.",
-      "Players must bring their own rackets if possible (standard ones provided).",
-      "Service faults will be called by referee."
+      "Duration: 240 minutes. Separate categories for Boys and Girls. Co-ed schools may send either or both.",
+      "All games played in knockout format. Each match: two singles and one doubles (best of 3 games each).",
+      "Players playing singles cannot play doubles and vice-versa. Order must be mentioned beforehand.",
+      "If a team wins two consecutive singles, no doubles are played and that team wins.",
+      "All ITTF rules strictly followed. Proper sportswear required; avoid white t-shirts.",
+      "No equipment apart from table tennis balls provided by organisers.",
+      "Every school must arrive 30 minutes ahead and report to the Chief Referee."
     ]
   },
   {
@@ -438,17 +495,20 @@ const EVENTS_DATA: Event[] = [
     icon: "🏐",
     difficulty: "Legendary",
     difficultyColor: "#D9B24C",
-    teamSize: "6 - 8 Players",
+    teamSize: "6 + 6 Players",
     time: "Day 2, 9:30 AM",
     location: "Outdoor Court",
     day: "Day 2",
     stage: "Off-stage",
     bounty: "₹18,000 + Volleyball Shield",
     rules: [
-      "Knockout brackets; first set to 25 points, third decider set to 15.",
-      "Maximum of 3 hits per side before crossing.",
-      "Net touch results in point for opponent.",
-      "Substitution rules apply."
+      "Knock-Out Team Event. Separate for Boys and Girls. Co-ed schools may send either or both.",
+      "Matches held according to FIVB rules. Best-of-three-sets format.",
+      "First two sets to 25 points; third decider set to 15 points.",
+      "All teams should have a team jersey with a number.",
+      "The referee's decision on any rule/dispute is final and binding.",
+      "Any aggression or unparliamentary language leads to immediate disqualification.",
+      "Every school must arrive 30 minutes ahead and report to the Chief Referee."
     ]
   },
   {
@@ -456,21 +516,23 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Playverse",
     category: "Sports",
     shortDesc: "Team obstacle relays and physical survival challenges.",
-    detail: "You are not ready! Think again. You are still not ready for the adventure! Percy Jackson had monsters. Nathan Drake had lost treasures. You have obstacles, surprises and absolute chaos. This isn't just a game but a journey through twists, turns, and unpredictable challenges. Run, dodge, adapt and conquer the unknown. Expect the unexpected, trust your team and keep moving, because only the boldest explorers make it to the finish.",
+    detail: "You are not ready! Think again. You are still not ready for the adventure! Percy Jackson had monsters. Nathan Drake had lost treasures. You have obstacles, surprises and absolute chaos. This is not just a game but a journey through twists, turns, and unpredictable challenges. Run, dodge, adapt and conquer the unknown. Expect the unexpected, trust your team and keep moving, because only the boldest explorers make it to the finish.",
     icon: "🏃",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "4 Players",
+    teamSize: "2 Players",
     time: "Day 2, 11:30 AM",
     location: "Main Playground",
     day: "Day 2",
     stage: "Off-stage",
     bounty: "₹8,000 + Survivalist Medals",
     rules: [
-      "Relay rules apply; batons must be exchanged inside markers.",
-      "Obstacles must be crossed sequentially; skipping yields penalty times.",
-      "Sports shoes are mandatory.",
-      "Fastest cumulative time wins."
+      "3 rounds total. Points calculated cumulatively; team with maximum points wins.",
+      "Round 1 - Tag: Participants paired randomly. Two 20-second rounds per pair (catcher vs runner, then swap).",
+      "Runner must evade capture for the full round to win. Catcher must 'tag' with hand only (not foot).",
+      "Bonus points awarded depending on time taken to catch the runner.",
+      "Rounds 2 and 3: Unconventional Games—rules will be declared on the day of the event.",
+      "The team with the maximum cumulative points at the end of all 3 rounds wins."
     ]
   },
   {
@@ -482,17 +544,20 @@ const EVENTS_DATA: Event[] = [
     icon: "🎾",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "Individual Singles",
+    teamSize: "2 Players (Doubles)",
     time: "Day 1, 2:00 PM",
     location: "Courtyard TT Hall",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹6,000 + Carbon Paddle Set",
     rules: [
-      "Underhand serves only.",
-      "Rallies must clear the non-volley zone (dink area) on drop shots.",
-      "Single-elimination match format; 11 point cap.",
-      "Referees decision is final."
+      "Separate draws for girls and boys. Maximum 1 doubles team per school.",
+      "Preliminary Rounds: Knockout, first to 7 points win by 2.",
+      "Semi-Finals: First to 11 points, win by 2.",
+      "Finals: Best of 3 sets, each set to 11 points win by 2. Teams switch sides after each set.",
+      "One 1-minute timeout per match. Mandatory sports attire required.",
+      "All matches conducted per official USA Pickleball rules. Indoor pickleballs provided.",
+      "Report at least 15 minutes before scheduled match. Carry personal paddles, water bottles, and towels."
     ]
   },
 
@@ -502,21 +567,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Spearhead",
     category: "Sports",
     shortDesc: "Precision and distance javelin throw track and field event.",
-    detail: "A classic track and field event showcasing power, technique, and precision. Compete for the longest throw and write your name in the record books. Aim true, throw far, and claim the championship.",
+    detail: "This is not just a javelin throw. It is the opening chapter of a grand adventure. Charge down the runway with Link's determination, Hawkeye's accuracy, and Tanjiro's never-give-up mindset. Like Luffy chasing the One Piece or Indiana Jones hunting the next legendary artifact, you are heading where no one else has gone before. The runway is your questline, the sky is your open world, and the javelin is your final power-up. No respawns. No second chances. Just one throw to make the highlight reel. Take aim, let it fly, and unlock legendary status.",
     icon: "🎯",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "Individual Athlete",
+    teamSize: "Max 4 Athletes (Boys)",
     time: "Day 1, 1:30 PM",
     location: "Main Playground",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹8,000 + Custom Trophy",
     rules: [
-      "Participants must use the standard javelins provided by the organizers.",
-      "Throws must land within the designated sector to be valid.",
-      "Stepping over the foul line results in a scratch/invalid throw.",
-      "Best of three attempts per participant."
+      "All Rules of World Athletics will be followed.",
+      "Each athlete gets three trials; top eight get three additional trials.",
+      "In the event of a tie, the athlete with the next-best measure wins.",
+      "The javelin must be held at the grip with one hand only. No gloves on throwing hand.",
+      "It must be thrown over the shoulder or upper part of the throwing arm. Non-orthodox styles not permitted.",
+      "Failure if: time limit exceeded, back turned to landing area, touching runway lines, or metal head not landing first.",
+      "Any aggression or unparliamentary language leads to immediate disqualification."
     ]
   },
   {
@@ -524,21 +592,25 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Vogue",
     category: "Art and Literature",
     shortDesc: "Build and model clothing items using raw recyclable elements.",
-    detail: "Inspired by the zero-waste vision of Wall-E and the rugged resourcefulness of Mad Max, this adventure challenges you to look at a pile of discarded junk and see a high-end runway collection. This isn't just upcycling, it's your chance to play the role of Greta Thunberg and Picasso simultaneously, turning plastic bottles, weathered newspapers, and forgotten fabrics into sleek, avant-garde design statements. The clock is ticking, raw materials are your only currency, and the ultimate flex isn't buying the future, it's inventing it out of what the world left behind. Grab your toolkit, brave the elements of design, and embark on the ultimate upcycling safari.",
+    detail: "Inspired by the zero-waste vision of Wall-E and the rugged resourcefulness of Mad Max, this adventure challenges you to look at a pile of discarded junk and see a high-end runway collection. This is not just upcycling, it is your chance to play the role of Greta Thunberg and Picasso simultaneously, turning plastic bottles, weathered newspapers, and forgotten fabrics into sleek, avant-garde design statements. The clock is ticking, raw materials are your only currency, and the ultimate flex is not buying the future, it is inventing it out of what the world left behind. Grab your toolkit, brave the elements of design, and embark on the ultimate upcycling safari.",
     icon: "👗",
     difficulty: "Legendary",
     difficultyColor: "#D9B24C",
-    teamSize: "3 - 5 Designers & Model",
+    teamSize: "2 Designers",
     time: "Day 2, 2:00 PM",
     location: "Main Stage Area",
     day: "Day 2",
     stage: "On-stage",
     bounty: "₹15,000 + Green Leaf Award",
     rules: [
-      "No plastic or non-biodegradable raw materials permitted.",
-      "Costume construction must be completed within 3 hours on campus.",
-      "Designers must explain their resource cycle during the stage walk.",
-      "Glue and thread are permitted bindings."
+      "Duration: 120 minutes. No materials provided by the host school.",
+      "Only sustainable/recycled/biodegradable materials to be used.",
+      "Items NOT permitted: Superglue (Fevi kwik), Glue Gun, and Mannequin.",
+      "The item must be built from scratch during the event. No predesigned or pre-built structures allowed.",
+      "Participants must demonstrate the utility of their products and answer judges' questions (3+2 minutes).",
+      "No digital means of presenting the utility of the product shall be allowed.",
+      "Late submission will incur deduction of points. Plagiarised items face immediate disqualification.",
+      "Participants must clean their workstation after completion. A bell rings at 120 minutes—all must stop."
     ]
   },
   {
@@ -546,21 +618,25 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Art Attack",
     category: "Art and Literature",
     shortDesc: "Graffiti and mural sketch design on large parchment canvas boards.",
-    detail: "From the mind-bending creativity of Picasso to the cartoon chaos of Walt Disney, every legendary artwork started with someone looking at a blank space and thinking, \"Yeah, I can definitely do something cool with this.\" And that's exactly what this event is all about. One moment you're drawing a simple idea, and the next you're fighting your own creative boss battle, trying to figure out whether you've made a masterpiece or accidentally started a whole new art style. So grab your markers, paints, and spray cans, trust the chaos, and let your imagination carry the map. Because here adventures are not found- they are created.",
+    detail: "From the mind-bending creativity of Picasso to the cartoon chaos of Walt Disney, every legendary artwork started with someone looking at a blank space and thinking, \"Yeah, I can definitely do something cool with this.\" And that is exactly what this event is all about. One moment you are drawing a simple idea, and the next you are fighting your own creative boss battle, trying to figure out whether you have made a masterpiece or accidentally started a whole new art style. So grab your markers, paints, and spray cans, trust the chaos, and let your imagination carry the map, because here adventures are not found—they are created.",
     icon: "🖌️",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "2 - 3 Artists",
+    teamSize: "2 Artists per category",
     time: "Day 1, 2:30 PM",
     location: "Creative Courtyard",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹8,000 + Graffiti Marker Box",
     rules: [
-      "Canvas board size: A1.",
-      "Supported materials: Acrylics, sprays, chalk markers.",
-      "Must not contain any text-based vandalism.",
-      "Grading based on coloring, theme representation, and layout balance."
+      "Duration: 120 minutes. Two categories: Seniors (9-12) and Juniors (6-8). Schools can participate in one or both.",
+      "Seniors: One paints on canvas, one creates a visual logo and slogan on A3 paper. Acrylic paints, markers, brushes allowed.",
+      "Juniors: One does sketching and pencil shading on A3 paper, the other writes a slogan on A3 paper.",
+      "Spray paints are not allowed. Canvas and A3 paper provided by host school.",
+      "Any tracing, duplicating, or vulgarity leads to immediate disqualification.",
+      "Participants must clean their workstation after completion. A bell rings at 120 minutes—all must stop.",
+      "Judges will question participants on their art and its relevance to the theme (3+2 minutes).",
+      "The final artwork will be retained by the host school."
     ]
   },
   {
@@ -568,21 +644,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Magnum Opus",
     category: "Art and Literature",
     shortDesc: "Let your words create a storm that stays.",
-    detail: "Forget the dusty stanzas and rigid rhyme schemes of the past. Your words aren't meant to sit quietly on a page, they are meant to seize the day, 'Carpe Diem' as John Keating said. This is your 3 a.m. notes app breakthroughs thrown into a high stakes, high reward quest for glory. Wednesday did put it right, \"It's no wonder Edgar Allan Poe became a drug-addled madman.\", not only because he went to Nevermore, but because he was trying to write a masterpiece that would shake Shakespeare himself. Now it's your turn. Follow the trail of imagination, venture beyond the ordinary, and see where the words lead.",
+    detail: "Forget the dusty stanzas and rigid rhyme schemes of the past. Your words are not meant to sit quietly on a page, they are meant to seize the day, 'Carpe Diem' as John Keating said. This is your 3 a.m. notes app breakthroughs thrown into a high stakes, high reward quest for glory. Wednesday did put it right, \"It is no wonder Edgar Allan Poe became a drug-addled madman.\", not only because he went to Nevermore, but because he was trying to write a masterpiece that would shake Shakespeare himself. Now it is your turn. Follow the trail of imagination, venture beyond the ordinary, and see where the words lead.",
     icon: "✍️",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "Solo",
+    teamSize: "2 Writers",
     time: "Day 1, 10:30 AM",
     location: "Literary Lounge",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹5,000 + Fountain Pen Set",
     rules: [
-      "Time limit: 1 hour.",
-      "On-spot keyword prompts must be integrated into the stanza.",
-      "Poem must not exceed 32 lines.",
-      "Language: English only."
+      "Duration: 60 minutes. Theme/topic will be provided on the spot.",
+      "Poems must be written in English only. Maximum 16 lines, divided into stanzas of 4 lines each.",
+      "Poems should follow a rhyme scheme. At least 2 figures of speech must be clearly used (Simile, Metaphor, Alliteration, or Hyperbole).",
+      "Any form of plagiarism or copied content will lead to immediate disqualification.",
+      "Participants must bring their own writing materials. Sheets will be provided by organisers.",
+      "Use of mobile phones, laptops, AI tools, or internet is strictly prohibited.",
+      "Poems will be marked on originality, creativity, vocabulary, and relevance to theme."
     ]
   },
 
@@ -592,7 +671,7 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Minute Mania",
     category: "Performance",
     shortDesc: "Speed speaking challenge without hesitation, deviation, or repetition.",
-    detail: "The Doctor had a TARDIS. You have just sixty seconds. That's all you get. In this adventure against the clock, hesitation is your greatest enemy and confidence is your strongest ally. Sounds easier than getting through a single Instagram reel, but the moment you step up to the mic, your brain goes full Seong Gi-Hun. Speak fast, and think faster - a microsecond of silence and you're eliminated faster than a player tripping in 'Red Light, Green Light'. Lock in, channel your inner Max Verstappen, and prove that you can conquer the clock under sixty seconds of pure, fast-paced adrenaline.",
+    detail: "The Doctor had a TARDIS. You have just sixty seconds. That is all you get. In this adventure against the clock, hesitation is your greatest enemy and confidence is your strongest ally. Sounds easier than getting through a single Instagram reel, but the moment you step up to the mic, your brain goes full Seong Gi-Hun. Speak fast, and think faster - a microsecond of silence and you are eliminated faster than a player tripping in 'Red Light, Green Light'. Lock in, channel your inner Max Verstappen, and prove that you can conquer the clock under sixty seconds of pure, fast-paced adrenaline.",
     icon: "⏱️",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
@@ -603,10 +682,12 @@ const EVENTS_DATA: Event[] = [
     stage: "Off-stage",
     bounty: "₹6,000 + Speaker Medal",
     rules: [
-      "Moderator has absolute authority over points and penalty flags.",
-      "Speak for exactly 60 seconds; no notes or digital sheets allowed.",
-      "Standard JAM guidelines apply (no hesitation, repetition, deviation).",
-      "Points awarded for speaking time and successful challenges."
+      "Participants will be given 60 seconds to speak on a given topic, revealed 10 seconds before commencement.",
+      "Use of vulgarity, profanity, or unparliamentary language will be heavily downmarked.",
+      "If the student exceeds the time limit, 0.5 points will be deducted for every 10 seconds exceeded.",
+      "After the speech, an interpellation round follows where participants defend their points to judges.",
+      "Participants should be present at the venue throughout the duration of the event.",
+      "The judges' decision will be binding on all participants."
     ]
   },
   {
@@ -614,21 +695,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Ad-Lib",
     category: "Performance",
     shortDesc: "Impromptu acting rounds based on comical scenarios given on-spot.",
-    detail: "Did you know the famous \"I am Iron Man\" line in Iron Man was completely improvised? Robert Downey Jr. threw out the script, stepped into the unknown, and changed the entire Marvel Cinematic Universe forever. This isn't a casual stroll, it's a high-stakes competition. It's an expedition into uncharted comedic territory where there is no safety net. Be spontaneous. Seize the moment. Treat the stage like your own personal adventure, where your sharpest wit is your only compass. Leave your audience on the edge of their seats, or make them fall off in laughter. Will you find the perfect line, the perfect joke to survive the adventure, or will you crumble under the fierce spotlight?",
+    detail: "Did you know the famous \"I am Iron Man\" line in Iron Man was completely improvised? Robert Downey Jr. threw out the script, stepped into the unknown, and changed the entire Marvel Cinematic Universe forever. This is not a casual stroll, it is a high-stakes competition. It is an expedition into uncharted comedic territory where there is no safety net. Be spontaneous. Seize the moment. Treat the stage like your own personal adventure, where your sharpest wit is your only compass. Leave your audience on the edge of their seats, or make them fall off in laughter. Will you find the perfect line, the perfect joke to survive the adventure, or will you crumble under the fierce spotlight?",
     icon: "🎭",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "3 Actors",
+    teamSize: "3 + 2 Actors",
     time: "Day 2, 11:00 AM",
     location: "Mini Stage Auditorium",
     day: "Day 2",
     stage: "On-stage",
     bounty: "₹10,000 + Improv Mask Trophy",
     rules: [
-      "Preparation time: 0 seconds after topic ring.",
-      "Performance time: 3 minutes.",
-      "Must incorporate a physical prop given by judges.",
-      "Humor, plot structure, and performance sync are primary metrics."
+      "Round 1 - The Suggestion Box (1min 30sec + 30sec): Draw random location and scenario, build a scene around them.",
+      "Round 2 - The Turnaround (1min 15sec): Reenact a scene from any media with your own twist. Submit transcript by 5th July.",
+      "Round 3 - Genre Mashup (30+30+30sec): Perform a scene, then switch genres on command from moderators.",
+      "No use of fire, sharp objects, or hazardous materials. No obscene gestures or references.",
+      "The act must be in English or Hindi. No promotion of violence, hate speech, or political opinions.",
+      "Any violation will result in instant disqualification.",
+      "A microphone and basic sound system will be provided. All other props must be brought by participants."
     ]
   },
   {
@@ -636,21 +720,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Jester",
     category: "Performance",
     shortDesc: "Translate cryptic explorer terms or movie titles through gestures.",
-    detail: "From the absolute chaos of Hera Pheri to the mind-bending madness of Bhool Bhulaiyaa, this event is a full-on rollercoaster of creativity, quick thinking, and pure adventure. Words are off the table, so every gesture, expression, and move has to do the talking. One wrong signal can send your team into confusion, while one brilliant act can change the game in seconds. No dialogues. No second chances. Just vibes, instincts, and the clock ticking.",
+    detail: "From the absolute chaos of Jumanji to the mind-bending madness of Inception, this event is a full-on rollercoaster of creativity, quick thinking, and pure adventure. Words are off the table, so every gesture, expression, and move has to do the talking. One wrong signal can send your team into confusion, while one brilliant act can change the game in seconds. No dialogues. No second chances. Just vibes, instincts, and the clock ticking.",
     icon: "🤫",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "3 Players",
+    teamSize: "4 Players",
     time: "Day 1, 2:00 PM",
     location: "Assembly Room 2",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹5,000 + Charades Scroll",
     rules: [
-      "No sound, mouthing words, or air writing allowed.",
-      "Time limit: 90 seconds per movie code.",
-      "Speller must choose cards from the deck.",
-      "Fastest solving teams qualify to finals."
+      "Round 1: One actor performs; others guess a Movie or TV Series title. 60 seconds per turn. 10 points for correct guess.",
+      "Round 2: One guesser holds a card to forehead; others act out cues. Topics: Animals, Books, Songs, Famous Personalities, Food.",
+      "All actions must be entirely silent. No speaking, mouthing words, verbal cues, or sounds.",
+      "No writing, spelling, pointing to objects, using props, or drawing in any form.",
+      "No team member can perform more than once throughout the competition.",
+      "While one team performs, opposing teams must not cause distractions.",
+      "In the event of a tie, a sudden-death round may be conducted. Judges' decision is final."
     ]
   },
   {
@@ -662,17 +749,21 @@ const EVENTS_DATA: Event[] = [
     icon: "⏳",
     difficulty: "Legendary",
     difficultyColor: "#D9B24C",
-    teamSize: "1 - 3 Performers",
+    teamSize: "1 + 1 Performer",
     time: "Day 2, 1:30 PM",
     location: "Theatre Lounge A",
     day: "Day 2",
     stage: "On-stage",
     bounty: "₹8,000 + GI60 Seal",
     rules: [
-      "Strict 60-second time limit. Alarm rings at 60s; any action after is cut.",
-      "Play must have a self-contained plot with structural markers.",
-      "Setup and exit time limit: 15 seconds.",
-      "Scripts must be submitted for screening pre-event."
+      "Primary Performer is judged; Assistant/Support is not judged. Time Limit: 60 seconds.",
+      "The act must be entirely original. Copying well-known routines or copyrighted content will negatively impact scoring.",
+      "Acceptable acts: Miming, Mimicry, Juggling, Live sketching, Speed solving, Dance, Magic tricks, Ventriloquism, etc.",
+      "No use of fire, sharp objects, or hazardous materials. No obscene gestures or references.",
+      "The act must be in English. No promotion of violence, hate speech, or political opinions.",
+      "Time begins when the participant starts the act. Acts exceeding the limit may be penalized.",
+      "Props, instruments, or materials must be brought by the participant. Setup must be under 30 seconds.",
+      "The judges' decisions will be final and binding. No appeals or re-performances."
     ]
   },
   {
@@ -680,21 +771,20 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Figure-it-out",
     category: "Performance",
     shortDesc: "A quick-thinking deduction and riddle-solving performance challenge.",
-    detail: "Step up to the stage and figure it out. Solve cryptic clues, visual puzzles, and logic riddles on-the-spot. Every second counts as you translate mystery into answers under pressure.",
+    detail: "Not every adventure begins with a map. Some begin with a question, a pattern, or a detail that does not quite fit. Step into the unknown, think beyond the obvious, and see where curiosity takes you. Channel Sherlock's instinct for the unexpected and L's ability to look past appearances. The path ahead is uncertain, the answers are not always visible, and that is exactly what makes the journey worth taking.",
     icon: "🧩",
     difficulty: "Legendary",
     difficultyColor: "#D9B24C",
-    teamSize: "Individual Solver",
+    teamSize: "2 Solvers",
     time: "Day 1, 3:00 PM",
     location: "Senate Chamber",
     day: "Day 1",
     stage: "Off-stage",
     bounty: "₹8,000 + Riddlemaster Shield",
     rules: [
-      "Preparation time: 0 seconds after the riddle/clue is presented.",
-      "No external help or search engines allowed.",
-      "Clear explanations of the solution yield maximum points.",
-      "Time limit: 60 seconds per riddle."
+      "Participants are expected to be well versed with English language, anagrams, general knowledge, and critical thinking.",
+      "The rules of the event will be revealed on the day of the event itself.",
+      "Best of Luck!"
     ]
   },
   {
@@ -702,21 +792,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Theatricals",
     category: "Performance",
     shortDesc: "One-act theatre plays exploring local folklore or explorer histories.",
-    detail: "This isn't a predictable script; it's the absolute tension of a cold Cillian Murphy style split-screen faceoff, the room-silencing suspense of a Kanye Runaway piano intro, and the pure, desperate panic of a high-stakes Project Hail Mary survival scenario where the lines go out the window and you have to improvise to stay alive. It's a ruthless arena where alliances shatter in seconds, and a single whisper completely resets the room's aura. Lock in, back your squad up, and let's turn this stage into our own playground. Toss out the script entirely, dive headfirst into the unknown, and let's turn this moment into our ultimate, unchartered cinematic adventure.",
+    detail: "This is not a predictable script; it is the absolute tension of a cold Cillian Murphy style split-screen faceoff, the room-silencing suspense of a Kanye Runaway piano intro, and the pure, desperate panic of a high-stakes Project Hail Mary survival scenario where the lines go out the window and you have to improvise to stay alive. It is a ruthless arena where alliances shatter in seconds, and a single whisper completely resets the room's aura. Lock in, back your squad up, and let us turn this stage into our own playground. Toss out the script entirely, dive headfirst into the unknown, and let us turn this moment into our ultimate, unchartered cinematic adventure.",
     icon: "🎭",
     difficulty: "Legendary",
     difficultyColor: "#D9B24C",
-    teamSize: "5 - 12 Actors",
+    teamSize: "5 + 3 Actors",
     time: "Day 2, 4:00 PM",
     location: "Main Auditorium Stage",
     day: "Day 2",
     stage: "On-stage",
     bounty: "₹25,000 + Best Play & Best Actor Awards",
     rules: [
-      "Stage time: 10 - 15 minutes.",
-      "Must submit stage layout and lighting requirements 48 hours prior.",
-      "Original scripts are highly encouraged.",
-      "Judging based on script quality, acting, block movement, and direction."
+      "Round 1 - The Fairy Tale Flip: Creatively reinterpret or reimagine famous fairy tales. Duration: 8+2 minutes.",
+      "Script must be emailed by 5th July, 2026 to home.boscofest@gmail.com. Hard copy submitted at registration.",
+      "Round 2 - Think Twist Theatre: Draw chits with a situation and two dialogues, improvise a scene in 2+1 minutes.",
+      "The act can be in English, Bengali or Hindi. No vulgar, profane or inappropriate language tolerated.",
+      "No props provided. Each team brings their own. No audio equipment allowed.",
+      "Indirect political references permitted, but no specific mentions of any political entity.",
+      "The decision of the judges and organisers is final and binding."
     ]
   },
 
@@ -726,7 +819,7 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Masterchef",
     category: "Others",
     shortDesc: "Prepare delicious explorer snacks and dishes without using heat.",
-    detail: "Remy from Ratatouille proved that anyone can cook, but only a true adventurer can create a masterpiece with no flame to guide the way. Think of this as MasterChef meets Man vs. Wild, a culinary expedition where raw ingredients are your resources, creativity is your compass and time is your greatest challenge. Whether you are chasing for the meticulous perfection of The Bear or crafting a bold fusion that breaks every rule in the cookbook, every dish is a step into the unknown. The kitchen is your uncharted territory where imagination reigns supreme and ordinary ingredients becomes extraordinary discoveries. So trust your instincts, embrace the adventure and serve up a creation worthy of legend.",
+    detail: "Remy from Ratatouille proved that anyone can cook, but only a true adventurer can create a masterpiece with no flame to guide the way. Think of this as MasterChef meets Man vs. Wild, a culinary expedition where raw ingredients are your resources, creativity is your compass and time is your greatest challenge. Whether you are chasing for the meticulous perfection of The Bear or crafting a bold fusion that breaks every rule in the cookbook, every dish is a step into the unknown. The kitchen is your uncharted territory where imagination reigns supreme and ordinary ingredients become extraordinary discoveries. So trust your instincts, embrace the adventure and serve up a creation worthy of legend.",
     icon: "🥗",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
@@ -737,10 +830,13 @@ const EVENTS_DATA: Event[] = [
     stage: "Off-stage",
     bounty: "₹6,000 + Chef Hat Trophies",
     rules: [
-      "No matches, lighters, hot plates, or microwaves allowed.",
-      "Prep time: 1 hour.",
-      "Must maintain maximum cleanliness and present items with clear titles.",
-      "Ingredients must be brought by the team."
+      "Duration: 1 hour (including preparation and presentation). Classes: 6-8.",
+      "Participants must bring their own ingredients, peelers, knives, plates, trays, tablecloth, etc.",
+      "Pre-cooked items (boiled potatoes, vegetables, chips) may be brought, but the entire dish cannot be pre-made.",
+      "All participants must compulsorily bring a plastic tablecloth. Plate/tray diameter must not exceed 16 inches.",
+      "Accessories (hand gloves, headgear, aprons) will be awarded marks.",
+      "A chart with ingredients/calories must be supplemented along with the display.",
+      "No electrical gadgets are to be used. The judges' decision will be final."
     ]
   },
   {
@@ -748,7 +844,7 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Gridlock",
     category: "Others",
     shortDesc: "Solve complex numerical logic grid puzzles under speed rounds.",
-    detail: "Each grid presents its own unique and challenging task that requires concentration and determination on your part to overcome it. Built with the calm intensity of Magnus Carlsen when he plays chess and strategy calls are made for Formula One races, it is an adventure that entails the use of reason, perseverance, and wit. Each number holds a clue and takes you one step nearer to solving the next. What starts out as a puzzle quickly turns into an adventurous journey into reasoning and strategy.",
+    detail: "Each grid presents its own unique and challenging task that requires concentration and determination on your part to overcome it. Built with the calm intensity of Magnus Carlsen when he plays chess and strategy calls are made for Formula One races, it is an adventure that entails the use of reason, perseverance, and wit. Each number holds a clue and takes you one step nearer to solving the next. What starts out as a puzzle quickly turns into an adventurous journey of reasoning and strategy.",
     icon: "🔢",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
@@ -759,10 +855,12 @@ const EVENTS_DATA: Event[] = [
     stage: "Off-stage",
     bounty: "₹5,000 + Logic Master Medal",
     rules: [
-      "Pencils only; no digital helpers allowed.",
-      "Rounds consist of 3 puzzles (Easy, Medium, Hard).",
-      "Fastest solver with correct grid entries wins.",
-      "Incomplete or wrong numbers incur severe time penalty."
+      "Only pens/pencils and erasers allowed. Must use the official Sudoku sheet and scratch paper provided.",
+      "Mobile phones, smartwatches, calculators, or any digital devices are strictly prohibited.",
+      "The event is divided into 3 rounds with a 15-minute time limit per round.",
+      "Round 1: 6x6 Sudoku grid. Round 2: 9x9 Sudoku grid. Round 3: 12x12 Sudoku grid.",
+      "Scores in each round calculated based on the time taken to solve the puzzle.",
+      "Teams must submit sheets with names and school details clearly mentioned."
     ]
   },
   {
@@ -770,21 +868,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Synapse",
     category: "Others",
     shortDesc: "The grand general knowledge quiz. Speed, buzzer, and memory rounds.",
-    detail: "This isn't a boring classroom test; it's the elite, lightning-fast trivia clashing of a Jeopardy! Mastermind showdown, the chaotic, brilliant plot twists of a Brooklyn Nine-Nine Halloween Heist, and the intense, pulse-pounding strategy of a Squid Game tactical choice. It's a battlefield of instant decisions where a single clutch buzz can completely flip the leaderboard upside down. No safe passes, no holding back, just raw intellect, sharp instinct, and the thrill of outsmarting the room. Ditch the manual, trust your gut, and let the ultimate strategic adventure begin.",
+    detail: "This is not a boring classroom test; it is the elite, lightning-fast trivia clashing of a Jeopardy! Mastermind showdown, the chaotic, brilliant plot twists of a Brooklyn Nine-Nine Halloween Heist, and the intense, pulse-pounding strategy of a Squid Game tactical choice. It is a battlefield of instant decisions where a single clutch buzz can completely flip the leaderboard upside down. No safe passes, no holding back, just raw intellect, sharp instinct, and the thrill of outsmarting the room. Ditch the manual, trust your gut, and let the ultimate strategic adventure begin.",
     icon: "❓",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "3 Quizzers",
+    teamSize: "3 + 1 Quizzers",
     time: "Day 1 & Day 2",
     location: "Main Auditorium",
     day: "Day 1",
     stage: "On-stage",
     bounty: "₹15,000 + Quiz Bowl Shields",
     rules: [
-      "Written prelim rounds filter down to 6 teams for stage.",
-      "Buzzer rounds: Incorrect buzzer answers deduct points.",
-      "Quizmaster's ruling is binding.",
-      "No gadgets allowed inside the hall."
+      "The event will have 5 rounds including Prelims. The reserve can be substituted after an elimination round (once only).",
+      "Prelims (Written): Top 14 teams qualify. No negative markings.",
+      "Round 1: General trivia, Pounce and Bounce. Negative marking for pounce only. No eliminations.",
+      "Round 2 (Written): Audio Visual round. Top 9 teams qualify for Round 3. No negative marking.",
+      "Round 3: Long Connect Round. Points based on earliness of answers. Negative marking for incorrect answers.",
+      "Round 4 (Buzzer): Rapid fire. Double points awarded. Negative markings for incorrect answers.",
+      "The decisions of the Quizmaster shall be final."
     ]
   },
   {
@@ -792,21 +893,24 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Wordsmith",
     category: "Others",
     shortDesc: "Assemble high-scoring vocabulary words on the game board.",
-    detail: "Ready to turn letters into legends? Scrabble is the ultimate word quest, where every tile is a clue, every bonus square is buried treasure, and every move can change the game. Whether you're spelling like Hermione, deducing like Sherlock, hunting the One Piece with the Straw Hats, or pulling off a comeback worthy of Avengers: Endgame, victory is just one word away. Gather your crew, trust your instincts, and set off on an adventure where strategy, creativity, and a little luck can turn the right word into glory.",
+    detail: "Ready to turn letters into legends? Scrabble is the ultimate word quest, where every tile is a clue, every bonus square is buried treasure, and every move can change the game. Whether you are spelling like Hermione, deducing like Sherlock, hunting the One Piece with the Straw Hats, or pulling off a comeback worthy of Avengers: Endgame, victory is just one word away. Gather your crew, trust your instincts, and set off on an adventure where strategy, creativity, and a little luck can turn the right word into glory.",
     icon: "🔠",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
-    teamSize: "Individual Player",
+    teamSize: "2 Players",
     time: "Day 2, 9:30 AM",
     location: "Lounge Boardroom",
     day: "Day 2",
     stage: "Off-stage",
     bounty: "₹5,000 + Scrabble Board Kit",
     rules: [
-      "Standard tournament dictionaries apply for checking word validity.",
-      "Each player has 15 minutes cumulative game time.",
-      "Word challenges must be made before service.",
-      "Tile drawing is random."
+      "3 rounds. Each participant goes against another competitor chosen by draw of chits.",
+      "Each game consists of 15 turns per player. 1 minute per turn to form a word.",
+      "Score per turn = sum of letter values in each word + bonus from premium squares.",
+      "Awards decided by total cumulative points at the end of 3 games.",
+      "Collins Scrabble dictionary used as reference. Standard scrabble rules followed.",
+      "No plural or archaic words allowed. Proper nouns (names, places) are prohibited.",
+      "The judges' decision will be final and binding."
     ]
   },
   {
@@ -814,21 +918,23 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Brainwave",
     category: "Others",
     shortDesc: "Test your mental memory, recall speed, and pattern recognition.",
-    detail: "Embark on a mental expedition where your memory is the ultimate compass. Test your limits in speed recall rounds, pattern matching, and sequence retention. Only the sharpest minds will survive this memory challenge.",
+    detail: "Memory is not just about remembering, it is about holding onto details as the journey unfolds. Channel the focus of Sherlock recalling details everyone else missed, the sharp mind of Hermione drawing information from everything she has learned, and the persistence of Senku preserving knowledge across generations. As information flashes by, every detail becomes part of the adventure. Stay alert, trust your gut, and navigate your way through a challenge where the greatest discoveries belong to those who remember.",
     icon: "🧠",
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
-    teamSize: "Individual Solver",
+    teamSize: "2 Participants",
     time: "Day 2, 11:00 AM",
     location: "Lecture Hall Beta",
     day: "Day 2",
     stage: "Off-stage",
     bounty: "₹7,000 + Brainwave Scroll",
     rules: [
-      "No writing materials or devices allowed during the memory rounds.",
-      "Answers must be given within the designated time limit.",
-      "Decisions of the quizmaster/referee are final.",
-      "Single elimination format."
+      "4 rounds total. Cumulative scores of all rounds decide the winner.",
+      "Round 1: Objects presented—remember as many as you can.",
+      "Round 2: Series of images shown—remember as many as you can in correct order.",
+      "Round 3: Series of audio clips played—remember as many as you can in correct order.",
+      "Round 4: Series of words projected—remember as many as you can.",
+      "In case of a tie, participants who scored higher in order-based rounds are declared the winner."
     ]
   },
   {
@@ -836,7 +942,7 @@ const EVENTS_DATA: Event[] = [
     name: "Bosco Voidix",
     category: "Others",
     shortDesc: "Obscure answer survey quiz. The lowest scoring correct answers win.",
-    detail: "You studied all night for the wrong exam. Welcome to Pointless, the only adventure where being too smart can get you eliminated. Think of Indiana Jones bypassing the flashy, gold-plated chalice to choose the humble Holy Grail. Forget the obvious, abandon the safe route and venture into uncharted territory where the weirdest answers are often the best ones. This isn't about knowing more. It's about thinking differently because sometimes, the greatest discoveries are the ones nobody else thought of.",
+    detail: "You studied all night for the wrong exam. Welcome to Pointless, the only adventure where being too smart can get you eliminated. Think of Indiana Jones bypassing the flashy, gold-plated chalice to choose the humble Holy Grail. Forget the obvious, abandon the safe route and venture into uncharted territory where the weirdest answers are often the best ones. This is not about knowing more. It is about thinking differently because sometimes, the greatest discoveries are the ones nobody else thought of.",
     icon: "🎯",
     difficulty: "Explorer",
     difficultyColor: "#65C466",
@@ -847,10 +953,13 @@ const EVENTS_DATA: Event[] = [
     stage: "Off-stage",
     bounty: "₹8,000 + Survey Trophy",
     rules: [
-      "An incorrect answer yields maximum penalty points (100).",
-      "Goal is to score as close to 0 as possible.",
-      "Questions cover survey sets.",
-      "Standard Pointless format applies."
+      "Two rounds, each based on categories like sports, finance, history, science, current affairs, etc.",
+      "Each question has 'correct' answers decided by a pre-event survey. Give the least popular survey answer to score lowest.",
+      "An incorrect answer (not in the list) earns maximum penalty points. A 'pointless' answer (0 survey responses) is ideal.",
+      "Teams must answer within 15 seconds or receive maximum penalty points.",
+      "The team with the minimum total points is declared the winner.",
+      "In case of a tie, a rapid fire round with limited answers will break the tie.",
+      "Use of mobile phones, laptops, AI tools, or internet is strictly prohibited. Judges' decision is final."
     ]
   }
 ];
@@ -986,12 +1095,10 @@ export default function EventsPage() {
 
         {/* Page Title Header */}
         <div className="text-center mb-10">
-          <h1 className="font-bebas font-black text-4xl md:text-5xl text-parchment-light uppercase tracking-wide">
-            KNOWN TERRITORIES
+          <h1 className="font-bebas font-black text-4xl md:text-5xl lg:text-6xl text-[#F4ECC8] uppercase tracking-wide">
+            EVENTS & RULES
           </h1>
-          <p className="font-sans font-bold text-[12px] tracking-[0.1em] text-[#ebdcb9] mt-2.5 max-w-lg mx-auto leading-relaxed uppercase">
-            Select your expedition route, inspect the challenges, and sign the charters.
-          </p>
+          <div className="w-16 h-[2px] bg-gold-accent mx-auto mt-4" />
         </div>
 
         {/* Search Bar */}
