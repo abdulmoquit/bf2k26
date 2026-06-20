@@ -779,43 +779,51 @@ export default function Home() {
 
             {/* Absolute Positioned Map Nodes */}
             {TERRITORIES.map((loc) => (
-              <motion.div
+              <div
                 key={loc.id}
-                className="absolute flex flex-col items-center text-center group"
+                className="absolute flex flex-col items-center text-center group z-10 -translate-x-1/2 -translate-y-1/2"
                 style={{
                   left: loc.x,
                   top: loc.y,
                 }}
-                initial={{ x: "-50%", y: "-50%" }}
-                whileHover={{ scale: 1.08, x: "-50%", y: "-50%" }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
-                <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
+                <motion.div
+                  whileHover="hover"
+                  className="flex flex-col items-center"
+                >
+                  <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
 
-                  {/* Teardrop map-pin marker */}
-                  <div className="w-16 h-16 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
-                    <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center z-10">
-                      <TerritoryLogo id={loc.id} icon={loc.icon} name={loc.name} />
+                    {/* Teardrop map-pin marker */}
+                    <motion.div
+                      variants={{
+                        hover: { scale: 1.15 }
+                      }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                      className="w-16 h-16 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-colors duration-300 group-hover:border-[#ebdcb9] relative z-10"
+                    >
+                      <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center z-10">
+                        <TerritoryLogo id={loc.id} icon={loc.icon} name={loc.name} />
+                      </div>
+                      {/* Pin tail */}
+                      <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#1E1208] border-r-2 border-b-2 border-[#A37F3E] rotate-45 transition-colors duration-300 group-hover:border-[#ebdcb9] z-0" />
+                    </motion.div>
+
+                    {/* Texts - aligned below marker with some shadow backing for legibility */}
+                    <div className="mt-4 px-3 py-1.5 rounded-md bg-black/45 backdrop-blur-xs border border-[#A37F3E]/20">
+                      <h4 className="font-bebas text-xs md:text-sm text-[#F4ECC8] uppercase tracking-[0.08em] leading-tight">
+                        {loc.name}
+                      </h4>
+                      <p className="text-[10px] text-[#ebdcb9]/75 mt-0.5 whitespace-nowrap leading-none font-medium">
+                        {loc.preview}
+                      </p>
+                      <div className="inline-block mt-2 px-2.5 py-0.5 border border-[#A37F3E]/50 text-[#F4ECC8] text-[8.5px] font-bebas tracking-wider uppercase rounded transition-all group-hover:bg-[#A37F3E]/25 group-hover:border-[#ebdcb9]">
+                        EXPLORE
+                      </div>
                     </div>
-                    {/* Pin tail */}
-                    <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-[#1E1208] border-r-2 border-b-2 border-[#A37F3E] rotate-45 transition-all duration-300 group-hover:border-[#ebdcb9] z-0" />
-                  </div>
 
-                  {/* Texts - aligned below marker with some shadow backing for legibility */}
-                  <div className="mt-4 px-3 py-1.5 rounded-md bg-black/45 backdrop-blur-xs border border-[#A37F3E]/20">
-                    <h4 className="font-bebas text-xs md:text-sm text-[#F4ECC8] uppercase tracking-[0.08em] leading-tight">
-                      {loc.name}
-                    </h4>
-                    <p className="text-[10px] text-[#ebdcb9]/75 mt-0.5 whitespace-nowrap leading-none font-medium">
-                      {loc.preview}
-                    </p>
-                    <div className="inline-block mt-2 px-2.5 py-0.5 border border-[#A37F3E]/50 text-[#F4ECC8] text-[8.5px] font-bebas tracking-wider uppercase rounded transition-all group-hover:bg-[#A37F3E]/25 group-hover:border-[#ebdcb9]">
-                      EXPLORE
-                    </div>
-                  </div>
-
-                </Link>
-              </motion.div>
+                  </Link>
+                </motion.div>
+              </div>
             ))}
           </div>
 
