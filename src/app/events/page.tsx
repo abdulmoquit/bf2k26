@@ -864,25 +864,25 @@ function CircularEventLogo({ id, icon, name }: { id: string; icon: string; name:
   const [imgFailed, setImgFailed] = useState(false);
   const logoPath = `/event-logos/${id}.avif`;
 
-  if (!imgFailed) {
-    return (
-      <img
-        src={logoPath}
-        alt={name}
-        onError={() => setImgFailed(true)}
-        className="w-full h-full object-cover"
-      />
-    );
-  }
-
   return (
-    <div
-      className="w-full h-full flex items-center justify-center text-4xl select-none"
-      style={{
-        background: "radial-gradient(circle at center, #2B1A0E 0%, #0c0502 100%)",
-      }}
-    >
-      {icon}
+    <div className="relative w-full h-full overflow-hidden rounded-full flex items-center justify-center">
+      {!imgFailed ? (
+        <img
+          src={logoPath}
+          alt={name}
+          onError={() => setImgFailed(true)}
+          className="absolute inset-0 w-full h-full object-cover rounded-full"
+        />
+      ) : (
+        <div
+          className="absolute inset-0 w-full h-full flex items-center justify-center text-4xl select-none rounded-full"
+          style={{
+            background: "radial-gradient(circle at center, #2B1A0E 0%, #0c0502 100%)",
+          }}
+        >
+          {icon}
+        </div>
+      )}
     </div>
   );
 }
@@ -1172,7 +1172,7 @@ export default function EventsPage() {
                     {/* Circular Logo Container */}
                     <div className="flex justify-center mt-2.5 mb-3 relative z-20">
                       <div
-                        className="w-[130px] h-[130px] rounded-full border-3 border-[#2B1A0E] overflow-hidden bg-[#1E1208] flex items-center justify-center relative shadow-md"
+                        className="w-[130px] h-[130px] rounded-full border-[3px] border-[#2B1A0E] overflow-hidden bg-[#1E1208] flex items-center justify-center relative shadow-md"
                         style={{
                           boxShadow: "0 3px 8px rgba(0,0,0,0.35), 2.5px 2.5px 0 rgba(43,26,14,0.95)",
                         }}
