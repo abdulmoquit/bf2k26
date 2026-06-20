@@ -157,11 +157,6 @@ function CountdownCards() {
           </motion.div>
         ))}
       </div>
-
-      {/* Coordinates tagline */}
-      <p className="font-mono text-[9px] text-[#ebdcb9]/50 tracking-widest uppercase mt-1">
-        22.5478° N, 88.3091° E
-      </p>
     </div>
   );
 }
