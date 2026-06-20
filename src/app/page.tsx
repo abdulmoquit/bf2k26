@@ -185,6 +185,7 @@ function TerritoryLogo({ id, icon, name, isMobile }: { id: string; icon: string;
 
 export default function Home() {
   const mapSectionRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [isMobileVideo, setIsMobileVideo] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -195,6 +196,36 @@ export default function Home() {
     window.addEventListener("resize", checkViewport);
     return () => window.removeEventListener("resize", checkViewport);
   }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    let isReversing = false;
+    let intervalId: any;
+
+    const handleEnded = () => {
+      isReversing = true;
+      video.pause();
+      intervalId = setInterval(() => {
+        if (video.currentTime <= 0.1) {
+          isReversing = false;
+          clearInterval(intervalId);
+          video.currentTime = 0;
+          video.play().catch(() => {});
+        } else {
+          video.currentTime -= 0.06; // Decrement by 60ms every 30ms (~2x speed reverse playback)
+        }
+      }, 30);
+    };
+
+    video.addEventListener("ended", handleEnded);
+
+    return () => {
+      video.removeEventListener("ended", handleEnded);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [isMobileVideo]);
 
   const scrollMap = () => {
     mapSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -232,9 +263,9 @@ export default function Home() {
           {/* ── Full-screen background video ── */}
           {isMobileVideo !== null && (
             <video
+              ref={videoRef}
               key={isMobileVideo ? "mobile-vid" : "desktop-vid"}
               autoPlay
-              loop
               muted
               playsInline
               poster="/hero-bg.jpg"
@@ -716,7 +747,7 @@ export default function Home() {
                 href={`/events?event=${encodeURIComponent(loc.id)}`}
                 className="parchment-card p-4.5 flex flex-col items-center text-center cursor-pointer hover:-translate-y-1 transition-all active:translate-y-0"
               >
-                <div className="w-10 h-10 rounded-full bg-[#1E1208] border border-[#A37F3E] flex items-center justify-center overflow-hidden relative z-10 shadow-md">
+                <div className="w-14 h-14 rounded-full bg-[#1E1208] border border-[#A37F3E] flex items-center justify-center overflow-hidden relative z-10 shadow-md">
                   <TerritoryLogo id={loc.id} icon={loc.icon} name={loc.name} isMobile />
                 </div>
                 <h4 className="font-bebas text-base text-[#2B1A0E] uppercase tracking-wider mt-3">
@@ -754,15 +785,15 @@ export default function Home() {
                 style={{
                   left: loc.x,
                   top: loc.y,
-                  transform: "translate(-50%, -50%)",
                 }}
-                whileHover={{ scale: 1.05 }}
+                initial={{ x: "-50%", y: "-50%" }}
+                whileHover={{ scale: 1.08, x: "-50%", y: "-50%" }}
                 transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
 
                   {/* Teardrop map-pin marker */}
-                  <div className="w-12 h-12 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
+                  <div className="w-16 h-16 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
                     <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center z-10">
                       <TerritoryLogo id={loc.id} icon={loc.icon} name={loc.name} />
                     </div>
