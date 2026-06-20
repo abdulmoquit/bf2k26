@@ -273,7 +273,7 @@ const EVENTS_DATA: Event[] = [
     time: "Day 2, 3:30 PM",
     location: "Open Arena",
     day: "Day 2",
-    stage: "Off-stage",
+    stage: "On-stage",
     bounty: "₹10,000 + Champion Belt",
     rules: [
       "RULES: Participants: 2 Classes: 9-12",
