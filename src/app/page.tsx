@@ -215,11 +215,7 @@ export default function Home() {
     });
   };
 
-  const PARTNERS = [
-    { name: "INTEL CORE", role: "CHIPSET PARTNER", icon: <Zap className="h-5 w-5" style={{ color: "#E53E3E" }} /> },
-    { name: "RED BULL", role: "ENERGY PARTNER", icon: <span className="text-xl">🐂</span> },
-    { name: "SPOTIFY", role: "DIGITAL AUDIO PARTNER", icon: <Headphones className="h-5 w-5" style={{ color: "#1DB954" }} /> },
-  ];
+
 
   return (
     <div className="min-h-screen bg-[#0b0f0a] relative flex flex-col pb-0">
@@ -395,75 +391,59 @@ export default function Home() {
               </button>
             </motion.div>
 
-            {/* ── RIGHT: Expedition Partners ── */}
+            {/* ── RIGHT: Expedition Sponsor ── */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.45, type: "spring", stiffness: 80, damping: 16 }}
-              className="hidden lg:flex flex-col items-end justify-center w-[240px] shrink-0 gap-3"
+              className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0 gap-3"
             >
               <p
-                className="font-bebas uppercase tracking-[0.28em] self-start"
+                className="font-bebas uppercase tracking-[0.28em]"
                 style={{ fontSize: 10, color: "rgba(235,220,185,0.7)" }}
               >
-                Expedition Partners
+                Expedition Sponsor
               </p>
 
-              <div className="flex flex-col gap-2.5 w-full">
-                {PARTNERS.map((p, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ y: -2 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                    className="flex items-center gap-3 w-full"
-                    style={{
-                      background: "#F4ECC8",
-                      border: "2px solid #2B1A0E",
-                      borderRadius: 6,
-                      padding: "8px 12px",
-                      boxShadow: "3px 3px 0 rgba(43,26,14,1)",
-                    }}
-                  >
-                    {/* Icon box */}
-                    <div
-                      className="flex items-center justify-center shrink-0"
-                      style={{
-                        width: 32,
-                        height: 32,
-                        background: "#ebdcb9",
-                        border: "2px solid #2B1A0E",
-                        borderRadius: 6,
-                        boxShadow: "2px 2px 0 rgba(43,26,14,0.8)",
-                      }}
-                    >
-                      {p.icon}
-                    </div>
-                    <div className="flex flex-col text-left">
-                      <span
-                        className="font-bebas uppercase tracking-wider"
-                        style={{ fontSize: 14, color: "#2B1A0E", lineHeight: 1 }}
-                      >
-                        {p.name}
-                      </span>
-                      <span
-                        className="font-sans font-extrabold uppercase tracking-wider"
-                        style={{
-                          fontSize: 10,
-                          color: "#2B1A0E",
-                          marginTop: 3,
-                          background: "rgba(43,26,14,0.12)",
-                          padding: "2px 8px",
-                          borderRadius: 3,
-                          border: "1px solid rgba(43,26,14,0.25)",
-                          display: "inline-block",
-                        }}
-                      >
-                        {p.role}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <motion.div
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                className="flex flex-col items-center justify-center w-full p-4"
+                style={{
+                  background: "#F4ECC8",
+                  border: "2px solid #2B1A0E",
+                  borderRadius: 8,
+                  boxShadow: "3px 3px 0 rgba(43,26,14,1)",
+                }}
+              >
+                <div className="relative w-full h-[60px]">
+                  <Image
+                    src="/peerless-logo.png"
+                    alt="Peerless Logo"
+                    fill
+                    priority
+                    sizes="200px"
+                    className="object-contain"
+                  />
+                </div>
+                <span
+                  className="font-bebas uppercase tracking-wider text-sm mt-3"
+                  style={{ color: "#2B1A0E", lineHeight: 1 }}
+                >
+                  Peerless
+                </span>
+                <span
+                  className="font-sans font-extrabold uppercase tracking-wider mt-1.5 text-[9px] px-2.5 py-0.5 rounded"
+                  style={{
+                    color: "#2B1A0E",
+                    background: "rgba(43,26,14,0.08)",
+                    border: "1px solid rgba(43,26,14,0.18)",
+                    display: "inline-block",
+                  }}
+                >
+                  Expedition Sponsor
+                </span>
+              </motion.div>
             </motion.div>
           </div>
 
@@ -605,7 +585,7 @@ export default function Home() {
               </button>
             </motion.div>
 
-            {/* Expedition Partners */}
+            {/* Expedition Sponsor */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -616,63 +596,48 @@ export default function Home() {
                 className="font-bebas uppercase tracking-[0.25em] mb-3"
                 style={{ fontSize: 9.5, color: "rgba(235,220,185,0.7)" }}
               >
-                Expedition Partners
+                Expedition Sponsor
               </p>
 
-              <div className="flex flex-col gap-2.5 w-full">
-                {PARTNERS.map((p, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ y: -2 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                    className="flex items-center gap-3 w-full"
-                    style={{
-                      background: "#F4ECC8",
-                      border: "2px solid #2B1A0E",
-                      borderRadius: 6,
-                      padding: "8px 12px",
-                      boxShadow: "3px 3px 0 rgba(43,26,14,1)",
-                    }}
-                  >
-                    <div
-                      className="flex items-center justify-center shrink-0"
-                      style={{
-                        width: 32,
-                        height: 32,
-                        background: "#ebdcb9",
-                        border: "2px solid #2B1A0E",
-                        borderRadius: 6,
-                        boxShadow: "2px 2px 0 rgba(43,26,14,0.8)",
-                      }}
-                    >
-                      {p.icon}
-                    </div>
-                    <div className="flex flex-col text-left">
-                      <span
-                        className="font-bebas uppercase tracking-wider"
-                        style={{ fontSize: 13, color: "#2B1A0E", lineHeight: 1 }}
-                      >
-                        {p.name}
-                      </span>
-                      <span
-                        className="font-sans font-extrabold uppercase tracking-wider"
-                        style={{
-                          fontSize: 9.5,
-                          color: "#2B1A0E",
-                          marginTop: 2.5,
-                          background: "rgba(43,26,14,0.12)",
-                          padding: "1.5px 6px",
-                          borderRadius: 3,
-                          border: "1px solid rgba(43,26,14,0.25)",
-                          display: "inline-block",
-                        }}
-                      >
-                        {p.role}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <motion.div
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                className="flex flex-col items-center justify-center w-full p-4"
+                style={{
+                  background: "#F4ECC8",
+                  border: "2px solid #2B1A0E",
+                  borderRadius: 8,
+                  boxShadow: "3px 3px 0 rgba(43,26,14,1)",
+                }}
+              >
+                <div className="relative w-full h-[60px]">
+                  <Image
+                    src="/peerless-logo.png"
+                    alt="Peerless Logo"
+                    fill
+                    priority
+                    sizes="200px"
+                    className="object-contain"
+                  />
+                </div>
+                <span
+                  className="font-bebas uppercase tracking-wider text-sm mt-3"
+                  style={{ color: "#2B1A0E", lineHeight: 1 }}
+                >
+                  Peerless
+                </span>
+                <span
+                  className="font-sans font-extrabold uppercase tracking-wider mt-1.5 text-[9px] px-2.5 py-0.5 rounded"
+                  style={{
+                    color: "#2B1A0E",
+                    background: "rgba(43,26,14,0.08)",
+                    border: "1px solid rgba(43,26,14,0.18)",
+                    display: "inline-block",
+                  }}
+                >
+                  Expedition Sponsor
+                </span>
+              </motion.div>
             </motion.div>
           </div>
 
