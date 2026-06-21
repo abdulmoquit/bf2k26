@@ -1337,11 +1337,12 @@ function CircularEventLogo({ id, icon, name }: { id: string; icon: string; name:
           src={logoPath}
           alt={name}
           onError={() => setImgFailed(true)}
-          className="absolute inset-0 w-full h-full object-cover rounded-full"
+          className="absolute inset-0 w-full h-full object-cover rounded-full scale-[1.08]"
+          style={{ transformOrigin: "center center" }}
         />
       ) : (
         <div
-          className="absolute inset-0 w-full h-full flex items-center justify-center text-4xl select-none rounded-full"
+          className="absolute inset-0 w-full h-full flex items-center justify-center text-5xl select-none rounded-full"
           style={{
             background: "radial-gradient(circle at center, #2B1A0E 0%, #0c0502 100%)",
           }}
