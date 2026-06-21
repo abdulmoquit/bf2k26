@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  MapPin, 
-  X, 
-  Calendar, 
-  Users, 
-  Search, 
-  BookOpen, 
+import {
+  MapPin,
+  X,
+  Calendar,
+  Users,
+  Search,
+  BookOpen,
   Compass
 } from "lucide-react";
 import confetti from "canvas-confetti";
@@ -16,15 +16,15 @@ import Navbar from "@/components/Navbar";
 
 // ─── Event Categories & Icon Mapping (From Spreadsheet) ────────────────────────
 const CATEGORIES = [
-  { name: "All Territories",     icon: "🗺️", color: "#E8D7A5" },
-  { name: "Music",               icon: "🎵", color: "#65C466" }, // Primary Green
-  { name: "Dance",               icon: "💃", color: "#6EC6FF" }, // Primary Sky Blue
-  { name: "Cybernetics",         icon: "💻", color: "#65C466" }, // Primary Green
-  { name: "Multimedia",          icon: "📸", color: "#6EC6FF" }, // Primary Sky Blue
-  { name: "Sports",              icon: "🏆", color: "#65C466" }, // Primary Green
-  { name: "Art and Literature",  icon: "🎨", color: "#6EC6FF" }, // Primary Sky Blue
-  { name: "Performance",         icon: "🎭", color: "#65C466" }, // Primary Green
-  { name: "Others",              icon: "🧩", color: "#E8D7A5" }, // Parchment Gold
+  { name: "All Territories", icon: "🗺️", color: "#E8D7A5" },
+  { name: "Music", icon: "🎵", color: "#65C466" }, // Primary Green
+  { name: "Dance", icon: "💃", color: "#6EC6FF" }, // Primary Sky Blue
+  { name: "Cybernetics", icon: "💻", color: "#65C466" }, // Primary Green
+  { name: "Multimedia", icon: "📸", color: "#6EC6FF" }, // Primary Sky Blue
+  { name: "Sports", icon: "🏆", color: "#65C466" }, // Primary Green
+  { name: "Art and Literature", icon: "🎨", color: "#6EC6FF" }, // Primary Sky Blue
+  { name: "Performance", icon: "🎭", color: "#65C466" }, // Primary Green
+  { name: "Others", icon: "🧩", color: "#E8D7A5" }, // Parchment Gold
 ];
 
 interface Event {
@@ -1396,7 +1396,7 @@ export default function EventsPage() {
           setSelectedCategory(matched.name);
         }
       }
-      
+
       const eventId = params.get("event");
       if (eventId) {
         const foundEvent = EVENTS_DATA.find(e => e.id === eventId);
@@ -1413,7 +1413,7 @@ export default function EventsPage() {
 
   const handleRegister = (eventId: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    
+
     if (registeredEvents.includes(eventId)) {
       const updated = registeredEvents.filter(id => id !== eventId);
       setRegisteredEvents(updated);
@@ -1438,20 +1438,20 @@ export default function EventsPage() {
     const matchesCategory = selectedCategory === "All Territories" || evt.category === selectedCategory;
     const matchesDay = selectedDay === "All Days" || evt.day === selectedDay;
     const matchesStage = selectedStage === "All Stages" || evt.stage === selectedStage;
-    const matchesSearch = evt.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          evt.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          evt.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          evt.eventType.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = evt.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      evt.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      evt.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      evt.eventType.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesDay && matchesStage && matchesSearch;
   });
 
   return (
     <div className="min-h-screen bg-rest-texture relative flex flex-col pb-0">
-      
+
       <Navbar />
 
       <main className="flex-1 w-full max-w-5xl mx-auto px-6 pt-32 pb-20 relative z-20 flex flex-col">
-        
+
 
 
         {/* Page Title Header */}
@@ -1594,7 +1594,7 @@ export default function EventsPage() {
             <AnimatePresence mode="popLayout">
               {filteredEvents.map((evt) => {
                 const isRegistered = registeredEvents.includes(evt.id);
-                const diffBg   = evt.difficulty === "Legendary" ? "#A37F3E" : evt.difficulty === "Veteran" ? "#3B5E8C" : "#37532A";
+                const diffBg = evt.difficulty === "Legendary" ? "#A37F3E" : evt.difficulty === "Veteran" ? "#3B5E8C" : "#37532A";
                 const diffText = "#F4ECC8";
                 return (
                   <motion.div
@@ -1710,9 +1710,9 @@ export default function EventsPage() {
       <AnimatePresence>
         {activeEvent && (
           <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-            
+
             {/* Backdrop backing cover */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -1721,7 +1721,7 @@ export default function EventsPage() {
             />
 
             {/* Content Drawer Box */}
-            <motion.div 
+            <motion.div
               initial={{ y: "100%", opacity: 0.9 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: "100%", opacity: 0.9 }}
@@ -1733,7 +1733,7 @@ export default function EventsPage() {
               <div className="w-12 h-1 bg-ink-dark/15 rounded-full mx-auto mb-5 sm:hidden" />
 
               {/* Close Button */}
-              <button 
+              <button
                 onClick={() => setActiveEvent(null)}
                 className="absolute top-4 right-4 h-11 w-11 flex items-center justify-center text-ink-dark hover:text-gold-accent transition-colors"
                 aria-label="Close quest details"
