@@ -180,7 +180,7 @@ export default function About() {
                 whileHover={{ scale: 1.08, zIndex: 10 }}
                 className="px-3 py-3 md:px-6 md:py-4.5 bg-parchment-light border-2 border-ink-dark rounded-xl md:rounded-2xl shadow-[3px_3px_0px_rgba(43,26,14,1)] flex flex-col items-center cursor-default w-[105px] md:w-[140px] text-center"
               >
-                <span className="text-xl md:text-2xl text-forest-green">∞</span>
+                <span className="text-3xl md:text-5xl text-ink-dark leading-none">∞</span>
                 <span className="font-bebas text-base md:text-2xl text-ink-dark mt-1">TALENTS</span>
               </motion.div>
             </div>
@@ -193,7 +193,7 @@ export default function About() {
                 whileHover={{ scale: 1.08, zIndex: 10 }}
                 className="px-3 py-3 md:px-6 md:py-4.5 bg-parchment-light border-2 border-ink-dark rounded-xl md:rounded-2xl shadow-[3px_3px_0px_rgba(43,26,14,1)] flex flex-col items-center cursor-default w-[105px] md:w-[140px] text-center"
               >
-                <span className="font-bebas text-2xl md:text-4xl text-ink-dark">41<sup>st</sup></span>
+                <span className="font-bebas text-2xl md:text-4xl text-ink-dark">41<sup className="text-[0.55em] uppercase ml-0.5">st</sup></span>
                 <span className="font-bebas text-[10px] md:text-xs tracking-wider text-ink-dark font-black uppercase mt-1">EDITION</span>
               </motion.div>
             </div>
