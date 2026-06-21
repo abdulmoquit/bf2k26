@@ -380,7 +380,7 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "digital-art-cyber",
-    name: "Bosco Comic Con",
+    name: "Bosco Pixelcraft",
     eventType: "Digital Art",
     category: "Cybernetics",
     shortDesc: "Vector design and digital painting illustrating the untouched nature.",
