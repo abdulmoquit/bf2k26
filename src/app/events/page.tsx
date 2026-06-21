@@ -1792,13 +1792,6 @@ export default function EventsPage() {
                     <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.stage}</span>
                   </div>
                 </div>
-                <div className="p-3 bg-parchment-light/40 border border-ink-dark/15 rounded-xl flex items-center gap-2.5 col-span-2">
-                  <MapPin className="h-4.5 w-4.5 text-[#E53E3E] shrink-0" />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-extrabold uppercase text-ink-dark/70 tracking-wider">Coordinates Location</span>
-                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.location}</span>
-                  </div>
-                </div>
               </div>
 
               {/* Description */}
