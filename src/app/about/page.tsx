@@ -119,7 +119,7 @@ export default function About() {
     "MRS. SHARMILEE ACHARYYA",
     "MR. SUMIT SENGUPTA",
     "MRS. SWAGATA ROY",
-    "MR. THOMAS ANTHONY",
+    "MR. THOMAS ANTONY",
   ];
 
   return (

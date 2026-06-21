@@ -1754,7 +1754,7 @@ export default function EventsPage() {
                     {activeEvent.name}
                   </h2>
                   <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 border border-ink-dark/30 rounded-full text-ink-dark inline-block mt-1">
-                    {activeEvent.category === "Cybernetics" ? "Gaming" : activeEvent.category === "Art and Literature" ? "Literary" : activeEvent.category === "Multimedia" ? "Photography" : activeEvent.category}
+                    {activeEvent.eventType}
                   </span>
                 </div>
               </div>
