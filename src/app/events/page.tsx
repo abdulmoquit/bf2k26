@@ -79,7 +79,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "fusion-music",
     name: "Bosco Jukebox",
-    eventType: "Fusion Music (6-12) - Jukebox",
+    eventType: "Fusion Music",
     category: "Music",
     shortDesc: "Merge Eastern traditional patterns with modern Western melodies.",
     detail: "​ This is not a safe, by-the-book concert; it is the high-stakes, late-night energy of Karan Aujla vocals hitting a dark Playboi Carti rage beat, or the absolute chaos of an Anirudh-level classical melody getting completely hijacked by a heavy Travis Scott synth bassline. It is an unmapped frontier of pure sonic adventure, where aggressive Western 808s drop the rules to chart a course through traditional Eastern rhythms, and a single smooth transition can completely flip the crowd. There are no safe paths or rehearsed boundaries tonight. Listen close, feel the rhythm shift, and join the ultimate expedition into a soundscape the world has not discovered yet.",
@@ -107,7 +107,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "eastern-music",
     name: "Bosco Raag",
-    eventType: "Eastern Music (6-12) - Raag",
+    eventType: "Eastern Music",
     category: "Music",
     shortDesc: "A solo classical vocal challenge showcasing traditional ragas.",
     detail: "Welcome to an adventure where every beat has aura and every melody leaves the crowd spellbound. Inspired by the legendary artistry of Birju Maharaj and the rhythm wizardry of Ustad Zakir Hussain, this is where tradition does not just perform—it steals the spotlight. From graceful movements that speak louder than words to rhythms that live rent-free in your head, every act is a masterclass in culture, creativity, and pure main-character energy. Ancient art, modern chills, and a stage that refuses to be ignored. No gimmicks. Just goosebumps.",
@@ -169,7 +169,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "western-music",
     name: "Bosco Beat",
-    eventType: "Western Music (6-12) - Beat",
+    eventType: "Western Music",
     category: "Music",
     shortDesc: "A battle of voices and verses. Where lyrics hit harder.",
     detail: "Pack your bags, grab your playlist, and get ready for an adventure powered by pure vibes. This is your ticket to a journey where every beat unlocks a new destination. One moment you are cruising through the galaxy with the Guardians of the Galaxy, the next you are sailing the Grand Line with the Straw Hats, or embarking on a quest worthy of a legendary fantasy saga. From Bad Bunny hits and pop bangers to rock classics that never miss, the stage becomes a map and the music becomes your guide. So gather your crew, embrace your main-character arc, and let the adventure begin, one song at a time.",
@@ -206,7 +206,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "eastern-dance",
     name: "Bosco Nritya",
-    eventType: "Eastern Dance (6-12) - Nritya",
+    eventType: "Eastern Dance",
     category: "Dance",
     shortDesc: "Classical and semi-classical Indian dance storytelling.",
     detail: "Forget predictable choreography and familiar routines. This event is your invitation to step into the unknown and dance beyond the ordinary. Whether your movements flow like sailing into uncharted waters with the Straw Hats in One Piece, weave through rhythm the way Link uncovers hidden paths in Breath of the Wild or lose yourself in the beat just like in ever-shifting worlds of Spirited Away, every step becomes part of an unfolding adventure. Follow the beat into unexplored territory, uncover stories hidden within every melody, and let rhythm become your compass as you journey beyond the familiar.",
@@ -244,7 +244,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "western-dance",
     name: "Bosco Tango",
-    eventType: "Western Dance (6-12) - Tango",
+    eventType: "Western Dance",
     category: "Dance",
     shortDesc: "High energy, choreographed Western street and contemporary dance.",
     detail: "Western Dance​\n\nWhen the lights cut, you are diving headfirst into a high-velocity blind drop where anything can happen. The execution has to be so razor-sharp that it feels like stepping into a  legendary Michael Jackson music video set, combined with the massive stadium energy of The Weeknd's halftime shows and the chaotic, high-octane synchronization of the IPL 2026 Final dance show. No safe counts, no holding back, just sharp shifts, high stakes, and the risk of leaving everything on the floor. Ditch the manual, take the gamble, and let the ultimate stage adventure begin.",
@@ -654,7 +654,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "tag-games",
     name: "Bosco Playverse",
-    eventType: "Tag+ Unconventional Games",
+    eventType: "Unconventional Games",
     category: "Sports",
     shortDesc: "Team obstacle relays and physical survival challenges.",
     detail: "You are not ready! Think again. You are still not ready for the adventure! Percy Jackson had monsters. Nathan Drake had lost treasures. You have obstacles, surprises and absolute chaos. This is not just a game but a journey through twists, turns, and unpredictable challenges. Run, dodge, adapt and conquer the unknown. Expect the unexpected, trust your team and keep moving, because only the boldest explorers make it to the finish.",
@@ -761,7 +761,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "eco-fashion",
     name: "Bosco Vogue",
-    eventType: "Eco Fashion and Interior Decor (6-12)",
+    eventType: "Eco Fashion and Decor",
     category: "Art and Literature",
     shortDesc: "Build and model clothing items using raw recyclable elements.",
     detail: "Inspired by the zero-waste vision of Wall-E and the rugged resourcefulness of Mad Max, this adventure challenges you to look at a pile of discarded junk and see a high-end runway collection. This is not just upcycling, it is your chance to play the role of Greta Thunberg and Picasso simultaneously, turning plastic bottles, weathered newspapers, and forgotten fabrics into sleek, avant-garde design statements. The clock is ticking, raw materials are your only currency, and the ultimate flex is not buying the future, it is inventing it out of what the world left behind. Grab your toolkit, brave the elements of design, and embark on the ultimate upcycling safari.",
@@ -1068,8 +1068,8 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "turncoat-debate",
-    name: "Bosco Polaris",
-    eventType: "Turncoat Debate",
+    name: "Bosco Figure-It-Out",
+    eventType: "???",
     category: "Performance",
     shortDesc: "A quick-thinking deduction and riddle-solving performance challenge.",
     detail: "To be Revealed on the day of the event ​ (YE)\n\nNot every adventure begins with a map. Some begin with a question, a pattern, or a detail that doesn't quite fit. Step into the unknown, think beyond the obvious, and see where curiosity takes you. Channel Sherlock's instinct for the unexpected and L's ability to look past appearances. The path ahead is uncertain, the answers aren't always visible, and that's exactly what makes the journey worth taking.",
@@ -1153,7 +1153,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "non-fire-cooking",
     name: "Bosco Masterchef",
-    eventType: "Non Fire Cooking (6-8)",
+    eventType: "Non Fire Cooking",
     category: "Others",
     shortDesc: "Prepare delicious explorer snacks and dishes without using heat.",
     detail: "Remy from Ratatouille proved that anyone can cook, but only a true adventurer can create a masterpiece with no flame to guide the way. Think of this as MasterChef meets Man vs. Wild, a culinary expedition where raw ingredients are your resources, creativity is your compass and time is your greatest challenge. Whether you are chasing for the meticulous perfection of The Bear or crafting a bold fusion that breaks every rule in the cookbook, every dish is a step into the unknown. The kitchen is your uncharted territory where imagination reigns supreme and ordinary ingredients become extraordinary discoveries. So trust your instincts, embrace the adventure and serve up a creation worthy of legend.",
@@ -1273,8 +1273,8 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "math-marathon",
-    name: "Bosco Calcrush",
-    eventType: "Math Marathon",
+    name: "Bosco Brainwave",
+    eventType: "Memory",
     category: "Others",
     shortDesc: "Test your mental memory, recall speed, and pattern recognition.",
     detail: "Memory Game ​ (YCS)\n\nMemory is not just about remembering, it is about holding onto details as the journey unfolds. Channel the focus of Sherlock recalling details everyone else missed, the sharp mind of Hermione drawing information from everything she has learned, and the persistence of Senku preserving knowledge across generations. As information flashes by, every detail becomes part of the adventure. Stay alert, trust your gut, and navigate your way through a challenge where the greatest discoveries belong to those who remember.",
@@ -1443,7 +1443,8 @@ export default function EventsPage() {
     const matchesStage = selectedStage === "All Stages" || evt.stage === selectedStage;
     const matchesSearch = evt.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                           evt.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          evt.category.toLowerCase().includes(searchQuery.toLowerCase());
+                          evt.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          evt.eventType.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesDay && matchesStage && matchesSearch;
   });
 

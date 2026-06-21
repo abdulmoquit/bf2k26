@@ -241,7 +241,7 @@ export default function Home() {
               className="absolute inset-0 w-full h-full object-cover"
               style={{ zIndex: 0 }}
             >
-              <source src={isMobileVideo ? "/hero-bg-mobile.mp4" : "/hero-bg.mp4"} type="video/mp4" />
+              <source src="/hero-bg-new.mp4" type="video/mp4" />
             </video>
           )}
 
