@@ -43,6 +43,7 @@ interface Event {
   stage: "On-stage" | "Off-stage";
   bounty: string;
   rules: string[];
+  eventType: string;
 }
 
 const EVENTS_DATA: Event[] = [
@@ -50,6 +51,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "unconventional-music",
     name: "Bosco Remix",
+    eventType: "Unconventional Music",
     category: "Music",
     shortDesc: "Produce percussion, beats, and melodies using everyday tools and objects.",
     detail: "Forget standard playlist filler. This event is a blind drop into uncharted territory for creators who treat audio like an open-world map. Whether you are dropping a heavy, atmospheric Metro Boomin style beat switch, warping vocals into a glitchy Spider-Man 2099 theme, or layering an aggressive, distorted bassline that hits exactly like the Prowler's siren sound effect, this is your green light to hijack the frequencies. We are skipping the generic audio loops for raw, unfiltered sonic experimentation. If your sound breaks the algorithm, ditch the manual, step up, and let the ultimate musical adventure begin.",
@@ -77,6 +79,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "fusion-music",
     name: "Bosco Jukebox",
+    eventType: "Fusion Music (6-12) - Jukebox",
     category: "Music",
     shortDesc: "Merge Eastern traditional patterns with modern Western melodies.",
     detail: "​ This is not a safe, by-the-book concert; it is the high-stakes, late-night energy of Karan Aujla vocals hitting a dark Playboi Carti rage beat, or the absolute chaos of an Anirudh-level classical melody getting completely hijacked by a heavy Travis Scott synth bassline. It is an unmapped frontier of pure sonic adventure, where aggressive Western 808s drop the rules to chart a course through traditional Eastern rhythms, and a single smooth transition can completely flip the crowd. There are no safe paths or rehearsed boundaries tonight. Listen close, feel the rhythm shift, and join the ultimate expedition into a soundscape the world has not discovered yet.",
@@ -104,6 +107,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "eastern-music",
     name: "Bosco Raag",
+    eventType: "Eastern Music (6-12) - Raag",
     category: "Music",
     shortDesc: "A solo classical vocal challenge showcasing traditional ragas.",
     detail: "Welcome to an adventure where every beat has aura and every melody leaves the crowd spellbound. Inspired by the legendary artistry of Birju Maharaj and the rhythm wizardry of Ustad Zakir Hussain, this is where tradition does not just perform—it steals the spotlight. From graceful movements that speak louder than words to rhythms that live rent-free in your head, every act is a masterclass in culture, creativity, and pure main-character energy. Ancient art, modern chills, and a stage that refuses to be ignored. No gimmicks. Just goosebumps.",
@@ -135,6 +139,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "antakshari",
     name: "Bosco Sur Sangam",
+    eventType: "Antakshari",
     category: "Music",
     shortDesc: "The legendary team-based singing and song recall duel.",
     detail: "Antakshari​\n\nWith the unforgettable soundtrack moments of Guardians of the Galaxy to the musical energy and friendships of Pitch Perfect, this event is all about music, memories, and good vibes. Every lyric is a clue, every song unlocks a new memory, and every team races to keep the rhythm alive. One moment you are hit with nostalgia; the next, you are laughing through the chaos of fierce competition and adventure in every flow. Expect surprise bangers, throwback hits, and nonstop energy - know the track, own the mic, take the Win.",
@@ -164,6 +169,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "western-music",
     name: "Bosco Beat",
+    eventType: "Western Music (6-12) - Beat",
     category: "Music",
     shortDesc: "A battle of voices and verses. Where lyrics hit harder.",
     detail: "Pack your bags, grab your playlist, and get ready for an adventure powered by pure vibes. This is your ticket to a journey where every beat unlocks a new destination. One moment you are cruising through the galaxy with the Guardians of the Galaxy, the next you are sailing the Grand Line with the Straw Hats, or embarking on a quest worthy of a legendary fantasy saga. From Bad Bunny hits and pop bangers to rock classics that never miss, the stage becomes a map and the music becomes your guide. So gather your crew, embrace your main-character arc, and let the adventure begin, one song at a time.",
@@ -200,6 +206,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "eastern-dance",
     name: "Bosco Nritya",
+    eventType: "Eastern Dance (6-12) - Nritya",
     category: "Dance",
     shortDesc: "Classical and semi-classical Indian dance storytelling.",
     detail: "Forget predictable choreography and familiar routines. This event is your invitation to step into the unknown and dance beyond the ordinary. Whether your movements flow like sailing into uncharted waters with the Straw Hats in One Piece, weave through rhythm the way Link uncovers hidden paths in Breath of the Wild or lose yourself in the beat just like in ever-shifting worlds of Spirited Away, every step becomes part of an unfolding adventure. Follow the beat into unexplored territory, uncover stories hidden within every melody, and let rhythm become your compass as you journey beyond the familiar.",
@@ -237,6 +244,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "western-dance",
     name: "Bosco Tango",
+    eventType: "Western Dance (6-12) - Tango",
     category: "Dance",
     shortDesc: "High energy, choreographed Western street and contemporary dance.",
     detail: "Western Dance​\n\nWhen the lights cut, you are diving headfirst into a high-velocity blind drop where anything can happen. The execution has to be so razor-sharp that it feels like stepping into a  legendary Michael Jackson music video set, combined with the massive stadium energy of The Weeknd's halftime shows and the chaotic, high-octane synchronization of the IPL 2026 Final dance show. No safe counts, no holding back, just sharp shifts, high stakes, and the risk of leaving everything on the floor. Ditch the manual, take the gamble, and let the ultimate stage adventure begin.",
@@ -263,6 +271,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "dance-faceoff",
     name: "Bosco Overdrive",
+    eventType: "Dance Faceoff",
     category: "Dance",
     shortDesc: "Own the floor. No rules. Just moves that speak.",
     detail: "When an entire room locks its eyes on the center, a dance battle stops being a casual performance and becomes a massive, collective spectacle. It is the intense, underground crew rivalry of a Step Up 3D battle, the raw, legendary defiance of a ‘You Got Served’ faceoff, and the high-stakes, crowd-pleasing improvisation of a world-class dance arena. It is turning a circle of spectators into an arena of split-second improvisation, where a single clean transition can shut down the music and a flawless counter-move changes everything. Own the center, drop your best combination, and let the ultimate stage adventure begin.",
@@ -294,6 +303,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "coding-debugging",
     name: "Bosco Byte-Blitz",
+    eventType: "Coding and Debugging",
     category: "Cybernetics",
     shortDesc: "Level up your skills in the ultimate gaming showdown.",
     detail: "Frodo had a map to Mordor. You have a screen full of errors. Embark on a digital adventure where every bug is an obstacle, every algorithm is a hidden path and every solution is a step closer to the destination. Venture through tangled loops, cryptic clues, and unexpected dead ends as you navigate the vast landscape of code. Some challenges demand creativity, others demand patience, but all require the courage to keep moving forward. In this quest, writing a code is only half the battle. The journey has begun. Will you conquer the code, or get lost in the maze?",
@@ -340,6 +350,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "cyberhunt",
     name: "Bosco Cipher",
+    eventType: "Cyberhunt",
     category: "Cybernetics",
     shortDesc: "Solve cryptic logic locks and map routes in a virtual scavenger hunt.",
     detail: "Embark on a thrilling adventure where mystery, strategy, and excitement come together in a race against time! Inspired by the immersive world of Ready Player One and the treasure-hunt brilliance of The Da Vinci Code, this experience will take you through hidden clues, secret codes, and unexpected twists at every turn. Like true explorers venturing into the unknown, participants must rely on sharp thinking, teamwork, and determination to overcome challenges and uncover the final victory. Every step is a new discovery, every puzzle a new path — making this an unforgettable journey filled with suspense, adventure, and the thrill of the chase.",
@@ -369,7 +380,8 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "digital-art-cyber",
-    name: "Bosco Pixelcraft",
+    name: "Bosco Comic Con",
+    eventType: "Digital Art",
     category: "Cybernetics",
     shortDesc: "Vector design and digital painting illustrating the untouched nature.",
     detail: "From charting unexplored fantasy realms to rendering neon cyberpunk frontiers that do not exist yet, digital art is a high-stakes expedition into the unknown. It is Spider-Verse level dimension-hopping, the breathless thrill of an uncharted open-world RPG, and a little chaos when you venture off the map without a backup file. It is turning a blank canvas into a portal of pure discovery, where a single brushstroke opens a wormhole and a massive composition rewrites reality itself. This is where you do not just create, you pioneer. Ready your tools, load your coordinates, plant your flag on undiscovered ground, and let the ultimate creative adventure begin.",
@@ -411,6 +423,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "short-film",
     name: "Bosco Montage",
+    eventType: "Short Film Making",
     category: "Multimedia",
     shortDesc: "Create, shoot, and compile a short narrative film based on the theme.",
     detail: "From the crazy adventures of Indiana Jones to the cinematic genius of Christopher Nolan, cinema has always been for people bold enough to go all in on their ideas. This event is your chance to lock in and direct your own masterpiece—where every shot gives Interstellar vibes, every twist has the intensity of Mission Impossible, and every scene is an absolute mic-drop moment. This is not just filmmaking—it is your chance to let the creative thoughts win, build entire worlds, and turn random ideas into something that feels straight out of Netflix; after all,  sometimes the biggest flex is not finding the treasure—it is creating a story so peak that nobody can look away from it.",
@@ -441,6 +454,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "journalism",
     name: "Bosco Chronicles",
+    eventType: "Journalism",
     category: "Multimedia",
     shortDesc: "Investigate, write, and layout a digital newspaper newsletter covering the fest.",
     detail: "Like Peter Parker behind a camera or Clark Kent behind a notepad, journalists are superheroes hiding in plain sight. But journalism is not just reporting the news—it is an adventure. It is following trails like Tintin on a globe-trotting investigation, uncovering secrets worthy of Gotham's finest detectives, and diving headfirst into mysteries deeper than Gravity Falls. Armed with nothing but a notebook, a camera, and your curiosity, you will chase leads through uncharted territory, navigate twists worthy of Indiana Jones, and uncover truths hidden in plain sight. Are you ready for the journey?",
@@ -474,6 +488,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "photography",
     name: "Bosco Vignette",
+    eventType: "Photography",
     category: "Multimedia",
     shortDesc: "Freeze moments. Tell stories without words.",
     detail: "Peter Parker needs his camera to pay rent. And you? You need to capture the ultimate shot of this school fest. Photography is not just about tapping a screen. It is a high-stakes safari through unpredictable crowds and shifting lights. Think of your camera as a compass. You can chase the neon-drenched atmosphere of Blade Runner, or trek towards a raw, candid moment worthy of a National Geographic cover. Take the adventure past the obvious angles and discover a completely new perspective. ​",
@@ -508,6 +523,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "ad-wars",
     name: "Bosco Caricature",
+    eventType: "Ad Wars",
     category: "Multimedia",
     shortDesc: "Pitch, market, and perform a live advertisement for a bizarre gadget.",
     detail: "Wait... a bunch of influencers convinced millions of people that a bottle of flavoured water was the coolest thing on the planet? Yep. And that is exactly why advertising is one of the greatest adventures out there. This is not  just about selling a product—it is about turning the ordinary into the unforgettable. One moment you are staring at an object thinking, \"Bro, what am I even supposed to do with this?\" and the next you are building a story, creating hype, and making people believe it is the greatest thing they have seen all day. So lock in, trust the creative chaos, and let your imagination cook because somewhere between the memes, the madness, and the marketing magic, you will discover the secret every advertiser is chasing.",
@@ -547,6 +563,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "chess",
     name: "Bosco Endgame",
+    eventType: "Chess",
     category: "Sports",
     shortDesc: "Outthink and checkmate your opponent on the chessboard grid.",
     detail: "Do you think you have got the IQ of a detective, the strategy of a Marvel mastermind, and the patience of a Jedi? Then chess is your next adventure. Venture into a battlefield where every move shapes the story, every sacrifice unlocks a new path, and every checkmate feels like defeating the final boss. Whether you are channeling your inner Beth Harmon, or playing five moves ahead like a true grandmaster, this is your chance to outwit, outplay, and outlast. Gather your courage, trust your instincts, and embark on an adventure where the greatest weapon is your mind.",
@@ -573,6 +590,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "table-tennis",
     name: "Bosco Ricochet",
+    eventType: "Table Tennis",
     category: "Sports",
     shortDesc: "Rapid-fire singles table tennis matches in the recreational camp.",
     detail: "Harry had a wand. You have a paddle. Embark on an adventure where every spin is a plot twist and every rally a battle against the odds. Following the legacy of Ma Long, Fan Zhendong, and Jan-Ove Waldner, you will face unpredictable spins, relentless attacks, and heart-racing moments that demand split-second brilliance and unwavering composure. Every rally is an adventure. ‘They call it a point. We call it a story.’ A story of courage, comebacks, and opportunities seized in the blink of an eye. The table is your stage, the racket your pen, and every shot writes a new chapter.",
@@ -608,6 +626,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "volleyball",
     name: "Bosco Skybound",
+    eventType: "Volleyball",
     category: "Sports",
     shortDesc: "High-flying 6v6 volleyball matches on the sand court.",
     detail: "Step into a high-energy battle where passion, teamwork, and determination take center stage! Inspired by the adventurous spirit of Around the World in Eighty Days and the breathtaking action of Pirates of the Caribbean, this event promises thrilling rallies, fearless dives, and unforgettable moments of glory. Every serve and spike brings a rush of excitement as teams push their limits and chase victory with unstoppable spirit. Why stay on the sidelines when the adventure begins with every serve and every point?",
@@ -635,6 +654,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "tag-games",
     name: "Bosco Playverse",
+    eventType: "Tag+ Unconventional Games",
     category: "Sports",
     shortDesc: "Team obstacle relays and physical survival challenges.",
     detail: "You are not ready! Think again. You are still not ready for the adventure! Percy Jackson had monsters. Nathan Drake had lost treasures. You have obstacles, surprises and absolute chaos. This is not just a game but a journey through twists, turns, and unpredictable challenges. Run, dodge, adapt and conquer the unknown. Expect the unexpected, trust your team and keep moving, because only the boldest explorers make it to the finish.",
@@ -663,6 +683,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "pickleball",
     name: "Bosco CrossCourt",
+    eventType: "Pickleball",
     category: "Sports",
     shortDesc: "Fast paddle rallies on the courtyard pickleball grid.",
     detail: "Step into a world of excitement and adventure where every rally feels like a journey into the unknown, whether you dream of adventure like The Hunger Games or teamwork like Percy Jackson. With heart-racing action, fierce competition, and moments that keep everyone on the edge of their seats, this event is all about courage, teamwork, and chasing victory against all odds. From powerful smashes to unforgettable comebacks, every match promises energy, passion, and the spirit of adventure that turns every player into a hero of their own story. Will you rise to the challenge and make every point part of your adventure?",
@@ -709,6 +730,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "digital-art-literature",
     name: "Bosco Spearhead",
+    eventType: "Javelin Throw",
     category: "Sports",
     shortDesc: "Precision and distance javelin throw track and field event.",
     detail: "(Savio) (Pre-determined event) This is not just a javelin throw. It is the opening chapter of a grand adventure. Charge down the runway with Link's determination, Hawkeye's accuracy, and Tanjiro's never-give-up mindset. Like Luffy chasing the One Piece or Indiana Jones hunting the next legendary artifact, you are heading where no one else has gone before. The runway is your questline, the sky is your open world, and the javelin is your final power-up. No respawns. No second chances. Just one throw to make the highlight reel. Take aim, let it fly, and unlock legendary status",
@@ -739,6 +761,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "eco-fashion",
     name: "Bosco Vogue",
+    eventType: "Eco Fashion and Interior Decor (6-12)",
     category: "Art and Literature",
     shortDesc: "Build and model clothing items using raw recyclable elements.",
     detail: "Inspired by the zero-waste vision of Wall-E and the rugged resourcefulness of Mad Max, this adventure challenges you to look at a pile of discarded junk and see a high-end runway collection. This is not just upcycling, it is your chance to play the role of Greta Thunberg and Picasso simultaneously, turning plastic bottles, weathered newspapers, and forgotten fabrics into sleek, avant-garde design statements. The clock is ticking, raw materials are your only currency, and the ultimate flex is not buying the future, it is inventing it out of what the world left behind. Grab your toolkit, brave the elements of design, and embark on the ultimate upcycling safari.",
@@ -773,6 +796,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "art-graffiti",
     name: "Bosco Art Attack",
+    eventType: "Art and Graffiti",
     category: "Art and Literature",
     shortDesc: "Graffiti and mural sketch design on large parchment canvas boards.",
     detail: "From the mind-bending creativity of Picasso to the cartoon chaos of Walt Disney, every legendary artwork started with someone looking at a blank space and thinking, \"Yeah, I can definitely do something cool with this.\" And that is exactly what this event is all about. . One moment you are drawing a simple idea, and the next you are fighting your own creative boss battle, trying to figure out whether you have made a masterpiece or accidentally started a whole new art style. So grab your markers, paints, and spray cans, trust the chaos, and let your imagination carry the map, because here adventures are not found- they are created.",
@@ -831,6 +855,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "poetry-writing",
     name: "Bosco Magnum Opus",
+    eventType: "Theme Poetry Writing",
     category: "Art and Literature",
     shortDesc: "Let your words create a storm that stays.",
     detail: "Forget the dusty stanzas and rigid rhyme schemes of the past. Your words are not meant to sit quietly on a page, they are meant to seize the day, ‘Carpe Diem’ as John Keating said. This is your 3 a.m. notes app breakthroughs thrown into a high stakes, high reward quest for glory. Wednesday did put it right, “It is no wonder Edgar Allan Poe became a drug-addled madman.”, not only because he went to Nevermore, but because he was trying to write a masterpiece that would shake Shakespeare himself. Now it is your turn. Follow the trail of imagination, venture beyond the ordinary, and see where the words lead.",
@@ -869,6 +894,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "jam",
     name: "Bosco Minute Mania",
+    eventType: "Just a Minute",
     category: "Performance",
     shortDesc: "Speed speaking challenge without hesitation, deviation, or repetition.",
     detail: "Just A Minute​\n\nThe Doctor had a TARDIS. You have just sixty seconds. That is all you get. In this adventure against the clock, hesitation is your greatest enemy and confidence is your strongest ally. Sounds easier than getting through a single Instagram reel, but the moment you step up to the mic, your brain goes full Seong Gi-Hun. Speak fast, and think faster - a microsecond of silence and you are eliminated faster than a player tripping in ‘Red Light, Green Light’. Lock in, channel your inner Max Verstappen, and prove that you can conquer the clock under sixty seconds of pure, fast-paced adrenaline.",
@@ -895,6 +921,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "improv",
     name: "Bosco Ad-Lib",
+    eventType: "Improv",
     category: "Performance",
     shortDesc: "Impromptu acting rounds based on comical scenarios given on-spot.",
     detail: "Did you know the famous “I am Iron Man” line in Iron Man was completely improvised? Robert Downey Jr. threw out the script, stepped into the unknown, and changed the entire Marvel Cinematic Universe forever. This is not a casual stroll, it is a high-stakes competition. It is an expedition into uncharted comedic territory where there is no safety net. Be spontaneous. Seize the moment. Treat the stage like your own personal adventure, where your sharpest wit is your only compass. Leave your audience on the edge of their seats, or make them fall off in laughter. Will you find the perfect line, the perfect joke to survive the adventure, or will you crumble under the fierce spotlight?",
@@ -935,6 +962,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "dumb-charades",
     name: "Bosco Jester",
+    eventType: "Dumb Charades",
     category: "Performance",
     shortDesc: "Translate cryptic explorer terms or movie titles through gestures.",
     detail: "From the absolute chaos of Jumanji to the mind-bending madness of Inception, this event is a full-on rollercoaster of creativity, quick thinking, and pure adventure. Words are off the table, so every gesture, expression, and move has to do the talking. One wrong signal can send your team into confusion, while one brilliant act can change the game in seconds. No dialogues. No second chances. Just vibes, instincts, and the clock ticking.",
@@ -981,6 +1009,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "gi60",
     name: "Bosco Prodigy",
+    eventType: "GI60",
     category: "Performance",
     shortDesc: "Perform a complete, self-contained theatrical play in exactly 60 seconds.",
     detail: "From mimicking Charlie Chaplin turning moments into pure comical chaos to solving rubix cubes in seconds, GI60 is all about stepping out of the ordinary and making sixty seconds feel unforgettable. Every performance feels like jumping into a new quest where anything can happen before the timer hits zero. This is where one minute turns into a wild energy where spontaneity takes over and every second feels like a new twist waiting to happen.",
@@ -1039,7 +1068,8 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "turncoat-debate",
-    name: "Bosco Figure-it-out",
+    name: "Bosco Polaris",
+    eventType: "Turncoat Debate",
     category: "Performance",
     shortDesc: "A quick-thinking deduction and riddle-solving performance challenge.",
     detail: "To be Revealed on the day of the event ​ (YE)\n\nNot every adventure begins with a map. Some begin with a question, a pattern, or a detail that doesn't quite fit. Step into the unknown, think beyond the obvious, and see where curiosity takes you. Channel Sherlock's instinct for the unexpected and L's ability to look past appearances. The path ahead is uncertain, the answers aren't always visible, and that's exactly what makes the journey worth taking.",
@@ -1061,6 +1091,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "drama",
     name: "Bosco Theatricals",
+    eventType: "Drama",
     category: "Performance",
     shortDesc: "One-act theatre plays exploring local folklore or explorer histories.",
     detail: "This is not a predictable script; it is the absolute tension of a cold Cillian Murphy style split-screen faceoff, the room-silencing suspense of a Kanye Runaway piano intro, and the pure, desperate panic of a high-stakes Project Hail Mary survival scenario where the lines go out the window and you have to improvise to stay alive. It is a ruthless arena where alliances shatter in seconds, and a single whisper completely resets the room's aura. Lock in, back your squad up, and let us turn this stage into our own playground. Toss out the script entirely, dive headfirst into the unknown, and let us turn this moment into our ultimate, unchartered cinematic adventure.",
@@ -1122,6 +1153,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "non-fire-cooking",
     name: "Bosco Masterchef",
+    eventType: "Non Fire Cooking (6-8)",
     category: "Others",
     shortDesc: "Prepare delicious explorer snacks and dishes without using heat.",
     detail: "Remy from Ratatouille proved that anyone can cook, but only a true adventurer can create a masterpiece with no flame to guide the way. Think of this as MasterChef meets Man vs. Wild, a culinary expedition where raw ingredients are your resources, creativity is your compass and time is your greatest challenge. Whether you are chasing for the meticulous perfection of The Bear or crafting a bold fusion that breaks every rule in the cookbook, every dish is a step into the unknown. The kitchen is your uncharted territory where imagination reigns supreme and ordinary ingredients become extraordinary discoveries. So trust your instincts, embrace the adventure and serve up a creation worthy of legend.",
@@ -1151,6 +1183,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "sudoku",
     name: "Bosco Gridlock",
+    eventType: "Sudoku",
     category: "Others",
     shortDesc: "Solve complex numerical logic grid puzzles under speed rounds.",
     detail: "Each grid presents its own unique and challenging task that requires concentration and determination on your part to overcome it. Built with the calm intensity of Magnus Carlsen when he plays chess and strategy calls are made for Formula One races, it is an adventure that entails the use of reason, perseverance, and wit. Each number holds a clue and takes you one step nearer to solving the next. What starts out as a puzzle quickly turns into an adventurous journey of reasoning and strategy.",
@@ -1183,6 +1216,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "quiz",
     name: "Bosco Synapse",
+    eventType: "Quiz",
     category: "Others",
     shortDesc: "The grand general knowledge quiz. Speed, buzzer, and memory rounds.",
     detail: "This is not a boring classroom test; it is the elite, lightning-fast trivia clashing of a Jeopardy! Mastermind showdown, the chaotic, brilliant plot twists of a Brooklyn Nine-Nine Halloween Heist, and the intense, pulse-pounding strategy of a Squid Game tactical choice. It is a battlefield of instant decisions where a single clutch buzz can completely flip the leaderboard upside down. No safe passes, no holding back, just raw intellect, sharp instinct, and the thrill of outsmarting the room. Ditch the manual, trust your gut, and let the ultimate strategic adventure begin.",
@@ -1216,6 +1250,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "scrabble",
     name: "Bosco Wordsmith",
+    eventType: "Scrabble",
     category: "Others",
     shortDesc: "Assemble high-scoring vocabulary words on the game board.",
     detail: "Ready to turn letters into legends? Scrabble is the ultimate word quest, where every tile is a clue, every bonus square is buried treasure, and every move can change the game. Whether you are spelling like Hermione, deducing like Sherlock, hunting the One Piece with the Straw Hats, or pulling off a comeback worthy of Avengers: Endgame, victory is just one word away. Gather your crew, trust your instincts, and set off on an adventure where strategy, creativity, and a little luck can turn the right word into glory.\n\nFormat: ●​ The event will be conducted in 3 rounds, in which each participant will go up against another competitor chosen by a draw of chits. ●​ Each game will consist of 15 turns per player. ●​ In each turn, the player will be given one minute to form a word using the scrabble tiles provided. ●​ The score for each turn is the sum of the letter values in each word formed or modified on that turn, plus the additional points obtained from placing letters on premium squares. ●​ At the end of each game, the scores of every player will be noted, after which they will be paired with another competitor for the next game until each player has played 3 games. ●​ The awards will be decided by the total cumulative points at the end of the 3 games.",
@@ -1238,7 +1273,8 @@ const EVENTS_DATA: Event[] = [
   },
   {
     id: "math-marathon",
-    name: "Bosco Brainwave",
+    name: "Bosco Calcrush",
+    eventType: "Math Marathon",
     category: "Others",
     shortDesc: "Test your mental memory, recall speed, and pattern recognition.",
     detail: "Memory Game ​ (YCS)\n\nMemory is not just about remembering, it is about holding onto details as the journey unfolds. Channel the focus of Sherlock recalling details everyone else missed, the sharp mind of Hermione drawing information from everything she has learned, and the persistence of Senku preserving knowledge across generations. As information flashes by, every detail becomes part of the adventure. Stay alert, trust your gut, and navigate your way through a challenge where the greatest discoveries belong to those who remember.",
@@ -1262,6 +1298,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "pointless",
     name: "Bosco Voidix",
+    eventType: "Pointless",
     category: "Others",
     shortDesc: "Obscure answer survey quiz. The lowest scoring correct answers win.",
     detail: "You studied all night for the wrong exam. Welcome to Pointless, the only adventure where being too smart can get you eliminated. Think of Indiana Jones bypassing the flashy, gold-plated chalice to choose the humble Holy Grail. Forget the obvious, abandon the safe route and venture into uncharted territory where the weirdest answers are often the best ones. This is not about knowing  more. It is about thinking differently because sometimes, the greatest discoveries are the ones nobody else thought of.",
@@ -1571,6 +1608,20 @@ export default function EventsPage() {
                     onClick={() => setActiveEvent(evt)}
                     className="parchment-card group relative flex flex-col overflow-hidden cursor-pointer rounded-lg px-4 pt-5 pb-4"
                   >
+                    {/* Day tag (top left) */}
+                    <div
+                      className="absolute top-3 left-3 z-20 font-sans font-black uppercase text-[8px] tracking-wider px-2 py-0.5"
+                      style={{
+                        background: "#A37F3E",
+                        color: "#F4ECC8",
+                        border: "1.5px solid #2B1A0E",
+                        borderRadius: "3px",
+                        boxShadow: "1.5px 1.5px 0 rgba(43,26,14,1)",
+                      }}
+                    >
+                      {evt.day.toUpperCase()}
+                    </div>
+
                     {/* Stage tag (top right) */}
                     <div
                       className="absolute top-3 right-3 z-20 font-sans font-black uppercase text-[8px] tracking-wider px-2 py-0.5"
@@ -1599,31 +1650,30 @@ export default function EventsPage() {
 
                     {/* Title */}
                     <h3
-                      className="font-bebas uppercase leading-none font-bold text-center relative z-20"
+                      className="font-bebas uppercase leading-none font-bold text-center relative z-20 mb-2"
                       style={{ fontSize: 20, color: "#2B1A0E", letterSpacing: "0.04em" }}
                     >
                       {evt.name}
                     </h3>
 
-                    {/* Day Badge */}
-                    <div className="flex justify-center mt-1.5 relative z-20">
+                    {/* Event Type (Type of the Fest) */}
+                    <div className="mt-auto pt-4 text-center relative z-20">
                       <span
-                        className="font-sans font-black uppercase tracking-[0.14em] text-[9px] px-4 py-1 rounded-sm"
+                        className="font-sans font-black uppercase tracking-[0.12em] text-[8.5px] px-2 py-0.5 rounded-sm"
                         style={{
-                          background: "#3B5E8C",
-                          color: "#F4ECC8",
-                          border: "1.5px solid #2B1A0E",
-                          boxShadow: "1.5px 1.5px 0 rgba(43,26,14,0.8)",
+                          color: "#2B1A0E",
+                          border: "1px dashed rgba(43,26,14,0.35)",
+                          background: "rgba(43,26,14,0.04)"
                         }}
                       >
-                        {evt.day.toUpperCase()}
+                        {evt.eventType}
                       </span>
                     </div>
 
                     {/* View Details Button */}
-                    <div className="mt-auto pt-3 relative z-20">
+                    <div className="pt-2.5 relative z-20">
                       <span
-                        className="block w-full text-center font-bebas text-[13px] tracking-wider uppercase py-1.5 text-white"
+                        className="block w-full text-center font-bebas text-[13px] tracking-wider uppercase py-1.5 text-white transition-colors group-hover:bg-[#273C1E]"
                         style={{
                           background: "#37532A",
                           border: "2px solid #2B1A0E",
