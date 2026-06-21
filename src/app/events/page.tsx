@@ -1639,7 +1639,7 @@ export default function EventsPage() {
                     {/* Circular Logo */}
                     <div className="flex justify-center mb-3 relative z-20">
                       <div
-                        className="w-[120px] h-[120px] rounded-full overflow-hidden relative"
+                        className="w-[148px] h-[148px] rounded-full overflow-hidden relative"
                         style={{
                           boxShadow: "0 4px 16px rgba(0,0,0,0.5), 3px 3px 0 rgba(43,26,14,0.95)",
                         }}
@@ -1650,14 +1650,14 @@ export default function EventsPage() {
 
                     {/* Title */}
                     <h3
-                      className="font-bebas uppercase leading-none font-bold text-center relative z-20 mb-2"
-                      style={{ fontSize: 20, color: "#2B1A0E", letterSpacing: "0.04em" }}
+                      className="font-bebas uppercase leading-none font-bold text-center relative z-20"
+                      style={{ fontSize: 23, color: "#2B1A0E", letterSpacing: "0.04em" }}
                     >
                       {evt.name}
                     </h3>
 
                     {/* Event Type (Type of the Fest) */}
-                    <div className="mt-3 text-center relative z-20">
+                    <div className="mt-1.5 text-center relative z-20">
                       <span
                         className="font-sans font-extrabold text-[10.5px] px-3 py-1 rounded-sm inline-block"
                         style={{
