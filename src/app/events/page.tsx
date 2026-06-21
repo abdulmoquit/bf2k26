@@ -1774,7 +1774,7 @@ export default function EventsPage() {
                   <Calendar className="h-4.5 w-4.5 text-gold-accent shrink-0" />
                   <div className="flex flex-col">
                     <span className="text-[10px] font-extrabold uppercase text-ink-dark/70 tracking-wider">Schedule</span>
-                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.time}</span>
+                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">--</span>
                   </div>
                 </div>
                 {/* Day Spec */}
