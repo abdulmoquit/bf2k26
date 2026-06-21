@@ -372,7 +372,7 @@ export default function Home() {
                 className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-3.5"
                 style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
               >
-                Don Bosco School · Kolkata
+                Don Bosco School · Park Circus
               </p>
 
               {/* CTA Button */}
@@ -386,7 +386,7 @@ export default function Home() {
               </button>
             </motion.div>
 
-            {/* ── RIGHT: Expedition Sponsor ── */}
+            {/* ── RIGHT: Core Sponsor ── */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
@@ -397,7 +397,7 @@ export default function Home() {
                 className="font-bebas uppercase tracking-[0.28em]"
                 style={{ fontSize: 10, color: "rgba(235,220,185,0.7)" }}
               >
-                Expedition Sponsor
+                Core Sponsor
               </p>
 
               <motion.div
@@ -421,23 +421,6 @@ export default function Home() {
                     className="object-contain"
                   />
                 </div>
-                <span
-                  className="font-bebas uppercase tracking-wider text-sm mt-3"
-                  style={{ color: "#2B1A0E", lineHeight: 1 }}
-                >
-                  Peerless
-                </span>
-                <span
-                  className="font-sans font-extrabold uppercase tracking-wider mt-1.5 text-[9px] px-2.5 py-0.5 rounded"
-                  style={{
-                    color: "#2B1A0E",
-                    background: "rgba(43,26,14,0.08)",
-                    border: "1px solid rgba(43,26,14,0.18)",
-                    display: "inline-block",
-                  }}
-                >
-                  Expedition Sponsor
-                </span>
               </motion.div>
             </motion.div>
           </div>
@@ -549,7 +532,7 @@ export default function Home() {
                 className="font-sans font-black uppercase tracking-[0.25em] mt-2 mb-2"
                 style={{ fontSize: 9.5, color: "#82C341" }}
               >
-                Don Bosco School · Kolkata
+                Don Bosco School · Park Circus
               </p>
             </motion.div>
 
@@ -580,7 +563,7 @@ export default function Home() {
               </button>
             </motion.div>
 
-            {/* Expedition Sponsor */}
+            {/* Core Sponsor */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -591,7 +574,7 @@ export default function Home() {
                 className="font-bebas uppercase tracking-[0.25em] mb-3"
                 style={{ fontSize: 9.5, color: "rgba(235,220,185,0.7)" }}
               >
-                Expedition Sponsor
+                Core Sponsor
               </p>
 
               <motion.div
@@ -615,23 +598,6 @@ export default function Home() {
                     className="object-contain"
                   />
                 </div>
-                <span
-                  className="font-bebas uppercase tracking-wider text-sm mt-3"
-                  style={{ color: "#2B1A0E", lineHeight: 1 }}
-                >
-                  Peerless
-                </span>
-                <span
-                  className="font-sans font-extrabold uppercase tracking-wider mt-1.5 text-[9px] px-2.5 py-0.5 rounded"
-                  style={{
-                    color: "#2B1A0E",
-                    background: "rgba(43,26,14,0.08)",
-                    border: "1px solid rgba(43,26,14,0.18)",
-                    display: "inline-block",
-                  }}
-                >
-                  Expedition Sponsor
-                </span>
               </motion.div>
             </motion.div>
           </div>
