@@ -1639,9 +1639,9 @@ export default function EventsPage() {
                     {/* Circular Logo */}
                     <div className="flex justify-center mb-3 relative z-20">
                       <div
-                        className="w-[120px] h-[120px] rounded-full border-[3px] border-[#2B1A0E] overflow-hidden bg-[#1E1208] flex items-center justify-center relative"
+                        className="w-[120px] h-[120px] rounded-full overflow-hidden relative"
                         style={{
-                          boxShadow: "0 4px 12px rgba(0,0,0,0.4), 2.5px 2.5px 0 rgba(43,26,14,0.95)",
+                          boxShadow: "0 4px 16px rgba(0,0,0,0.5), 3px 3px 0 rgba(43,26,14,0.95)",
                         }}
                       >
                         <CircularEventLogo id={evt.id} icon={evt.icon} name={evt.name} />
@@ -1657,13 +1657,15 @@ export default function EventsPage() {
                     </h3>
 
                     {/* Event Type (Type of the Fest) */}
-                    <div className="mt-auto pt-4 text-center relative z-20">
+                    <div className="mt-3 text-center relative z-20">
                       <span
-                        className="font-sans font-black uppercase tracking-[0.12em] text-[8.5px] px-2 py-0.5 rounded-sm"
+                        className="font-sans font-extrabold text-[10.5px] px-3 py-1 rounded-sm inline-block"
                         style={{
                           color: "#2B1A0E",
-                          border: "1px dashed rgba(43,26,14,0.35)",
-                          background: "rgba(43,26,14,0.04)"
+                          border: "1.5px solid rgba(43,26,14,0.25)",
+                          background: "rgba(43,26,14,0.06)",
+                          letterSpacing: "0.02em",
+                          lineHeight: 1.4,
                         }}
                       >
                         {evt.eventType}
@@ -1671,7 +1673,7 @@ export default function EventsPage() {
                     </div>
 
                     {/* View Details Button */}
-                    <div className="pt-2.5 relative z-20">
+                    <div className="mt-auto pt-3 relative z-20">
                       <span
                         className="block w-full text-center font-bebas text-[13px] tracking-wider uppercase py-1.5 text-white transition-colors group-hover:bg-[#273C1E]"
                         style={{
