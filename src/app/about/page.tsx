@@ -86,29 +86,28 @@ export default function About() {
 
   const graphicsTeam = [
     "RISHIK ROY",
-    "DHRUV ARORA",
-    "AAYANSH BHALOTIA",
     "RUDRA DAS",
     "NAMAN AGARWAL",
     "AAMIR JAVED",
     "AARAV DAGA",
+    "AAYANSH BHALOTIA",
+    "DHRUV ARORA",
   ];
 
   const videoTeam = [
     "FARZAN RAZA",
-    "SOUMITRO SAMANTA",
-    "RUDRA DAS",
     "SAMBIT ROY",
-    "SWARNAVA PRAMANIK",
-    "VIVAAN GUPTA",
+    "RUDRA DAS",
+    "SOUMITRO SAMANTA",
     "ADVAY KOLEY",
+    "VIVAAN GUPTA",
   ];
 
   const websiteTeam = [
-    "ABDUL MOQUIT",
     "SUMEDH GADIA",
-    "VANSH BOTHRA",
+    "ABDUL MOQUIT",
     "RISHIT VARMA",
+    "VANSH BOTHRA",
     "AHMED ANSARI",
     "SAKSHAM SINGHI",
   ];
@@ -116,11 +115,11 @@ export default function About() {
   const teacherCommittee = [
     "MR. MATHEW SAM",
     "MRS. ANANNYA DASGUPTA",
-    "MR. SUMIT SENGUPTA",
     "MRS. GILLIAN CULPEPER",
+    "MRS. SHARMILEE ACHARYYA",
+    "MR. SUMIT SENGUPTA",
     "MRS. SWAGATA ROY",
     "MR. THOMAS ANTHONY",
-    "MRS. SHARMILEE ACHARYYA",
   ];
 
   return (
@@ -250,21 +249,11 @@ export default function About() {
           <h2 className="font-bebas font-black text-2xl text-center text-[#F4ECC8] uppercase tracking-wider mb-8">
             Core Committee - Students
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-5 max-w-3xl mx-auto">
-            {studentCommittee.slice(0, 3).map((name, idx) => (
+          <div className="flex flex-wrap justify-center gap-5 max-w-3xl mx-auto">
+            {studentCommittee.map((name, idx) => (
               <div 
                 key={idx} 
-                className="md:col-span-2 p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
-              >
-                <ScrambleText text={name} />
-              </div>
-            ))}
-            {studentCommittee.slice(3).map((name, idx) => (
-              <div 
-                key={idx} 
-                className={`p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px] ${
-                  idx === 0 ? "md:col-span-2 md:col-start-2" : "md:col-span-2"
-                }`}
+                className="w-full sm:w-[220px] p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
               >
                 <ScrambleText text={name} />
               </div>
@@ -277,11 +266,11 @@ export default function About() {
           <h2 className="font-bebas font-black text-2xl text-center text-[#F4ECC8] uppercase tracking-wider mb-8">
             Graphics Team
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-5 max-w-4xl mx-auto">
             {graphicsTeam.map((name, idx) => (
               <div 
                 key={idx} 
-                className="p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
+                className="w-full sm:w-[200px] p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
               >
                 <ScrambleText text={name} />
               </div>
@@ -294,11 +283,11 @@ export default function About() {
           <h2 className="font-bebas font-black text-2xl text-center text-[#F4ECC8] uppercase tracking-wider mb-8">
             Video Team
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-5 max-w-4xl mx-auto">
             {videoTeam.map((name, idx) => (
               <div 
                 key={idx} 
-                className="p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
+                className="w-full sm:w-[200px] p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
               >
                 <ScrambleText text={name} />
               </div>
@@ -311,11 +300,11 @@ export default function About() {
           <h2 className="font-bebas font-black text-2xl text-center text-[#F4ECC8] uppercase tracking-wider mb-8">
             Website Team
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-3xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-5 max-w-3xl mx-auto">
             {websiteTeam.map((name, idx) => (
               <div 
                 key={idx} 
-                className="p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
+                className="w-full sm:w-[220px] p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
               >
                 <ScrambleText text={name} />
               </div>
@@ -328,21 +317,11 @@ export default function About() {
           <h2 className="font-bebas font-black text-2xl text-center text-[#F4ECC8] uppercase tracking-wider mb-8">
             Core Committee - Teachers
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-8 gap-5 max-w-4xl mx-auto">
-            {teacherCommittee.slice(0, 4).map((name, idx) => (
+          <div className="flex flex-wrap justify-center gap-5 max-w-4xl mx-auto">
+            {teacherCommittee.map((name, idx) => (
               <div 
                 key={idx} 
-                className="md:col-span-2 p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
-              >
-                <ScrambleText text={name} />
-              </div>
-            ))}
-            {teacherCommittee.slice(4).map((name, idx) => (
-              <div 
-                key={idx} 
-                className={`p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px] ${
-                  idx === 0 ? "md:col-span-2 md:col-start-2" : "md:col-span-2"
-                }`}
+                className="w-full sm:w-[200px] p-4 parchment-card shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:translate-y-[-2px] transition-transform duration-200 text-center flex items-center justify-center min-h-[60px]"
               >
                 <ScrambleText text={name} />
               </div>
