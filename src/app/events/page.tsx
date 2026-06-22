@@ -1413,14 +1413,18 @@ export default function EventsPage() {
   const [scheduleLoading, setScheduleLoading] = useState(true);
 
   const getEventTime = (eventName: string) => {
-    const match1 = scheduleData.day1.find(
-      (item) => item && item.activity && item.activity.toLowerCase() === eventName.toLowerCase()
-    );
+    const matchEvent = (item: any) => {
+      if (!item || !item.activity) return false;
+      const activityLower = item.activity.toLowerCase();
+      const eventNameLower = eventName.toLowerCase();
+      const baseActivity = item.activity.split("(")[0].trim().toLowerCase();
+      return baseActivity === eventNameLower || activityLower.includes(eventNameLower);
+    };
+
+    const match1 = scheduleData.day1.find(matchEvent);
     if (match1 && match1.time !== "----") return match1.time;
 
-    const match2 = scheduleData.day2.find(
-      (item) => item && item.activity && item.activity.toLowerCase() === eventName.toLowerCase()
-    );
+    const match2 = scheduleData.day2.find(matchEvent);
     if (match2 && match2.time !== "----") return match2.time;
 
     return null;
