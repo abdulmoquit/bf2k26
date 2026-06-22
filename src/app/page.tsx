@@ -275,8 +275,8 @@ export default function Home() {
               <div
                 className="relative select-none"
                 style={{
-                  width: "min(420px, 30vw, 38vh)",
-                  height: "min(420px, 30vw, 38vh)",
+                  width: "min(460px, 32vw, 40vh)",
+                  height: "min(460px, 32vw, 40vh)",
                   filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.75))",
                 }}
               >
@@ -285,7 +285,7 @@ export default function Home() {
                   alt="Boscofest 2026 Emblem"
                   fill
                   priority
-                  sizes="420px"
+                  sizes="460px"
                   className="object-contain"
                 />
               </div>
@@ -362,7 +362,7 @@ export default function Home() {
 
               {/* Sub-header */}
               <p
-                className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-3.5"
+                className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-8"
                 style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
               >
                 Don Bosco School · Park Circus
