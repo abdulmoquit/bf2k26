@@ -379,6 +379,8 @@ export default function Home() {
               </button>
             </motion.div>
 
+            {/* ── RIGHT: Invisible spacer to balance the left countdown column ── */}
+            <div className="hidden lg:block w-[240px] shrink-0" aria-hidden="true" />
 
           </div>
 
