@@ -60,7 +60,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "7 Performers",
     time: "Day 1, 10:00 AM",
     location: "Acoustic Courtyard",
-    day: "Day 1",
+    day: "Day 2",
     stage: "Off-stage",
     bounty: "₹8,000 + Custom Medals",
     rules: [
@@ -90,7 +90,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "8 + 3 Musicians",
     time: "Day 2, 2:30 PM",
     location: "Main Open-Air Stage",
-    day: "Day 2",
+    day: "Day 1",
     stage: "On-stage",
     bounty: "₹15,000 + Band Trophy",
     rules: [
@@ -120,7 +120,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "6 + 4 Musicians",
     time: "Day 1, 11:30 AM",
     location: "Senate Hall",
-    day: "Day 1",
+    day: "Day 2",
     stage: "On-stage",
     bounty: "₹6,000 + Vocalist Scroll",
     rules: [
@@ -154,7 +154,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "3 + 1 Reserve",
     time: "Day 1, 4:00 PM",
     location: "Assembly Grounds",
-    day: "Day 1",
+    day: "Day 2",
     stage: "Off-stage",
     bounty: "₹5,000 + Singing Crowns",
     rules: [
@@ -292,7 +292,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "2 Dancers",
     time: "Day 2, 3:30 PM",
     location: "Open Arena",
-    day: "Day 2",
+    day: "Day 1",
     stage: "On-stage",
     bounty: "₹10,000 + Champion Belt",
     rules: [
@@ -323,7 +323,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "2 Players",
     time: "Day 2, 9:30 AM",
     location: "Gaming Zone",
-    day: "Day 2",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹12,000 + Hacker Kit Bags",
     rules: [
@@ -549,7 +549,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "6 + 2 Performers",
     time: "Day 2, 1:30 PM",
     location: "Mini Stage B",
-    day: "Day 2",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹10,000 + Creative Ad Seal",
     rules: [
@@ -615,7 +615,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "2 + 2 Players",
     time: "Day 1, 11:00 AM",
     location: "Indoors Gym Room",
-    day: "Day 1",
+    day: "Day 2",
     stage: "Off-stage",
     bounty: "₹6,000 + TT Paddle Box",
     rules: [
@@ -653,7 +653,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "6 + 6 Players",
     time: "Day 2, 9:30 AM",
     location: "Outdoor Court",
-    day: "Day 2",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹18,000 + Volleyball Shield",
     rules: [
@@ -788,7 +788,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "2 Designers",
     time: "Day 2, 2:00 PM",
     location: "Main Stage Area",
-    day: "Day 2",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹15,000 + Green Leaf Award",
     rules: [
@@ -827,7 +827,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "2 Artists per category",
     time: "Day 1, 2:30 PM",
     location: "Creative Courtyard",
-    day: "Day 1",
+    day: "Day 2",
     stage: "Off-stage",
     bounty: "₹8,000 + Graffiti Marker Box",
     rules: [
@@ -920,7 +920,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "Individual Speaker",
     time: "Day 1, 10:30 AM",
     location: "Lecture Hall Alpha",
-    day: "Day 1",
+    day: "Day 2",
     stage: "Off-stage",
     bounty: "₹6,000 + Speaker Medal",
     rules: [
@@ -1043,7 +1043,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "1 + 1 Performer",
     time: "Day 2, 1:30 PM",
     location: "Theatre Lounge A",
-    day: "Day 2",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹8,000 + GI60 Seal",
     rules: [
@@ -1113,7 +1113,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "2 Solvers",
     time: "Day 1, 3:00 PM",
     location: "Senate Chamber",
-    day: "Day 1",
+    day: "Day 2",
     stage: "Off-stage",
     bounty: "₹8,000 + Riddlemaster Shield",
     rules: [
@@ -1207,7 +1207,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "2 Chefs",
     time: "Day 1, 10:30 AM",
     location: "Refectory Dining",
-    day: "Day 1",
+    day: "Day 2",
     stage: "Off-stage",
     bounty: "₹6,000 + Chef Hat Trophies",
     rules: [
@@ -1336,7 +1336,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "2 Participants",
     time: "Day 2, 11:00 AM",
     location: "Lecture Hall Beta",
-    day: "Day 2",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹7,000 + Brainwave Scroll",
     rules: [
@@ -1362,7 +1362,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "2 Players",
     time: "Day 2, 2:30 PM",
     location: "Theatre Hall B",
-    day: "Day 2",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹8,000 + Survey Trophy",
     rules: [
