@@ -1354,6 +1354,53 @@ function CircularEventLogo({ id, icon, name }: { id: string; icon: string; name:
   );
 }
 
+const FALLBACK_SCHEDULE = {
+  day1: {
+    event1: { activity: "Registration", floor: "ground floor", location: "1st floor", time: "10-11" },
+    event2: { activity: "Opening Ceremony", floor: "----", location: "----", time: "----" },
+    event3: { activity: "Bosco Montage", floor: "----", location: "----", time: "----" },
+    event4: { activity: "Bosco Byte-Blitz", floor: "----", location: "----", time: "----" },
+    event5: { activity: "Bosco Pixelcraft", floor: "----", location: "----", time: "----" },
+    event6: { activity: "Bosco Nritya", floor: "----", location: "----", time: "----" },
+    event7: { activity: "Bosco Minute Mania", floor: "----", location: "----", time: "----" },
+    event8: { activity: "Bosco Vogue", floor: "----", location: "----", time: "----" },
+    event9: { activity: "Bosco Magnum Opus", floor: "----", location: "----", time: "----" },
+    event10: { activity: "Bosco Jester", floor: "----", location: "----", time: "----" },
+    event11: { activity: "Bosco Prodigy", floor: "----", location: "----", time: "----" },
+    event12: { activity: "Bosco Masterchef", floor: "----", location: "----", time: "----" },
+    event13: { activity: "Bosco Vignette", floor: "----", location: "----", time: "----" },
+    event14: { activity: "Bosco Chronicles", floor: "----", location: "----", time: "----" },
+    event15: { activity: "Bosco Raag", floor: "----", location: "----", time: "----" },
+    event16: { activity: "Bosco Sur Sangam", floor: "----", location: "----", time: "----" },
+    event17: { activity: "Bosco Overdrive", floor: "----", location: "----", time: "----" },
+    event18: { activity: "Bosco Ricochet", floor: "----", location: "----", time: "----" },
+    event19: { activity: "Bosco Skybound", floor: "----", location: "----", time: "----" },
+    event20: { activity: "Bosco Beat", floor: "----", location: "----", time: "----" },
+    event21: { activity: "Bosco CrossCourt", floor: "----", location: "----", time: "----" },
+    event22: { activity: "Bosco Art Attack", floor: "----", location: "----", time: "----" },
+    event23: { activity: "Bosco Figure-it-out", floor: "----", location: "----", time: "----" }
+  },
+  day2: {
+    event1: { activity: "Registration", floor: "----", location: "----", time: "----" },
+    event2: { activity: "Bosco Caricature", floor: "----", location: "----", time: "----" },
+    event3: { activity: "Bosco Cipher", floor: "----", location: "----", time: "----" },
+    event4: { activity: "Bosco Theatricals", floor: "----", location: "----", time: "----" },
+    event5: { activity: "Bosco Ad-Lib", floor: "----", location: "----", time: "----" },
+    event6: { activity: "Bosco Remix", floor: "----", location: "----", time: "----" },
+    event7: { activity: "Bosco Jukebox", floor: "----", location: "----", time: "----" },
+    event8: { activity: "Bosco Chronicles", floor: "----", location: "----", time: "----" },
+    event9: { activity: "Bosco Gridlock", floor: "----", location: "----", time: "----" },
+    event10: { activity: "Bosco Tango", floor: "----", location: "----", time: "----" },
+    event11: { activity: "Bosco Synapse", floor: "----", location: "----", time: "----" },
+    event12: { activity: "Bosco Endgame", floor: "----", location: "----", time: "----" },
+    event13: { activity: "Bosco Wordsmith", floor: "----", location: "----", time: "----" },
+    event14: { activity: "Bosco Playverse", floor: "----", location: "----", time: "----" },
+    event15: { activity: "Bosco Brainwave", floor: "----", location: "----", time: "----" },
+    event16: { activity: "Bosco Voidix", floor: "----", location: "----", time: "----" },
+    event17: { activity: "Closing Ceremony", floor: "----", location: "----", time: "----" }
+  }
+};
+
 export default function EventsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Territories");
@@ -1362,6 +1409,22 @@ export default function EventsPage() {
   const [activeEvent, setActiveEvent] = useState<Event | null>(null);
   const [registeredEvents, setRegisteredEvents] = useState<string[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const [scheduleData, setScheduleData] = useState<{ day1: any[]; day2: any[] }>({ day1: [], day2: [] });
+  const [scheduleLoading, setScheduleLoading] = useState(true);
+
+  const getEventTime = (eventName: string) => {
+    const match1 = scheduleData.day1.find(
+      (item) => item && item.activity && item.activity.toLowerCase() === eventName.toLowerCase()
+    );
+    if (match1 && match1.time !== "----") return match1.time;
+
+    const match2 = scheduleData.day2.find(
+      (item) => item && item.activity && item.activity.toLowerCase() === eventName.toLowerCase()
+    );
+    if (match2 && match2.time !== "----") return match2.time;
+
+    return null;
+  };
 
   // Lock scroll when event sheet/modal is open
   useEffect(() => {
@@ -1409,6 +1472,42 @@ export default function EventsPage() {
         }
       }
     }
+
+    const fetchSchedule = async () => {
+      const parseEvents = (dayObj: any) => {
+        if (!dayObj) return [];
+        return Object.entries(dayObj)
+          .sort(([keyA], [keyB]) => {
+            const numA = parseInt(keyA.replace("event", ""), 10) || 0;
+            const numB = parseInt(keyB.replace("event", ""), 10) || 0;
+            return numA - numB;
+          })
+          .map(([, value]) => value);
+      };
+
+      try {
+        const res = await fetch("https://bf26-12ce0-default-rtdb.asia-southeast1.firebasedatabase.app/schedule.json");
+        if (!res.ok) throw new Error("Fetch failed");
+        const data = await res.json();
+        if (data) {
+          setScheduleData({
+            day1: parseEvents(data.day1),
+            day2: parseEvents(data.day2),
+          });
+        } else {
+          throw new Error("No data in firebase");
+        }
+      } catch (err) {
+        console.warn("Using local fallback schedule for events modal:", err);
+        setScheduleData({
+          day1: parseEvents(FALLBACK_SCHEDULE.day1),
+          day2: parseEvents(FALLBACK_SCHEDULE.day2),
+        });
+      } finally {
+        setScheduleLoading(false);
+      }
+    };
+    fetchSchedule();
   }, []);
 
   const handleRegister = (eventId: string, e: React.MouseEvent) => {
@@ -1771,7 +1870,13 @@ export default function EventsPage() {
                   <Calendar className="h-4.5 w-4.5 text-gold-accent shrink-0" />
                   <div className="flex flex-col">
                     <span className="text-[10px] font-extrabold uppercase text-ink-dark/70 tracking-wider">Schedule</span>
-                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">--</span>
+                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">
+                      {scheduleLoading ? (
+                        <span className="opacity-50">Loading...</span>
+                      ) : (
+                        getEventTime(activeEvent.name) || "--"
+                      )}
+                    </span>
                   </div>
                 </div>
                 {/* Day Spec */}
