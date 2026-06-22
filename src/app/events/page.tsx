@@ -1491,6 +1491,23 @@ export default function EventsPage() {
     return null;
   };
 
+  // Derive event day from Firebase schedule data ("Day 1" or "Day 2")
+  // Falls back to the hardcoded day if Firebase data isn't loaded yet
+  const getEventDay = (eventName: string, fallback: string): string => {
+    if (scheduleLoading) return fallback;
+    const matchEvent = (item: any) => {
+      if (!item || !item.activity) return false;
+      const activityLower = item.activity.toLowerCase();
+      const eventNameLower = eventName.toLowerCase();
+      const baseActivity = item.activity.split("(")[0].trim().toLowerCase();
+      return baseActivity === eventNameLower || activityLower.includes(eventNameLower);
+    };
+
+    if (scheduleData.day1.find(matchEvent)) return "Day 1";
+    if (scheduleData.day2.find(matchEvent)) return "Day 2";
+    return fallback;
+  };
+
   // Lock scroll when event sheet/modal is open
   useEffect(() => {
     if (activeEvent) {
@@ -1782,7 +1799,7 @@ export default function EventsPage() {
                         boxShadow: "1.5px 1.5px 0 rgba(43,26,14,1)",
                       }}
                     >
-                      {evt.day.toUpperCase()}
+                      {getEventDay(evt.name, evt.day).toUpperCase()}
                     </div>
 
                     {/* Stage tag (top right) */}
@@ -1949,7 +1966,13 @@ export default function EventsPage() {
                   <span className="text-base">📅</span>
                   <div className="flex flex-col">
                     <span className="text-[10px] font-extrabold uppercase text-forest-green tracking-wider">Event Day</span>
-                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.day}</span>
+                    <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">
+                      {scheduleLoading ? (
+                        <span className="opacity-50">Loading...</span>
+                      ) : (
+                        getEventDay(activeEvent.name, activeEvent.day)
+                      )}
+                    </span>
                   </div>
                 </div>
                 {/* Stage Spec */}
