@@ -195,3 +195,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gold-accent);
 }
+
+/* ── Schedule Card Background ── */
+.schedule-card-bg {
+  background-image: url('/schedule-bg.jpeg') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}

@@ -39,7 +39,7 @@ interface Event {
   teamSize: string;
   time: string;
   location: string;
-  day: "Day 1" | "Day 2";
+  day: "Day 0" | "Day 1" | "Day 2";
   stage: "On-stage" | "Off-stage";
   bounty: string;
   rules: string[];
@@ -743,7 +743,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "digital-art-literature",
     name: "Bosco Spearhead",
-    eventType: "Javelin (Savio) (Pre-determined event)",
+    eventType: "JAVELIN THROW",
     category: "Sports",
     shortDesc: "Precision and distance javelin throw track and field event.",
     detail: "This is not just a javelin throw. It is the opening chapter of a grand adventure. Charge down the runway with Link's determination, Hawkeye's accuracy, and Tanjiro's never-give-up mindset. Like Luffy chasing the One Piece or Indiana Jones hunting the next legendary artifact, you are heading where no one else has gone before. The runway is your questline, the sky is your open world, and the javelin is your final power-up. No respawns. No second chances. Just one throw to make the highlight reel. Take aim, let it fly, and unlock legendary status",
@@ -753,7 +753,7 @@ const EVENTS_DATA: Event[] = [
     teamSize: "Max 4 Athletes (Boys)",
     time: "Day 1, 1:30 PM",
     location: "Main Playground",
-    day: "Day 1",
+    day: "Day 0",
     stage: "Off-stage",
     bounty: "₹8,000 + Custom Trophy",
     rules: [
@@ -1103,7 +1103,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "turncoat-debate",
     name: "Bosco Figure-It-Out",
-    eventType: "To be Revealed on the day of the event (YE)",
+    eventType: "???",
     category: "Performance",
     shortDesc: "A quick-thinking deduction and riddle-solving performance challenge.",
     detail: "Not every adventure begins with a map. Some begin with a question, a pattern, or a detail that doesn't quite fit. Step into the unknown, think beyond the obvious, and see where curiosity takes you. Channel Sherlock's instinct for the unexpected and L's ability to look past appearances. The path ahead is uncertain, the answers aren't always visible, and that's exactly what makes the journey worth taking.",
@@ -1465,7 +1465,7 @@ const FALLBACK_SCHEDULE = {
 export default function EventsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Territories");
-  const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 1" | "Day 2">("All Days");
+  const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 0" | "Day 1" | "Day 2">("All Days");
   const [selectedStage, setSelectedStage] = useState<"All Stages" | "On-stage" | "Off-stage">("All Stages");
   const [activeEvent, setActiveEvent] = useState<Event | null>(null);
   const [registeredEvents, setRegisteredEvents] = useState<string[]>([]);
@@ -1667,7 +1667,7 @@ export default function EventsPage() {
               Expedition Day
             </span>
             <div className="flex gap-2">
-              {(["All Days", "Day 1", "Day 2"] as const).map((day) => {
+              {(["All Days", "Day 0", "Day 1", "Day 2"] as const).map((day) => {
                 const isSel = selectedDay === day;
                 return (
                   <button
