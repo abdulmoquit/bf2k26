@@ -81,10 +81,10 @@ export default function Footer() {
             <ul className="space-y-2.5 text-xs font-bold uppercase text-[#ebdcb9]">
               {[
                 { label: "Home", href: "/" },
-                { label: "Events", href: "/events.html" },
-                { label: "Schedule", href: "/schedule.html" },
-                { label: "Schools", href: "/schools.html" },
-                { label: "About Us", href: "/about.html" },
+                { label: "Events", href: "/events" },
+                { label: "Schedule", href: "/schedule" },
+                { label: "Schools", href: "/schools" },
+                { label: "About Us", href: "/about" },
               ].map((item) => (
                 <li key={item.label}>
                   <Link href={item.href}
