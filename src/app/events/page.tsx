@@ -1491,8 +1491,9 @@ export default function EventsPage() {
     return null;
   };
 
-  // Derive event day from Firebase schedule data ("Day 1" or "Day 2")
-  // Falls back to the hardcoded day if Firebase data isn't loaded yet
+  // Derive event day from Firebase schedule data
+  // Uses the hardcoded fallback day as a hint — only looks in the expected day bucket
+  // to avoid cross-day name collisions (e.g. Bosco Chronicles in both day1 and day2)
   const getEventDay = (eventName: string, fallback: string): string => {
     if (scheduleLoading) return fallback;
     const matchEvent = (item: any) => {
@@ -1503,6 +1504,10 @@ export default function EventsPage() {
       return baseActivity === eventNameLower || activityLower.includes(eventNameLower);
     };
 
+    // Check only the expected day bucket first (avoids cross-day mismatches)
+    if (fallback === "Day 1" && scheduleData.day1.find(matchEvent)) return "Day 1";
+    if (fallback === "Day 2" && scheduleData.day2.find(matchEvent)) return "Day 2";
+    // Fallback: check both buckets (for Day 0 or unmatched events)
     if (scheduleData.day1.find(matchEvent)) return "Day 1";
     if (scheduleData.day2.find(matchEvent)) return "Day 2";
     return fallback;
@@ -1617,8 +1622,9 @@ export default function EventsPage() {
   // Filtered list
   const filteredEvents = EVENTS_DATA.filter(evt => {
     const matchesCategory = selectedCategory === "All Territories" || evt.category === selectedCategory;
-    const derivedDay = getEventDay(evt.name, evt.day);
-    const matchesDay = selectedDay === "All Days" || derivedDay === selectedDay;
+    // Use hardcoded evt.day for filtering — Firebase schedule is unreliable for day assignment
+    // since the same event name can appear in both day1 and day2 (e.g. Bosco Chronicles)
+    const matchesDay = selectedDay === "All Days" || evt.day === selectedDay;
     const matchesStage = selectedStage === "All Stages" || evt.stage === selectedStage;
     const matchesSearch = evt.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       evt.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
