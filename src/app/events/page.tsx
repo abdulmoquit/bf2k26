@@ -1617,7 +1617,8 @@ export default function EventsPage() {
   // Filtered list
   const filteredEvents = EVENTS_DATA.filter(evt => {
     const matchesCategory = selectedCategory === "All Territories" || evt.category === selectedCategory;
-    const matchesDay = selectedDay === "All Days" || evt.day === selectedDay;
+    const derivedDay = getEventDay(evt.name, evt.day);
+    const matchesDay = selectedDay === "All Days" || derivedDay === selectedDay;
     const matchesStage = selectedStage === "All Stages" || evt.stage === selectedStage;
     const matchesSearch = evt.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       evt.shortDesc.toLowerCase().includes(searchQuery.toLowerCase()) ||
