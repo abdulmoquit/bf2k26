@@ -1866,7 +1866,7 @@ export default function EventsPage() {
                 <div className="p-3 bg-parchment-light/40 border border-ink-dark/15 rounded-xl flex items-center gap-2.5">
                   <Users className="h-4.5 w-4.5 text-forest-green shrink-0" />
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-extrabold uppercase text-ink-dark/70 tracking-wider">Party Size</span>
+                    <span className="text-[10px] font-extrabold uppercase text-ink-dark/70 tracking-wider">Team Size</span>
                     <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.teamSize}</span>
                   </div>
                 </div>
@@ -1887,7 +1887,7 @@ export default function EventsPage() {
                 <div className="p-3 bg-forest-green/10 border border-forest-green/20 rounded-xl flex items-center gap-2.5">
                   <span className="text-base">📅</span>
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-extrabold uppercase text-forest-green tracking-wider">Festival Day</span>
+                    <span className="text-[10px] font-extrabold uppercase text-forest-green tracking-wider">Event Day</span>
                     <span className="text-[12px] font-extrabold text-ink-dark uppercase tracking-wide mt-0.5">{activeEvent.day}</span>
                   </div>
                 </div>
