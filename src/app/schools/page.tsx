@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 
 const SCHOOLS = [
-  { name: "Assembly of God Church School", logo: "agcs.png" },
+  { name: "Assembly Of God Church School Tollygunge", logo: "agcs.png" },
   { name: "Ballygunge Shiksha Sadan", logo: "bss.png" },
   { name: "Don Bosco Bandel", logo: "dbb.png" },
   { name: "Don Bosco Liluah", logo: "dbl.png" },
@@ -21,10 +21,10 @@ const SCHOOLS = [
   { name: "Shri Shikshayatan School", logo: "ssy.png" },
   { name: "St. James' School", logo: "sjs.png" },
   { name: "St. Lawrence High School", logo: "slhs.png" },
-  { name: "St. Pauls Boarding & Day School", logo: "spbds.webp" },
+  { name: "St. Paul's Boarding and Day School", logo: "spbds.webp" },
   { name: "The Newtown School", logo: "nts2.png" },
-  { name: "Queen Of The Mission School Park Circus", logo: "qms.png" },
-  { name: "Queen Of The Mission School Salt Lake", logo: "qms.png" },
+  { name: "Our Lady Queen Of The Missions School Park Circus", logo: "qms.png" },
+  { name: "Our Lady Queen Of The Missions School Salt Lake", logo: "qms.png" },
   { name: "Don Bosco School Park Circus", logo: "dbpc.png" },
 ];
 
