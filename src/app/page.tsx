@@ -379,43 +379,7 @@ export default function Home() {
               </button>
             </motion.div>
 
-            {/* ── RIGHT: Core Sponsor ── */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.45, type: "spring", stiffness: 80, damping: 16 }}
-              className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0 gap-3"
-            >
-              <p
-                className="font-bebas uppercase tracking-[0.28em]"
-                style={{ fontSize: 10, color: "rgba(235,220,185,0.7)" }}
-              >
-                Core Sponsor
-              </p>
 
-              <motion.div
-                whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                className="flex flex-col items-center justify-center w-full p-4"
-                style={{
-                  background: "#F4ECC8",
-                  border: "2px solid #2B1A0E",
-                  borderRadius: 8,
-                  boxShadow: "3px 3px 0 rgba(43,26,14,1)",
-                }}
-              >
-                <div className="relative w-full h-[60px]">
-                  <Image
-                    src="/peerless-logo.png"
-                    alt="Peerless Logo"
-                    fill
-                    priority
-                    sizes="200px"
-                    className="object-contain"
-                  />
-                </div>
-              </motion.div>
-            </motion.div>
           </div>
 
           {/* ── Vertical layout (Mobile only) ── */}
@@ -556,43 +520,7 @@ export default function Home() {
               </button>
             </motion.div>
 
-            {/* Core Sponsor */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, type: "spring", stiffness: 80, damping: 15 }}
-              className="w-full max-w-[280px] flex flex-col items-center mt-4"
-            >
-              <p
-                className="font-bebas uppercase tracking-[0.25em] mb-3"
-                style={{ fontSize: 9.5, color: "rgba(235,220,185,0.7)" }}
-              >
-                Core Sponsor
-              </p>
 
-              <motion.div
-                whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                className="flex flex-col items-center justify-center w-full p-4"
-                style={{
-                  background: "#F4ECC8",
-                  border: "2px solid #2B1A0E",
-                  borderRadius: 8,
-                  boxShadow: "3px 3px 0 rgba(43,26,14,1)",
-                }}
-              >
-                <div className="relative w-full h-[60px]">
-                  <Image
-                    src="/peerless-logo.png"
-                    alt="Peerless Logo"
-                    fill
-                    priority
-                    sizes="200px"
-                    className="object-contain"
-                  />
-                </div>
-              </motion.div>
-            </motion.div>
           </div>
 
           {/* ── Bottom-left social icons ── */}
