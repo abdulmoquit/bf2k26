@@ -86,7 +86,9 @@ export default function Navbar() {
         {/* ── Desktop CTA button ── */}
         <div className="hidden md:block">
           <a
-            href="#"
+            href="https://register.boscofest.org"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-5 py-2.5 green-btn text-sm font-bebas tracking-wider uppercase"
           >
             <span>Register Now</span>
@@ -132,7 +134,9 @@ export default function Navbar() {
                 );
               })}
               <a
-                href="#"
+                href="https://register.boscofest.org"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setMobile(false)}
                 className="mt-4 flex items-center justify-center gap-2 py-3.5 green-btn text-sm font-bebas tracking-widest uppercase"
               >
