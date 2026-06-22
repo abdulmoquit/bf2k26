@@ -9,10 +9,10 @@ import { Map, Compass, Calendar, School, Info, Menu, X, ArrowRight, Flag } from 
 
 const NAV_ITEMS = [
   { label: "Home",     href: "/",         icon: Map },
-  { label: "Events",   href: "/events",   icon: Compass },
-  { label: "Schedule", href: "/schedule", icon: Calendar },
-  { label: "Schools",  href: "/schools",  icon: School },
-  { label: "About Us", href: "/about",    icon: Info },
+  { label: "Events",   href: "/events.html",   icon: Compass },
+  { label: "Schedule", href: "/schedule.html", icon: Calendar },
+  { label: "Schools",  href: "/schools.html",  icon: School },
+  { label: "About Us", href: "/about.html",    icon: Info },
 ];
 
 export default function Navbar() {
@@ -59,7 +59,7 @@ export default function Navbar() {
         {/* ── Desktop Nav ── */}
         <nav className="hidden md:flex items-center gap-1.5">
           {NAV_ITEMS.map((item) => {
-            const isActive = pathname === item.href;
+            const isActive = pathname === item.href || pathname === item.href.replace(".html", "");
             const Icon = item.icon;
             return (
               <Link
@@ -117,7 +117,7 @@ export default function Navbar() {
           >
             <div className="px-6 py-6 flex flex-col gap-3">
               {NAV_ITEMS.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = pathname === item.href || pathname === item.href.replace(".html", "");
                 const Icon = item.icon;
                 return (
                   <Link
