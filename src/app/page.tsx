@@ -43,11 +43,11 @@ const TERRITORIES: Territory[] = [
     y: "22%",
   },
   {
-    id: "western-dance",
-    name: "Bosco Tango",
-    preview: "Western Dance",
-    category: "Dance",
-    icon: "🕺",
+    id: "eastern-music",
+    name: "Bosco Raag",
+    preview: "Eastern Music",
+    category: "Music",
+    icon: "🎤",
     x: "48%",
     y: "10%",
   },
@@ -61,11 +61,11 @@ const TERRITORIES: Territory[] = [
     y: "18%",
   },
   {
-    id: "eastern-music",
-    name: "Bosco Raag",
-    preview: "Eastern Music",
-    category: "Music",
-    icon: "🎤",
+    id: "western-dance",
+    name: "Bosco Tango",
+    preview: "Western Dance",
+    category: "Dance",
+    icon: "🕺",
     x: "74%",
     y: "58%",
   },
@@ -119,14 +119,14 @@ function CountdownCards() {
   ];
 
   return (
-    <div className="flex flex-col items-start gap-2.5 w-full">
+    <div className="flex flex-col items-start gap-3 w-full animate-fade-in">
       {/* Header */}
       <p className="font-bebas text-[10px] tracking-[0.35em] text-[#ebdcb9]/60 uppercase mb-1">
         Expedition Begins In
       </p>
 
       {/* 2×2 Grid */}
-      <div className="grid grid-cols-2 gap-2 w-full">
+      <div className="grid grid-cols-2 gap-2.5 w-full">
         {units.map((u, i) => (
           <motion.div
             key={u.label}
@@ -139,18 +139,18 @@ function CountdownCards() {
               border: "2px solid #2B1A0E",
               borderRadius: 8,
               boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
-              padding: "clamp(6px, 0.8vh, 10px) clamp(6px, 0.6vw, 10px)",
+              padding: "10px 8px 8px",
             }}
           >
             <span
               className="font-bebas leading-none text-[#2B1A0E]"
-              style={{ fontSize: "clamp(30px, 2.5vw, 42px)", lineHeight: 1 }}
+              style={{ fontSize: "clamp(36px, 2.5vw, 42px)", lineHeight: 1 }}
             >
               {u.value}
             </span>
             <span
-              className="font-sans font-extrabold uppercase tracking-[0.08em] text-[#2B1A0E] mt-1"
-              style={{ fontSize: "clamp(8.5px, 0.7vw, 11px)" }}
+              className="font-sans font-extrabold uppercase tracking-[0.1em] text-[#2B1A0E] mt-1.5"
+              style={{ fontSize: 11 }}
             >
               {u.label}
             </span>
@@ -251,15 +251,15 @@ export default function Home() {
 
           {/* ── Three-column layout (Desktop only) ── */}
           <div
-            className="hidden lg:flex relative min-h-screen items-center justify-between px-8 lg:px-16 xl:px-28 w-full gap-6 pb-10"
-            style={{ paddingTop: 90, zIndex: 2 }}
+            className="hidden lg:flex relative min-h-screen items-center justify-between px-10 lg:px-24 xl:px-40 w-full gap-6 pb-10"
+            style={{ paddingTop: 80, zIndex: 2 }}
           >
             {/* ── LEFT: Countdown Cards ── */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 80, damping: 16 }}
-              className="hidden lg:flex flex-col items-start justify-center w-[240px] xl:w-[260px] shrink-0"
+              className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0"
             >
               <CountdownCards />
             </motion.div>
@@ -269,14 +269,14 @@ export default function Home() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, type: "spring", stiffness: 70, damping: 14 }}
-              className="flex flex-col items-center justify-center flex-1 text-center px-2 lg:px-4"
+              className="flex flex-col items-center justify-center flex-1 text-center px-4 lg:px-8"
             >
               {/* Emblem Logo — large */}
               <div
                 className="relative select-none"
                 style={{
-                  width: "min(340px, 24vw, 32vh)",
-                  height: "min(340px, 24vw, 32vh)",
+                  width: "min(420px, 30vw, 38vh)",
+                  height: "min(420px, 30vw, 38vh)",
                   filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.75))",
                 }}
               >
@@ -285,15 +285,15 @@ export default function Home() {
                   alt="Boscofest 2026 Emblem"
                   fill
                   priority
-                  sizes="340px"
+                  sizes="420px"
                   className="object-contain"
                 />
               </div>
 
               {/* Main Title */}
               <h1
-                className="font-bebas uppercase leading-none select-none mt-2"
-                style={{ fontSize: "clamp(44px, 5.2vw, 76px)", letterSpacing: "0.03em" }}
+                className="font-bebas uppercase leading-none select-none"
+                style={{ fontSize: "clamp(52px, 7vw, 84px)", letterSpacing: "0.03em" }}
               >
                 <span style={{ color: "#F4ECC8" }}>BOSCO FEST </span>
                 <span style={{ color: "#82C341" }}>2026</span>
@@ -302,7 +302,7 @@ export default function Home() {
               {/* Motto banner */}
               <motion.div
                 whileHover="hover"
-                className="flex items-center gap-3.5 mt-2 mb-2 px-8 py-2.5 relative overflow-hidden cursor-pointer"
+                className="flex items-center gap-3.5 mt-2.5 mb-2.5 px-10 py-3 relative overflow-hidden cursor-pointer"
                 style={{
                   borderTop: "2px solid #A37F3E",
                   borderBottom: "2px solid #A37F3E",
@@ -340,7 +340,7 @@ export default function Home() {
                   }}
                   className="font-bebas uppercase tracking-[0.25em] font-extrabold text-center cursor-pointer"
                   style={{
-                    fontSize: "clamp(13px, 1.2vw, 17px)",
+                    fontSize: "clamp(14px, 1.2vw, 18px)",
                     backgroundImage: "linear-gradient(to right, #F4ECC8 0%, #A37F3E 25%, #ffffff 50%, #A37F3E 75%, #F4ECC8 100%)",
                     backgroundPosition: "200% 0%",
                     WebkitBackgroundClip: "text",
@@ -362,8 +362,8 @@ export default function Home() {
 
               {/* Sub-header */}
               <p
-                className="font-sans font-black uppercase tracking-[0.3em] mt-1 mb-3"
-                style={{ fontSize: "clamp(9px, 0.8vw, 11px)", color: "#82C341", letterSpacing: "0.25em" }}
+                className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-3.5"
+                style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
               >
                 Don Bosco School · Park Circus
               </p>
@@ -371,8 +371,8 @@ export default function Home() {
               {/* CTA Button */}
               <button
                 onClick={scrollMap}
-                className="green-btn flex items-center justify-center gap-2 px-8 py-3"
-                style={{ fontSize: "clamp(10px, 0.8vw, 12px)", letterSpacing: "0.12em" }}
+                className="green-btn flex items-center justify-center gap-2.5 px-10 py-3.5"
+                style={{ fontSize: 12, letterSpacing: "0.12em" }}
               >
                 <Compass className="h-4 w-4" />
                 <span>EXPLORE EVENTS</span>
@@ -384,7 +384,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.45, type: "spring", stiffness: 80, damping: 16 }}
-              className="hidden lg:flex flex-col items-start justify-center w-[240px] xl:w-[260px] shrink-0 gap-3"
+              className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0 gap-3"
             >
               <p
                 className="font-bebas uppercase tracking-[0.28em]"
@@ -396,7 +396,7 @@ export default function Home() {
               <motion.div
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                className="flex flex-col items-center justify-center w-full p-3.5"
+                className="flex flex-col items-center justify-center w-full p-4"
                 style={{
                   background: "#F4ECC8",
                   border: "2px solid #2B1A0E",
@@ -404,7 +404,7 @@ export default function Home() {
                   boxShadow: "3px 3px 0 rgba(43,26,14,1)",
                 }}
               >
-                <div className="relative w-full h-[clamp(45px,5vh,60px)]">
+                <div className="relative w-full h-[60px]">
                   <Image
                     src="/peerless-logo.png"
                     alt="Peerless Logo"
