@@ -250,6 +250,12 @@ export default function Home() {
         {/* ═══ HERO SECTION ══════════════════════════════════════════════════ */}
         <section
           className="min-h-screen w-full relative overflow-hidden bg-[#0b0f0a]"
+          style={{
+            backgroundImage: "url('/hero-bg.jpg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
         >
 
           {/* ── Full-screen background video ── */}
