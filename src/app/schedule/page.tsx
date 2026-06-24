@@ -213,13 +213,13 @@ export default function Schedule() {
                   </h2>
                   <div className="parchment-card-light schedule-card-bg shadow-[4px_4px_0px_rgba(43,26,14,1)]">
                     <div className="overflow-x-auto w-full">
-                      <table className="w-full min-w-[600px] border-collapse">
+                      <table className="w-full min-w-[600px] border-collapse table-fixed">
                         <thead>
                           <tr className="border-b-2 border-ink-dark text-ink-dark font-bebas text-xs md:text-sm tracking-wider uppercase text-left">
-                            <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-black" /> EVENT</th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-black" /> VENUE</span></th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-black" /> FLOOR</span></th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-black" /> TIME</span></th>
+                            <th className="px-6 py-4 w-[35%]"><span className="flex items-center gap-2"><Calendar className="h-4 w-4 text-black" /> EVENT</span></th>
+                            <th className="px-6 py-4 w-[25%]"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-black" /> VENUE</span></th>
+                            <th className="px-6 py-4 w-[20%]"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-black" /> FLOOR</span></th>
+                            <th className="px-6 py-4 w-[20%]"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-black" /> TIME</span></th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
@@ -234,7 +234,7 @@ export default function Schedule() {
                             ))
                           ) : (
                             <tr>
-                              <td colSpan={4} className="text-center py-8 text-ink-light/60 uppercase tracking-widest font-bold">No expeditions match search coordinates</td>
+                              <td colSpan={4} className="text-center py-8 text-ink-dark font-sans text-xs md:text-sm font-bold uppercase tracking-widest">No expeditions match search coordinates</td>
                             </tr>
                           )}
                         </tbody>
@@ -252,13 +252,13 @@ export default function Schedule() {
                   </h2>
                   <div className="parchment-card-light schedule-card-bg shadow-[4px_4px_0px_rgba(43,26,14,1)]">
                     <div className="overflow-x-auto w-full">
-                      <table className="w-full min-w-[600px] border-collapse">
+                      <table className="w-full min-w-[600px] border-collapse table-fixed">
                         <thead>
                           <tr className="border-b-2 border-ink-dark text-ink-dark font-bebas text-xs md:text-sm tracking-wider uppercase text-left">
-                            <th className="px-6 py-4 flex items-center gap-2"><Calendar className="h-4 w-4 text-black" /> EVENT</th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-black" /> VENUE</span></th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-black" /> FLOOR</span></th>
-                            <th className="px-6 py-4"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-black" /> TIME</span></th>
+                            <th className="px-6 py-4 w-[35%]"><span className="flex items-center gap-2"><Calendar className="h-4 w-4 text-black" /> EVENT</span></th>
+                            <th className="px-6 py-4 w-[25%]"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-black" /> VENUE</span></th>
+                            <th className="px-6 py-4 w-[20%]"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-black" /> FLOOR</span></th>
+                            <th className="px-6 py-4 w-[20%]"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-black" /> TIME</span></th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
@@ -273,7 +273,7 @@ export default function Schedule() {
                             ))
                           ) : (
                             <tr>
-                              <td colSpan={4} className="text-center py-8 text-ink-light/60 uppercase tracking-widest font-bold">No expeditions match search coordinates</td>
+                              <td colSpan={4} className="text-center py-8 text-ink-dark font-sans text-xs md:text-sm font-bold uppercase tracking-widest">No expeditions match search coordinates</td>
                             </tr>
                           )}
                         </tbody>
