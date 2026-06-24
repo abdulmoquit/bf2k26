@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, MapPin, Building, Clock, Search, X, Loader2 } from "lucide-react";
+import { Calendar, MapPin, Building, Clock, Search, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
 interface EventItem {

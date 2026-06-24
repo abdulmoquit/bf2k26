@@ -3,23 +3,13 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-  Sparkles,
   Compass,
-  MapPin,
   ArrowDown,
-  ChevronRight,
-  X,
-  Trophy,
-  Zap,
-  Headphones,
   Instagram,
-  Facebook,
-  Youtube,
-  Music
+  Youtube
 } from "lucide-react";
-import confetti from "canvas-confetti";
 import Navbar from "@/components/Navbar";
 
 interface Territory {
@@ -102,9 +92,16 @@ function useCountdown() {
     };
     tick();
     const id = setInterval(tick, 1000);
-    setMounted(true);
     return () => clearInterval(id);
   }, []);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setMounted(true);
+    }, 0);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return { time, mounted };
 }
 
@@ -167,6 +164,7 @@ function TerritoryLogo({ id, icon, name, isMobile }: { id: string; icon: string;
 
   if (!imgFailed) {
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={logoPath}
         alt={name}
@@ -227,18 +225,6 @@ export default function Home() {
   const scrollMap = () => {
     mapSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
-
-  const handleRegister = (e: React.MouseEvent) => {
-    e.preventDefault();
-    confetti({
-      particleCount: 150,
-      spread: 80,
-      origin: { y: 0.6 },
-      colors: ["#37532A", "#ebdcb9", "#A37F3E", "#ffffff"],
-    });
-  };
-
-
 
   return (
     <div className="min-h-screen bg-[#0b0f0a] relative flex flex-col pb-0">
@@ -382,7 +368,7 @@ export default function Home() {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  "UNTOLD. UNFAZED. UNCHARTED."
+                  &quot;UNTOLD. UNFAZED. UNCHARTED.&quot;
                 </motion.span>
                 <motion.span
                   variants={{
@@ -508,7 +494,7 @@ export default function Home() {
                     WebkitTextFillColor: "transparent",
                   }}
                 >
-                  "UNTOLD. UNFAZED. UNCHARTED."
+                  &quot;UNTOLD. UNFAZED. UNCHARTED.&quot;
                 </motion.span>
                 <motion.span
                   variants={{

@@ -66,16 +66,6 @@ function ScrambleText({ text }: { text: string }) {
 }
 
 export default function About() {
-  const [glowPos, setGlowPos] = useState({ x: -1000, y: -1000 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setGlowPos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   const studentCommittee = [
     "HARSHVARDHAN SARAF",
     "AARAV CHANDAK",
@@ -230,11 +220,11 @@ export default function About() {
         {/* Narrative text scroll */}
         <div className="max-w-2xl mx-auto mb-28 text-center px-4 leading-relaxed font-sans font-semibold text-base md:text-lg text-[#ebdcb9]/90 space-y-6">
           <p className="text-lg md:text-xl font-bold text-[#F4ECC8]">Ever noticed how the best stories start with a bad decision?</p>
-          <p>The wrong turn. The missed train. The message that begins with &ldquo;I've got an idea...&rdquo; at 2 a.m. Most people call them mistakes. Adventurers call them beginnings.</p>
+          <p>The wrong turn. The missed train. The message that begins with &ldquo;I&apos;ve got an idea...&rdquo; at 2 a.m. Most people call them mistakes. Adventurers call them beginnings.</p>
           <p className="font-bebas text-xl md:text-2xl text-[#F4ECC8] tracking-wider uppercase">Adventure is choosing the unknown.</p>
-          <p>It's taking the longer route home just to see where it leads. It's clicking &ldquo;Accept Quest&rdquo; before reading the difficulty level. It's every side quest that somehow becomes more memorable than the main storyline.</p>
-          <p className="font-caveat text-2xl md:text-3xl text-[#65C466] tracking-wide">Adventure isn't found. It's created.</p>
-          <p className="font-bold text-[#ebdcb9]">And this year, it's breaking free.</p>
+          <p>It&apos;s taking the longer route home just to see where it leads. It&apos;s clicking &ldquo;Accept Quest&rdquo; before reading the difficulty level. It&apos;s every side quest that somehow becomes more memorable than the main storyline.</p>
+          <p className="font-caveat text-2xl md:text-3xl text-[#65C466] tracking-wide">Adventure isn&apos;t found. It&apos;s created.</p>
+          <p className="font-bold text-[#ebdcb9]">And this year, it&apos;s breaking free.</p>
           <p>Introducing the 41st Edition of Bosco Fest, where curiosity outruns caution, where comfort zones become archaeological artifacts, and where every ordinary moment has the potential to become an unforgettable story. No maps. No cheat codes. No save files. Just possibilities.</p>
           <p className="text-[#E8D7A5] font-bold">If that sounds reckless, good. The greatest adventures usually are.</p>
           <p className="font-bebas text-xl md:text-2xl tracking-widest text-[#F4ECC8] uppercase">36 Events. 2 Days. One Extraordinary Journey.</p>

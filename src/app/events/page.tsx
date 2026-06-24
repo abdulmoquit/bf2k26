@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  MapPin,
   X,
   Calendar,
   Users,
@@ -11,7 +10,6 @@ import {
   BookOpen,
   Compass
 } from "lucide-react";
-import confetti from "canvas-confetti";
 import Navbar from "@/components/Navbar";
 
 // ─── Event Categories & Icon Mapping (From Spreadsheet) ────────────────────────
@@ -26,6 +24,13 @@ const CATEGORIES = [
   { name: "Performance", icon: "🎭", color: "#65C466" }, // Primary Green
   { name: "Others", icon: "🧩", color: "#E8D7A5" }, // Parchment Gold
 ];
+
+interface EventItem {
+  activity: string;
+  floor: string;
+  location: string;
+  time: string;
+}
 
 interface Event {
   id: string;
@@ -1396,6 +1401,7 @@ function CircularEventLogo({ id, icon, name }: { id: string; icon: string; name:
   return (
     <div className="relative w-full h-full overflow-hidden rounded-full flex items-center justify-center">
       {!imgFailed ? (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={logoPath}
           alt={name}
@@ -1470,9 +1476,8 @@ export default function EventsPage() {
   const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 0" | "Day 1" | "Day 2">("All Days");
   const [selectedStage, setSelectedStage] = useState<"All Stages" | "On-stage" | "Off-stage">("All Stages");
   const [activeEvent, setActiveEvent] = useState<Event | null>(null);
-  const [registeredEvents, setRegisteredEvents] = useState<string[]>([]);
   const [isMobile, setIsMobile] = useState(false);
-  const [scheduleData, setScheduleData] = useState<{ day1: any[]; day2: any[] }>({ day1: [], day2: [] });
+  const [scheduleData, setScheduleData] = useState<{ day1: EventItem[]; day2: EventItem[] }>({ day1: [], day2: [] });
   const [scheduleLoading, setScheduleLoading] = useState(true);
 
   const getEventTime = (eventName: string) => {
@@ -1480,7 +1485,7 @@ export default function EventsPage() {
       return "8:00 AM - 10:00 AM";
     }
 
-    const matchEvent = (item: any) => {
+    const matchEvent = (item: EventItem) => {
       if (!item || !item.activity) return false;
       const activityLower = item.activity.toLowerCase();
       const eventNameLower = eventName.toLowerCase();
@@ -1504,7 +1509,7 @@ export default function EventsPage() {
     if (scheduleLoading) {
       return fallback === "Day 0" ? "DAY 0 (07/07/26)" : fallback;
     }
-    const matchEvent = (item: any) => {
+    const matchEvent = (item: EventItem) => {
       if (!item || !item.activity) return false;
       const activityLower = item.activity.toLowerCase();
       const eventNameLower = eventName.toLowerCase();
@@ -1537,43 +1542,38 @@ export default function EventsPage() {
     };
   }, [activeEvent]);
 
-  // Load registration state and URL search params on mount
+  // Parse URL search params on mount
   useEffect(() => {
-    const saved = localStorage.getItem("boscofest_registered_events");
-    if (saved) {
-      try {
-        setRegisteredEvents(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to load registrations", e);
-      }
-    }
-
     if (typeof window !== "undefined") {
-      setIsMobile(window.innerWidth < 768);
       const params = new URLSearchParams(window.location.search);
       const cat = params.get("category");
-      if (cat) {
-        const matched = CATEGORIES.find(c => c.name.toLowerCase() === cat.toLowerCase() || (cat.toLowerCase() === "digital" && c.name.toLowerCase() === "cybernetics"));
-        if (matched) {
-          setSelectedCategory(matched.name);
-        }
-      }
-
       const eventId = params.get("event");
-      if (eventId) {
-        const foundEvent = EVENTS_DATA.find(e => e.id === eventId);
-        if (foundEvent) {
-          setActiveEvent(foundEvent);
-          const matchedCat = CATEGORIES.find(c => c.name.toLowerCase() === foundEvent.category.toLowerCase());
-          if (matchedCat) {
-            setSelectedCategory(matchedCat.name);
+
+      setTimeout(() => {
+        setIsMobile(window.innerWidth < 768);
+
+        if (cat) {
+          const matched = CATEGORIES.find(c => c.name.toLowerCase() === cat.toLowerCase() || (cat.toLowerCase() === "digital" && c.name.toLowerCase() === "cybernetics"));
+          if (matched) {
+            setSelectedCategory(matched.name);
           }
         }
-      }
+
+        if (eventId) {
+          const foundEvent = EVENTS_DATA.find(e => e.id === eventId);
+          if (foundEvent) {
+            setActiveEvent(foundEvent);
+            const matchedCat = CATEGORIES.find(c => c.name.toLowerCase() === foundEvent.category.toLowerCase());
+            if (matchedCat) {
+              setSelectedCategory(matchedCat.name);
+            }
+          }
+        }
+      }, 0);
     }
 
     const fetchSchedule = async () => {
-      const parseEvents = (dayObj: any) => {
+      const parseEvents = (dayObj: Record<string, EventItem>) => {
         if (!dayObj) return [];
         return Object.entries(dayObj)
           .sort(([keyA], [keyB]) => {
@@ -1581,7 +1581,7 @@ export default function EventsPage() {
             const numB = parseInt(keyB.replace("event", ""), 10) || 0;
             return numA - numB;
           })
-          .map(([, value]) => value);
+          .map(([, value]) => value as EventItem);
       };
 
       try {
@@ -1608,28 +1608,6 @@ export default function EventsPage() {
     };
     fetchSchedule();
   }, []);
-
-  const handleRegister = (eventId: string, e: React.MouseEvent) => {
-    e.stopPropagation();
-
-    if (registeredEvents.includes(eventId)) {
-      const updated = registeredEvents.filter(id => id !== eventId);
-      setRegisteredEvents(updated);
-      localStorage.setItem("boscofest_registered_events", JSON.stringify(updated));
-      return;
-    }
-
-    const updated = [...registeredEvents, eventId];
-    setRegisteredEvents(updated);
-    localStorage.setItem("boscofest_registered_events", JSON.stringify(updated));
-
-    confetti({
-      particleCount: 120,
-      spread: 70,
-      origin: { y: 0.8 },
-      colors: ["#6EC6FF", "#65C466", "#D9B24C", "#E8D7A5"]
-    });
-  };
 
   // Filtered list
   const filteredEvents = EVENTS_DATA.filter(evt => {
@@ -1795,9 +1773,6 @@ export default function EventsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 w-full">
             <AnimatePresence mode="popLayout">
               {filteredEvents.map((evt) => {
-                const isRegistered = registeredEvents.includes(evt.id);
-                const diffBg = evt.difficulty === "Legendary" ? "#A37F3E" : evt.difficulty === "Veteran" ? "#3B5E8C" : "#37532A";
-                const diffText = "#F4ECC8";
                 return (
                   <motion.div
                     key={evt.id}
