@@ -745,7 +745,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "digital-art-literature",
     name: "Bosco Spearhead",
-    eventType: "JAVELIN THROW",
+    eventType: "Javelin Throw",
     category: "Sports",
     shortDesc: "Precision and distance javelin throw track and field event.",
     detail: "This is not just a javelin throw. It is the opening chapter of a grand adventure. Charge down the runway with Link's determination, Hawkeye's accuracy, and Tanjiro's never-give-up mindset. Like Luffy chasing the One Piece or Indiana Jones hunting the next legendary artifact, you are heading where no one else has gone before. The runway is your questline, the sky is your open world, and the javelin is your final power-up. No respawns. No second chances. Just one throw to make the highlight reel. Take aim, let it fly, and unlock legendary status",
@@ -753,7 +753,7 @@ const EVENTS_DATA: Event[] = [
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
     teamSize: "Max 4 Athletes (Boys)",
-    time: "Day 1, 1:30 PM",
+    time: "8:00 AM - 10:00 AM",
     location: "Main Playground",
     day: "Day 0",
     stage: "Off-stage",
@@ -1476,6 +1476,10 @@ export default function EventsPage() {
   const [scheduleLoading, setScheduleLoading] = useState(true);
 
   const getEventTime = (eventName: string) => {
+    if (eventName.toLowerCase() === "bosco spearhead") {
+      return "8:00 AM - 10:00 AM";
+    }
+
     const matchEvent = (item: any) => {
       if (!item || !item.activity) return false;
       const activityLower = item.activity.toLowerCase();
@@ -1497,7 +1501,9 @@ export default function EventsPage() {
   // Uses the hardcoded fallback day as a hint — only looks in the expected day bucket
   // to avoid cross-day name collisions (e.g. Bosco Chronicles in both day1 and day2)
   const getEventDay = (eventName: string, fallback: string): string => {
-    if (scheduleLoading) return fallback;
+    if (scheduleLoading) {
+      return fallback === "Day 0" ? "DAY 0 (07/07/26)" : fallback;
+    }
     const matchEvent = (item: any) => {
       if (!item || !item.activity) return false;
       const activityLower = item.activity.toLowerCase();
@@ -1514,6 +1520,8 @@ export default function EventsPage() {
     }
     if (inDay1) return "Day 1";
     if (inDay2) return "Day 2";
+    
+    if (fallback === "Day 0") return "DAY 0 (07/07/26)";
     return fallback;
   };
 
