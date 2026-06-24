@@ -212,11 +212,13 @@ export default function Home() {
         window.removeEventListener("click", resumeVideo);
         window.removeEventListener("touchstart", resumeVideo);
         window.removeEventListener("keydown", resumeVideo);
+        window.removeEventListener("scroll", resumeVideo);
       };
 
-      window.addEventListener("click", resumeVideo);
-      window.addEventListener("touchstart", resumeVideo);
-      window.addEventListener("keydown", resumeVideo);
+      window.addEventListener("click", resumeVideo, { passive: true });
+      window.addEventListener("touchstart", resumeVideo, { passive: true });
+      window.addEventListener("keydown", resumeVideo, { passive: true });
+      window.addEventListener("scroll", resumeVideo, { passive: true });
 
       return cleanup;
     });
