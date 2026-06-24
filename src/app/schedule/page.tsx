@@ -147,6 +147,16 @@ export default function Schedule() {
           {/* Day Tabs */}
           <div className="flex items-center gap-3">
             <button
+              onClick={() => setActiveDay("all")}
+              className={`px-6 py-2.5 rounded-full font-bebas text-xs md:text-sm tracking-wider uppercase border-2 transition-all cursor-pointer ${
+                activeDay === "all"
+                  ? "bg-forest-green text-white border-ink-dark shadow-[2px_2px_0px_rgba(43,26,14,1)]"
+                  : "bg-transparent text-[#ebdcb9]/80 border-[#ebdcb9]/30 hover:border-[#ebdcb9]/75 hover:text-white"
+              }`}
+            >
+              All Days
+            </button>
+            <button
               onClick={() => setActiveDay("day1")}
               className={`px-6 py-2.5 rounded-full font-bebas text-xs md:text-sm tracking-wider uppercase border-2 transition-all cursor-pointer ${
                 activeDay === "day1"
@@ -166,14 +176,6 @@ export default function Schedule() {
             >
               Day Two
             </button>
-            {activeDay === "all" && (
-              <button
-                onClick={() => setActiveDay("day1")}
-                className="px-4 py-2.5 rounded-full font-sans text-xs font-bold tracking-widest uppercase text-red-600 border border-red-200 bg-[#F7F1D5] hover:bg-red-50 transition-all flex items-center gap-1.5"
-              >
-                <X className="h-3.5 w-3.5" /> Clear
-              </button>
-            )}
           </div>
 
           {/* Search Bar (parchment-scroll style) */}
