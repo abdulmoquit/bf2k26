@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -9,9 +9,7 @@ import {
   Users,
   Search,
   BookOpen,
-  Compass,
-  ChevronLeft,
-  ChevronRight
+  Compass
 } from "lucide-react";
 import confetti from "canvas-confetti";
 import Navbar from "@/components/Navbar";
@@ -1468,17 +1466,6 @@ const FALLBACK_SCHEDULE = {
 
 export default function EventsPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const categoryContainerRef = useRef<HTMLDivElement>(null);
-
-  const scrollCategories = (direction: "left" | "right") => {
-    if (categoryContainerRef.current) {
-      const scrollAmount = 200;
-      categoryContainerRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth"
-      });
-    }
-  };
   const [selectedCategory, setSelectedCategory] = useState("All Territories");
   const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 0" | "Day 1" | "Day 2">("All Days");
   const [selectedStage, setSelectedStage] = useState<"All Stages" | "On-stage" | "Off-stage">("All Stages");
@@ -1770,59 +1757,37 @@ export default function EventsPage() {
           </div>
         </motion.div>
 
-        {/* Category Strip Container with Arrows */}
-        <div className="relative w-full mb-8 flex items-center group/arrows">
-          {/* Left Arrow */}
-          <button
-            onClick={() => scrollCategories("left")}
-            className="absolute left-2 z-30 p-2.5 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] text-[#F4ECC8] hover:bg-[#2B1A0E] active:scale-90 transition-all shadow-[2px_2px_0px_rgba(0,0,0,0.5)] cursor-pointer flex items-center justify-center"
-            aria-label="Scroll Left"
-          >
-            <ChevronLeft className="h-4.5 w-4.5" />
-          </button>
-
-          {/* Category Strip — flat tabbed buttons */}
-          <div
-            ref={categoryContainerRef}
-            className="w-full overflow-x-auto scrollbar-none px-12"
-            style={{
-              background: "#2B1A0E",
-              border: "2px solid #1E1208",
-              borderRadius: 6,
-              boxShadow: "4px 4px 0px rgba(43,26,14,0.9)",
-            }}
-          >
-            <div className="flex min-w-max">
-              {CATEGORIES.filter(c => c.name !== "All Territories").map((cat, idx) => {
-                const isSelected = selectedCategory === cat.name;
-                return (
-                  <button
-                    key={cat.name}
-                    onClick={() => setSelectedCategory(isSelected ? "All Territories" : cat.name)}
-                    className="flex items-center gap-2 px-5 py-3 font-sans font-extrabold text-[12px] tracking-[0.08em] uppercase cursor-pointer transition-all shrink-0"
-                    style={{
-                      background: isSelected ? "rgba(235,220,185,0.12)" : "transparent",
-                      color: isSelected ? "#F4ECC8" : "rgba(235,220,185,0.8)",
-                      borderRight: idx < CATEGORIES.length - 2 ? "1px solid rgba(235,220,185,0.08)" : "none",
-                      borderBottom: isSelected ? "2px solid #A37F3E" : "2px solid transparent",
-                    }}
-                  >
-                    <span className="text-base leading-none">{cat.icon}</span>
-                    <span>{cat.name}</span>
-                  </button>
-                );
-              })}
-            </div>
+        {/* Category Strip — flat tabbed buttons */}
+        <div
+          className="w-full mb-8 category-scrollbar"
+          style={{
+            background: "#2B1A0E",
+            border: "2px solid #1E1208",
+            borderRadius: 6,
+            boxShadow: "4px 4px 0px rgba(43,26,14,0.9)",
+          }}
+        >
+          <div className="flex min-w-max">
+            {CATEGORIES.filter(c => c.name !== "All Territories").map((cat, idx) => {
+              const isSelected = selectedCategory === cat.name;
+              return (
+                <button
+                  key={cat.name}
+                  onClick={() => setSelectedCategory(isSelected ? "All Territories" : cat.name)}
+                  className="flex items-center gap-2 px-5 py-3 font-sans font-extrabold text-[12px] tracking-[0.08em] uppercase cursor-pointer transition-all shrink-0"
+                  style={{
+                    background: isSelected ? "rgba(235,220,185,0.12)" : "transparent",
+                    color: isSelected ? "#F4ECC8" : "rgba(235,220,185,0.8)",
+                    borderRight: idx < CATEGORIES.length - 2 ? "1px solid rgba(235,220,185,0.08)" : "none",
+                    borderBottom: isSelected ? "2px solid #A37F3E" : "2px solid transparent",
+                  }}
+                >
+                  <span className="text-base leading-none">{cat.icon}</span>
+                  <span>{cat.name}</span>
+                </button>
+              );
+            })}
           </div>
-
-          {/* Right Arrow */}
-          <button
-            onClick={() => scrollCategories("right")}
-            className="absolute right-2 z-30 p-2.5 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] text-[#F4ECC8] hover:bg-[#2B1A0E] active:scale-90 transition-all shadow-[2px_2px_0px_rgba(0,0,0,0.5)] cursor-pointer flex items-center justify-center"
-            aria-label="Scroll Right"
-          >
-            <ChevronRight className="h-4.5 w-4.5" />
-          </button>
         </div>
 
         {/* Main Grid of Events */}
