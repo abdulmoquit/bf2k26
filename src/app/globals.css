@@ -48,7 +48,7 @@
 /* ══ Background Textures ══════════════════════════════════════════════ */
 .bg-hero-texture {
   background-color: #0b0f0a;
-  background-image: url('/hero-bg.jpg');
+  background-image: url('/hero-bg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
