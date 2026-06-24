@@ -248,12 +248,6 @@ export default function Home() {
         {/* ═══ HERO SECTION ══════════════════════════════════════════════════ */}
         <section
           className="min-h-screen w-full relative overflow-hidden bg-[#0b0f0a]"
-          style={{
-            backgroundImage: "url('/hero-bg.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
         >
 
           {/* ── Full-screen background video ── */}
@@ -264,7 +258,6 @@ export default function Home() {
             muted
             playsInline
             preload="auto"
-            poster="/hero-bg.jpg"
             className={`absolute inset-0 w-full h-full object-cover hero-bg-video select-none pointer-events-none transition-opacity duration-700 ${
               videoAutoplayFailed ? "opacity-0" : "opacity-100"
             }`}
