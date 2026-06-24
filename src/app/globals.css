@@ -240,3 +240,19 @@ body {
   }
 }
 
+/* ── Hero Background Video iOS styling fixes ── */
+.hero-bg-video {
+  pointer-events: none !important;
+  object-fit: cover;
+  user-select: none;
+}
+
+.hero-bg-video::-webkit-media-controls,
+.hero-bg-video::-webkit-media-controls-start-playback-button,
+.hero-bg-video::-webkit-media-controls-panel,
+.hero-bg-video::-webkit-media-controls-play-button {
+  display: none !important;
+  -webkit-appearance: none !important;
+}
+
+

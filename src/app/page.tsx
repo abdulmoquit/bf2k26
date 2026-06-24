@@ -185,15 +185,15 @@ function TerritoryLogo({ id, icon, name, isMobile }: { id: string; icon: string;
 
 export default function Home() {
   const mapSectionRef = useRef<HTMLDivElement>(null);
-  const [isMobileVideo, setIsMobileVideo] = useState<boolean | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const checkViewport = () => {
-      setIsMobileVideo(window.innerWidth < 1024);
-    };
-    checkViewport();
-    window.addEventListener("resize", checkViewport);
-    return () => window.removeEventListener("resize", checkViewport);
+    if (videoRef.current) {
+      videoRef.current.muted = true;
+      videoRef.current.play().catch((err) => {
+        console.warn("Autoplay was prevented:", err);
+      });
+    }
   }, []);
 
   const scrollMap = () => {
@@ -225,19 +225,19 @@ export default function Home() {
         >
 
           {/* ── Full-screen background video ── */}
-          {isMobileVideo !== null && (
-            <video
-              key={isMobileVideo ? "mobile-vid" : "desktop-vid"}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{ zIndex: 0 }}
-            >
-              <source src="/hero-bg-new.mp4" type="video/mp4" />
-            </video>
-          )}
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/hero-bg.jpg"
+            className="absolute inset-0 w-full h-full object-cover hero-bg-video select-none pointer-events-none"
+            style={{ zIndex: 0 }}
+          >
+            <source src="/hero-bg-new.mp4" type="video/mp4" />
+          </video>
 
           {/* ── Dark gradient overlay so text stays legible ── */}
           <div
