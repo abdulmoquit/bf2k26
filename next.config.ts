@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
+const isExport = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
-  output: "export",
+  output: isExport ? "export" : undefined,
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -11,6 +13,16 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  ...(isExport ? {} : {
+    async rewrites() {
+      return [
+        {
+          source: "/:path*.html",
+          destination: "/:path*",
+        },
+      ];
+    },
+  }),
 };
 
 export default nextConfig;
