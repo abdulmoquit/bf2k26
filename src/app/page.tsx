@@ -186,14 +186,40 @@ function TerritoryLogo({ id, icon, name, isMobile }: { id: string; icon: string;
 export default function Home() {
   const mapSectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoAutoplayFailed, setVideoAutoplayFailed] = useState(false);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = true;
-      videoRef.current.play().catch((err) => {
-        console.warn("Autoplay was prevented:", err);
-      });
-    }
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Try to autoplay
+    video.muted = true;
+    video.play().catch((err) => {
+      console.warn("Autoplay was prevented:", err);
+      setVideoAutoplayFailed(true);
+
+      // Listen for first user interaction to start play and fade in
+      const resumeVideo = () => {
+        video.play()
+          .then(() => {
+            setVideoAutoplayFailed(false);
+            cleanup();
+          })
+          .catch((e) => console.log("Play failed on interaction:", e));
+      };
+
+      const cleanup = () => {
+        window.removeEventListener("click", resumeVideo);
+        window.removeEventListener("touchstart", resumeVideo);
+        window.removeEventListener("keydown", resumeVideo);
+      };
+
+      window.addEventListener("click", resumeVideo);
+      window.addEventListener("touchstart", resumeVideo);
+      window.addEventListener("keydown", resumeVideo);
+
+      return cleanup;
+    });
   }, []);
 
   const scrollMap = () => {
@@ -222,6 +248,12 @@ export default function Home() {
         {/* ═══ HERO SECTION ══════════════════════════════════════════════════ */}
         <section
           className="min-h-screen w-full relative overflow-hidden bg-[#0b0f0a]"
+          style={{
+            backgroundImage: "url('/heropage.webp')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
         >
 
           {/* ── Full-screen background video ── */}
@@ -233,7 +265,9 @@ export default function Home() {
             playsInline
             preload="auto"
             poster="/hero-bg.jpg"
-            className="absolute inset-0 w-full h-full object-cover hero-bg-video select-none pointer-events-none"
+            className={`absolute inset-0 w-full h-full object-cover hero-bg-video select-none pointer-events-none transition-opacity duration-700 ${
+              videoAutoplayFailed ? "opacity-0" : "opacity-100"
+            }`}
             style={{ zIndex: 0 }}
           >
             <source src="/hero-bg-new.mp4" type="video/mp4" />
