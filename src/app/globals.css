@@ -115,6 +115,14 @@
   overflow: hidden;
 }
 
+/* Custom background for schedule cards */
+.schedule-card-bg {
+  background-image: url('/schedule-card-bg.png') !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
 /* ── Parchment scroll (search bar, small panels) ── */
 .parchment-scroll {
   background-color: #C8A870;
