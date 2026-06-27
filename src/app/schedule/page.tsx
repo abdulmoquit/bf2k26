@@ -243,9 +243,8 @@ export default function Schedule() {
                     className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]"
                     style={{
                       backgroundImage: "url('/schedule-card-bg.png?v=4')",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "320px 320px",
+                      backgroundRepeat: "repeat",
                       backgroundColor: "transparent"
                     }}
                   >
@@ -291,9 +290,8 @@ export default function Schedule() {
                     className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]"
                     style={{
                       backgroundImage: "url('/schedule-card-bg.png?v=4')",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "320px 320px",
+                      backgroundRepeat: "repeat",
                       backgroundColor: "transparent"
                     }}
                   >
@@ -339,9 +337,8 @@ export default function Schedule() {
                     className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]"
                     style={{
                       backgroundImage: "url('/schedule-card-bg.png?v=4')",
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "320px 320px",
+                      backgroundRepeat: "repeat",
                       backgroundColor: "transparent"
                     }}
                   >

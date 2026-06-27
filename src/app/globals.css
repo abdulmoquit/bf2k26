@@ -119,9 +119,8 @@
 .schedule-card-bg {
   background-color: transparent !important;
   background-image: url('/schedule-card-bg.png?v=4') !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+  background-size: 320px 320px !important;
+  background-repeat: repeat !important;
 }
 
 /* ── Parchment scroll (search bar, small panels) ── */
