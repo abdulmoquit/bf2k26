@@ -239,7 +239,16 @@ export default function Schedule() {
                   <h2 className="font-bebas font-black text-xl md:text-2xl text-[#E8D7A5] uppercase tracking-wider text-center md:text-left">
                     Day 0 - (07.07.2026)
                   </h2>
-                  <div className="parchment-card-light schedule-card-bg shadow-[4px_4px_0px_rgba(43,26,14,1)]">
+                  <div
+                    className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]"
+                    style={{
+                      backgroundImage: "url('/schedule-card-bg.png?v=3')",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      backgroundColor: "transparent"
+                    }}
+                  >
                     <div className="overflow-x-auto w-full">
                       <table className="w-full min-w-[600px] border-collapse table-fixed">
                         <thead>
@@ -278,7 +287,16 @@ export default function Schedule() {
                   <h2 className="font-bebas font-black text-xl md:text-2xl text-[#E8D7A5] uppercase tracking-wider text-center md:text-left">
                     Day 1 - (10.07.2026)
                   </h2>
-                  <div className="parchment-card-light schedule-card-bg shadow-[4px_4px_0px_rgba(43,26,14,1)]">
+                  <div
+                    className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]"
+                    style={{
+                      backgroundImage: "url('/schedule-card-bg.png?v=3')",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      backgroundColor: "transparent"
+                    }}
+                  >
                     <div className="overflow-x-auto w-full">
                       <table className="w-full min-w-[600px] border-collapse table-fixed">
                         <thead>
@@ -317,7 +335,16 @@ export default function Schedule() {
                   <h2 className="font-bebas font-black text-xl md:text-2xl text-[#E8D7A5] uppercase tracking-wider text-center md:text-left">
                     Day 2 - (11.07.2026)
                   </h2>
-                  <div className="parchment-card-light schedule-card-bg shadow-[4px_4px_0px_rgba(43,26,14,1)]">
+                  <div
+                    className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]"
+                    style={{
+                      backgroundImage: "url('/schedule-card-bg.png?v=3')",
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      backgroundColor: "transparent"
+                    }}
+                  >
                     <div className="overflow-x-auto w-full">
                       <table className="w-full min-w-[600px] border-collapse table-fixed">
                         <thead>
