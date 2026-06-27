@@ -13,6 +13,7 @@ interface EventItem {
 }
 
 interface ScheduleData {
+  day0: EventItem[];
   day1: EventItem[];
   day2: EventItem[];
 }
@@ -65,10 +66,10 @@ const FALLBACK_SCHEDULE = {
 };
 
 export default function Schedule() {
-  const [schedule, setSchedule] = useState<ScheduleData>({ day1: [], day2: [] });
+  const [schedule, setSchedule] = useState<ScheduleData>({ day0: [], day1: [], day2: [] });
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeDay, setActiveDay] = useState<"day1" | "day2" | "all">("day1");
+  const [activeDay, setActiveDay] = useState<"day0" | "day1" | "day2" | "all">("day1");
 
   const parseEvents = (dayObj: Record<string, EventItem> | undefined): EventItem[] => {
     if (!dayObj) return [];
@@ -89,6 +90,14 @@ export default function Schedule() {
         const data = await res.json();
         if (data) {
           setSchedule({
+            day0: [
+              {
+                activity: "Bosco Spearhead (Javelin Throw)",
+                location: "Feild",
+                floor: "Ground Floor",
+                time: "8:00 AM to 10:00 AM"
+              }
+            ],
             day1: parseEvents(data.day1),
             day2: parseEvents(data.day2),
           });
@@ -98,6 +107,14 @@ export default function Schedule() {
       } catch (err) {
         console.warn("Using local fallback schedule:", err);
         setSchedule({
+          day0: [
+            {
+              activity: "Bosco Spearhead (Javelin Throw)",
+              location: "Feild",
+              floor: "Ground Floor",
+              time: "8:00 AM to 10:00 AM"
+            }
+          ],
           day1: parseEvents(FALLBACK_SCHEDULE.day1),
           day2: parseEvents(FALLBACK_SCHEDULE.day2),
         });
@@ -117,6 +134,7 @@ export default function Schedule() {
     );
   };
 
+  const filteredDay0 = filterEvents(schedule.day0);
   const filteredDay1 = filterEvents(schedule.day1);
   const filteredDay2 = filterEvents(schedule.day2);
 
@@ -145,7 +163,7 @@ export default function Schedule() {
         {/* Tab Controls & Search */}
         <div className="flex flex-col md:flex-row gap-6 items-center justify-between mb-10 w-full">
           {/* Day Tabs */}
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => setActiveDay("all")}
               className={`px-6 py-2.5 rounded-full font-bebas text-xs md:text-sm tracking-wider uppercase border-2 transition-all cursor-pointer ${
@@ -155,6 +173,16 @@ export default function Schedule() {
               }`}
             >
               All Days
+            </button>
+            <button
+              onClick={() => setActiveDay("day0")}
+              className={`px-6 py-2.5 rounded-full font-bebas text-xs md:text-sm tracking-wider uppercase border-2 transition-all cursor-pointer ${
+                activeDay === "day0"
+                  ? "bg-forest-green text-white border-ink-dark shadow-[2px_2px_0px_rgba(43,26,14,1)]"
+                  : "bg-transparent text-[#ebdcb9]/80 border-[#ebdcb9]/30 hover:border-[#ebdcb9]/75 hover:text-white"
+              }`}
+            >
+              Day Zero
             </button>
             <button
               onClick={() => setActiveDay("day1")}
@@ -205,6 +233,45 @@ export default function Schedule() {
               animate="show"
               className="space-y-12"
             >
+              {/* Day 0 Section */}
+              {(activeDay === "day0" || activeDay === "all") && (
+                <div className="space-y-4">
+                  <h2 className="font-bebas font-black text-xl md:text-2xl text-[#E8D7A5] uppercase tracking-wider text-center md:text-left">
+                    Day 0 - (07.07.2026)
+                  </h2>
+                  <div className="parchment-card-light schedule-card-bg shadow-[4px_4px_0px_rgba(43,26,14,1)]">
+                    <div className="overflow-x-auto w-full">
+                      <table className="w-full min-w-[600px] border-collapse table-fixed">
+                        <thead>
+                          <tr className="border-b-2 border-ink-dark text-ink-dark font-bebas text-xs md:text-sm tracking-wider uppercase text-left">
+                            <th className="px-6 py-4 w-[35%]"><span className="flex items-center gap-2"><Calendar className="h-4 w-4 text-black" /> EVENT</span></th>
+                            <th className="px-6 py-4 w-[25%]"><span className="flex items-center gap-2"><MapPin className="h-4 w-4 text-black" /> VENUE</span></th>
+                            <th className="px-6 py-4 w-[20%]"><span className="flex items-center gap-2"><Building className="h-4 w-4 text-black" /> FLOOR</span></th>
+                            <th className="px-6 py-4 w-[20%]"><span className="flex items-center gap-2"><Clock className="h-4 w-4 text-black" /> TIME</span></th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
+                          {filteredDay0.length > 0 ? (
+                            filteredDay0.map((item, idx) => (
+                              <tr key={idx} className="hover:bg-black/5 transition-colors">
+                                <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
+                                <td className="px-6 py-4.5">{item.location}</td>
+                                <td className="px-6 py-4.5">{item.floor}</td>
+                                <td className="px-6 py-4.5 font-bold text-black">{item.time}</td>
+                              </tr>
+                            ))
+                          ) : (
+                            <tr>
+                              <td colSpan={4} className="text-center py-8 text-ink-dark font-sans text-xs md:text-sm font-bold uppercase tracking-widest">No expeditions match search coordinates</td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              )}
+
               {/* Day 1 Section */}
               {(activeDay === "day1" || activeDay === "all") && (
                 <div className="space-y-4">
