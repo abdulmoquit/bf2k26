@@ -242,7 +242,7 @@ export default function Schedule() {
                   <div
                     className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]"
                     style={{
-                      backgroundImage: "url('/schedule-card-bg.png?v=3')",
+                      backgroundImage: "url('/schedule-card-bg.png?v=4')",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
@@ -290,7 +290,7 @@ export default function Schedule() {
                   <div
                     className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]"
                     style={{
-                      backgroundImage: "url('/schedule-card-bg.png?v=3')",
+                      backgroundImage: "url('/schedule-card-bg.png?v=4')",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
@@ -338,7 +338,7 @@ export default function Schedule() {
                   <div
                     className="parchment-card-light shadow-[4px_4px_0px_rgba(43,26,14,1)]"
                     style={{
-                      backgroundImage: "url('/schedule-card-bg.png?v=3')",
+                      backgroundImage: "url('/schedule-card-bg.png?v=4')",
                       backgroundSize: "cover",
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
