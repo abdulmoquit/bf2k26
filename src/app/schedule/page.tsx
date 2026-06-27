@@ -215,6 +215,12 @@ export default function Schedule() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-11 pr-5 py-2.5 parchment-scroll text-black focus:outline-none focus:border-gold-accent transition-all text-xs font-bold placeholder-black/60"
+              style={{
+                backgroundImage: "url('/schedule-card-bg.png?v=4')",
+                backgroundSize: "320px 320px",
+                backgroundRepeat: "repeat",
+                backgroundColor: "transparent"
+              }}
             />
           </div>
         </div>
