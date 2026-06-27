@@ -117,7 +117,8 @@
 
 /* Custom background for schedule cards */
 .schedule-card-bg {
-  background-image: url('/schedule-card-bg.png') !important;
+  background-color: transparent !important;
+  background-image: url('/schedule-card-bg.png?v=2') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
