@@ -69,7 +69,7 @@ export default function Schedule() {
   const [schedule, setSchedule] = useState<ScheduleData>({ day0: [], day1: [], day2: [] });
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeDay, setActiveDay] = useState<"day0" | "day1" | "day2" | "all">("day1");
+  const [activeDay, setActiveDay] = useState<"day0" | "day1" | "day2" | "all">("all");
 
   const parseEvents = (dayObj: Record<string, EventItem> | undefined): EventItem[] => {
     if (!dayObj) return [];
