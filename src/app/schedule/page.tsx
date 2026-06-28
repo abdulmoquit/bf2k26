@@ -93,7 +93,7 @@ export default function Schedule() {
             day0: [
               {
                 activity: "Bosco Spearhead (Javelin Throw)",
-                location: "Feild",
+                location: "Field",
                 floor: "Ground Floor",
                 time: "8:00 AM to 10:00 AM"
               }
@@ -110,7 +110,7 @@ export default function Schedule() {
           day0: [
             {
               activity: "Bosco Spearhead (Javelin Throw)",
-              location: "Feild",
+              location: "Field",
               floor: "Ground Floor",
               time: "8:00 AM to 10:00 AM"
             }
@@ -173,16 +173,6 @@ export default function Schedule() {
               }`}
             >
               All Days
-            </button>
-            <button
-              onClick={() => setActiveDay("day0")}
-              className={`px-6 py-2.5 rounded-full font-bebas text-xs md:text-sm tracking-wider uppercase border-2 transition-all cursor-pointer ${
-                activeDay === "day0"
-                  ? "bg-forest-green text-white border-ink-dark shadow-[2px_2px_0px_rgba(43,26,14,1)]"
-                  : "bg-transparent text-[#ebdcb9]/80 border-[#ebdcb9]/30 hover:border-[#ebdcb9]/75 hover:text-white"
-              }`}
-            >
-              Day Zero
             </button>
             <button
               onClick={() => setActiveDay("day1")}
