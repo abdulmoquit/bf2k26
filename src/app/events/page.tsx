@@ -785,7 +785,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "eco-fashion",
     name: "Bosco Vogue",
-    eventType: "Eco Fashion and Decor",
+    eventType: "Eco Fashion and Interior Decor",
     category: "Art and Literature",
     shortDesc: "Build and model clothing items using raw recyclable elements.",
     detail: "Inspired by the zero-waste vision of Wall-E and the rugged resourcefulness of Mad Max, this adventure challenges you to look at a pile of discarded junk and see a high-end runway collection. This is not just upcycling, it is your chance to play the role of Greta Thunberg and Picasso simultaneously, turning plastic bottles, weathered newspapers, and forgotten fabrics into sleek, avant-garde design statements. The clock is ticking, raw materials are your only currency, and the ultimate flex is not buying the future, it is inventing it out of what the world left behind. Grab your toolkit, brave the elements of design, and embark on the ultimate upcycling safari.",
