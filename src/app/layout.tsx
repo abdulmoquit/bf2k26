@@ -4,7 +4,6 @@ import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import Preloader from "@/components/Preloader";
 import Script from "next/script";
-import HtmlUrlSync from "@/components/HtmlUrlSync";
 
 const bebasNeue = Bebas_Neue({
   variable: "--font-bebas",
@@ -58,7 +57,6 @@ export default function RootLayout({
         />
       </head>
       <body className="text-[#2B1A0E] font-sans min-h-screen">
-        <HtmlUrlSync />
         <Preloader />
         <LenisProvider>
           {children}

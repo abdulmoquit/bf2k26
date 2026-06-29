@@ -1,0 +1,10 @@
+# URL rewriting rules for clean URLs on GoDaddy cPanel (Apache)
+RewriteEngine On
+
+# Exclude existing directories and files from rewriting
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Internally rewrite clean paths to their matching .html files
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^/]+)/?$ $1.html [QSA,L]
