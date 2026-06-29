@@ -229,8 +229,8 @@ export default function Schedule() {
               animate="show"
               className="space-y-12"
             >
-              {/* Day 0 Section */}
-              {(activeDay === "day0" || activeDay === "all") && (
+              {/* Day 0 Section — only show during search if it has a matching result */}
+              {(activeDay === "day0" || activeDay === "all") && (searchQuery === "" || filteredDay0.length > 0) && (
                 <div className="space-y-4">
                   <h2 className="font-bebas font-black text-xl md:text-2xl text-[#E8D7A5] uppercase tracking-wider text-center md:text-left">
                     Day 0 - (07.07.2026)
