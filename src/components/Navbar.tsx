@@ -9,10 +9,10 @@ import { Map, Compass, Calendar, School, Info, Menu, X, ArrowRight, Flag } from 
 
 const NAV_ITEMS = [
   { label: "Home",     href: "/",         icon: Map },
-  { label: "Events",   href: "/events",   icon: Compass },
-  { label: "Schedule", href: "/schedule", icon: Calendar },
-  { label: "Schools",  href: "/schools",  icon: School },
-  { label: "About Us", href: "/about",    icon: Info },
+  { label: "Events",   href: "/events.html",   icon: Compass },
+  { label: "Schedule", href: "/schedule.html", icon: Calendar },
+  { label: "Schools",  href: "/schools.html",  icon: School },
+  { label: "About Us", href: "/about.html",    icon: Info },
 ];
 
 export default function Navbar() {

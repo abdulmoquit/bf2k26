@@ -690,7 +690,7 @@ export default function Home() {
             {TERRITORIES.map((loc) => (
               <Link
                 key={loc.id}
-                href={`/events?event=${encodeURIComponent(loc.id)}`}
+                href={`/events.html?event=${encodeURIComponent(loc.id)}`}
                 className="parchment-card p-4.5 flex flex-col items-center text-center cursor-pointer hover:-translate-y-1 transition-all active:translate-y-0"
               >
                 <div className="w-16 h-16 rounded-full bg-[#1E1208] border border-[#A37F3E] flex items-center justify-center overflow-hidden relative z-10 shadow-md">
@@ -739,7 +739,7 @@ export default function Home() {
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
                 >
-                  <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
+                  <Link href={`/events.html?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
 
                     {/* Teardrop map-pin marker */}
                     <div className="w-20 h-20 rounded-full bg-[#1E1208] border-2 border-[#A37F3E] flex items-center justify-center shadow-2xl transition-all duration-300 group-hover:border-[#ebdcb9] relative z-10">
@@ -772,7 +772,7 @@ export default function Home() {
           {/* Bottom view all events CTA */}
           <div className="mt-4 md:-mt-10 relative z-10">
             <Link
-              href="/events"
+              href="/events.html"
               className="flex items-center gap-2.5 px-8 py-3.5 bg-[#37532A] hover:bg-[#273C1E] text-[#F4ECC8] font-bebas text-sm uppercase tracking-widest border-2 border-ink-dark shadow-[4px_4px_0px_rgba(43,26,14,0.9)] rounded-full transition-all active:translate-y-[2px]"
             >
               {/* Binoculars SVG Icon */}
