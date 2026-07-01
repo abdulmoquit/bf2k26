@@ -257,12 +257,18 @@ export default function Schedule() {
                         <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
                           {filteredDay0.length > 0 ? (
                             filteredDay0.map((item, idx) => (
-                              <tr key={idx} className="hover:bg-black/5 transition-colors">
+                              <motion.tr 
+                                key={idx} 
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.25, ease: "easeOut", delay: idx * 0.03 }}
+                                className="hover:bg-black/5 transition-colors"
+                              >
                                 <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
                                 <td className="px-6 py-4.5">{item.location}</td>
                                 <td className="px-6 py-4.5">{item.floor}</td>
                                 <td className="px-6 py-4.5 font-bold text-black">{item.time}</td>
-                              </tr>
+                              </motion.tr>
                             ))
                           ) : (
                             <tr>
@@ -304,12 +310,18 @@ export default function Schedule() {
                         <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
                           {filteredDay1.length > 0 ? (
                             filteredDay1.map((item, idx) => (
-                              <tr key={idx} className="hover:bg-black/5 transition-colors">
+                              <motion.tr 
+                                key={idx} 
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.25, ease: "easeOut", delay: (idx % 15) * 0.02 }}
+                                className="hover:bg-black/5 transition-colors"
+                              >
                                 <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
                                 <td className="px-6 py-4.5">{item.location}</td>
                                 <td className="px-6 py-4.5">{item.floor}</td>
                                 <td className="px-6 py-4.5 font-bold text-black">{item.time}</td>
-                              </tr>
+                              </motion.tr>
                             ))
                           ) : (
                             <tr>
@@ -351,12 +363,18 @@ export default function Schedule() {
                         <tbody className="divide-y divide-ink-dark/15 font-sans text-xs md:text-sm font-semibold text-ink-dark">
                           {filteredDay2.length > 0 ? (
                             filteredDay2.map((item, idx) => (
-                              <tr key={idx} className="hover:bg-black/5 transition-colors">
+                              <motion.tr 
+                                key={idx} 
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.25, ease: "easeOut", delay: (idx % 15) * 0.02 }}
+                                className="hover:bg-black/5 transition-colors"
+                              >
                                 <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
                                 <td className="px-6 py-4.5">{item.location}</td>
                                 <td className="px-6 py-4.5">{item.floor}</td>
                                 <td className="px-6 py-4.5 font-bold text-black">{item.time}</td>
-                              </tr>
+                              </motion.tr>
                             ))
                           ) : (
                             <tr>

@@ -714,17 +714,21 @@ export default function Home() {
 
             {/* SVG Winding Map Path */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 1000 580" fill="none">
-              <path
+              <motion.path
                 d="M 180,165 C 300,105 380,85 480,98 C 580,113 650,113 720,138 C 760,205 770,305 740,380 C 640,380 580,360 500,360 C 400,360 330,350 280,330 C 220,295 190,205 180,165"
                 stroke="#A37F3E"
                 strokeWidth="2.5"
                 strokeDasharray="7 7"
                 className="opacity-45"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 2.2, ease: "easeInOut" }}
               />
             </svg>
 
             {/* Absolute Positioned Map Nodes */}
-            {TERRITORIES.map((loc) => (
+            {TERRITORIES.map((loc, idx) => (
               <div
                 key={loc.id}
                 className="absolute"
@@ -736,8 +740,16 @@ export default function Home() {
               >
                 <motion.div
                   className="flex flex-col items-center text-center group"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 120, 
+                    damping: 14, 
+                    delay: 0.3 + idx * 0.15 
+                  }}
+                  whileHover={{ scale: 1.06 }}
                 >
                   <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
 

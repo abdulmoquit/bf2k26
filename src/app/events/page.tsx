@@ -1772,15 +1772,23 @@ export default function EventsPage() {
         {filteredEvents.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 w-full">
             <AnimatePresence mode="popLayout">
-              {filteredEvents.map((evt) => {
+              {filteredEvents.map((evt, idx) => {
                 return (
                   <motion.div
                     key={evt.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.15 }}
-                    whileHover={isMobile ? {} : { y: -4, boxShadow: "6px 6px 0px rgba(43,26,14,0.95), 0 0 20px rgba(163,127,62,0.15)" }}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12, transition: { duration: 0.15 } }}
+                    transition={{ 
+                      duration: 0.4, 
+                      ease: [0.215, 0.61, 0.355, 1], // Cubic-bezier easeOutQuad/Cubic
+                      delay: (idx % 9) * 0.04 
+                    }}
+                    whileHover={isMobile ? {} : { 
+                      y: -6, 
+                      scale: 1.015, 
+                      boxShadow: "6px 6px 0px rgba(43,26,14,0.95), 0 0 25px rgba(163,127,62,0.2)" 
+                    }}
                     onClick={() => setActiveEvent(evt)}
                     className="parchment-card group relative flex flex-col overflow-hidden cursor-pointer rounded-lg px-4 pt-5 pb-4"
                   >

@@ -41,6 +41,18 @@ export default function Schools() {
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
     show: { y: 0, opacity: 1, transition: { type: "spring" as const, stiffness: 100 } },
+    hover: {
+      scale: 1.05,
+      y: -3,
+      transition: { type: "spring" as const, stiffness: 300, damping: 20 }
+    }
+  };
+
+  const stampVariants = {
+    hover: { 
+      rotate: [0, -3.5, 3, -1.5, 1, 0],
+      transition: { duration: 0.5, ease: "easeInOut" as const }
+    }
   };
 
   return (
@@ -82,14 +94,14 @@ export default function Schools() {
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ 
-                scale: 1.05, 
-                translateY: -3,
-              }}
+              whileHover="hover"
               className="parchment-card flex flex-col items-center justify-center p-4 h-60 cursor-default shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:shadow-[5px_5px_0px_rgba(43,26,14,1)] gap-1.5 w-full"
             >
               {/* Stamp-like Circular Logo Container */}
-              <div className="relative w-28 h-28 flex items-center justify-center flex-shrink-0 select-none">
+              <motion.div 
+                variants={stampVariants} 
+                className="relative w-28 h-28 flex items-center justify-center flex-shrink-0 select-none"
+              >
                 <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full pointer-events-none text-ink-dark/75 fill-none stroke-current">
                   <g filter="url(#stamp-distort)">
                     {/* Outer wavy/dashed circle */}
@@ -117,7 +129,7 @@ export default function Schools() {
                     className="object-contain mix-blend-multiply opacity-90 hover:opacity-100 transition-opacity duration-300"
                   />
                 </div>
-              </div>
+              </motion.div>
 
               {/* School Name */}
               <p className="font-bebas text-center text-[15.5px] font-black text-ink-dark tracking-wide uppercase leading-tight min-h-[38px] flex items-center justify-center px-1">
