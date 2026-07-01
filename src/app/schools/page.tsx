@@ -20,7 +20,6 @@ const SCHOOLS = [
   { name: "Pratt Memorial School Calcutta", logo: "pms.png" },
   { name: "Shri Shikshayatan School", logo: "ssy.png" },
   { name: "St. James' School", logo: "sjs.png" },
-  { name: "St. Lawrence High School", logo: "slhs.png" },
   { name: "St. Paul's Boarding and Day School", logo: "spbds.webp" },
   { name: "The Newtown School", logo: "nts2.png" },
   { name: "Our Lady Queen Of The Missions School Park Circus", logo: "qms.png" },
