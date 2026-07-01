@@ -21,10 +21,10 @@ const SCHOOLS = [
   { name: "Shri Shikshayatan School", logo: "ssy.png" },
   { name: "St. James' School", logo: "sjs.png" },
   { name: "St. Paul's Boarding and Day School", logo: "spbds.webp" },
-  { name: "Don Bosco School Park Circus", logo: "dbpc.png" },
+  { name: "Our Lady Queen Of The Missions School Salt Lake", logo: "qms.png" },
   { name: "The Newtown School", logo: "nts2.png" },
   { name: "Our Lady Queen Of The Missions School Park Circus", logo: "qms.png" },
-  { name: "Our Lady Queen Of The Missions School Salt Lake", logo: "qms.png" },
+  { name: "Don Bosco School Park Circus", logo: "dbpc.png" },
 ];
 
 export default function Schools() {
@@ -86,11 +86,7 @@ export default function Schools() {
                 scale: 1.05, 
                 translateY: -3,
               }}
-              className={`parchment-card flex flex-col items-center justify-center p-4 h-60 cursor-default shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:shadow-[5px_5px_0px_rgba(43,26,14,1)] gap-1.5 ${
-                index === SCHOOLS.length - 1
-                  ? "col-span-2 justify-self-center w-full max-w-[170px] sm:col-span-3 sm:justify-self-center sm:max-w-[170px] md:col-span-5 md:justify-self-center md:max-w-[170px]"
-                  : ""
-              }`}
+              className="parchment-card flex flex-col items-center justify-center p-4 h-60 cursor-default shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:shadow-[5px_5px_0px_rgba(43,26,14,1)] gap-1.5 w-full"
             >
               {/* Stamp-like Circular Logo Container */}
               <div className="relative w-28 h-28 flex items-center justify-center flex-shrink-0 select-none">
