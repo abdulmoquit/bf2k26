@@ -95,11 +95,13 @@ export default function Schools() {
               key={index}
               variants={itemVariants}
               whileHover="hover"
+              style={{ willChange: "transform, opacity" }}
               className="parchment-card flex flex-col items-center justify-center p-4 h-60 cursor-default shadow-[3px_3px_0px_rgba(43,26,14,1)] hover:shadow-[5px_5px_0px_rgba(43,26,14,1)] gap-1.5 w-full"
             >
               {/* Stamp-like Circular Logo Container */}
               <motion.div 
                 variants={stampVariants} 
+                style={{ willChange: "transform" }}
                 className="relative w-28 h-28 flex items-center justify-center flex-shrink-0 select-none"
               >
                 <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full pointer-events-none text-ink-dark/75 fill-none stroke-current">

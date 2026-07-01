@@ -750,6 +750,7 @@ export default function Home() {
                     delay: 0.3 + idx * 0.15 
                   }}
                   whileHover={{ scale: 1.06 }}
+                  style={{ willChange: "transform, opacity" }}
                 >
                   <Link href={`/events?event=${encodeURIComponent(loc.id)}`} className="flex flex-col items-center">
 

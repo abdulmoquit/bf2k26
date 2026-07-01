@@ -261,7 +261,8 @@ export default function Schedule() {
                                 key={idx} 
                                 initial={{ opacity: 0, y: 8 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.25, ease: "easeOut", delay: idx * 0.03 }}
+                                transition={{ duration: 0.22, ease: "easeOut", delay: Math.min(idx, 8) * 0.025 }}
+                                style={{ willChange: "transform, opacity" }}
                                 className="hover:bg-black/5 transition-colors"
                               >
                                 <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
@@ -314,7 +315,8 @@ export default function Schedule() {
                                 key={idx} 
                                 initial={{ opacity: 0, y: 8 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.25, ease: "easeOut", delay: (idx % 15) * 0.02 }}
+                                transition={{ duration: 0.22, ease: "easeOut", delay: Math.min(idx, 10) * 0.025 }}
+                                style={{ willChange: "transform, opacity" }}
                                 className="hover:bg-black/5 transition-colors"
                               >
                                 <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>
@@ -367,7 +369,8 @@ export default function Schedule() {
                                 key={idx} 
                                 initial={{ opacity: 0, y: 8 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.25, ease: "easeOut", delay: (idx % 15) * 0.02 }}
+                                transition={{ duration: 0.22, ease: "easeOut", delay: Math.min(idx, 10) * 0.025 }}
+                                style={{ willChange: "transform, opacity" }}
                                 className="hover:bg-black/5 transition-colors"
                               >
                                 <td className="px-6 py-4.5 font-bold uppercase tracking-wide text-ink-dark">{item.activity}</td>

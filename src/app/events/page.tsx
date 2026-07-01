@@ -1789,6 +1789,7 @@ export default function EventsPage() {
                       scale: 1.015, 
                       boxShadow: "6px 6px 0px rgba(43,26,14,0.95), 0 0 25px rgba(163,127,62,0.2)" 
                     }}
+                    style={{ willChange: "transform, opacity" }}
                     onClick={() => setActiveEvent(evt)}
                     className="parchment-card group relative flex flex-col overflow-hidden cursor-pointer rounded-lg px-4 pt-5 pb-4"
                   >
