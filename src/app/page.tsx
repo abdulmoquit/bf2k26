@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   Compass,
   ArrowDown,
@@ -11,6 +11,30 @@ import {
   Youtube
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
+
+// Shared animation variants
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 28 },
+  animate: { opacity: 1, y: 0 },
+  transition: { delay, type: "spring" as const, stiffness: 80, damping: 16 },
+});
+
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.07, delayChildren: 0.4 },
+  },
+};
+
+const letterVariants = {
+  hidden: { opacity: 0, y: 40, rotateX: -30 },
+  show: {
+    opacity: 1,
+    y: 0,
+    rotateX: 0,
+    transition: { type: "spring" as const, stiffness: 90, damping: 14 },
+  },
+};
 
 interface Territory {
   id: string;
@@ -292,36 +316,61 @@ export default function Home() {
               transition={{ delay: 0.3, type: "spring", stiffness: 70, damping: 14 }}
               className="flex flex-col items-center justify-center flex-1 text-center px-4 lg:px-8"
             >
-              {/* Emblem Logo — large */}
-              <div
+              {/* Emblem Logo — large, floating */}
+              <motion.div
                 className="relative select-none"
                 style={{
                   width: "min(460px, 32vw, 40vh)",
                   height: "min(460px, 32vw, 40vh)",
                   filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.75))",
                 }}
+                initial={{ opacity: 0, scale: 0.75, rotate: -6 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ delay: 0.15, type: "spring", stiffness: 60, damping: 12 }}
               >
-                <Image
-                  src="/logo2026.webp"
-                  alt="Boscofest 2026 Emblem"
-                  fill
-                  priority
-                  sizes="460px"
-                  className="object-contain"
-                />
-              </div>
+                {/* Slow breathing float */}
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="w-full h-full relative"
+                  style={{ willChange: "transform" }}
+                >
+                  <Image
+                    src="/logo2026.webp"
+                    alt="Boscofest 2026 Emblem"
+                    fill
+                    priority
+                    sizes="460px"
+                    className="object-contain"
+                  />
+                </motion.div>
+              </motion.div>
 
-              {/* Main Title */}
-              <h1
-                className="font-bebas uppercase leading-none select-none"
+              {/* Main Title — staggered letter reveal */}
+              <motion.h1
+                variants={containerVariants}
+                initial="hidden"
+                animate="show"
+                className="font-bebas uppercase leading-none select-none flex flex-wrap justify-center"
                 style={{ fontSize: "clamp(52px, 7vw, 84px)", letterSpacing: "0.03em" }}
               >
-                <span style={{ color: "#F4ECC8" }}>BOSCO FEST </span>
-                <span style={{ color: "#82C341" }}>2026</span>
-              </h1>
+                {"BOSCO FEST ".split("").map((ch, i) => (
+                  <motion.span key={i} variants={letterVariants} style={{ color: "#F4ECC8", display: "inline-block" }}>
+                    {ch === " " ? "\u00A0" : ch}
+                  </motion.span>
+                ))}
+                {"2026".split("").map((ch, i) => (
+                  <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#82C341", display: "inline-block" }}>
+                    {ch}
+                  </motion.span>
+                ))}
+              </motion.h1>
 
-              {/* Motto banner */}
+              {/* Motto banner — auto-shimmer scan + hover */}
               <motion.div
+                initial={{ opacity: 0, scaleX: 0.7 }}
+                animate={{ opacity: 1, scaleX: 1 }}
+                transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
                 whileHover="hover"
                 className="flex items-center gap-3.5 mt-2.5 mb-2.5 px-10 py-3 relative overflow-hidden cursor-pointer"
                 style={{
@@ -341,16 +390,22 @@ export default function Home() {
                   }
                 }}
               >
-                {/* Glowing gold star markers */}
-                <motion.span
-                  variants={{
-                    hover: { scale: 1.15, color: "#ebdcb9", rotate: 90 }
+                {/* Auto shimmer scan line that plays once on load */}
+                <motion.div
+                  initial={{ x: "-100%", opacity: 0.9 }}
+                  animate={{ x: "200%", opacity: 0 }}
+                  transition={{ delay: 1.0, duration: 0.9, ease: "easeInOut" }}
+                  className="absolute inset-y-0 w-1/3 pointer-events-none"
+                  style={{
+                    background: "linear-gradient(to right, transparent, rgba(244,236,200,0.35), transparent)",
+                    willChange: "transform",
                   }}
+                />
+                <motion.span
+                  variants={{ hover: { scale: 1.15, color: "#ebdcb9", rotate: 90 } }}
                   transition={{ duration: 0.3 }}
                   className="text-[#A37F3E] text-xs select-none"
-                >
-                  ✦
-                </motion.span>
+                >✦</motion.span>
                 <motion.span
                   variants={{
                     hover: {
@@ -371,33 +426,52 @@ export default function Home() {
                   &quot;UNTOLD. UNFAZED. UNCHARTED.&quot;
                 </motion.span>
                 <motion.span
-                  variants={{
-                    hover: { scale: 1.15, color: "#ebdcb9", rotate: -90 }
-                  }}
+                  variants={{ hover: { scale: 1.15, color: "#ebdcb9", rotate: -90 } }}
                   transition={{ duration: 0.3 }}
                   className="text-[#A37F3E] text-xs select-none"
-                >
-                  ✦
-                </motion.span>
+                >✦</motion.span>
               </motion.div>
 
-              {/* Sub-header */}
-              <p
+              {/* Sub-header — fade up */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.05, duration: 0.6, ease: "easeOut" }}
                 className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-8"
                 style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
               >
                 Don Bosco School · Park Circus
-              </p>
+              </motion.p>
 
-              {/* CTA Button */}
-              <button
-                onClick={scrollMap}
-                className="green-btn flex items-center justify-center gap-2.5 px-10 py-3.5"
-                style={{ fontSize: 12, letterSpacing: "0.12em" }}
+              {/* CTA Button — glow pulse ring + hover lift */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.15, type: "spring", stiffness: 90, damping: 14 }}
+                className="relative"
               >
-                <Compass className="h-4 w-4" />
-                <span>EXPLORE EVENTS</span>
-              </button>
+                {/* Pulsing ring behind the button */}
+                <motion.span
+                  className="absolute inset-0 rounded-full pointer-events-none"
+                  animate={{ scale: [1, 1.55, 1], opacity: [0.55, 0, 0.55] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                  style={{
+                    background: "radial-gradient(circle, rgba(130,195,65,0.35) 0%, transparent 70%)",
+                    willChange: "transform, opacity",
+                  }}
+                />
+                <motion.button
+                  onClick={scrollMap}
+                  whileHover={{ y: -3, scale: 1.04, boxShadow: "0 8px 24px rgba(130,195,65,0.35)" }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                  className="green-btn flex items-center justify-center gap-2.5 px-10 py-3.5 relative"
+                  style={{ fontSize: 12, letterSpacing: "0.12em" }}
+                >
+                  <Compass className="h-4 w-4" />
+                  <span>EXPLORE EVENTS</span>
+                </motion.button>
+              </motion.div>
             </motion.div>
 
             {/* ── RIGHT: Core Sponsor ── */}
@@ -444,11 +518,11 @@ export default function Home() {
           <div
             className="flex lg:hidden flex-col items-center justify-start w-full px-5 py-24 relative z-10 gap-5"
           >
-            {/* Emblem Logo */}
+            {/* Emblem Logo — floating on mobile too */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 100, damping: 15 }}
+              initial={{ opacity: 0, scale: 0.75, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 80, damping: 13 }}
               className="relative select-none shrink-0"
               style={{
                 width: "min(220px, 55vw)",
@@ -456,31 +530,44 @@ export default function Home() {
                 filter: "drop-shadow(0 12px 30px rgba(0,0,0,0.75))",
               }}
             >
-              <Image
-                src="/logo2026.webp"
-                alt="Boscofest 2026 Emblem"
-                fill
-                priority
-                sizes="220px"
-                className="object-contain"
-              />
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="w-full h-full relative"
+                style={{ willChange: "transform" }}
+              >
+                <Image
+                  src="/logo2026.webp"
+                  alt="Boscofest 2026 Emblem"
+                  fill
+                  priority
+                  sizes="220px"
+                  className="object-contain"
+                />
+              </motion.div>
             </motion.div>
 
             {/* Core Titles */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, type: "spring", stiffness: 90, damping: 14 }}
-              className="flex flex-col items-center text-center w-full"
-            >
-              {/* Main Title */}
-              <h1
-                className="font-bebas uppercase leading-none select-none"
+            <div className="flex flex-col items-center text-center w-full">
+              {/* Main Title — staggered on mobile */}
+              <motion.h1
+                variants={containerVariants}
+                initial="hidden"
+                animate="show"
+                className="font-bebas uppercase leading-none select-none flex flex-wrap justify-center"
                 style={{ fontSize: "44px", letterSpacing: "0.03em" }}
               >
-                <span style={{ color: "#F4ECC8" }}>BOSCO FEST </span>
-                <span style={{ color: "#82C341" }}>2026</span>
-              </h1>
+                {"BOSCO FEST ".split("").map((ch, i) => (
+                  <motion.span key={i} variants={letterVariants} style={{ color: "#F4ECC8", display: "inline-block" }}>
+                    {ch === " " ? "\u00A0" : ch}
+                  </motion.span>
+                ))}
+                {"2026".split("").map((ch, i) => (
+                  <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#82C341", display: "inline-block" }}>
+                    {ch}
+                  </motion.span>
+                ))}
+              </motion.h1>
 
               {/* Motto banner */}
               <motion.div
@@ -543,13 +630,16 @@ export default function Home() {
               </motion.div>
 
               {/* Sub-header */}
-              <p
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.05, duration: 0.6 }}
                 className="font-sans font-black uppercase tracking-[0.25em] mt-2 mb-2"
                 style={{ fontSize: 9.5, color: "#82C341" }}
               >
                 Don Bosco School · Park Circus
-              </p>
-            </motion.div>
+              </motion.p>
+            </div>
 
             {/* Countdown Cards Wrapper */}
             <motion.div
@@ -568,14 +658,28 @@ export default function Home() {
               transition={{ delay: 0.4, type: "spring", stiffness: 80, damping: 15 }}
               className="flex flex-col items-center text-center w-full max-w-sm px-2"
             >
-              <button
-                onClick={scrollMap}
-                className="green-btn flex items-center justify-center gap-2 px-8 py-3.5 w-full max-w-[240px]"
-                style={{ fontSize: 11.5, letterSpacing: "0.1em" }}
-              >
-                <Compass className="h-4 w-4" />
-                <span>EXPLORE EVENTS</span>
-              </button>
+              {/* CTA — glow pulse on mobile */}
+              <div className="relative">
+                <motion.span
+                  className="absolute inset-0 rounded-full pointer-events-none"
+                  animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+                  style={{
+                    background: "radial-gradient(circle, rgba(130,195,65,0.35) 0%, transparent 70%)",
+                    willChange: "transform, opacity",
+                  }}
+                />
+                <motion.button
+                  onClick={scrollMap}
+                  whileTap={{ scale: 0.96 }}
+                  whileHover={{ y: -2, scale: 1.03 }}
+                  className="green-btn flex items-center justify-center gap-2 px-8 py-3.5 w-full max-w-[240px] relative"
+                  style={{ fontSize: 11.5, letterSpacing: "0.1em" }}
+                >
+                  <Compass className="h-4 w-4" />
+                  <span>EXPLORE EVENTS</span>
+                </motion.button>
+              </div>
             </motion.div>
 
             {/* Core Sponsor */}
@@ -619,32 +723,53 @@ export default function Home() {
 
           </div>
 
-          {/* ── Bottom-left social icons ── */}
+          {/* ── Bottom-left social icons — spring stagger pop-in ── */}
           <div className="absolute bottom-8 left-8 hidden md:flex items-center gap-3.5 z-30">
             {[
               { href: "https://www.instagram.com/boscofest26?igsh=eW14dnphMGltdDEz", icon: <Instagram className="h-4 w-4" /> },
               { href: "https://youtube.com/@donboscoschoolparkcircus1452?si=-cOPtOWFAypyTlL2", icon: <Youtube className="h-4 w-4" /> },
             ].map((s, i) => (
-              <a
+              <motion.a
                 key={i}
                 href={s.href}
                 target="_blank"
                 rel="noreferrer"
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2 + i * 0.12, type: "spring", stiffness: 150, damping: 16 }}
+                whileHover={{ scale: 1.25, color: "#ebdcb9" }}
                 className="text-[#ebdcb9]/60 hover:text-[#ebdcb9] transition-colors"
+                style={{ willChange: "transform" }}
               >
                 {s.icon}
-              </a>
+              </motion.a>
             ))}
           </div>
 
-          {/* ── Bottom-right scroll indicator ── */}
-          <button
+          {/* ── Bottom-right scroll indicator — wave arrows ── */}
+          <motion.button
             onClick={scrollMap}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.3, duration: 0.5 }}
+            whileHover={{ scale: 1.08 }}
             className="absolute bottom-8 right-8 hidden md:flex items-center gap-2 text-[#ebdcb9]/60 hover:text-[#ebdcb9] transition-colors cursor-pointer z-30"
           >
-            <span className="font-bebas text-[10px] tracking-[0.25em] uppercase">Scroll to Explore</span>
-            <ArrowDown className="h-3.5 w-3.5 animate-bounce" />
-          </button>
+            <motion.span
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              className="font-bebas text-[10px] tracking-[0.25em] uppercase"
+            >
+              Scroll to Explore
+            </motion.span>
+            <motion.div
+              animate={{ y: [0, 5, 0] }}
+              transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
+              style={{ willChange: "transform" }}
+            >
+              <ArrowDown className="h-3.5 w-3.5" />
+            </motion.div>
+          </motion.button>
 
         </section>
 
