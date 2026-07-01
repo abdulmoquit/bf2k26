@@ -11,6 +11,7 @@ import {
   Youtube
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
+import { usePreloaderDone } from "@/components/PreloaderContext";
 
 // Shared animation variants
 const fadeUp = (delay = 0) => ({
@@ -209,6 +210,8 @@ export default function Home() {
   const mapSectionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [videoAutoplayFailed, setVideoAutoplayFailed] = useState(false);
+  // Gate hero entry animations behind the preloader finishing
+  const isLoaded = usePreloaderDone();
 
   useEffect(() => {
     const video = videoRef.current;
@@ -302,7 +305,7 @@ export default function Home() {
             {/* ── LEFT: Countdown Cards ── */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
+              animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 80, damping: 16 }}
               className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0"
             >
@@ -312,7 +315,7 @@ export default function Home() {
             {/* ── CENTER: Logo + Title + Button ── */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ delay: 0.3, type: "spring", stiffness: 70, damping: 14 }}
               className="flex flex-col items-center justify-center flex-1 text-center px-4 lg:px-8"
             >
@@ -325,7 +328,7 @@ export default function Home() {
                   filter: "drop-shadow(0 16px 40px rgba(0,0,0,0.75))",
                 }}
                 initial={{ opacity: 0, scale: 0.75, rotate: -6 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                animate={isLoaded ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.75, rotate: -6 }}
                 transition={{ delay: 0.15, type: "spring", stiffness: 60, damping: 12 }}
               >
                 {/* Slow breathing float */}
@@ -350,7 +353,7 @@ export default function Home() {
               <motion.h1
                 variants={containerVariants}
                 initial="hidden"
-                animate="show"
+                animate={isLoaded ? "show" : "hidden"}
                 className="font-bebas uppercase leading-none select-none flex flex-wrap justify-center"
                 style={{ fontSize: "clamp(52px, 7vw, 84px)", letterSpacing: "0.03em" }}
               >
@@ -369,7 +372,7 @@ export default function Home() {
               {/* Motto banner — auto-shimmer scan + hover */}
               <motion.div
                 initial={{ opacity: 0, scaleX: 0.7 }}
-                animate={{ opacity: 1, scaleX: 1 }}
+                animate={isLoaded ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0.7 }}
                 transition={{ delay: 0.8, duration: 0.5, ease: "easeOut" }}
                 whileHover="hover"
                 className="flex items-center gap-3.5 mt-2.5 mb-2.5 px-10 py-3 relative overflow-hidden cursor-pointer"
@@ -393,7 +396,7 @@ export default function Home() {
                 {/* Auto shimmer scan line that plays once on load */}
                 <motion.div
                   initial={{ x: "-100%", opacity: 0.9 }}
-                  animate={{ x: "200%", opacity: 0 }}
+                  animate={isLoaded ? { x: "200%", opacity: 0 } : { x: "-100%", opacity: 0.9 }}
                   transition={{ delay: 1.0, duration: 0.9, ease: "easeInOut" }}
                   className="absolute inset-y-0 w-1/3 pointer-events-none"
                   style={{
@@ -435,7 +438,7 @@ export default function Home() {
               {/* Sub-header — fade up */}
               <motion.p
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ delay: 1.05, duration: 0.6, ease: "easeOut" }}
                 className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-8"
                 style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
@@ -446,7 +449,7 @@ export default function Home() {
               {/* CTA Button — glow pulse ring + hover lift */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 transition={{ delay: 1.15, type: "spring", stiffness: 90, damping: 14 }}
                 className="relative"
               >
@@ -477,7 +480,7 @@ export default function Home() {
             {/* ── RIGHT: Core Sponsor ── */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
+              animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
               transition={{ delay: 0.45, type: "spring", stiffness: 80, damping: 16 }}
               className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0 gap-3"
             >
@@ -521,7 +524,7 @@ export default function Home() {
             {/* Emblem Logo — floating on mobile too */}
             <motion.div
               initial={{ opacity: 0, scale: 0.75, rotate: -5 }}
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              animate={isLoaded ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.75, rotate: -5 }}
               transition={{ delay: 0.1, type: "spring", stiffness: 80, damping: 13 }}
               className="relative select-none shrink-0"
               style={{
@@ -553,7 +556,7 @@ export default function Home() {
               <motion.h1
                 variants={containerVariants}
                 initial="hidden"
-                animate="show"
+                animate={isLoaded ? "show" : "hidden"}
                 className="font-bebas uppercase leading-none select-none flex flex-wrap justify-center"
                 style={{ fontSize: "44px", letterSpacing: "0.03em" }}
               >
@@ -632,7 +635,7 @@ export default function Home() {
               {/* Sub-header */}
               <motion.p
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ delay: 1.05, duration: 0.6 }}
                 className="font-sans font-black uppercase tracking-[0.25em] mt-2 mb-2"
                 style={{ fontSize: 9.5, color: "#82C341" }}
@@ -644,7 +647,7 @@ export default function Home() {
             {/* Countdown Cards Wrapper */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.3, type: "spring", stiffness: 80, damping: 15 }}
               className="w-full max-w-[280px]"
             >
@@ -654,7 +657,7 @@ export default function Home() {
             {/* Description & CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.4, type: "spring", stiffness: 80, damping: 15 }}
               className="flex flex-col items-center text-center w-full max-w-sm px-2"
             >
@@ -685,7 +688,7 @@ export default function Home() {
             {/* Core Sponsor */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.5, type: "spring", stiffness: 80, damping: 15 }}
               className="w-full max-w-[280px] flex flex-col items-center mt-4"
             >
@@ -735,7 +738,7 @@ export default function Home() {
                 target="_blank"
                 rel="noreferrer"
                 initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
                 transition={{ delay: 1.2 + i * 0.12, type: "spring", stiffness: 150, damping: 16 }}
                 whileHover={{ scale: 1.25, color: "#ebdcb9" }}
                 className="text-[#ebdcb9]/60 hover:text-[#ebdcb9] transition-colors"
@@ -750,7 +753,7 @@ export default function Home() {
           <motion.button
             onClick={scrollMap}
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
             transition={{ delay: 1.3, duration: 0.5 }}
             whileHover={{ scale: 1.08 }}
             className="absolute bottom-8 right-8 hidden md:flex items-center gap-2 text-[#ebdcb9]/60 hover:text-[#ebdcb9] transition-colors cursor-pointer z-30"

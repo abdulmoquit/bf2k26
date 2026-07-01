@@ -3,6 +3,7 @@ import { Bebas_Neue, Cinzel, Caveat, Outfit } from "next/font/google";
 import "./globals.css";
 import LenisProvider from "@/components/LenisProvider";
 import Preloader from "@/components/Preloader";
+import { PreloaderProvider } from "@/components/PreloaderContext";
 import Script from "next/script";
 import HtmlUrlSync from "@/components/HtmlUrlSync";
 
@@ -48,10 +49,12 @@ export default function RootLayout({
       <head />
       <body className="text-[#2B1A0E] font-sans min-h-screen">
         <HtmlUrlSync />
-        <Preloader />
-        <LenisProvider>
-          {children}
-        </LenisProvider>
+        <PreloaderProvider>
+          <Preloader />
+          <LenisProvider>
+            {children}
+          </LenisProvider>
+        </PreloaderProvider>
         <Script id="disable-inspect" strategy="afterInteractive">
           {`
             if (typeof window !== 'undefined' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
