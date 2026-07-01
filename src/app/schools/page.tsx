@@ -21,10 +21,10 @@ const SCHOOLS = [
   { name: "Shri Shikshayatan School", logo: "ssy.png" },
   { name: "St. James' School", logo: "sjs.png" },
   { name: "St. Paul's Boarding and Day School", logo: "spbds.webp" },
+  { name: "Don Bosco School Park Circus", logo: "dbpc.png" },
   { name: "The Newtown School", logo: "nts2.png" },
   { name: "Our Lady Queen Of The Missions School Park Circus", logo: "qms.png" },
   { name: "Our Lady Queen Of The Missions School Salt Lake", logo: "qms.png" },
-  { name: "Don Bosco School Park Circus", logo: "dbpc.png" },
 ];
 
 export default function Schools() {
