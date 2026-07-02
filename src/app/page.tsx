@@ -380,7 +380,11 @@ export default function Home() {
                 initial="hidden"
                 animate={isLoaded ? "show" : "hidden"}
                 className="font-bebas uppercase leading-none select-none flex flex-wrap justify-center"
-                style={{ fontSize: "clamp(52px, 7vw, 84px)", letterSpacing: "0.03em" }}
+                style={{ 
+                  fontSize: "clamp(52px, 7vw, 84px)", 
+                  letterSpacing: "0.03em",
+                  textShadow: "0 4px 20px rgba(0,0,0,0.65), 0 2px 4px rgba(0,0,0,0.4)"
+                }}
               >
                 {"BOSCO FEST ".split("").map((ch, i) => (
                   <motion.span key={i} variants={letterVariants} style={{ color: "#F4ECC8", display: "inline-block" }}>
@@ -470,15 +474,18 @@ export default function Home() {
               </motion.div>
 
               {/* Sub-header — fade up */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ delay: 1.05, duration: 0.6, ease: "easeOut" }}
-                className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-8"
-                style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
-              >
-                Don Bosco School · Park Circus
-              </motion.p>
+              <div className="mt-1.5 mb-8">
+                <motion.p
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                  transition={{ delay: 1.05, duration: 0.6, ease: "easeOut" }}
+                  className="font-sans font-black uppercase tracking-[0.2em] px-5 py-2 bg-black/30 backdrop-blur-md border border-[#ebdcb9]/15 rounded-full inline-flex items-center gap-2.5 shadow-lg"
+                  style={{ fontSize: 10, color: "#82C341" }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#82C341] animate-pulse" />
+                  <span>Don Bosco School · Park Circus</span>
+                </motion.p>
+              </div>
 
               {/* CTA Button — glow pulse ring + hover lift */}
               <motion.div
@@ -592,7 +599,11 @@ export default function Home() {
                 initial="hidden"
                 animate={isLoaded ? "show" : "hidden"}
                 className="font-bebas uppercase leading-none select-none flex flex-wrap justify-center"
-                style={{ fontSize: "clamp(38px, 10vw, 48px)", letterSpacing: "0.03em" }}
+                style={{ 
+                  fontSize: "clamp(38px, 10vw, 48px)", 
+                  letterSpacing: "0.03em",
+                  textShadow: "0 4px 16px rgba(0,0,0,0.65), 0 2px 4px rgba(0,0,0,0.4)"
+                }}
               >
                 {"BOSCO FEST ".split("").map((ch, i) => (
                   <motion.span key={i} variants={letterVariants} style={{ color: "#F4ECC8", display: "inline-block" }}>
@@ -676,15 +687,18 @@ export default function Home() {
               </motion.div>
 
               {/* Sub-header */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ delay: 1.05, duration: 0.6 }}
-                className="font-sans font-black uppercase tracking-[0.25em] mt-2 mb-2"
-                style={{ fontSize: 9.5, color: "#82C341" }}
-              >
-                Don Bosco School · Park Circus
-              </motion.p>
+              <div className="mt-2.5 mb-2">
+                <motion.p
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+                  transition={{ delay: 1.05, duration: 0.6 }}
+                  className="font-sans font-black uppercase tracking-[0.18em] px-4.5 py-1.5 bg-black/30 backdrop-blur-md border border-[#ebdcb9]/15 rounded-full inline-flex items-center gap-2 shadow-md"
+                  style={{ fontSize: 9, color: "#82C341" }}
+                >
+                  <span className="w-1.2 h-1.2 rounded-full bg-[#82C341] animate-pulse" />
+                  <span>Don Bosco School · Park Circus</span>
+                </motion.p>
+              </div>
             </div>
 
             {/* Countdown Cards Wrapper */}
