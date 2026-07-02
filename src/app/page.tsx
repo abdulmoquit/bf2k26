@@ -779,13 +779,12 @@ export default function Home() {
         {/* ═══ INTERACTIVE MAP SECTION ═══════════════════════════════════════ */}
         <section
           ref={mapSectionRef}
-          className="w-full py-24 px-6 flex flex-col items-center relative border-t-2 border-ink-dark overflow-hidden bg-zinc-950"
+          className="w-full py-24 px-6 flex flex-col items-center relative border-t-2 border-ink-dark overflow-hidden bg-zinc-950 bg-scroll md:bg-fixed"
           style={{
             backgroundImage: "url('/adventure-map-bg.webp')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
-            backgroundAttachment: typeof window !== "undefined" && window.innerWidth >= 768 ? "fixed" : "scroll",
           }}
         >
           {/* Dark overlay to keep content legible */}

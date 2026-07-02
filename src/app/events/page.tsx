@@ -1735,36 +1735,43 @@ export default function EventsPage() {
           </div>
         </motion.div>
 
-        {/* Category Strip — flat tabbed buttons */}
-        <div
-          className="w-full mb-8 category-scrollbar"
-          style={{
-            background: "#2B1A0E",
-            border: "2px solid #1E1208",
-            borderRadius: 6,
-            boxShadow: "4px 4px 0px rgba(43,26,14,0.9)",
-          }}
-        >
-          <div className="flex min-w-max">
-            {CATEGORIES.filter(c => c.name !== "All Territories").map((cat, idx) => {
-              const isSelected = selectedCategory === cat.name;
-              return (
-                <button
-                  key={cat.name}
-                  onClick={() => setSelectedCategory(isSelected ? "All Territories" : cat.name)}
-                  className="flex items-center gap-2 px-5 py-3 font-sans font-extrabold text-[12px] tracking-[0.08em] uppercase cursor-pointer transition-all shrink-0"
-                  style={{
-                    background: isSelected ? "rgba(235,220,185,0.12)" : "transparent",
-                    color: isSelected ? "#F4ECC8" : "rgba(235,220,185,0.8)",
-                    borderRight: idx < CATEGORIES.length - 2 ? "1px solid rgba(235,220,185,0.08)" : "none",
-                    borderBottom: isSelected ? "2px solid #A37F3E" : "2px solid transparent",
-                  }}
-                >
-                  <span className="text-base leading-none">{cat.icon}</span>
-                  <span>{cat.name}</span>
-                </button>
-              );
-            })}
+        {/* Category Strip — flat tabbed buttons with scroll indicators */}
+        <div className="relative w-full mb-8">
+          {/* Left Fade Overlay */}
+          <div className="absolute left-[2px] top-[2px] bottom-[2px] w-12 pointer-events-none z-10 bg-gradient-to-r from-[#2B1A0E] via-[#2B1A0E]/70 to-transparent rounded-l-[4px]" />
+          {/* Right Fade Overlay */}
+          <div className="absolute right-[2px] top-[2px] bottom-[2px] w-12 pointer-events-none z-10 bg-gradient-to-l from-[#2B1A0E] via-[#2B1A0E]/70 to-transparent rounded-r-[4px]" />
+          
+          <div
+            className="w-full category-scrollbar"
+            style={{
+              background: "#2B1A0E",
+              border: "2px solid #1E1208",
+              borderRadius: 6,
+              boxShadow: "4px 4px 0px rgba(43,26,14,0.9)",
+            }}
+          >
+            <div className="flex min-w-max px-6">
+              {CATEGORIES.filter(c => c.name !== "All Territories").map((cat, idx) => {
+                const isSelected = selectedCategory === cat.name;
+                return (
+                  <button
+                    key={cat.name}
+                    onClick={() => setSelectedCategory(isSelected ? "All Territories" : cat.name)}
+                    className="flex items-center gap-2 px-5 py-3 font-sans font-extrabold text-[12px] tracking-[0.08em] uppercase cursor-pointer transition-all shrink-0"
+                    style={{
+                      background: isSelected ? "rgba(235,220,185,0.12)" : "transparent",
+                      color: isSelected ? "#F4ECC8" : "rgba(235,220,185,0.8)",
+                      borderRight: idx < CATEGORIES.length - 2 ? "1px solid rgba(235,220,185,0.08)" : "none",
+                      borderBottom: isSelected ? "2px solid #A37F3E" : "2px solid transparent",
+                    }}
+                  >
+                    <span className="text-base leading-none">{cat.icon}</span>
+                    <span>{cat.name}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
