@@ -1333,7 +1333,7 @@ const EVENTS_DATA: Event[] = [
   {
     id: "math-marathon",
     name: "Bosco Brainwave",
-    eventType: "Memory",
+    eventType: "Memory Game",
     category: "Others",
     shortDesc: "Test your mental memory, recall speed, and pattern recognition.",
     detail: "Memory is not just about remembering, it is about holding onto details as the journey unfolds. Channel the focus of Sherlock recalling details everyone else missed, the sharp mind of Hermione drawing information from everything she has learned, and the persistence of Senku preserving knowledge across generations. As information flashes by, every detail becomes part of the adventure. Stay alert, trust your gut, and navigate your way through a challenge where the greatest discoveries belong to those who remember.",
