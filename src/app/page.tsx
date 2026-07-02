@@ -134,45 +134,70 @@ function useCountdown() {
 function CountdownCards({ isLoaded = true }: { isLoaded?: boolean }) {
   const { time, mounted } = useCountdown();
   const units = [
-    { value: mounted ? time.days : "00", label: "Days" },
-    { value: mounted ? time.hours : "00", label: "Hours" },
-    { value: mounted ? time.minutes : "00", label: "Mins" },
-    { value: mounted ? time.seconds : "00", label: "Secs" },
+    { value: mounted ? time.days : "00", label: "Days", color: "#2B1A0E" },
+    { value: mounted ? time.hours : "00", label: "Hours", color: "#2B1A0E" },
+    { value: mounted ? time.minutes : "00", label: "Mins", color: "#2B1A0E" },
+    { value: mounted ? time.seconds : "00", label: "Secs", color: "#37532A" }, // Highlight seconds with forest green
   ];
 
   return (
-    <div className="flex flex-col items-start gap-3 w-full animate-fade-in">
+    <div className="flex flex-col items-start gap-4 w-full select-none">
       {/* Header */}
-      <p className="font-bebas text-[10px] tracking-[0.35em] text-[#ebdcb9]/60 uppercase mb-1">
-        Expedition Begins In
-      </p>
+      <div className="flex items-center gap-2 mb-0.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#82C341] animate-pulse" />
+        <p className="font-bebas text-[10px] tracking-[0.35em] text-[#ebdcb9]/60 uppercase">
+          Expedition Begins In
+        </p>
+      </div>
 
       {/* 2×2 Grid */}
-      <div className="grid grid-cols-2 gap-2.5 w-full">
+      <div className="grid grid-cols-2 gap-3 w-full">
         {units.map((u, i) => (
           <motion.div
             key={u.label}
             initial={{ opacity: 0, scale: 0.85 }}
             animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
-            transition={{ delay: 0.15 + i * 0.08, type: "spring", stiffness: 130, damping: 16 }}
-            className="flex flex-col items-center justify-center"
+            whileHover={{ 
+              y: -4, 
+              rotate: i % 2 === 0 ? 1.5 : -1.5,
+              boxShadow: "5px 5px 0px rgba(43,26,14,1)",
+              backgroundColor: "rgba(249, 244, 218, 0.98)"
+            }}
+            transition={{ 
+              default: { type: "spring", stiffness: 130, damping: 16 },
+              scale: { delay: 0.15 + i * 0.08, type: "spring" }
+            }}
+            className="flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
             style={{
-              background: "rgba(244, 236, 200, 0.92)",
+              backgroundColor: "rgba(244, 236, 200, 0.93)",
+              backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+              backgroundSize: "6px 6px",
               border: "2px solid #2B1A0E",
-              borderRadius: 8,
+              borderRadius: 10,
               boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
-              padding: "10px 8px 8px",
+              padding: "12px 8px 10px",
+              willChange: "transform, box-shadow"
             }}
           >
+            {/* Blueprint corner markings */}
+            <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
+            <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
+            <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
+            <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
+
             <span
-              className="font-bebas leading-none text-[#2B1A0E]"
-              style={{ fontSize: "clamp(36px, 2.5vw, 42px)", lineHeight: 1 }}
+              className="font-bebas leading-none font-black"
+              style={{ 
+                fontSize: "clamp(38px, 2.8vw, 44px)", 
+                lineHeight: 1,
+                color: u.color,
+                textShadow: u.label === "Secs" ? "0 0 10px rgba(130,195,65,0.1)" : "none"
+              }}
             >
               {u.value}
             </span>
             <span
-              className="font-sans font-extrabold uppercase tracking-[0.1em] text-[#2B1A0E] mt-1.5"
-              style={{ fontSize: 11 }}
+              className="font-bebas font-bold uppercase tracking-[0.15em] mt-1 text-[#2B1A0E]/50 text-[10px]"
             >
               {u.label}
             </span>
