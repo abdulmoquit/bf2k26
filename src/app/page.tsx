@@ -362,11 +362,13 @@ export default function Home() {
                     {ch === " " ? "\u00A0" : ch}
                   </motion.span>
                 ))}
-                {"2026".split("").map((ch, i) => (
-                  <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#82C341", display: "inline-block" }}>
-                    {ch}
-                  </motion.span>
-                ))}
+                <span className="inline-block whitespace-nowrap">
+                  {"2026".split("").map((ch, i) => (
+                    <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#82C341", display: "inline-block" }}>
+                      {ch}
+                    </motion.span>
+                  ))}
+                </span>
               </motion.h1>
 
               {/* Motto banner — auto-shimmer scan + hover */}
@@ -565,11 +567,13 @@ export default function Home() {
                     {ch === " " ? "\u00A0" : ch}
                   </motion.span>
                 ))}
-                {"2026".split("").map((ch, i) => (
-                  <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#82C341", display: "inline-block" }}>
-                    {ch}
-                  </motion.span>
-                ))}
+                <span className="inline-block whitespace-nowrap">
+                  {"2026".split("").map((ch, i) => (
+                    <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#82C341", display: "inline-block" }}>
+                      {ch}
+                    </motion.span>
+                  ))}
+                </span>
               </motion.h1>
 
               {/* Motto banner */}
