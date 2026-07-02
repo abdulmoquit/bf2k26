@@ -569,9 +569,9 @@ export default function Home() {
               transition={{ delay: 0.1, type: "spring", stiffness: 80, damping: 13 }}
               className="relative select-none shrink-0"
               style={{
-                width: "min(200px, 50vw)",
-                height: "min(200px, 50vw)",
-                filter: "drop-shadow(0 10px 25px rgba(0,0,0,0.65))",
+                width: "min(270px, 68vw)",
+                height: "min(270px, 68vw)",
+                filter: "drop-shadow(0 14px 35px rgba(0,0,0,0.7))",
               }}
             >
               <motion.div
@@ -585,7 +585,7 @@ export default function Home() {
                   alt="Boscofest 2026 Emblem"
                   fill
                   priority
-                  sizes="220px"
+                  sizes="270px"
                   className="object-contain"
                 />
               </motion.div>
