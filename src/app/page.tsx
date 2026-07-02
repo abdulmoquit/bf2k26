@@ -131,7 +131,7 @@ function useCountdown() {
 }
 
 // Countdown Cards component — 2×2 grid of parchment cards
-function CountdownCards() {
+function CountdownCards({ isLoaded = true }: { isLoaded?: boolean }) {
   const { time, mounted } = useCountdown();
   const units = [
     { value: mounted ? time.days : "00", label: "Days" },
@@ -153,7 +153,7 @@ function CountdownCards() {
           <motion.div
             key={u.label}
             initial={{ opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
+            animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
             transition={{ delay: 0.15 + i * 0.08, type: "spring", stiffness: 130, damping: 16 }}
             className="flex flex-col items-center justify-center"
             style={{
@@ -309,7 +309,7 @@ export default function Home() {
               transition={{ delay: 0.2, type: "spring", stiffness: 80, damping: 16 }}
               className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0"
             >
-              <CountdownCards />
+              <CountdownCards isLoaded={isLoaded} />
             </motion.div>
 
             {/* ── CENTER: Logo + Title + Button ── */}
@@ -521,7 +521,7 @@ export default function Home() {
 
           {/* ── Vertical layout (Mobile only) ── */}
           <div
-            className="flex lg:hidden flex-col items-center justify-start w-full px-5 py-24 relative z-10 gap-5"
+            className="flex lg:hidden flex-col items-center justify-center min-h-screen w-full px-6 py-24 relative z-10 gap-7"
           >
             {/* Emblem Logo — floating on mobile too */}
             <motion.div
@@ -530,9 +530,9 @@ export default function Home() {
               transition={{ delay: 0.1, type: "spring", stiffness: 80, damping: 13 }}
               className="relative select-none shrink-0"
               style={{
-                width: "min(220px, 55vw)",
-                height: "min(220px, 55vw)",
-                filter: "drop-shadow(0 12px 30px rgba(0,0,0,0.75))",
+                width: "min(200px, 50vw)",
+                height: "min(200px, 50vw)",
+                filter: "drop-shadow(0 10px 25px rgba(0,0,0,0.65))",
               }}
             >
               <motion.div
@@ -560,7 +560,7 @@ export default function Home() {
                 initial="hidden"
                 animate={isLoaded ? "show" : "hidden"}
                 className="font-bebas uppercase leading-none select-none flex flex-wrap justify-center"
-                style={{ fontSize: "44px", letterSpacing: "0.03em" }}
+                style={{ fontSize: "clamp(38px, 10vw, 48px)", letterSpacing: "0.03em" }}
               >
                 {"BOSCO FEST ".split("").map((ch, i) => (
                   <motion.span key={i} variants={letterVariants} style={{ color: "#F4ECC8", display: "inline-block" }}>
@@ -655,7 +655,7 @@ export default function Home() {
               transition={{ delay: 0.3, type: "spring", stiffness: 80, damping: 15 }}
               className="w-full max-w-[280px]"
             >
-              <CountdownCards />
+              <CountdownCards isLoaded={isLoaded} />
             </motion.div>
 
             {/* Description & CTA */}

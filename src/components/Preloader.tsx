@@ -7,6 +7,12 @@ export default function Preloader() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const alreadySeen = typeof window !== 'undefined' && sessionStorage.getItem('bf_preloader_done');
+    if (alreadySeen) {
+      setLoading(false);
+      return;
+    }
+
     // Lock scrolling on initial load
     document.body.style.overflow = "hidden";
     
