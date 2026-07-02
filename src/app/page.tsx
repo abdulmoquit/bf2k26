@@ -389,7 +389,7 @@ export default function Home() {
                 ))}
                 <span className="inline-block whitespace-nowrap">
                   {"2026".split("").map((ch, i) => (
-                    <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#82C341", display: "inline-block" }}>
+                    <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#37532A", display: "inline-block" }}>
                       {ch}
                     </motion.span>
                   ))}
@@ -468,7 +468,7 @@ export default function Home() {
                 animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ delay: 1.05, duration: 0.6, ease: "easeOut" }}
                 className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-8"
-                style={{ fontSize: 11, color: "#82C341", letterSpacing: "0.25em" }}
+                style={{ fontSize: 11, color: "#37532A", letterSpacing: "0.25em" }}
               >
                 Don Bosco School · Park Circus
               </motion.p>
@@ -594,7 +594,7 @@ export default function Home() {
                 ))}
                 <span className="inline-block whitespace-nowrap">
                   {"2026".split("").map((ch, i) => (
-                    <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#82C341", display: "inline-block" }}>
+                    <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#37532A", display: "inline-block" }}>
                       {ch}
                     </motion.span>
                   ))}
@@ -667,7 +667,7 @@ export default function Home() {
                 animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ delay: 1.05, duration: 0.6 }}
                 className="font-sans font-black uppercase tracking-[0.25em] mt-2 mb-2"
-                style={{ fontSize: 9.5, color: "#82C341" }}
+                style={{ fontSize: 9.5, color: "#37532A" }}
               >
                 Don Bosco School · Park Circus
               </motion.p>
