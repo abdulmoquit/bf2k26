@@ -523,27 +523,44 @@ export default function Home() {
               initial={{ opacity: 0, x: 40 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
               transition={{ delay: 0.45, type: "spring", stiffness: 80, damping: 16 }}
-              className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0 gap-3"
+              className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0 gap-4"
             >
-              <p
-                className="font-bebas uppercase tracking-[0.28em]"
-                style={{ fontSize: 10, color: "rgba(235,220,185,0.7)" }}
-              >
-                Core Sponsor
-              </p>
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#82C341] animate-pulse" />
+                <p
+                  className="font-bebas uppercase tracking-[0.28em]"
+                  style={{ fontSize: 10, color: "rgba(235,220,185,0.7)" }}
+                >
+                  Core Sponsor
+                </p>
+              </div>
 
               <motion.div
-                whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                className="flex flex-col items-center justify-center w-full p-4 animate-glow"
+                whileHover={{ 
+                  y: -4, 
+                  rotate: -1.5,
+                  boxShadow: "5px 5px 0px rgba(43,26,14,1)",
+                  backgroundColor: "rgba(249, 244, 218, 0.98)"
+                }}
+                transition={{ type: "spring", stiffness: 130, damping: 16 }}
+                className="flex flex-col items-center justify-center w-full p-4 relative overflow-hidden cursor-pointer"
                 style={{
-                  background: "#F4ECC8",
+                  backgroundColor: "rgba(244, 236, 200, 0.93)",
+                  backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+                  backgroundSize: "6px 6px",
                   border: "2px solid #2B1A0E",
-                  borderRadius: 8,
-                  boxShadow: "3px 3px 0 rgba(43,26,14,1)",
+                  borderRadius: 10,
+                  boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+                  willChange: "transform, box-shadow"
                 }}
               >
-                <div className="relative w-full h-[60px]">
+                {/* Blueprint corner markings */}
+                <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
+                <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
+                <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
+                <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
+
+                <div className="relative w-full h-[60px] mix-blend-multiply opacity-90 hover:opacity-100 transition-opacity">
                   <Image
                     src="/peerless-logo.png"
                     alt="Peerless Logo"
@@ -747,27 +764,44 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.5, type: "spring", stiffness: 80, damping: 15 }}
-              className="w-full max-w-[280px] flex flex-col items-center mt-4"
+              className="w-full max-w-[280px] flex flex-col items-center mt-4 gap-3.5"
             >
-              <p
-                className="font-bebas uppercase tracking-[0.25em] mb-3"
-                style={{ fontSize: 9.5, color: "rgba(235,220,185,0.7)" }}
-              >
-                Core Sponsor
-              </p>
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#82C341] animate-pulse" />
+                <p
+                  className="font-bebas uppercase tracking-[0.25em]"
+                  style={{ fontSize: 9.5, color: "rgba(235,220,185,0.7)" }}
+                >
+                  Core Sponsor
+                </p>
+              </div>
 
               <motion.div
-                whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                className="flex flex-col items-center justify-center w-full p-4"
+                whileHover={{ 
+                  y: -4, 
+                  rotate: -1.5,
+                  boxShadow: "5px 5px 0px rgba(43,26,14,1)",
+                  backgroundColor: "rgba(249, 244, 218, 0.98)"
+                }}
+                transition={{ type: "spring", stiffness: 130, damping: 16 }}
+                className="flex flex-col items-center justify-center w-full p-4 relative overflow-hidden cursor-pointer"
                 style={{
-                  background: "#F4ECC8",
+                  backgroundColor: "rgba(244, 236, 200, 0.93)",
+                  backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+                  backgroundSize: "6px 6px",
                   border: "2px solid #2B1A0E",
-                  borderRadius: 8,
-                  boxShadow: "3px 3px 0 rgba(43,26,14,1)",
+                  borderRadius: 10,
+                  boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+                  willChange: "transform, box-shadow"
                 }}
               >
-                <div className="relative w-full h-[60px]">
+                {/* Blueprint corner markings */}
+                <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
+                <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
+                <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
+                <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
+
+                <div className="relative w-full h-[60px] mix-blend-multiply opacity-90 hover:opacity-100 transition-opacity">
                   <Image
                     src="/peerless-logo.png"
                     alt="Peerless Logo"
