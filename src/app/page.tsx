@@ -389,7 +389,15 @@ export default function Home() {
                 ))}
                 <span className="inline-block whitespace-nowrap">
                   {"2026".split("").map((ch, i) => (
-                    <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#37532A", display: "inline-block" }}>
+                    <motion.span 
+                      key={"y" + i} 
+                      variants={letterVariants} 
+                      style={{ 
+                        color: "#37532A", 
+                        display: "inline-block",
+                        textShadow: "1.5px 1.5px 0px #F4ECC8, -1px -1px 0px #F4ECC8, 1px -1px 0px #F4ECC8, -1px 1px 0px #F4ECC8"
+                      }}
+                    >
                       {ch}
                     </motion.span>
                   ))}
@@ -463,15 +471,17 @@ export default function Home() {
               </motion.div>
 
               {/* Sub-header — fade up */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ delay: 1.05, duration: 0.6, ease: "easeOut" }}
-                className="font-sans font-black uppercase tracking-[0.3em] mt-1.5 mb-8"
-                style={{ fontSize: 11, color: "#37532A", letterSpacing: "0.25em" }}
-              >
-                Don Bosco School · Park Circus
-              </motion.p>
+              <div className="mt-1.5 mb-8">
+                <motion.p
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                  transition={{ delay: 1.05, duration: 0.6, ease: "easeOut" }}
+                  className="font-sans font-black uppercase tracking-[0.2em] px-4 py-1.5 bg-[#ebdcb9] border-2 border-[#2B1A0E] shadow-[2.5px_2.5px_0px_rgba(43,26,14,1)] rounded-md inline-block"
+                  style={{ fontSize: 10, color: "#37532A" }}
+                >
+                  Don Bosco School · Park Circus
+                </motion.p>
+              </div>
 
               {/* CTA Button — glow pulse ring + hover lift */}
               <motion.div
@@ -594,7 +604,15 @@ export default function Home() {
                 ))}
                 <span className="inline-block whitespace-nowrap">
                   {"2026".split("").map((ch, i) => (
-                    <motion.span key={"y" + i} variants={letterVariants} style={{ color: "#37532A", display: "inline-block" }}>
+                    <motion.span 
+                      key={"y" + i} 
+                      variants={letterVariants} 
+                      style={{ 
+                        color: "#37532A", 
+                        display: "inline-block",
+                        textShadow: "1.5px 1.5px 0px #F4ECC8, -1px -1px 0px #F4ECC8, 1px -1px 0px #F4ECC8, -1px 1px 0px #F4ECC8"
+                      }}
+                    >
                       {ch}
                     </motion.span>
                   ))}
@@ -662,15 +680,17 @@ export default function Home() {
               </motion.div>
 
               {/* Sub-header */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={isLoaded ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ delay: 1.05, duration: 0.6 }}
-                className="font-sans font-black uppercase tracking-[0.25em] mt-2 mb-2"
-                style={{ fontSize: 9.5, color: "#37532A" }}
-              >
-                Don Bosco School · Park Circus
-              </motion.p>
+              <div className="mt-2.5 mb-2">
+                <motion.p
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+                  transition={{ delay: 1.05, duration: 0.6 }}
+                  className="font-sans font-black uppercase tracking-[0.18em] px-3.5 py-1.5 bg-[#ebdcb9] border-2 border-[#2B1A0E] shadow-[2px_2px_0px_rgba(43,26,14,1)] rounded-md inline-block"
+                  style={{ fontSize: 9, color: "#37532A" }}
+                >
+                  Don Bosco School · Park Circus
+                </motion.p>
+              </div>
             </div>
 
             {/* Countdown Cards Wrapper */}
