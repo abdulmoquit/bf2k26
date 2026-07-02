@@ -518,59 +518,112 @@ export default function Home() {
               </motion.div>
             </motion.div>
 
-            {/* ── RIGHT: Core Sponsor ── */}
+            {/* ── RIGHT: Core Sponsor & Co-Sponsor ── */}
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               animate={isLoaded ? { opacity: 1, x: 0 } : { opacity: 0, x: 40 }}
               transition={{ delay: 0.45, type: "spring", stiffness: 80, damping: 16 }}
-              className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0 gap-4"
+              className="hidden lg:flex flex-col items-start justify-center w-[240px] shrink-0 gap-6"
             >
-              <div className="flex items-center gap-2 mb-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#82C341] animate-pulse" />
-                <p
-                  className="font-bebas uppercase tracking-[0.28em]"
-                  style={{ fontSize: 10, color: "rgba(235,220,185,0.7)" }}
+              {/* Core Sponsor */}
+              <div className="flex flex-col items-start w-full gap-2.5">
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#82C341] animate-pulse" />
+                  <p
+                    className="font-bebas uppercase tracking-[0.28em]"
+                    style={{ fontSize: 10, color: "rgba(235,220,185,0.7)" }}
+                  >
+                    Core Sponsor
+                  </p>
+                </div>
+
+                <motion.div
+                  whileHover={{ 
+                    y: -4, 
+                    rotate: -1.5,
+                    boxShadow: "5px 5px 0px rgba(43,26,14,1)",
+                    backgroundColor: "rgba(249, 244, 218, 0.98)"
+                  }}
+                  transition={{ type: "spring", stiffness: 130, damping: 16 }}
+                  className="flex flex-col items-center justify-center w-full p-4 relative overflow-hidden cursor-pointer"
+                  style={{
+                    backgroundColor: "rgba(244, 236, 200, 0.93)",
+                    backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+                    backgroundSize: "6px 6px",
+                    border: "2px solid #2B1A0E",
+                    borderRadius: 10,
+                    boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+                    willChange: "transform, box-shadow"
+                  }}
                 >
-                  Core Sponsor
-                </p>
+                  {/* Blueprint corner markings */}
+                  <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
+                  <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
+                  <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
+                  <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
+
+                  <div className="relative w-full h-[60px] mix-blend-multiply opacity-90 hover:opacity-100 transition-opacity">
+                    <Image
+                      src="/peerless-logo.png"
+                      alt="Peerless Logo"
+                      fill
+                      priority
+                      sizes="200px"
+                      className="object-contain"
+                    />
+                  </div>
+                </motion.div>
               </div>
 
-              <motion.div
-                whileHover={{ 
-                  y: -4, 
-                  rotate: -1.5,
-                  boxShadow: "5px 5px 0px rgba(43,26,14,1)",
-                  backgroundColor: "rgba(249, 244, 218, 0.98)"
-                }}
-                transition={{ type: "spring", stiffness: 130, damping: 16 }}
-                className="flex flex-col items-center justify-center w-full p-4 relative overflow-hidden cursor-pointer"
-                style={{
-                  backgroundColor: "rgba(244, 236, 200, 0.93)",
-                  backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
-                  backgroundSize: "6px 6px",
-                  border: "2px solid #2B1A0E",
-                  borderRadius: 10,
-                  boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
-                  willChange: "transform, box-shadow"
-                }}
-              >
-                {/* Blueprint corner markings */}
-                <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
-                <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
-                <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
-                <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
-
-                <div className="relative w-full h-[60px] mix-blend-multiply opacity-90 hover:opacity-100 transition-opacity">
-                  <Image
-                    src="/peerless-logo.png"
-                    alt="Peerless Logo"
-                    fill
-                    priority
-                    sizes="200px"
-                    className="object-contain"
-                  />
+              {/* Co-Powered By Sponsor */}
+              <div className="flex flex-col items-start w-full gap-2.5">
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#82C341] animate-pulse" />
+                  <p
+                    className="font-bebas uppercase tracking-[0.28em]"
+                    style={{ fontSize: 10, color: "rgba(235,220,185,0.7)" }}
+                  >
+                    Co-Powered by
+                  </p>
                 </div>
-              </motion.div>
+
+                <motion.div
+                  whileHover={{ 
+                    y: -4, 
+                    rotate: 1.5,
+                    boxShadow: "5px 5px 0px rgba(43,26,14,1)",
+                    backgroundColor: "rgba(249, 244, 218, 0.98)"
+                  }}
+                  transition={{ type: "spring", stiffness: 130, damping: 16 }}
+                  className="flex flex-col items-center justify-center w-full p-4 relative overflow-hidden cursor-pointer"
+                  style={{
+                    backgroundColor: "rgba(244, 236, 200, 0.93)",
+                    backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+                    backgroundSize: "6px 6px",
+                    border: "2px solid #2B1A0E",
+                    borderRadius: 10,
+                    boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+                    willChange: "transform, box-shadow"
+                  }}
+                >
+                  {/* Blueprint corner markings */}
+                  <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
+                  <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
+                  <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
+                  <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
+
+                  <div className="relative w-full h-[60px] mix-blend-multiply opacity-90 hover:opacity-100 transition-opacity">
+                    <Image
+                      src="/hint-logo.jpg"
+                      alt="Hint Logo"
+                      fill
+                      priority
+                      sizes="200px"
+                      className="object-contain"
+                    />
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
 
           </div>
@@ -759,59 +812,112 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Core Sponsor */}
+            {/* Sponsors Section (Mobile only) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.5, type: "spring", stiffness: 80, damping: 15 }}
-              className="w-full max-w-[280px] flex flex-col items-center mt-4 gap-3.5"
+              className="w-full max-w-[320px] sm:max-w-[360px] flex gap-4 mt-4"
             >
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#82C341] animate-pulse" />
-                <p
-                  className="font-bebas uppercase tracking-[0.25em]"
-                  style={{ fontSize: 9.5, color: "rgba(235,220,185,0.7)" }}
+              {/* Core Sponsor */}
+              <div className="flex-1 flex flex-col items-center gap-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1 h-1 rounded-full bg-[#82C341] animate-pulse" />
+                  <p
+                    className="font-bebas uppercase tracking-[0.2em]"
+                    style={{ fontSize: 9, color: "rgba(235,220,185,0.7)" }}
+                  >
+                    Core Sponsor
+                  </p>
+                </div>
+
+                <motion.div
+                  whileHover={{ 
+                    y: -3, 
+                    rotate: -1,
+                    boxShadow: "4px 4px 0px rgba(43,26,14,1)",
+                    backgroundColor: "rgba(249, 244, 218, 0.98)"
+                  }}
+                  transition={{ type: "spring", stiffness: 130, damping: 16 }}
+                  className="flex flex-col items-center justify-center w-full p-3 relative overflow-hidden cursor-pointer aspect-[4/3]"
+                  style={{
+                    backgroundColor: "rgba(244, 236, 200, 0.93)",
+                    backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+                    backgroundSize: "5px 5px",
+                    border: "2px solid #2B1A0E",
+                    borderRadius: 8,
+                    boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+                    willChange: "transform, box-shadow"
+                  }}
                 >
-                  Core Sponsor
-                </p>
+                  {/* Blueprint corner markings */}
+                  <div className="absolute top-1 left-1 w-1 h-1 border-t border-l border-[#2B1A0E]/30" />
+                  <div className="absolute top-1 right-1 w-1 h-1 border-t border-r border-[#2B1A0E]/30" />
+                  <div className="absolute bottom-1 left-1 w-1 h-1 border-b border-l border-[#2B1A0E]/30" />
+                  <div className="absolute bottom-1 right-1 w-1 h-1 border-b border-r border-[#2B1A0E]/30" />
+
+                  <div className="relative w-full h-[35px] mix-blend-multiply opacity-90">
+                    <Image
+                      src="/peerless-logo.png"
+                      alt="Peerless Logo"
+                      fill
+                      priority
+                      sizes="120px"
+                      className="object-contain"
+                    />
+                  </div>
+                </motion.div>
               </div>
 
-              <motion.div
-                whileHover={{ 
-                  y: -4, 
-                  rotate: -1.5,
-                  boxShadow: "5px 5px 0px rgba(43,26,14,1)",
-                  backgroundColor: "rgba(249, 244, 218, 0.98)"
-                }}
-                transition={{ type: "spring", stiffness: 130, damping: 16 }}
-                className="flex flex-col items-center justify-center w-full p-4 relative overflow-hidden cursor-pointer"
-                style={{
-                  backgroundColor: "rgba(244, 236, 200, 0.93)",
-                  backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
-                  backgroundSize: "6px 6px",
-                  border: "2px solid #2B1A0E",
-                  borderRadius: 10,
-                  boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
-                  willChange: "transform, box-shadow"
-                }}
-              >
-                {/* Blueprint corner markings */}
-                <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
-                <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
-                <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
-                <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
-
-                <div className="relative w-full h-[60px] mix-blend-multiply opacity-90 hover:opacity-100 transition-opacity">
-                  <Image
-                    src="/peerless-logo.png"
-                    alt="Peerless Logo"
-                    fill
-                    priority
-                    sizes="200px"
-                    className="object-contain"
-                  />
+              {/* Co-Powered By Sponsor */}
+              <div className="flex-1 flex flex-col items-center gap-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-1 h-1 rounded-full bg-[#82C341] animate-pulse" />
+                  <p
+                    className="font-bebas uppercase tracking-[0.2em]"
+                    style={{ fontSize: 9, color: "rgba(235,220,185,0.7)" }}
+                  >
+                    Co-Powered by
+                  </p>
                 </div>
-              </motion.div>
+
+                <motion.div
+                  whileHover={{ 
+                    y: -3, 
+                    rotate: 1,
+                    boxShadow: "4px 4px 0px rgba(43,26,14,1)",
+                    backgroundColor: "rgba(249, 244, 218, 0.98)"
+                  }}
+                  transition={{ type: "spring", stiffness: 130, damping: 16 }}
+                  className="flex flex-col items-center justify-center w-full p-3 relative overflow-hidden cursor-pointer aspect-[4/3]"
+                  style={{
+                    backgroundColor: "rgba(244, 236, 200, 0.93)",
+                    backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+                    backgroundSize: "5px 5px",
+                    border: "2px solid #2B1A0E",
+                    borderRadius: 8,
+                    boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+                    willChange: "transform, box-shadow"
+                  }}
+                >
+                  {/* Blueprint corner markings */}
+                  <div className="absolute top-1 left-1 w-1 h-1 border-t border-l border-[#2B1A0E]/30" />
+                  <div className="absolute top-1 right-1 w-1 h-1 border-t border-r border-[#2B1A0E]/30" />
+                  <div className="absolute bottom-1 left-1 w-1 h-1 border-b border-l border-[#2B1A0E]/30" />
+                  <div className="absolute bottom-1 right-1 w-1 h-1 border-b border-r border-[#2B1A0E]/30" />
+
+                  <div className="relative w-full h-[35px] mix-blend-multiply opacity-90">
+                    <Image
+                      src="/hint-logo.jpg"
+                      alt="Hint Logo"
+                      fill
+                      priority
+                      sizes="120px"
+                      className="object-contain"
+                    />
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
 
 
