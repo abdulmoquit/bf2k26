@@ -758,15 +758,15 @@ const EVENTS_DATA: Event[] = [
     difficulty: "Veteran",
     difficultyColor: "#6EC6FF",
     teamSize: "Max 4 Athletes (Boys)",
-    time: "8:00 AM - 10:00 AM",
+    time: "11:00 AM - 1:00 PM",
     location: "Main Playground",
-    day: "Day 0",
+    day: "Day 1",
     stage: "Off-stage",
     bounty: "₹8,000 + Custom Trophy",
     rules: [
       "Participants: Maximum 4 boys per school",
       "Classes: 9-12",
-      "The event will take place on 7th July, 2026.",
+      "The event will take place on 10th July, 2026.",
       "All the Rules of World Athletics will be followed.",
       "Each athlete shall be allowed three trials and the eight athletes with the best valid performances shall be allowed three additional trials. In the event of a tie, the winner will be the athlete with the next-best measure.",
       "The javelin shall be held at the grip with one hand only. The athlete cannot wear gloves on their throwing hand.",
@@ -1473,7 +1473,7 @@ const FALLBACK_SCHEDULE = {
 export default function EventsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Territories");
-  const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 0" | "Day 1" | "Day 2">("All Days");
+  const [selectedDay, setSelectedDay] = useState<"All Days" | "Day 1" | "Day 2">("All Days");
   const [selectedStage, setSelectedStage] = useState<"All Stages" | "On-stage" | "Off-stage">("All Stages");
   const [activeEvent, setActiveEvent] = useState<Event | null>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -1482,7 +1482,7 @@ export default function EventsPage() {
 
   const getEventTime = (eventName: string) => {
     if (eventName.toLowerCase() === "bosco spearhead") {
-      return "8:00 AM - 10:00 AM";
+      return "11:00 AM - 1:00 PM";
     }
 
     const matchEvent = (item: EventItem) => {
@@ -1507,7 +1507,7 @@ export default function EventsPage() {
   // to avoid cross-day name collisions (e.g. Bosco Chronicles in both day1 and day2)
   const getEventDay = (eventName: string, fallback: string): string => {
     if (scheduleLoading) {
-      return fallback === "Day 0" ? "DAY 0 (07/07/26)" : fallback;
+      return fallback === "Day 0" ? "Day 1" : fallback;
     }
     const matchEvent = (item: EventItem) => {
       if (!item || !item.activity) return false;
@@ -1526,7 +1526,7 @@ export default function EventsPage() {
     if (inDay1) return "Day 1";
     if (inDay2) return "Day 2";
     
-    if (fallback === "Day 0") return "DAY 0 (07/07/26)";
+    if (fallback === "Day 0") return "Day 1";
     return fallback;
   };
 
@@ -1590,7 +1590,15 @@ export default function EventsPage() {
         const data = await res.json();
         if (data) {
           setScheduleData({
-            day1: parseEvents(data.day1),
+            day1: [
+              ...parseEvents(data.day1),
+              {
+                activity: "Bosco Spearhead (Javelin Throw)",
+                location: "Field",
+                floor: "Ground Floor",
+                time: "11:00 AM - 1:00 PM"
+              }
+            ],
             day2: parseEvents(data.day2),
           });
         } else {
@@ -1599,7 +1607,15 @@ export default function EventsPage() {
       } catch (err) {
         console.warn("Using local fallback schedule for events modal:", err);
         setScheduleData({
-          day1: parseEvents(FALLBACK_SCHEDULE.day1),
+          day1: [
+            ...parseEvents(FALLBACK_SCHEDULE.day1),
+            {
+              activity: "Bosco Spearhead (Javelin Throw)",
+              location: "Field",
+              floor: "Ground Floor",
+              time: "11:00 AM - 1:00 PM"
+            }
+          ],
           day2: parseEvents(FALLBACK_SCHEDULE.day2),
         });
       } finally {
@@ -1683,7 +1699,7 @@ export default function EventsPage() {
               Expedition Day
             </span>
             <div className="flex gap-2">
-              {(["All Days", "Day 0", "Day 1", "Day 2"] as const).map((day) => {
+              {(["All Days", "Day 1", "Day 2"] as const).map((day) => {
                 const isSel = selectedDay === day;
                 return (
                   <button
