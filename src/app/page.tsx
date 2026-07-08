@@ -592,7 +592,10 @@ export default function Home() {
                   </p>
                 </div>
 
-                <motion.div
+                <motion.a
+                  href="https://www.peerlessone.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{
                     y: -4,
                     rotate: -1.5,
@@ -627,7 +630,7 @@ export default function Home() {
                       className="object-contain"
                     />
                   </div>
-                </motion.div>
+                </motion.a>
               </div>
 
               {/* Powered By Sponsor */}
@@ -936,7 +939,10 @@ export default function Home() {
                   </p>
                 </div>
 
-                <motion.div
+                <motion.a
+                  href="https://www.peerlessone.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{
                     y: -3,
                     rotate: -1,
@@ -972,7 +978,7 @@ export default function Home() {
                       className="object-contain"
                     />
                   </div>
-                </motion.div>
+                </motion.a>
               </div>
 
               {/* Side-by-side Sponsors */}
