@@ -138,7 +138,7 @@ function CountdownCards({ isLoaded = true }: { isLoaded?: boolean }) {
   const { time, mounted, expired } = useCountdown();
 
   // Live-mode words shown when countdown expires
-  const liveWords = ["THE", "FEST", "IS", "LIVE"];
+  const liveWords = ["THE", "FEST", "IS", "LIVE!"];
 
   const units = [
     { value: mounted ? time.days : "00", label: "Days", color: "#2B1A0E" },
@@ -167,108 +167,97 @@ function CountdownCards({ isLoaded = true }: { isLoaded?: boolean }) {
       <div className="grid grid-cols-2 gap-3 w-full">
         {expired
           ? liveWords.map((word, i) => (
-              <motion.div
-                key={word}
-                initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
-                animate={isLoaded ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.6, rotate: -8 }}
-                transition={{ delay: i * 0.12, type: "spring", stiffness: 160, damping: 14 }}
-                whileHover={{
-                  y: -4,
-                  rotate: i % 2 === 0 ? 1.5 : -1.5,
-                  boxShadow: "5px 5px 0px rgba(43,26,14,1)",
-                }}
-                className="flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
+            <motion.div
+              key={word}
+              initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
+              animate={isLoaded ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.6, rotate: -8 }}
+              transition={{ delay: i * 0.12, type: "spring", stiffness: 160, damping: 14 }}
+              whileHover={{
+                y: -4,
+                rotate: i % 2 === 0 ? 1.5 : -1.5,
+                boxShadow: "5px 5px 0px rgba(43,26,14,1)",
+                backgroundColor: "rgba(249, 244, 218, 0.98)"
+              }}
+              className="flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
+              style={{
+                backgroundColor: "rgba(244, 236, 200, 0.93)",
+                backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+                backgroundSize: "6px 6px",
+                border: "2px solid #2B1A0E",
+                borderRadius: 10,
+                boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+                padding: "12px 8px 10px",
+                willChange: "transform, box-shadow",
+              }}
+            >
+              {/* Blueprint corner markings */}
+              <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
+              <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
+              <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
+              <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
+              <span
+                className="font-bebas leading-none font-black"
                 style={{
-                  backgroundColor: "rgba(130,195,65,0.15)",
-                  backgroundImage: "radial-gradient(rgba(130,195,65,0.18) 1px, transparent 1px)",
-                  backgroundSize: "6px 6px",
-                  border: "2px solid #82C341",
-                  borderRadius: 10,
-                  boxShadow: "3px 3px 0px rgba(43,26,14,0.9), 0 0 18px rgba(130,195,65,0.25)",
-                  padding: "12px 8px 10px",
-                  willChange: "transform, box-shadow",
+                  fontSize: "clamp(38px, 2.8vw, 44px)",
+                  lineHeight: 1,
+                  color: word === "LIVE!" ? "#37532A" : "#2B1A0E",
                 }}
               >
-                {/* Corner markings */}
-                <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#82C341]/50" />
-                <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#82C341]/50" />
-                <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#82C341]/50" />
-                <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#82C341]/50" />
-                {/* Pulsing glow ring behind the word */}
-                <motion.span
-                  className="absolute inset-0 rounded-[8px] pointer-events-none"
-                  animate={{ opacity: [0.35, 0.65, 0.35] }}
-                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
-                  style={{
-                    background: "radial-gradient(circle at center, rgba(130,195,65,0.3) 0%, transparent 70%)",
-                    willChange: "opacity",
-                  }}
-                />
-                <span
-                  className="font-bebas leading-none font-black"
-                  style={{
-                    fontSize: "clamp(28px, 2.2vw, 36px)",
-                    lineHeight: 1,
-                    color: "#82C341",
-                    textShadow: "0 0 12px rgba(130,195,65,0.4)",
-                    letterSpacing: "0.05em",
-                  }}
-                >
-                  {word}
-                </span>
-              </motion.div>
-            ))
+                {word}
+              </span>
+            </motion.div>
+          ))
           : units.map((u, i) => (
-              <motion.div
-                key={u.label}
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
-                whileHover={{
-                  y: -4,
-                  rotate: i % 2 === 0 ? 1.5 : -1.5,
-                  boxShadow: "5px 5px 0px rgba(43,26,14,1)",
-                  backgroundColor: "rgba(249, 244, 218, 0.98)"
-                }}
-                transition={{
-                  default: { type: "spring", stiffness: 130, damping: 16 },
-                  scale: { delay: 0.15 + i * 0.08, type: "spring" }
-                }}
-                className="flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
+            <motion.div
+              key={u.label}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+              whileHover={{
+                y: -4,
+                rotate: i % 2 === 0 ? 1.5 : -1.5,
+                boxShadow: "5px 5px 0px rgba(43,26,14,1)",
+                backgroundColor: "rgba(249, 244, 218, 0.98)"
+              }}
+              transition={{
+                default: { type: "spring", stiffness: 130, damping: 16 },
+                scale: { delay: 0.15 + i * 0.08, type: "spring" }
+              }}
+              className="flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
+              style={{
+                backgroundColor: "rgba(244, 236, 200, 0.93)",
+                backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+                backgroundSize: "6px 6px",
+                border: "2px solid #2B1A0E",
+                borderRadius: 10,
+                boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+                padding: "12px 8px 10px",
+                willChange: "transform, box-shadow"
+              }}
+            >
+              {/* Blueprint corner markings */}
+              <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
+              <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
+              <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
+              <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
+
+              <span
+                className="font-bebas leading-none font-black"
                 style={{
-                  backgroundColor: "rgba(244, 236, 200, 0.93)",
-                  backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
-                  backgroundSize: "6px 6px",
-                  border: "2px solid #2B1A0E",
-                  borderRadius: 10,
-                  boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
-                  padding: "12px 8px 10px",
-                  willChange: "transform, box-shadow"
+                  fontSize: "clamp(38px, 2.8vw, 44px)",
+                  lineHeight: 1,
+                  color: u.color,
+                  textShadow: u.label === "Secs" ? "0 0 10px rgba(130,195,65,0.1)" : "none"
                 }}
               >
-                {/* Blueprint corner markings */}
-                <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
-                <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
-                <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
-                <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
-
-                <span
-                  className="font-bebas leading-none font-black"
-                  style={{
-                    fontSize: "clamp(38px, 2.8vw, 44px)",
-                    lineHeight: 1,
-                    color: u.color,
-                    textShadow: u.label === "Secs" ? "0 0 10px rgba(130,195,65,0.1)" : "none"
-                  }}
-                >
-                  {u.value}
-                </span>
-                <span
-                  className="font-bebas font-bold uppercase tracking-[0.15em] mt-1 text-[#2B1A0E]/50 text-[10px]"
-                >
-                  {u.label}
-                </span>
-              </motion.div>
-            ))
+                {u.value}
+              </span>
+              <span
+                className="font-bebas font-bold uppercase tracking-[0.15em] mt-1 text-[#2B1A0E]/50 text-[10px]"
+              >
+                {u.label}
+              </span>
+            </motion.div>
+          ))
         }
       </div>
     </div>
