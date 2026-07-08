@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Compass,
   ArrowDown,
@@ -14,11 +14,11 @@ import Navbar from "@/components/Navbar";
 import { usePreloaderDone } from "@/components/PreloaderContext";
 
 // Shared animation variants
-const fadeUp = (delay = 0) => ({
+/* const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
   animate: { opacity: 1, y: 0 },
   transition: { delay, type: "spring" as const, stiffness: 80, damping: 16 },
-});
+}); */
 
 const containerVariants = {
   hidden: {},
@@ -99,6 +99,7 @@ const TERRITORIES: Territory[] = [
 function useCountdown() {
   const [mounted, setMounted] = useState(false);
   const [time, setTime] = useState({ days: "00", hours: "00", minutes: "00", seconds: "00" });
+  const [expired, setExpired] = useState(false);
 
   useEffect(() => {
     const target = new Date("2026-07-10T07:15:00").getTime();
@@ -106,8 +107,10 @@ function useCountdown() {
       const diff = target - Date.now();
       if (diff <= 0) {
         setTime({ days: "00", hours: "00", minutes: "00", seconds: "00" });
+        setExpired(true);
         return;
       }
+      setExpired(false);
       setTime({
         days: Math.floor(diff / 86_400_000).toString().padStart(2, "0"),
         hours: Math.floor((diff % 86_400_000) / 3_600_000).toString().padStart(2, "0"),
@@ -127,82 +130,146 @@ function useCountdown() {
     return () => clearTimeout(timeoutId);
   }, []);
 
-  return { time, mounted };
+  return { time, mounted, expired };
 }
 
 // Countdown Cards component — 2×2 grid of parchment cards
 function CountdownCards({ isLoaded = true }: { isLoaded?: boolean }) {
-  const { time, mounted } = useCountdown();
+  const { time, mounted, expired } = useCountdown();
+
+  // Live-mode words shown when countdown expires
+  const liveWords = ["THE", "FEST", "IS", "LIVE"];
+
   const units = [
     { value: mounted ? time.days : "00", label: "Days", color: "#2B1A0E" },
     { value: mounted ? time.hours : "00", label: "Hours", color: "#2B1A0E" },
     { value: mounted ? time.minutes : "00", label: "Mins", color: "#2B1A0E" },
-    { value: mounted ? time.seconds : "00", label: "Secs", color: "#37532A" }, // Highlight seconds with forest green
+    { value: mounted ? time.seconds : "00", label: "Secs", color: "#37532A" },
   ];
 
   return (
     <div className="flex flex-col items-start gap-4 w-full select-none">
       {/* Header */}
       <div className="flex items-center gap-2 mb-0.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#82C341] animate-pulse" />
+        <span
+          className="w-1.5 h-1.5 rounded-full"
+          style={{
+            backgroundColor: expired ? "#82C341" : "#82C341",
+            animation: expired ? "pulse 0.7s ease-in-out infinite" : "pulse 1.5s ease-in-out infinite",
+          }}
+        />
         <p className="font-bebas text-[10px] tracking-[0.35em] text-[#ebdcb9]/60 uppercase">
-          Expedition Begins In
+          {expired ? "The Fest Is Live!" : "Expedition Begins In"}
         </p>
       </div>
 
       {/* 2×2 Grid */}
       <div className="grid grid-cols-2 gap-3 w-full">
-        {units.map((u, i) => (
-          <motion.div
-            key={u.label}
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
-            whileHover={{ 
-              y: -4, 
-              rotate: i % 2 === 0 ? 1.5 : -1.5,
-              boxShadow: "5px 5px 0px rgba(43,26,14,1)",
-              backgroundColor: "rgba(249, 244, 218, 0.98)"
-            }}
-            transition={{ 
-              default: { type: "spring", stiffness: 130, damping: 16 },
-              scale: { delay: 0.15 + i * 0.08, type: "spring" }
-            }}
-            className="flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
-            style={{
-              backgroundColor: "rgba(244, 236, 200, 0.93)",
-              backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
-              backgroundSize: "6px 6px",
-              border: "2px solid #2B1A0E",
-              borderRadius: 10,
-              boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
-              padding: "12px 8px 10px",
-              willChange: "transform, box-shadow"
-            }}
-          >
-            {/* Blueprint corner markings */}
-            <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
-            <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
-            <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
-            <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
+        {expired
+          ? liveWords.map((word, i) => (
+              <motion.div
+                key={word}
+                initial={{ opacity: 0, scale: 0.6, rotate: -8 }}
+                animate={isLoaded ? { opacity: 1, scale: 1, rotate: 0 } : { opacity: 0, scale: 0.6, rotate: -8 }}
+                transition={{ delay: i * 0.12, type: "spring", stiffness: 160, damping: 14 }}
+                whileHover={{
+                  y: -4,
+                  rotate: i % 2 === 0 ? 1.5 : -1.5,
+                  boxShadow: "5px 5px 0px rgba(43,26,14,1)",
+                }}
+                className="flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
+                style={{
+                  backgroundColor: "rgba(130,195,65,0.15)",
+                  backgroundImage: "radial-gradient(rgba(130,195,65,0.18) 1px, transparent 1px)",
+                  backgroundSize: "6px 6px",
+                  border: "2px solid #82C341",
+                  borderRadius: 10,
+                  boxShadow: "3px 3px 0px rgba(43,26,14,0.9), 0 0 18px rgba(130,195,65,0.25)",
+                  padding: "12px 8px 10px",
+                  willChange: "transform, box-shadow",
+                }}
+              >
+                {/* Corner markings */}
+                <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#82C341]/50" />
+                <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#82C341]/50" />
+                <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#82C341]/50" />
+                <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#82C341]/50" />
+                {/* Pulsing glow ring behind the word */}
+                <motion.span
+                  className="absolute inset-0 rounded-[8px] pointer-events-none"
+                  animate={{ opacity: [0.35, 0.65, 0.35] }}
+                  transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                  style={{
+                    background: "radial-gradient(circle at center, rgba(130,195,65,0.3) 0%, transparent 70%)",
+                    willChange: "opacity",
+                  }}
+                />
+                <span
+                  className="font-bebas leading-none font-black"
+                  style={{
+                    fontSize: "clamp(28px, 2.2vw, 36px)",
+                    lineHeight: 1,
+                    color: "#82C341",
+                    textShadow: "0 0 12px rgba(130,195,65,0.4)",
+                    letterSpacing: "0.05em",
+                  }}
+                >
+                  {word}
+                </span>
+              </motion.div>
+            ))
+          : units.map((u, i) => (
+              <motion.div
+                key={u.label}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={isLoaded ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+                whileHover={{
+                  y: -4,
+                  rotate: i % 2 === 0 ? 1.5 : -1.5,
+                  boxShadow: "5px 5px 0px rgba(43,26,14,1)",
+                  backgroundColor: "rgba(249, 244, 218, 0.98)"
+                }}
+                transition={{
+                  default: { type: "spring", stiffness: 130, damping: 16 },
+                  scale: { delay: 0.15 + i * 0.08, type: "spring" }
+                }}
+                className="flex flex-col items-center justify-center relative overflow-hidden cursor-pointer"
+                style={{
+                  backgroundColor: "rgba(244, 236, 200, 0.93)",
+                  backgroundImage: "radial-gradient(rgba(43, 26, 14, 0.06) 1px, transparent 1px)",
+                  backgroundSize: "6px 6px",
+                  border: "2px solid #2B1A0E",
+                  borderRadius: 10,
+                  boxShadow: "3px 3px 0px rgba(43,26,14,0.9)",
+                  padding: "12px 8px 10px",
+                  willChange: "transform, box-shadow"
+                }}
+              >
+                {/* Blueprint corner markings */}
+                <div className="absolute top-1.5 left-1.5 w-1.5 h-1.5 border-t border-l border-[#2B1A0E]/30" />
+                <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 border-t border-r border-[#2B1A0E]/30" />
+                <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
+                <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
 
-            <span
-              className="font-bebas leading-none font-black"
-              style={{ 
-                fontSize: "clamp(38px, 2.8vw, 44px)", 
-                lineHeight: 1,
-                color: u.color,
-                textShadow: u.label === "Secs" ? "0 0 10px rgba(130,195,65,0.1)" : "none"
-              }}
-            >
-              {u.value}
-            </span>
-            <span
-              className="font-bebas font-bold uppercase tracking-[0.15em] mt-1 text-[#2B1A0E]/50 text-[10px]"
-            >
-              {u.label}
-            </span>
-          </motion.div>
-        ))}
+                <span
+                  className="font-bebas leading-none font-black"
+                  style={{
+                    fontSize: "clamp(38px, 2.8vw, 44px)",
+                    lineHeight: 1,
+                    color: u.color,
+                    textShadow: u.label === "Secs" ? "0 0 10px rgba(130,195,65,0.1)" : "none"
+                  }}
+                >
+                  {u.value}
+                </span>
+                <span
+                  className="font-bebas font-bold uppercase tracking-[0.15em] mt-1 text-[#2B1A0E]/50 text-[10px]"
+                >
+                  {u.label}
+                </span>
+              </motion.div>
+            ))
+        }
       </div>
     </div>
   );
@@ -304,9 +371,8 @@ export default function Home() {
             muted
             playsInline
             preload="auto"
-            className={`absolute inset-0 w-full h-full object-cover hero-bg-video select-none pointer-events-none transition-opacity duration-700 ${
-              videoAutoplayFailed ? "opacity-0" : "opacity-100"
-            }`}
+            className={`absolute inset-0 w-full h-full object-cover hero-bg-video select-none pointer-events-none transition-opacity duration-700 ${videoAutoplayFailed ? "opacity-0" : "opacity-100"
+              }`}
             style={{ zIndex: 0 }}
           >
             <source src="/hero-bg-new.mp4" type="video/mp4" />
@@ -380,8 +446,8 @@ export default function Home() {
                 initial="hidden"
                 animate={isLoaded ? "show" : "hidden"}
                 className="font-bebas uppercase leading-none select-none flex flex-wrap justify-center"
-                style={{ 
-                  fontSize: "clamp(52px, 7vw, 84px)", 
+                style={{
+                  fontSize: "clamp(52px, 7vw, 84px)",
                   letterSpacing: "0.03em",
                   textShadow: "0 4px 20px rgba(0,0,0,0.65), 0 2px 4px rgba(0,0,0,0.4)"
                 }}
@@ -393,11 +459,11 @@ export default function Home() {
                 ))}
                 <span className="inline-block whitespace-nowrap">
                   {"2026".split("").map((ch, i) => (
-                    <motion.span 
-                      key={"y" + i} 
-                      variants={letterVariants} 
-                      style={{ 
-                        color: "#82C341", 
+                    <motion.span
+                      key={"y" + i}
+                      variants={letterVariants}
+                      style={{
+                        color: "#82C341",
                         display: "inline-block"
                       }}
                     >
@@ -538,8 +604,8 @@ export default function Home() {
                 </div>
 
                 <motion.div
-                  whileHover={{ 
-                    y: -4, 
+                  whileHover={{
+                    y: -4,
                     rotate: -1.5,
                     boxShadow: "5px 5px 0px rgba(43,26,14,1)",
                     backgroundColor: "rgba(249, 244, 218, 0.98)"
@@ -588,8 +654,8 @@ export default function Home() {
                 </div>
 
                 <motion.div
-                  whileHover={{ 
-                    y: -4, 
+                  whileHover={{
+                    y: -4,
                     rotate: 1,
                     boxShadow: "5px 5px 0px rgba(43,26,14,1)",
                     backgroundColor: "rgba(249, 244, 218, 0.98)"
@@ -638,8 +704,8 @@ export default function Home() {
                 </div>
 
                 <motion.div
-                  whileHover={{ 
-                    y: -4, 
+                  whileHover={{
+                    y: -4,
                     rotate: 1.5,
                     boxShadow: "5px 5px 0px rgba(43,26,14,1)",
                     backgroundColor: "rgba(249, 244, 218, 0.98)"
@@ -719,8 +785,8 @@ export default function Home() {
                 initial="hidden"
                 animate={isLoaded ? "show" : "hidden"}
                 className="font-bebas uppercase leading-none select-none flex flex-wrap justify-center"
-                style={{ 
-                  fontSize: "clamp(38px, 10vw, 48px)", 
+                style={{
+                  fontSize: "clamp(38px, 10vw, 48px)",
                   letterSpacing: "0.03em",
                   textShadow: "0 4px 16px rgba(0,0,0,0.65), 0 2px 4px rgba(0,0,0,0.4)"
                 }}
@@ -732,11 +798,11 @@ export default function Home() {
                 ))}
                 <span className="inline-block whitespace-nowrap">
                   {"2026".split("").map((ch, i) => (
-                    <motion.span 
-                      key={"y" + i} 
-                      variants={letterVariants} 
-                      style={{ 
-                        color: "#82C341", 
+                    <motion.span
+                      key={"y" + i}
+                      variants={letterVariants}
+                      style={{
+                        color: "#82C341",
                         display: "inline-block"
                       }}
                     >
@@ -882,8 +948,8 @@ export default function Home() {
                 </div>
 
                 <motion.div
-                  whileHover={{ 
-                    y: -3, 
+                  whileHover={{
+                    y: -3,
                     rotate: -1,
                     boxShadow: "4px 4px 0px rgba(43,26,14,1)",
                     backgroundColor: "rgba(249, 244, 218, 0.98)"
@@ -935,8 +1001,8 @@ export default function Home() {
                   </div>
 
                   <motion.div
-                    whileHover={{ 
-                      y: -3, 
+                    whileHover={{
+                      y: -3,
                       rotate: -0.5,
                       boxShadow: "4px 4px 0px rgba(43,26,14,1)",
                       backgroundColor: "rgba(249, 244, 218, 0.98)"
@@ -986,8 +1052,8 @@ export default function Home() {
                   </div>
 
                   <motion.div
-                    whileHover={{ 
-                      y: -3, 
+                    whileHover={{
+                      y: -3,
                       rotate: 1,
                       boxShadow: "4px 4px 0px rgba(43,26,14,1)",
                       backgroundColor: "rgba(249, 244, 218, 0.98)"
@@ -1173,11 +1239,11 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true, margin: "-80px" }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 120, 
-                    damping: 14, 
-                    delay: 0.3 + idx * 0.15 
+                  transition={{
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 14,
+                    delay: 0.3 + idx * 0.15
                   }}
                   whileHover={{ scale: 1.06 }}
                   style={{ willChange: "transform, opacity" }}
