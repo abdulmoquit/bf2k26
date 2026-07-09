@@ -102,7 +102,7 @@ function useCountdown() {
   const [expired, setExpired] = useState(false);
 
   useEffect(() => {
-    const target = new Date("2026-07-10T07:15:00").getTime();
+    const target = Date.now() + 20000;
     const tick = () => {
       const diff = target - Date.now();
       if (diff <= 0) {
@@ -206,7 +206,7 @@ function CountdownCards({ isLoaded = true }: { isLoaded?: boolean }) {
                 {word.includes("^") ? (
                   <span className="flex items-start">
                     <span>{word.split("^")[0]}</span>
-                    <sup className="text-[0.45em] select-none font-extrabold relative -top-[0.2em] ml-[1px]">
+                    <sup className="text-[0.45em] select-none font-extrabold relative -top-[0.05em] ml-[1px]">
                       {word.split("^")[1]}
                     </sup>
                   </span>
