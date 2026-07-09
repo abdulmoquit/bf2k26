@@ -22,8 +22,10 @@ export function PreloaderProvider({ children }: { children: React.ReactNode }) {
     // Already seen this session (page navigation) - skip wait immediately
     const alreadySeen = sessionStorage.getItem('bf_preloader_done');
     if (alreadySeen) {
-      setIsLoaded(true);
-      return;
+      const timer = setTimeout(() => {
+        setIsLoaded(true);
+      }, 0);
+      return () => clearTimeout(timer);
     }
 
     const timer = setTimeout(() => {

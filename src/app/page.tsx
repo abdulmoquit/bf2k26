@@ -138,7 +138,7 @@ function CountdownCards({ isLoaded = true }: { isLoaded?: boolean }) {
   const { time, mounted, expired } = useCountdown();
 
   // Live-mode words shown when countdown expires
-  const liveWords = ["THE", "FEST", "IS", "LIVE!"];
+  const liveWords = ["41^st", "EDITION", "IS", "LIVE!"];
 
   const units = [
     { value: mounted ? time.days : "00", label: "Days", color: "#2B1A0E" },
@@ -159,7 +159,7 @@ function CountdownCards({ isLoaded = true }: { isLoaded?: boolean }) {
           }}
         />
         <p className="font-bebas text-[10px] tracking-[0.35em] text-[#ebdcb9]/60 uppercase">
-          {expired ? "The Fest Is Live!" : "Expedition Begins In"}
+          {expired ? "41st Edition Is Live!" : "Expedition Begins In"}
         </p>
       </div>
 
@@ -196,14 +196,23 @@ function CountdownCards({ isLoaded = true }: { isLoaded?: boolean }) {
               <div className="absolute bottom-1.5 left-1.5 w-1.5 h-1.5 border-b border-l border-[#2B1A0E]/30" />
               <div className="absolute bottom-1.5 right-1.5 w-1.5 h-1.5 border-b border-r border-[#2B1A0E]/30" />
               <span
-                className="font-bebas leading-none font-black"
+                className="font-bebas leading-none font-black flex items-center justify-center"
                 style={{
-                  fontSize: "clamp(38px, 2.8vw, 44px)",
+                  fontSize: "clamp(34px, 2.5vw, 40px)",
                   lineHeight: 1,
                   color: word === "LIVE!" ? "#37532A" : "#2B1A0E",
                 }}
               >
-                {word}
+                {word.includes("^") ? (
+                  <span className="flex items-start">
+                    <span>{word.split("^")[0]}</span>
+                    <sup className="text-[0.45em] select-none font-extrabold relative -top-[0.2em] ml-[1px]">
+                      {word.split("^")[1]}
+                    </sup>
+                  </span>
+                ) : (
+                  word
+                )}
               </span>
             </motion.div>
           ))

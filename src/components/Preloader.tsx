@@ -9,8 +9,10 @@ export default function Preloader() {
   useEffect(() => {
     const alreadySeen = typeof window !== 'undefined' && sessionStorage.getItem('bf_preloader_done');
     if (alreadySeen) {
-      setLoading(false);
-      return;
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 0);
+      return () => clearTimeout(timer);
     }
 
     // Lock scrolling on initial load
