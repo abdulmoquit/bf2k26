@@ -102,7 +102,7 @@ function useCountdown() {
   const [expired, setExpired] = useState(false);
 
   useEffect(() => {
-    const target = Date.now() + 20000;
+    const target = new Date("2026-07-10T07:15:00").getTime();
     const tick = () => {
       const diff = target - Date.now();
       if (diff <= 0) {
